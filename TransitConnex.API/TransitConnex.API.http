@@ -1,0 +1,6 @@
+@TransitConnex.API_HostAddress = http://localhost:5265
+
+GET {{TransitConnex.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
