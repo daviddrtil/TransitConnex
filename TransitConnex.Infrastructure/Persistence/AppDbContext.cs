@@ -29,6 +29,27 @@ namespace TransitConnex.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Mappings to db tables
+            modelBuilder.Entity<Icon>().ToTable("Icon");
+            modelBuilder.Entity<Location>().ToTable("Location");
+            modelBuilder.Entity<Stop>().ToTable("Stop");
+            modelBuilder.Entity<LocationStop>().ToTable("Location_Stop");
+            modelBuilder.Entity<Line>().ToTable("Line");
+            modelBuilder.Entity<Route>().ToTable("Route");
+            modelBuilder.Entity<RouteStop>().ToTable("Route_Stop");
+            modelBuilder.Entity<RouteSchedulingTemplate>().ToTable("RouteSchedulingTemplate");
+            modelBuilder.Entity<Vehicle>().ToTable("Vehicle");
+            modelBuilder.Entity<ScheduledRoute>().ToTable("ScheduledRoute");
+            modelBuilder.Entity<Service>().ToTable("Service");
+            modelBuilder.Entity<VehicleService>().ToTable("Vehicle_Service");
+            modelBuilder.Entity<Seat>().ToTable("Seat");
+            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<ScheduledRouteSeat>().ToTable("ScheduledRoute_Seat");
+            modelBuilder.Entity<RouteTicket>().ToTable("RouteTicket");
+            modelBuilder.Entity<UserLocationFavourite>().ToTable("User_Location_Favourite");
+            modelBuilder.Entity<UserLineFavourite>().ToTable("User_Line_Favourite");
+            
+            
             // Composite Keys and Relationships
 
             // LocationStop (Composite Key)
