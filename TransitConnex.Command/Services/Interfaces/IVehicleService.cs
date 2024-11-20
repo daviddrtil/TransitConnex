@@ -1,4 +1,6 @@
+using TransitConnex.Application.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Infrastructure.Services.Interfaces
 {
@@ -10,7 +12,7 @@ namespace TransitConnex.Infrastructure.Services.Interfaces
 
         Task<bool> VehicleExists(Guid id);
 
-        Task<VehicleDto> CreateVehicle(VehicleCreateDto vehicleDto);
+        Task<Vehicle> CreateVehicle(VehicleCreateCommand vehicleDto);
 
         Task<VehicleDto> EditVehicle(Guid id, VehicleCreateDto editedVehicle);
 

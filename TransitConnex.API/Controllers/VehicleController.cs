@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.Application.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Services.Interfaces;
@@ -11,11 +13,13 @@ namespace TransitConnex.API.Controllers
     {
         // private readonly AppDbContext _context;
         private readonly IVehicleService _vehicleService;
+        private readonly VehicleCommandHandler _vehicleCommandHandler;
 
-        public VehicleController(AppDbContext context, IVehicleService vehicleService)
+        public VehicleController(AppDbContext context, IVehicleService vehicleService, VehicleCommandHandler vehicleCommandHandler)
         {
             // _context = context;
             _vehicleService = vehicleService;
+            _vehicleCommandHandler = vehicleCommandHandler;
         }
 
         // GET: api/Vehicle
@@ -39,9 +43,11 @@ namespace TransitConnex.API.Controllers
 
         // POST: api/Vehicle
         [HttpPost]
-        public async Task<ActionResult<VehicleDto>> CreateVehicle(VehicleCreateDto vehicle)
+        public async Task<IActionResult> CreateVehicle(VehicleCreateCommand vehicle)
         {
-            return await _vehicleService.CreateVehicle(vehicle);
+            // return await _vehicleService.CreateVehicle(vehicle);
+            await _vehicleCommandHandler.HandleCreate(vehicle);
+            return Ok();
         }
         
         // // PUT: api/Vehicle/{id}

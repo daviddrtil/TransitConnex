@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Models;
 
-namespace TransitConnex.Infrastructure.Mappings
+namespace TransitConnex.Domain.Mappings
 {
     public static class VehicleMapper
     {

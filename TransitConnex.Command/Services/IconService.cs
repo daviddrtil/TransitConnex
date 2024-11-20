@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TransitConnex.Domain.DTOs.Icon;
+using TransitConnex.Domain.Mappings;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Mappings;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 using TransitConnex.Infrastructure.Services.Interfaces;
 

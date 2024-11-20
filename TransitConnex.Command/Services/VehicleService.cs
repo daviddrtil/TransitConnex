@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using TransitConnex.Application.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
+using TransitConnex.Domain.Mappings;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Mappings;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
@@ -32,7 +33,7 @@ namespace TransitConnex.Infrastructure.Services
             return await _vehicleRepository.QueryById(id).AnyAsync();
         }
 
-        public async Task<VehicleDto> CreateVehicle(VehicleCreateDto vehicleDto)
+        public async Task<Vehicle> CreateVehicle(VehicleCreateCommand vehicleDto)
         {
             var newVehicle = new Vehicle
             {
@@ -48,7 +49,7 @@ namespace TransitConnex.Infrastructure.Services
             
             await _vehicleRepository.Add(newVehicle);
 
-            return await GetVehicleById(newVehicle.Id);
+            return newVehicle;
         }
 
         public async Task<VehicleDto> EditVehicle(Guid id, VehicleCreateDto editedVehicle)

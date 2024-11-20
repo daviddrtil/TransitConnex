@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TransitConnex.API.Extensions;
+using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Repositories;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
@@ -24,6 +25,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddReadDbContext();
 builder.Services.AddReadOnlyRepositories();
+
+// Handlers
+// builder.Services.AddScoped(typeof(IBaseCommandHandler<>));
+builder.Services.AddScoped<VehicleCommandHandler>();
 
 // Repositories
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
