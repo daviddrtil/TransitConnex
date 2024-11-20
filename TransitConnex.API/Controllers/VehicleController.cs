@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TransitConnex.Domain.Models;
+using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Services.Interfaces;
 
 namespace TransitConnex.API.Controllers
 {
@@ -9,104 +9,67 @@ namespace TransitConnex.API.Controllers
     [ApiController]
     public class VehicleController : Controller
     {
-        private readonly AppDbContext _context;
+        // private readonly AppDbContext _context;
+        private readonly IVehicleService _vehicleService;
 
-        public VehicleController(AppDbContext context)
+        public VehicleController(AppDbContext context, IVehicleService vehicleService)
         {
-            _context = context;
+            // _context = context;
+            _vehicleService = vehicleService;
         }
 
         // GET: api/Vehicle
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicles()
+        public async Task<ActionResult<IEnumerable<VehicleDto>>> GetVehicles()
         {
-            return await _context.Vehicles
-                .Include(v => v.Icon)
-                .Include(v => v.Line)
-                .ToListAsync();
+            return await _vehicleService.GetAllVehicles();
         }
 
         // GET: api/Vehicle/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Vehicle>> GetVehicle(Guid id)
+        public async Task<ActionResult<VehicleDto>> GetVehicle(Guid id)
         {
-            var vehicle = await _context.Vehicles
-                .Include(v => v.Icon)
-                .Include(v => v.Line)
-                .FirstOrDefaultAsync(v => v.Id == id);
-
-            if (vehicle == null)
+            if (!await _vehicleService.VehicleExists(id))
             {
-                return NotFound();
+                return NotFound($"Vehicle with id: {id} was not found.");
             }
-
-            return vehicle;
+            
+            return await _vehicleService.GetVehicleById(id);
         }
 
         // POST: api/Vehicle
         [HttpPost]
-        public async Task<ActionResult<Vehicle>> CreateVehicle(Vehicle vehicle)
+        public async Task<ActionResult<VehicleDto>> CreateVehicle(VehicleCreateDto vehicle)
         {
-            if (vehicle == null)
-            {
-                return BadRequest();
-            }
-
-            _context.Vehicles.Add(vehicle);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetVehicle), new { id = vehicle.Id }, vehicle);
+            return await _vehicleService.CreateVehicle(vehicle);
         }
-
-        // PUT: api/Vehicle/{id}
+        
+        // // PUT: api/Vehicle/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVehicle(Guid id, Vehicle vehicle)
+        public async Task<IActionResult> UpdateVehicle(Guid id, VehicleCreateDto editedVehicle)
         {
-            if (id != vehicle.Id)
+            if (!await _vehicleService.VehicleExists(id))
             {
-                return BadRequest();
+                return NotFound($"Vehicle with id: {id} was not found.");
             }
-
-            _context.Entry(vehicle).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!VehicleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+        
+            await _vehicleService.EditVehicle(id, editedVehicle);
+        
             return NoContent();
         }
-
-        // DELETE: api/Vehicle/{id}
+        
+        // // DELETE: api/Vehicle/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicle(Guid id)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
-            if (vehicle == null)
+            if (!await _vehicleService.VehicleExists(id))
             {
-                return NotFound();
+                return NotFound($"Vehicle with ID {id} was not found.");
             }
 
-            _context.Vehicles.Remove(vehicle);
-            await _context.SaveChangesAsync();
-
+            await _vehicleService.DeleteVehicle(id);
+        
             return NoContent();
-        }
-
-        private bool VehicleExists(Guid id)
-        {
-            return _context.Vehicles.Any(e => e.Id == id);
         }
     }
 }
