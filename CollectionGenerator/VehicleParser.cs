@@ -3,6 +3,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
 using TransitConnex.Domain.Collections;
+using TransitConnex.Domain.Collections.NestedDocuments;
 
 namespace CollectionGenerator;
 

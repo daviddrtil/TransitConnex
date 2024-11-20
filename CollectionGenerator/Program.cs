@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using System.Text.Json;
 using TransitConnex.Domain.Collections;
+using TransitConnex.Domain.Collections.NestedDocuments;
 
 namespace CollectionGenerator;
 
