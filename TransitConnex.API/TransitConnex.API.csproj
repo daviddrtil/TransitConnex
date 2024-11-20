@@ -14,6 +14,7 @@
     <ProjectReference Include="..\TransitConnex.Application\TransitConnex.Application.csproj" />
     <ProjectReference Include="..\TransitConnex.Domain\TransitConnex.Domain.csproj" />
     <ProjectReference Include="..\TransitConnex.Infrastructure\TransitConnex.Infrastructure.csproj" />
+    <ProjectReference Include="..\TransitConnex.Query\TransitConnex.Query.csproj" />
   </ItemGroup>
 
 </Project>
