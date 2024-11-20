@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Queries\" />
+    <Folder Include="CommandHandlers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.30.0" />
+    <ProjectReference Include="..\TransitConnex.Infrastructure\TransitConnex.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
