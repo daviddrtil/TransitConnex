@@ -1,3 +1,5 @@
+using TransitConnex.Domain.Enums;
+using TransitConnex.Domain.Models;
 using TransitConnex.Infrastructure.Persistence;
 
 namespace TransitConnex.Infrastructure.Seeds
@@ -6,7 +8,21 @@ namespace TransitConnex.Infrastructure.Seeds
     {
         public static void Seed(AppDbContext context)
         {
-            throw new NotImplementedException();
+            var linesToBeSeeded = new List<Line>()
+            {
+                new()
+                {
+                    Label = "",
+                    Name = "",
+                    LineType = LineTypeEnum.BUS,
+                },
+                new()
+                {
+                    Label = "",
+                    Name = "",
+                    LineType = LineTypeEnum.BUS,
+                }
+            };        
         }
     }
 }

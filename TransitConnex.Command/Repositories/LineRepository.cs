@@ -1,10 +1,11 @@
 using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Line;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
 namespace TransitConnex.Infrastructure.Repositories
 {
-    public class LineRepository : BaseRepository<Line>, ILineRepository
+    public class LineRepository : BaseRepository<Line, LineUpdateCommand>, ILineRepository
     {
         private readonly AppDbContext _db;
 

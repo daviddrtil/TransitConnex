@@ -1,6 +1,6 @@
-namespace TransitConnex.Application.Commands.Vehicle
+namespace TransitConnex.Infrastructure.Commands.Vehicle
 {
-    public interface IVehicleCommand
+    public interface IVehicleCommand : IBaseCommand
     {
         
     }

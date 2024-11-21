@@ -1,10 +1,11 @@
 using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Stop;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
 namespace TransitConnex.Infrastructure.Repositories
 {
-    public class StopRepository : BaseRepository<Stop>, IStopRepository
+    public class StopRepository : BaseRepository<Stop, StopUpdateCommand>, IStopRepository
     {
         private readonly AppDbContext _db;
 

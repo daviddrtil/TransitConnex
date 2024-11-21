@@ -1,10 +1,11 @@
 using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Seat;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
 namespace TransitConnex.Infrastructure.Repositories
 {
-    public class SeatRepository : BaseRepository<Seat>, ISeatRepository
+    public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepository
     {
         private readonly AppDbContext _db;
 

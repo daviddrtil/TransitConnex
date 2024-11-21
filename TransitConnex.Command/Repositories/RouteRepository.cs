@@ -1,10 +1,11 @@
 using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Route;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
 namespace TransitConnex.Infrastructure.Repositories
 {
-    public class RouteRepository : BaseRepository<Route>, IRouteRepository
+    public class RouteRepository : BaseRepository<Route, RouteUpdateCommand>, IRouteRepository
     {
         private readonly AppDbContext _db;
 

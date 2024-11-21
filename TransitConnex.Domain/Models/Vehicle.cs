@@ -1,4 +1,6 @@
-﻿namespace TransitConnex.Domain.Models
+﻿using TransitConnex.Domain.Enums;
+
+namespace TransitConnex.Domain.Models
 {
     public class Vehicle
     {
@@ -7,7 +9,7 @@
         public string? Spz { get; set; }
         public string? Manufacturer { get; set; }
         public int Capacity { get; set; }
-        public int VehicleType { get; set; } // 1 - bus, 2 - tram, 3 - train
+        public VehicleTypeEnum VehicleType { get; set; } // 1 - bus, 2 - tram, 3 - train
         public Guid? IconId { get; set; }
         public Icon? Icon { get; set; }
         public Guid? LineId { get; set; }
