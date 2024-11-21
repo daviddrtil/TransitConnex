@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using TransitConnex.Application.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Mappings;
 using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Vehicle;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
@@ -52,7 +52,7 @@ namespace TransitConnex.Infrastructure.Services
             return newVehicle;
         }
 
-        public async Task<VehicleDto> EditVehicle(Guid id, VehicleCreateDto editedVehicle)
+        public async Task<Vehicle> EditVehicle(Guid id, VehicleUpdateCommand editedVehicle)
         {
             var vehicle = await _vehicleRepository.QueryById(id).FirstOrDefaultAsync();
 
@@ -62,16 +62,16 @@ namespace TransitConnex.Infrastructure.Services
             }
             
             // TOODO -> think of better way to do this? -> mby reflection?
-            vehicle.Manufacturer = editedVehicle.Manufacturer;
-            vehicle.Capacity = editedVehicle.Capacity;
-            vehicle.Spz = editedVehicle.Spz;
-            vehicle.VehicleType = editedVehicle.VehicleType;
-            vehicle.IconId = editedVehicle.IconId;
-            vehicle.LineId = editedVehicle.LineId;
+            // vehicle.Manufacturer = editedVehicle.Manufacturer;
+            // vehicle.Capacity = editedVehicle.Capacity;
+            // vehicle.Spz = editedVehicle.Spz;
+            // vehicle.VehicleType = editedVehicle.VehicleType;
+            // vehicle.IconId = editedVehicle.IconId;
+            // vehicle.LineId = editedVehicle.LineId;
             
-            await _vehicleRepository.Update(vehicle);
+            await _vehicleRepository.Update(vehicle, editedVehicle);
             
-            return await GetVehicleById(id);
+            return vehicle;
         }
 
         public async Task DeleteVehicle(Guid id)

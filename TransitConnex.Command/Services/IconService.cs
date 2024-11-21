@@ -18,7 +18,8 @@ namespace TransitConnex.Infrastructure.Services
 
         public async Task<List<IconDto>> GetAllIcons()
         {
-            return await _iconRepository.QueryAll().ToDto().ToListAsync();
+            // return await _iconRepository.QueryAll().ToDto().ToListAsync();
+            return null;
         }
 
         public async Task<IconDto> GetIconById(Guid id)
@@ -38,11 +39,12 @@ namespace TransitConnex.Infrastructure.Services
         
         public async Task<IconDto> CreateIcon(IconCreateDto iconDto)
         {
-            var newIcon = new Icon {Name = iconDto.Name, Svg = iconDto.Svg};
-            
-            await _iconRepository.Add(newIcon);
-            
-            return await GetIconById(newIcon.Id);
+            // var newIcon = new Icon {Name = iconDto.Name, Svg = iconDto.Svg};
+            //
+            // await _iconRepository.Add(newIcon);
+            //
+            // return await GetIconById(newIcon.Id);
+            return null;
         }
 
         public async Task<IconDto> EditIcon(Guid id, IconCreateDto editedIcon)
@@ -69,7 +71,7 @@ namespace TransitConnex.Infrastructure.Services
                 throw new KeyNotFoundException($"Icon with ID {id} was not found.");
             }
             
-            await _iconRepository.Delete(icon);
+            // await _iconRepository.Delete(icon);
         }
     }
 }

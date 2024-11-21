@@ -1,10 +1,11 @@
 using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Location;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
 namespace TransitConnex.Infrastructure.Repositories
 {
-    public class LocationRepository : BaseRepository<Location>, ILocationRepository
+    public class LocationRepository : BaseRepository<Location, LocationUpdateCommand>, ILocationRepository
     {
         private readonly AppDbContext _db;
 

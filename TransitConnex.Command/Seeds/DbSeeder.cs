@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using TransitConnex.Domain.Models;
 using TransitConnex.Infrastructure.Persistence;
 
 namespace TransitConnex.Infrastructure.Seeds
@@ -10,10 +11,18 @@ namespace TransitConnex.Infrastructure.Seeds
             using var scope = serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             
-            IconSeed.Seed(context);
-            LocationSeed.Seed(context);
-            VehicleSeed.Seed(context);
             // UserSeed.Seed(context);
+            IconSeed.Seed(context);
+            ServiceSeed.Seed(context);
+            LocationSeed.Seed(context);
+            LineSeed.Seed(context);
+            StopSeed.Seed(context);
+            RouteSeed.Seed(context);
+            RouteSchedulingTemplateSeed.Seed(context);
+            ScheduledRouteSeed.Seed(context);
+            VehicleSeed.Seed(context);
+            SeatSeed.Seed(context);
+            RouteTicketSeed.Seed(context);
         }
     }
 }

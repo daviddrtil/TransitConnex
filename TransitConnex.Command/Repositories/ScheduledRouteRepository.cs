@@ -1,10 +1,11 @@
 using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.ScheduledRoute;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
 namespace TransitConnex.Infrastructure.Repositories
 {
-    public class ScheduledRouteRepository : BaseRepository<ScheduledRoute>, IScheduledRouteRepository
+    public class ScheduledRouteRepository : BaseRepository<ScheduledRoute, ScheduledRouteUpdateCommand>, IScheduledRouteRepository
     {
         private readonly AppDbContext _db;
 

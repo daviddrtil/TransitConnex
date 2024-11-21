@@ -1,5 +1,5 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
-using TransitConnex.Application.Commands.Vehicle;
+using TransitConnex.Infrastructure.Commands.Vehicle;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers
@@ -23,12 +23,18 @@ namespace TransitConnex.API.Handlers.CommandHandlers
 
         public async Task HandleUpdate(IVehicleCommand command)
         {
-            throw new NotImplementedException();
+            if (command is VehicleUpdateCommand updateCommand)
+            {
+                var updatedVehicle =  await _vehicleService.EditVehicle(updateCommand.Id, updateCommand);
+            }
         }
 
         public async Task HandleDelete(IVehicleCommand command)
         {
-            throw new NotImplementedException();
+            if (command is VehicleDeleteCommand deleteCommand)
+            {
+                await _vehicleService.DeleteVehicle(deleteCommand.Id);
+            }
         }
     }
 }

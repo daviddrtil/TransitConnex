@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Application.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
+using TransitConnex.Infrastructure.Commands.Vehicle;
 using TransitConnex.Infrastructure.Persistence;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
@@ -52,7 +52,7 @@ namespace TransitConnex.API.Controllers
         
         // // PUT: api/Vehicle/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVehicle(Guid id, VehicleCreateDto editedVehicle)
+        public async Task<IActionResult> UpdateVehicle(Guid id, VehicleUpdateCommand editedVehicle)
         {
             if (!await _vehicleService.VehicleExists(id))
             {

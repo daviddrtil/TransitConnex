@@ -31,7 +31,7 @@ builder.Services.AddReadOnlyRepositories();
 builder.Services.AddScoped<VehicleCommandHandler>();
 
 // Repositories
-builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(IBaseRepository<,>), typeof(BaseRepository<,>));
 builder.Services.AddScoped<IIconRepository, IconRepository>();
 builder.Services.AddScoped<ILineRepository, LineRepository>();
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();

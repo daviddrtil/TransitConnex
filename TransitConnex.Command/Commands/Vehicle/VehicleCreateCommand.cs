@@ -1,4 +1,6 @@
-namespace TransitConnex.Application.Commands.Vehicle
+using TransitConnex.Domain.Enums;
+
+namespace TransitConnex.Infrastructure.Commands.Vehicle
 {
     public class VehicleCreateCommand : IVehicleCommand
     {
@@ -6,7 +8,7 @@ namespace TransitConnex.Application.Commands.Vehicle
         public required string Spz { get; set; }
         public required string Manufacturer { get; set; }
         public required int Capacity { get; set; }
-        public required int VehicleType { get; set; }
+        public required VehicleTypeEnum VehicleType { get; set; }
         public Guid? IconId { get; set; }
         public Guid? LineId { get; set; }
     }
