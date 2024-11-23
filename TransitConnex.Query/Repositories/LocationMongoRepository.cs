@@ -4,7 +4,7 @@ using TransitConnex.Query.Repositories.Interfaces;
 
 namespace TransitConnex.Query.Repositories;
 
-internal class LocationRepository(IReadDbContext readDbContext)
-    : BaseRepository<LocationDoc, Guid>(readDbContext), ILocationRepository
+public class LocationMongoRepository(IReadDbContext readDbContext)
+    : BaseMongoRepository<LocationDoc, Guid>(readDbContext), ILocationMongoRepository
 {
 }

@@ -2,6 +2,6 @@
 
 namespace TransitConnex.Query.Repositories.Interfaces;
 
-internal interface ILocationRepository : IBaseRepository<LocationDoc, Guid>
+public interface ILocationMongoRepository : IBaseMongoRepository<LocationDoc, Guid>
 {
 }

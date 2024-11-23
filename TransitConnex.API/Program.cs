@@ -8,6 +8,8 @@ using TransitConnex.Query;
 using TransitConnex.Infrastructure.Seeds;
 using TransitConnex.Infrastructure.Services;
 using TransitConnex.Infrastructure.Services.Interfaces;
+using TransitConnex.Domain.Automapping;
+using TransitConnex.API.Handlers.QueryHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,18 +19,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), options =>
     {
         options.EnableRetryOnFailure();
     }));
 
-builder.Services.AddReadDbContext();
-builder.Services.AddReadOnlyRepositories();
-
 // Handlers
 // builder.Services.AddScoped(typeof(IBaseCommandHandler<>));
 builder.Services.AddScoped<VehicleCommandHandler>();
+builder.Services.AddScoped<VehicleRTIQueryHandler>();
 
 // Repositories
 builder.Services.AddScoped(typeof(IBaseRepository<,>), typeof(BaseRepository<,>));
@@ -57,16 +62,12 @@ builder.Services.AddScoped<IStopService, StopService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 
-var app = builder.Build();
+// MongoDb services DI
+builder.Services.AddReadDbContext();
+builder.Services.AddMongoDbRepositories();
+builder.Services.AddMongoDbServices();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    await app.MigrateDatabasesAsync();
-    
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+var app = builder.Build();
 
 var seedDb = builder.Configuration.GetValue<bool>("SeedDatabase");
 var unseedDb = builder.Configuration.GetValue<bool>("UnseedDatabase");
@@ -88,6 +89,8 @@ if (seedDb)
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    await app.MigrateDatabasesAsync();
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

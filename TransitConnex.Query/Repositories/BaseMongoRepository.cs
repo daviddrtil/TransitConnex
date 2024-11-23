@@ -11,11 +11,11 @@ namespace TransitConnex.Query.Repositories;
 /// <typeparam name="TQueryModel">The type of the query model.</typeparam>
 /// <typeparam name="Tkey">The type of the key.</typeparam>
 /// <remarks>
-/// Initializes a new instance of the <see cref="BaseRepository{TQueryModel, Tkey}"/> class.
+/// Initializes a new instance of the <see cref="BaseMongoRepository{TQueryModel, Tkey}"/> class.
 /// </remarks>
 /// <param name="context">The read database context.</param>
-internal abstract class BaseRepository<TQueryModel, Tkey>(IReadDbContext context)
-    : IBaseRepository<TQueryModel, Tkey>
+public abstract class BaseMongoRepository<TQueryModel, Tkey>(IReadDbContext context)
+    : IBaseMongoRepository<TQueryModel, Tkey>
     where TQueryModel : IQueryModel<Tkey>
     where Tkey : IEquatable<Tkey>
 {
@@ -26,7 +26,7 @@ internal abstract class BaseRepository<TQueryModel, Tkey>(IReadDbContext context
     /// </summary>
     /// <param name="id">The id of the query model.</param>
     /// <returns>The query model.</returns>
-    public async Task<TQueryModel> GetByIdAsync(Tkey id)
+    public async Task<TQueryModel?> GetById(Tkey id)
     {
         return await Collection
             .Find(queryModel => queryModel.Id.Equals(id))
@@ -37,7 +37,7 @@ internal abstract class BaseRepository<TQueryModel, Tkey>(IReadDbContext context
     /// Retrieves all query models from the collection.
     /// </summary>
     /// <returns>Enumerable of query models.</returns>
-    public async Task<IEnumerable<TQueryModel>> GetAllAsync()
+    public async Task<IEnumerable<TQueryModel>> GetAll()
     {
         return await Collection
             .Find(_ => true)
@@ -50,10 +50,10 @@ internal abstract class BaseRepository<TQueryModel, Tkey>(IReadDbContext context
     /// </summary>
     /// <param name="queryModel">The query model to upsert.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public async Task UpsertAsync(TQueryModel queryModel)
+    public async Task Upsert(TQueryModel queryModel)
     {
         var filter = Builders<TQueryModel>.Filter.Eq(q => q.Id, queryModel.Id);
-        var options = new ReplaceOptions { IsUpsert = true };
+        var options = new ReplaceOptions() { IsUpsert = true };
         await Collection.ReplaceOneAsync(filter, queryModel, options);
     }
 
@@ -62,7 +62,7 @@ internal abstract class BaseRepository<TQueryModel, Tkey>(IReadDbContext context
     /// </summary>
     /// <param name="id">The ID of the query model to delete.</param>
     /// <returns>True whether document was deleted, otherwise false.</returns>
-    public async Task<bool> DeleteAsync(Tkey id)
+    public async Task<bool> Delete(Tkey id)
     {
         var filter = Builders<TQueryModel>.Filter.Eq(queryModel => queryModel.Id, id);
         var result = await Collection.DeleteOneAsync(filter);

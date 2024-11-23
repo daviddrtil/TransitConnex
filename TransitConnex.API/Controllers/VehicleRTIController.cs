@@ -1,33 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TransitConnex.Domain.Collections;
-using TransitConnex.Query.Repositories.Interfaces;
+using TransitConnex.API.Handlers.QueryHandlers;
+using TransitConnex.Domain.DTOs.VehicleRTI;
 
-namespace TransitConnex.API.Controllers
+namespace TransitConnex.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class VehicleRTIController(
+    VehicleRTIQueryHandler vehicleRTIQueryHandler) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class VehicleRTIController(IVehicleRTIRepository vehicleRTIRepo) : ControllerBase
+    [HttpGet]
+    public async Task<IEnumerable<VehicleRTIDto>> GetAll()
     {
-        [HttpGet]
-        public async Task<IEnumerable<VehicleRTIDoc>> GetAll()
-        {
-            return await vehicleRTIRepo.GetAllAsync();
-        }
+        return await vehicleRTIQueryHandler.HandleGetAll();
+    }
 
-        [HttpGet("GetByVehicleId/{id}")]
-        public async Task<VehicleRTIDoc> GetByVehicleId(Guid id)
-        {
-            return await vehicleRTIRepo.GetByVehicleIdAsync(id);
-            //return vehicle is null ? Ok(vehicle) : NotFound();
-        }
+    [HttpGet("GetByVehicleId/{id}")]
+    public async Task<VehicleRTIDto?> GetByVehicleId(Guid id)
+    {
+        return await vehicleRTIQueryHandler.HandleGetById(id);
+        //return vehicle is null ? Ok(vehicle) : NotFound();
+    }
 
-        // todo rename endpoint
-        [HttpPost]
-        public async Task AddVehicleRTI(VehicleRTIDoc vehicleRTI)
-        {
-            if (vehicleRTI.Id == Guid.Empty)
-                vehicleRTI.Id = Guid.NewGuid(); // Always only add
-            await vehicleRTIRepo.UpsertAsync(vehicleRTI);
-        }
+    // todo rename endpoint
+    [HttpPost]
+    public async Task<Guid> AddVehicleRTI(VehicleRTIDto vehicleRTI)
+    {
+        return await vehicleRTIQueryHandler.HandleCreate(vehicleRTI);
     }
 }

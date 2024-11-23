@@ -7,6 +7,8 @@ using TransitConnex.Query.Abstraction;
 using TransitConnex.Query.Data;
 using TransitConnex.Query.Repositories;
 using TransitConnex.Query.Repositories.Interfaces;
+using TransitConnex.Query.Services;
+using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.Query;
 
@@ -28,12 +30,28 @@ public static class ConfigureServices
         return services;
     }
 
+    // todo rename read-only repositories
     /// <summary>
     /// Adds read-only repositories to the service collection.
     /// </summary>
     /// <param name="services">The service collection.</param>
-    public static IServiceCollection AddReadOnlyRepositories(this IServiceCollection services) =>
-        services.AddScoped<IVehicleRTIRepository, VehicleRTIRepository>();
+    public static void AddMongoDbRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<ILocationMongoRepository, LocationMongoRepository>();
+        services.AddScoped<IScheduledRouteMongoRepository, ScheduledRouteMongoRepository>();
+        services.AddScoped<ISearchedRouteMongoRepository, SearchedRouteMongoRepository>();
+        services.AddScoped<IVehicleMongoRepository, VehicleMongoRepository>();
+        services.AddScoped<IVehicleRTIMongoRepository, VehicleRTIMongoRepository>();
+    }
+
+    public static void AddMongoDbServices(this IServiceCollection services)
+    {
+        services.AddScoped<ILocationMongoService, LocationMongoService>();
+        services.AddScoped<IScheduledRouteMongoService, ScheduledRouteMongoService>();
+        services.AddScoped<ISearchedRouteMongoService, SearchedRouteMongoService>();
+        services.AddScoped<IVehicleMongoService, VehicleMongoService>();
+        services.AddScoped<IVehicleRTIMongoService, VehicleRTIMongoService>();
+    }
 
     /// <summary>
     /// Configures the MongoDB settings and mappings.

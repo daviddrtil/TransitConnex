@@ -5,13 +5,13 @@ using TransitConnex.Query.Repositories.Interfaces;
 
 namespace TransitConnex.Query.Repositories;
 
-internal class VehicleRTIRepository(IReadDbContext readDbContext)
-    : BaseRepository<VehicleRTIDoc, Guid>(readDbContext), IVehicleRTIRepository
+public class VehicleRTIMongoRepository(IReadDbContext readDbContext)
+    : BaseMongoRepository<VehicleRTIDoc, Guid>(readDbContext), IVehicleRTIMongoRepository
 {
-    public async Task<VehicleRTIDoc> GetByVehicleIdAsync(Guid id)
+    public async Task<VehicleRTIDoc?> GetByVehicleId(Guid vehicleId)
     {
         return await Collection
-            .Find(v => v.VehicleId == id)
+            .Find(v => v.VehicleId == vehicleId)
             .SortByDescending(v => v.Updated)
             .FirstOrDefaultAsync();
     }
