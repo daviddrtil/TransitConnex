@@ -52,7 +52,7 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
         var collections = await asyncCursor.ToListAsync();
 
         var collectionNamesFromAssembly = GetCollectionNamesFromAssembly();
-        foreach (var collectionName in collectionNamesFromAssembly)
+        foreach (string collectionName in collectionNamesFromAssembly)
         {
             // Check if the collection does not exist in the database
             if (!collections.Exists(db => db.Equals(collectionName, StringComparison.InvariantCultureIgnoreCase)))
@@ -91,7 +91,7 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
             && index["key"].AsBsonDocument.Contains(indexKey2));
         if (!indexExists)
         {
-            var indexName = await collection.Indexes.CreateOneAsync(indexModel);
+            string indexName = await collection.Indexes.CreateOneAsync(indexModel);
             _logger.LogInformation("----- MongoDB: VehicleRTI indexes successfully created - {indexName}", indexName);
         }
     }

@@ -4,7 +4,7 @@ using TransitConnex.Query.Repositories.Interfaces;
 
 namespace TransitConnex.Query.Repositories;
 
-internal class SearchedRouteRepository(IReadDbContext readDbContext)
-    : BaseRepository<SearchedRouteDoc, Guid>(readDbContext), ISearchedRouteRepository
+public class SearchedRouteMongoRepository(IReadDbContext readDbContext)
+    : BaseMongoRepository<SearchedRouteDoc, Guid>(readDbContext), ISearchedRouteMongoRepository
 {
 }

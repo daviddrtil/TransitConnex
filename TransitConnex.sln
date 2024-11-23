@@ -18,6 +18,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionGenerator", "Coll
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransitConnex.Query", "TransitConnex.Query\TransitConnex.Query.csproj", "{8220E375-AA72-46D5-80E5-B21062410191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransitConnex.UnitTests", "TransitConnex.UnitTests\TransitConnex.UnitTests.csproj", "{996DCE81-1E31-4DC5-8B5D-56F240885104}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E0614E1-131C-4EFE-8453-384B544C1083}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,12 +54,17 @@ Global
 		{8220E375-AA72-46D5-80E5-B21062410191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8220E375-AA72-46D5-80E5-B21062410191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8220E375-AA72-46D5-80E5-B21062410191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{996DCE81-1E31-4DC5-8B5D-56F240885104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996DCE81-1E31-4DC5-8B5D-56F240885104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996DCE81-1E31-4DC5-8B5D-56F240885104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996DCE81-1E31-4DC5-8B5D-56F240885104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E} = {110B69AE-E798-4674-BF48-AD6320347D1B}
+		{996DCE81-1E31-4DC5-8B5D-56F240885104} = {110B69AE-E798-4674-BF48-AD6320347D1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA6BA01A-502E-42B6-941A-D834288F8B60}

@@ -17,6 +17,7 @@ namespace TransitConnex.Infrastructure.Repositories
             _db = db;
         }
 
+        // todo QueryAll probably retrive all data and filter it in memory not on sql
         public IQueryable<Vehicle> QueryById(Guid vehicleId)
         {
             return QueryAll().Where(v => v.Id == vehicleId);

@@ -16,8 +16,4 @@
     <ProjectReference Include="..\TransitConnex.Domain\TransitConnex.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Queries\" />
-  </ItemGroup>
-
 </Project>

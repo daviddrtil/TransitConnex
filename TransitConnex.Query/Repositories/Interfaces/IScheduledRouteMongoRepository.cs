@@ -2,6 +2,6 @@
 
 namespace TransitConnex.Query.Repositories.Interfaces;
 
-internal interface IScheduledRouteRepository : IBaseRepository<ScheduledRouteDoc, Guid>
+public interface IScheduledRouteMongoRepository : IBaseMongoRepository<ScheduledRouteDoc, Guid>
 {
 }

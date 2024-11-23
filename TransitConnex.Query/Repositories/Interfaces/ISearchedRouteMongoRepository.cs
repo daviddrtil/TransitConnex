@@ -2,6 +2,6 @@
 
 namespace TransitConnex.Query.Repositories.Interfaces;
 
-internal interface ISearchedRouteRepository : IBaseRepository<SearchedRouteDoc, Guid>
+public interface ISearchedRouteMongoRepository : IBaseMongoRepository<SearchedRouteDoc, Guid>
 {
 }
