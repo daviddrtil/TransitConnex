@@ -1,15 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using TransitConnex.API.Extensions;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.API.Handlers.QueryHandlers;
+using TransitConnex.API.Middleware;
+using TransitConnex.Domain.Automapping;
+using TransitConnex.Infrastructure.Data;
 using TransitConnex.Infrastructure.Repositories;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Query;
 using TransitConnex.Infrastructure.Seeds;
 using TransitConnex.Infrastructure.Services;
 using TransitConnex.Infrastructure.Services.Interfaces;
-using TransitConnex.Domain.Automapping;
-using TransitConnex.API.Handlers.QueryHandlers;
+using TransitConnex.Query;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Handlers
 // builder.Services.AddScoped(typeof(IBaseCommandHandler<>));
+builder.Services.AddScoped<IconCommandHandler>();
+// builder.Services.AddScoped<LineCommandHandler>();
+// builder.Services.AddScoped<LocationCommandHandler>();
+// builder.Services.AddScoped<RouteCommandHandler>();
+// builder.Services.AddScoped<RouteSchedulingTemplateCommandHandler>();
+// builder.Services.AddScoped<RouteTicketCommandHandler>();
+// builder.Services.AddScoped<ScheduledRouteCommandHandler>();
+// builder.Services.AddScoped<SeatCommandHandler>();
+builder.Services.AddScoped<ServiceCommandHandler>();
+// builder.Services.AddScoped<StopCommandHandler>();
+// builder.Services.AddScoped<UserCommandHandler>();
 builder.Services.AddScoped<VehicleCommandHandler>();
 builder.Services.AddScoped<VehicleRTIQueryHandler>();
 
@@ -48,7 +60,7 @@ builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IStopRepository, StopRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
-            
+
 // Services
 builder.Services.AddScoped<IIconService, IconService>();
 builder.Services.AddScoped<ILineService, LineService>();
@@ -69,13 +81,13 @@ builder.Services.AddMongoDbServices();
 
 var app = builder.Build();
 
-var seedDb = builder.Configuration.GetValue<bool>("SeedDatabase");
-var unseedDb = builder.Configuration.GetValue<bool>("UnseedDatabase");
+bool seedDb = builder.Configuration.GetValue<bool>("SeedDatabase");
+bool unseedDb = builder.Configuration.GetValue<bool>("UnseedDatabase");
 
 if (unseedDb)
 {
-    using IServiceScope scope = app.Services.CreateScope();
-    AppDbContext dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    using var scope = app.Services.CreateScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     DbCleaner.DeleteEntireDb(dbContext);
     return;
 }
@@ -98,6 +110,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

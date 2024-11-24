@@ -20,14 +20,20 @@ public class VehicleMongoService(
     {
         var vehicle = await vehicleRepo.GetById(id);
         if (vehicle == null)
+        {
             return null;
+        }
+
         return mapper.Map<Vehicle>(vehicle);
     }
 
     public async Task<Guid> Create(Vehicle vehicle)
     {
         if (vehicle.Id == Guid.Empty)
+        {
             vehicle.Id = Guid.NewGuid(); // Always only add
+        }
+
         var vehicleDoc = mapper.Map<VehicleDoc>(vehicle);
         await vehicleRepo.Upsert(vehicleDoc);
         return vehicle.Id;
@@ -37,7 +43,10 @@ public class VehicleMongoService(
     {
         var vehicleDoc = await vehicleRepo.GetById(vehicle.Id);
         if (vehicleDoc == null)
-            return;     // Document not exists, update is not performed
+        {
+            return; // Document not exists, update is not performed
+        }
+
         var newVehicleDoc = mapper.Map<VehicleDoc>(vehicle);
         await vehicleRepo.Upsert(newVehicleDoc);
     }

@@ -1,32 +1,31 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.RouteTicket;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class RouteTicketCommandHandler(IRouteTicketService routeTicketService)
+    : IBaseCommandHandler<IRouteTicketCommand>
 {
-    public class RouteTicketCommandHandler : IBaseCommandHandler<IRouteTicketCommand>
+    private readonly IRouteTicketService _routeTicketService = routeTicketService;
+
+    public async Task<Guid> HandleCreate(IRouteTicketCommand command)
     {
-        private readonly IRouteTicketService _routeTicketService;
-
-        public RouteTicketCommandHandler(IRouteTicketService routeTicketService)
+        if (command is not RouteTicketCreateCommand routeTicketCreateCommand)
         {
-            _routeTicketService = routeTicketService;
-        }
-            
-        public Task HandleCreate(IRouteTicketCommand command)
-        {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected RouteTicketCommand.");
         }
 
-        public Task HandleUpdate(IRouteTicketCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        return new Guid();
+    }
 
-        public Task HandleDelete(IRouteTicketCommand command)
-        {
-            throw new NotImplementedException();
-        }
+    public async Task HandleUpdate(IRouteTicketCommand command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task HandleDelete(IRouteTicketCommand command)
+    {
+        throw new NotImplementedException();
     }
 }

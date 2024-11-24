@@ -10,6 +10,12 @@ namespace TransitConnex.Domain.Automapping;
 
 public class MappingProfile : Profile
 {
+    public MappingProfile()
+    {
+        MapModels();
+        MapCollections();
+    }
+
     private void MapModels()
     {
         // todo
@@ -22,11 +28,5 @@ public class MappingProfile : Profile
         CreateMap<SearchedRouteDoc, SearchedRouteDto>();
         CreateMap<VehicleDoc, VehicleDto>();
         CreateMap<VehicleRTIDoc, VehicleRTIDto>();
-    }
-
-    public MappingProfile()
-    {
-        MapModels();
-        MapCollections();
     }
 }

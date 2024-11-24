@@ -2,30 +2,35 @@ using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.Route;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class RouteCommandHandler(IRouteService routeService) : IBaseCommandHandler<IRouteCommand>
 {
-    public class RouteCommandHandler : IBaseCommandHandler<IRouteCommand>
+    private readonly IRouteService _routeService = routeService;
+
+    public async Task<Guid> HandleCreate(IRouteCommand command)
     {
-        private readonly IRouteService _routeService;
-
-        public RouteCommandHandler(IRouteService routeService)
+        if (command is not RouteCreateCommand)
         {
-            _routeService = routeService;
-        }
-        
-        public Task HandleCreate(IRouteCommand command)
-        {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected RouteCreateCommand.");
         }
 
-        public Task HandleUpdate(IRouteCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        return new Guid();
+    }
 
-        public Task HandleDelete(IRouteCommand command)
+    public async Task HandleUpdate(IRouteCommand command)
+    {
+        if (command is not RouteUpdateCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected RouteUpdateCommand.");
+        }
+    }
+
+    public async Task HandleDelete(IRouteCommand command)
+    {
+        if (command is not RouteDeleteCommand)
+        {
+            throw new InvalidCastException("Invalid command given, expected RouteDeleteCommand.");
         }
     }
 }

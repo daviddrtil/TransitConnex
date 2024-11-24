@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.Seat
+namespace TransitConnex.Infrastructure.Commands.Seat;
+
+public class SeatDeleteCommand : ISeatCommand
 {
-    public class SeatDeleteCommand
-    {
-        
-    }
+    public required Guid Id { get; set; }
 }

@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.Icon
+namespace TransitConnex.Infrastructure.Commands.Icon;
+
+public class IconDeleteCommand : IIconCommand
 {
-    public class IconDeleteCommand
-    {
-        
-    }
+    public Guid Id { get; set; }
 }

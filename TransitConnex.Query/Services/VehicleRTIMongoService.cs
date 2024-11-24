@@ -20,14 +20,20 @@ public class VehicleRTIMongoService(
     {
         var vehicleRTIDoc = await vehicleRTIRepo.GetByVehicleId(vehicleId);
         if (vehicleRTIDoc == null)
+        {
             return null;
+        }
+
         return mapper.Map<VehicleRTIDto>(vehicleRTIDoc);
     }
 
     public async Task<Guid> Create(VehicleRTIDto vehicleRTI)
     {
         if (vehicleRTI.Id == Guid.Empty)
+        {
             vehicleRTI.Id = Guid.NewGuid(); // Always only add
+        }
+
         var vehicleRTIDoc = mapper.Map<VehicleRTIDoc>(vehicleRTI);
         await vehicleRTIRepo.Upsert(vehicleRTIDoc);
         return vehicleRTI.Id;

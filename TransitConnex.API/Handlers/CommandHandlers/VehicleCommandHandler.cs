@@ -3,43 +3,45 @@ using TransitConnex.Infrastructure.Commands.Vehicle;
 using TransitConnex.Infrastructure.Services.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class VehicleCommandHandler(IVehicleService vehicleService, IVehicleMongoService vehicleMongoService)
+    : IBaseCommandHandler<IVehicleCommand>
 {
-    public class VehicleCommandHandler : IBaseCommandHandler<IVehicleCommand>
+    public async Task<Guid> HandleCreate(IVehicleCommand command)
     {
-        private readonly IVehicleService _vehicleService;
-        private readonly IVehicleMongoService _vehicleMongoService;
-
-        public VehicleCommandHandler(IVehicleService vehicleService,
-            IVehicleMongoService vehicleMongoService)
+        if (command is not VehicleCreateCommand createCommand)
         {
-            _vehicleService = vehicleService;
-            _vehicleMongoService = vehicleMongoService;
+            throw new InvalidCastException("Invalid command given, expected VehicleCreatedCommand.");
         }
 
-        public async Task HandleCreate(IVehicleCommand command)
+        var newVehicle = await vehicleService.CreateVehicle(createCommand);
+        var id = await vehicleMongoService.Create(newVehicle);
+        
+        // TODO -> sync with mongo
+
+        return new Guid();
+    }
+
+    public async Task HandleUpdate(IVehicleCommand command)
+    {
+        if (command is not VehicleUpdateCommand updateCommand)
         {
-            if (command is VehicleCreateCommand createCommand)
-            {
-                var newVehicle = await _vehicleService.CreateVehicle(createCommand);
-                var id = await _vehicleMongoService.Create(newVehicle);
-            }
+            throw new InvalidCastException("Invalid command given, expected VehicleUpdateCommand.");
         }
 
-        public async Task HandleUpdate(IVehicleCommand command)
+        var updatedVehicle = await vehicleService.EditVehicle(updateCommand);
+        
+        // TODO -> sync with mongo
+    }
+
+    public async Task HandleDelete(IVehicleCommand command)
+    {
+        if (command is not VehicleDeleteCommand deleteCommand)
         {
-            if (command is VehicleUpdateCommand updateCommand)
-            {
-                var updatedVehicle = await _vehicleService.EditVehicle(updateCommand.Id, updateCommand);
-            }
+            throw new InvalidCastException("Invalid command given, expected VehicleDeleteCommand.");
         }
 
-        public async Task HandleDelete(IVehicleCommand command)
-        {
-            if (command is VehicleDeleteCommand deleteCommand)
-            {
-                await _vehicleService.DeleteVehicle(deleteCommand.Id);
-            }
-        }
+        await vehicleService.DeleteVehicle(deleteCommand.Id);
     }
 }

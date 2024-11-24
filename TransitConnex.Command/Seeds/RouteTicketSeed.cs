@@ -1,13 +1,12 @@
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Data;
 
-namespace TransitConnex.Infrastructure.Seeds
+namespace TransitConnex.Infrastructure.Seeds;
+
+public class RouteTicketSeed
 {
-    public class RouteTicketSeed
+    public static void Seed(AppDbContext context)
     {
-        public static void Seed(AppDbContext context)
-        {
-            var routeTicketsToBeSeeded = new List<RouteTicket>() { };
-        }
+        var routeTicketsToBeSeeded = new List<RouteTicket>();
     }
 }

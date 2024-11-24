@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.RouteTicket
+namespace TransitConnex.Infrastructure.Commands.RouteTicket;
+
+public class RouteTicketDeleteCommand : IRouteTicketCommand
 {
-    public class RouteTicketDeleteCommand
-    {
-        
-    }
+    public required Guid Id { get; set; }
 }

@@ -1,7 +1,5 @@
-namespace TransitConnex.Infrastructure.Commands.ScheduledRoute
+namespace TransitConnex.Infrastructure.Commands.ScheduledRoute;
+
+public interface IScheduledRouteCommand : IBaseCommand
 {
-    public interface IScheduledRouteCommand
-    {
-        
-    }
 }

@@ -1,17 +1,47 @@
 using Microsoft.AspNetCore.Mvc;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
+using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.Infrastructure.Commands.Route;
 
-namespace TransitConnex.API.Controllers
+namespace TransitConnex.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class RouteController(RouteCommandHandler routeCommandHandler) : Controller
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RouteController : Controller
+    [HttpPost]
+    public async Task<Guid> CreateRoute(RouteCreateCommand createCommand)
     {
-        private readonly IRouteRepository _routeRepository;
+        return await routeCommandHandler.HandleCreate(createCommand);
+    }
+    
+    [HttpPost("batch")]
+    public async Task<Guid> CreateRoutes(List<RouteCreateCommand> createCommands)
+    {
+        // return await RouteCommandHandler.HandleCreate(createCommand);
+        return new Guid(); // TODO
+    }
 
-        public RouteController(IRouteRepository routeRepository)
-        {
-            _routeRepository = routeRepository;
-        }
+    [HttpPut]
+    public async Task<IActionResult> EditRoute(RouteUpdateCommand updateCommand)
+    {
+        await routeCommandHandler.HandleUpdate(updateCommand);
+
+        return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteRoute(RouteDeleteCommand deleteCommand)
+    {
+        await routeCommandHandler.HandleDelete(deleteCommand);
+
+        return Ok();
+    }
+    
+    [HttpDelete("batch")]
+    public async Task<IActionResult> DeleteRoutes(List<Guid> deleteIds)
+    {
+        // await RouteCommandHandler.HandleDelete(deleteCommand); // TODO
+
+        return Ok();
     }
 }

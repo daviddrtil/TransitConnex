@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.ScheduledRoute
+namespace TransitConnex.Domain.DTOs.ScheduledRoute;
+
+public class ScheduledRouteCreateDto
 {
-    public class ScheduledRouteCreateDto
-    {
-        
-    }
 }

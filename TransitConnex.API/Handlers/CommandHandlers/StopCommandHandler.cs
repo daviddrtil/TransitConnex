@@ -2,30 +2,39 @@ using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.Stop;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
-{
-    public class StopCommandHandler : IBaseCommandHandler<IStopCommand>
-    {
-        private readonly IStopService _stopService;
+namespace TransitConnex.API.Handlers.CommandHandlers;
 
-        public StopCommandHandler(IStopService stopService)
+public class StopCommandHandler(IStopService stopService) : IBaseCommandHandler<IStopCommand>
+{
+    public async Task<Guid> HandleCreate(IStopCommand command)
+    {
+        if (command is not StopCreateCommand createCommand)
         {
-            _stopService = stopService;
+            throw new InvalidCastException("Invalid command given, expected StopCreateCommand.");
         }
         
-        public Task HandleCreate(IStopCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        var created = await stopService.CreateStop(createCommand);
+        
+        return created.Id;
+    }
 
-        public Task HandleUpdate(IStopCommand command)
+    public async Task HandleUpdate(IStopCommand command)
+    {
+        if (command is not StopUpdateCommand updateCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected StopUpdateCommand.");
         }
+        
+        await stopService.EditStop(updateCommand);
+    }
 
-        public Task HandleDelete(IStopCommand command)
+    public async Task HandleDelete(IStopCommand command)
+    {
+        if (command is not StopDeleteCommand deleteCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected StopDeleteCommand.");
         }
+        
+        await stopService.DeleteStop(deleteCommand);
     }
 }

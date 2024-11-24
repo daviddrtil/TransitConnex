@@ -1,7 +1,5 @@
-namespace TransitConnex.Infrastructure.Commands.Stop
+namespace TransitConnex.Infrastructure.Commands.Stop;
+
+public interface IStopCommand : IBaseCommand
 {
-    public interface IStopCommand
-    {
-        
-    }
 }

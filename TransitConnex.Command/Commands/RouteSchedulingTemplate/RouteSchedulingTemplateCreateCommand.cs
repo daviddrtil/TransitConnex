@@ -1,7 +1,7 @@
-namespace TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate
+namespace TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate;
+
+public class RouteSchedulingTemplateCreateCommand : IRouteSchedulingTemplateCommand
 {
-    public class RouteSchedulingTemplateCreateCommand
-    {
-        
-    }
+    public required Guid RouteId { get; set; }
+    public required string Template { get; set; }
 }

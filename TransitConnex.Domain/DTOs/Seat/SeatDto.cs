@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.Seat
+namespace TransitConnex.Domain.DTOs.Seat;
+
+public class SeatDto
 {
-    public class SeatDto
-    {
-        
-    }
 }

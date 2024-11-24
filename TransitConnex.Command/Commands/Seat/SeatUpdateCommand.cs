@@ -1,7 +1,9 @@
-namespace TransitConnex.Infrastructure.Commands.Seat
+namespace TransitConnex.Infrastructure.Commands.Seat;
+
+public class SeatUpdateCommand : ISeatCommand
 {
-    public class SeatUpdateCommand
-    {
-        
-    }
+    public required Guid Id { get; set; }
+    public required int SeatNumber { get; set; }
+    public int VagonNumber { get; set; }
+    public required Guid VehicleId { get; set; }
 }

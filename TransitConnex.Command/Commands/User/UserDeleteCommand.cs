@@ -1,7 +1,8 @@
-namespace TransitConnex.Infrastructure.Commands.User
+using System.ComponentModel.DataAnnotations;
+
+namespace TransitConnex.Infrastructure.Commands.User;
+
+public class UserDeleteCommand : IUserCommand
 {
-    public class UserDeleteCommand
-    {
-        
-    }
+    public Guid Id { get; set; }
 }

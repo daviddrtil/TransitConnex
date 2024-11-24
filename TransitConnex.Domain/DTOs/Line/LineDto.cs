@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.Line
+namespace TransitConnex.Domain.DTOs.Line;
+
+public class LineDto
 {
-    public class LineDto
-    {
-        
-    }
 }

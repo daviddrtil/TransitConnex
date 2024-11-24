@@ -1,12 +1,11 @@
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Data;
 
-namespace TransitConnex.Infrastructure.Seeds
+namespace TransitConnex.Infrastructure.Seeds;
+
+public static class DbCleaner
 {
-    public static class DbCleaner
+    public static void DeleteEntireDb(AppDbContext context)
     {
-        public static void DeleteEntireDb(AppDbContext context)
-        {
-            context.Database.EnsureDeleted();
-        }
+        context.Database.EnsureDeleted();
     }
 }

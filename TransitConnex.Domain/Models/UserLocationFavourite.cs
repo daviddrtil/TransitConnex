@@ -1,10 +1,9 @@
-﻿namespace TransitConnex.Domain.Models
+﻿namespace TransitConnex.Domain.Models;
+
+public class UserLocationFavourite
 {
-    public class UserLocationFavourite
-    {
-        public Guid UserId { get; set; }
-        public User? User { get; set; }
-        public Guid LocationId { get; set; }
-        public Location? Location { get; set; }
-    }
+    public Guid UserId { get; set; }
+    public User? User { get; set; }
+    public Guid LocationId { get; set; }
+    public Location? Location { get; set; }
 }

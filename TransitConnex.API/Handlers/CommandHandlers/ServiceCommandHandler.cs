@@ -2,30 +2,39 @@ using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.Service;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class ServiceCommandHandler(IServiceService serviceService) : IBaseCommandHandler<IServiceCommand>
 {
-    public class ServiceCommandHandler : IBaseCommandHandler<IServiceCommand>
+    public async Task<Guid> HandleCreate(IServiceCommand command)
     {
-        private readonly IServiceService _serviceService;
-
-        public ServiceCommandHandler(IServiceService serviceService)
+        if (command is not ServiceCreateCommand createCommand)
         {
-            _serviceService = serviceService;
-        }
-        
-        public Task HandleCreate(IServiceCommand command)
-        {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected ServiceCreateCommand.");
         }
 
-        public Task HandleUpdate(IServiceCommand command)
+        var created = await serviceService.CreateService(createCommand);
+
+        return created.Id;
+    }
+
+    public async Task HandleUpdate(IServiceCommand command)
+    {
+        if (command is not ServiceUpdateCommand updateCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected ServiceUpdateCommand.");
         }
 
-        public Task HandleDelete(IServiceCommand command)
+        await serviceService.EditService(updateCommand);
+    }
+
+    public async Task HandleDelete(IServiceCommand command)
+    {
+        if (command is not ServiceDeleteCommand deleteCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected ServiceDeleteCommand.");
         }
+
+        await serviceService.DeleteService(deleteCommand);
     }
 }

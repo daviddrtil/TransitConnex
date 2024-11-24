@@ -8,13 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Bogus" Version="35.6.1" />
-      <PackageReference Include="CsvHelper" Version="33.0.1" />
-      <PackageReference Include="MongoDB.Bson" Version="3.0.0" />
+        <PackageReference Include="Bogus" Version="35.6.1"/>
+        <PackageReference Include="CsvHelper" Version="33.0.1"/>
+        <PackageReference Include="MongoDB.Bson" Version="3.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TransitConnex.Domain\TransitConnex.Domain.csproj" />
+        <ProjectReference Include="..\TransitConnex.Domain\TransitConnex.Domain.csproj"/>
     </ItemGroup>
 
 </Project>

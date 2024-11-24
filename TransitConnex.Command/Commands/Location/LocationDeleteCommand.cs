@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.Location
+namespace TransitConnex.Infrastructure.Commands.Location;
+
+public class LocationDeleteCommand : ILocationCommand
 {
-    public class LocationDeleteCommand
-    {
-        
-    }
+    public required Guid Id { get; set; }
 }

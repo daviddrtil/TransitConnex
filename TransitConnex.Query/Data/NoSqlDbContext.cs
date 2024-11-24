@@ -13,16 +13,9 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
 {
     #region Constructor
 
-    private static readonly ReplaceOptions DefaultReplaceOptions = new()
-    {
-        IsUpsert = true
-    };
+    private static readonly ReplaceOptions DefaultReplaceOptions = new() {IsUpsert = true};
 
-    private static readonly CreateIndexOptions DefaultCreateIndexOptions = new()
-    {
-        Unique = true,
-        Sparse = true
-    };
+    private static readonly CreateIndexOptions DefaultCreateIndexOptions = new() {Unique = true, Sparse = true};
 
     private readonly IMongoDatabase _database;
     private readonly ILogger<NoSqlDbContext> _logger;
@@ -30,7 +23,7 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
     public NoSqlDbContext(IConfiguration configuration, ILogger<NoSqlDbContext> logger)
     {
         ConnectionString = configuration.GetConnectionString("NoSqlConnection")
-            ?? throw new ApplicationException("Missing ConnectionStrings - NoSqlConnection");
+                           ?? throw new ApplicationException("Missing ConnectionStrings - NoSqlConnection");
         var mongoUrl = MongoUrl.Create(ConnectionString);
         var client = new MongoClient(mongoUrl);
         _database = client.GetDatabase(mongoUrl.DatabaseName);
@@ -43,8 +36,10 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
 
     public string ConnectionString { get; }
 
-    public IMongoCollection<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel =>
-        _database.GetCollection<TQueryModel>(typeof(TQueryModel).Name);
+    public IMongoCollection<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel
+    {
+        return _database.GetCollection<TQueryModel>(typeof(TQueryModel).Name);
+    }
 
     public async Task CreateCollectionsAsync()
     {
@@ -59,10 +54,8 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
             {
                 _logger.LogInformation("----- MongoDB: creating the Collection {Name}", collectionName);
 
-                await _database.CreateCollectionAsync(collectionName, new CreateCollectionOptions
-                {
-                    ValidationLevel = DocumentValidationLevel.Strict
-                });
+                await _database.CreateCollectionAsync(collectionName,
+                    new CreateCollectionOptions {ValidationLevel = DocumentValidationLevel.Strict});
             }
             else
             {

@@ -20,14 +20,20 @@ public class LocationMongoService(
     {
         var location = await locationRepo.GetById(id);
         if (location == null)
+        {
             return null;
+        }
+
         return mapper.Map<Location>(location);
     }
 
     public async Task<Guid> Create(Location location)
     {
         if (location.Id == Guid.Empty)
+        {
             location.Id = Guid.NewGuid(); // Always only add
+        }
+
         var locationDoc = mapper.Map<LocationDoc>(location);
         await locationRepo.Upsert(locationDoc);
         return location.Id;
@@ -37,7 +43,10 @@ public class LocationMongoService(
     {
         var locationDoc = await locationRepo.GetById(location.Id);
         if (locationDoc == null)
-            return;     // Document not exists, update is not performed
+        {
+            return; // Document not exists, update is not performed
+        }
+
         var newLocationDoc = mapper.Map<LocationDoc>(location);
         await locationRepo.Upsert(newLocationDoc);
     }
