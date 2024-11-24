@@ -1,19 +1,24 @@
 using TransitConnex.Domain.DTOs.Seat;
+using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Seat;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces
+namespace TransitConnex.Infrastructure.Services.Interfaces;
+
+public interface ISeatService
 {
-    public interface ISeatService
-    {
-        Task<List<SeatDto>> GetAllSeats();
-        
-        Task<SeatDto> GetSeatById(Guid id);
-        
-        Task<bool> SeatExists(Guid id);
-        
-        Task<SeatDto> CreateSeat(SeatCreateDto seatDto);
+    Task<List<SeatDto>> GetAllSeats();
 
-        Task<SeatDto> EditSeat(Guid id, SeatCreateDto editedSeat);
-        
-        Task DeleteSeat(Guid id);
-    }
+    Task<SeatDto> GetSeatById(Guid id);
+
+    Task<bool> SeatExists(Guid id);
+
+    Task<Seat> CreateSeat(SeatCreateCommand createCommand);
+
+    Task<List<Seat>> CreateSeats(List<SeatCreateCommand> createCommands);
+
+    Task ReserveSeats(SeatReservationCommand reservationCommands);
+    
+    Task<Seat> EditSeat(SeatUpdateCommand editCommand);
+
+    Task DeleteSeat(SeatDeleteCommand deleteCommand);
 }

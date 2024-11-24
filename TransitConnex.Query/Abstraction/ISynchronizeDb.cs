@@ -4,12 +4,12 @@ using TransitConnex.Domain.Collections.Interfaces;
 namespace TransitConnex.Query.Abstraction;
 
 /// <summary>
-/// Represents a contract for synchronizing query models with the database.
+///     Represents a contract for synchronizing query models with the database.
 /// </summary>
 public interface ISynchronizeDb
 {
     /// <summary>
-    /// Upserts a query model into the database.
+    ///     Upserts a query model into the database.
     /// </summary>
     /// <typeparam name="TQueryModel">The type of the query model.</typeparam>
     /// <param name="queryModel">The query model to upsert.</param>
@@ -19,7 +19,7 @@ public interface ISynchronizeDb
         where TQueryModel : IQueryModel;
 
     /// <summary>
-    /// Deletes query models from the database that match the specified filter.
+    ///     Deletes query models from the database that match the specified filter.
     /// </summary>
     /// <typeparam name="TQueryModel">The type of the query model.</typeparam>
     /// <param name="deleteFilter">The filter expression to determine which query models to delete.</param>

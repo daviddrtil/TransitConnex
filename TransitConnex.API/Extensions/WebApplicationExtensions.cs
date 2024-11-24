@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Data;
 using TransitConnex.Query.Abstraction;
 
 namespace TransitConnex.API.Extensions;
@@ -27,7 +27,7 @@ internal static class WebApplicationExtensions
 
     private static async Task MigrateDbContextAsync(this WebApplication app, DbContext context)
     {
-        var dbName = context.Database.GetDbConnection().Database;
+        string dbName = context.Database.GetDbConnection().Database;
 
         app.Logger.LogInformation("----- {DbName}: {DbConnection}", dbName, context.Database.GetConnectionString());
         app.Logger.LogInformation("----- {DbName}: checking if there are any pending migrations...", dbName);

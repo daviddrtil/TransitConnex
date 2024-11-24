@@ -1,20 +1,55 @@
 using Microsoft.AspNetCore.Mvc;
-using TransitConnex.Infrastructure.Services.Interfaces;
+using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.Domain.DTOs.User;
+using TransitConnex.Infrastructure.Commands.User;
 
-namespace TransitConnex.API.Controllers
+namespace TransitConnex.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class UserController(UserCommandHandler userCommandHandler) : Controller
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController : Controller
+    [HttpGet]
+    public async Task<List<UserDto>> GetAll()
     {
-        private readonly IUserService _userService;
+        // TODO -> Query handler
 
-        public UserController(IUserService userService)
-        {
-            _userService = userService;
-        }
-        
-        // TODO -> endpoints
-        
+        return null;
+    }
+
+    [HttpPost("register")]
+    public async Task<Guid> CreateUser(UserCreateCommand createCommand)
+    {
+        var created = await userCommandHandler.HandleCreate(createCommand);
+
+        return new Guid();
+    }
+
+    [HttpPost("login")]
+    public async Task LoginUser()
+    {
+        // TODO -> Query handler
+    }
+
+    [HttpPost("logout")]
+    public async Task LogoutUser()
+    {
+        // TODO -> Query handler
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> EditUser(UserUpdateCommand updateCommand)
+    {
+        await userCommandHandler.HandleUpdate(updateCommand);
+
+        return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteUser(UserDeleteCommand deleteCommand)
+    {
+        await userCommandHandler.HandleDelete(deleteCommand);
+
+        return Ok();
     }
 }

@@ -1,19 +1,20 @@
 using TransitConnex.Domain.DTOs.Service;
+using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Service;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces
+namespace TransitConnex.Infrastructure.Services.Interfaces;
+
+public interface IServiceService
 {
-    public interface IServiceService
-    {
-        Task<List<ServiceDto>> GetAllServices();
-        
-        Task<ServiceDto> GetServiceById(Guid id);
-        
-        Task<bool> ServiceExists(Guid id);
-        
-        Task<ServiceDto> CreateService(ServiceCreateDto serviceDto);
+    Task<List<ServiceDto>> GetAllServices();
 
-        Task<ServiceDto> EditService(Guid id, ServiceCreateDto editedService);
-        
-        Task DeleteService(Guid id);
-    }
+    Task<ServiceDto> GetServiceById(Guid id);
+
+    Task<bool> ServiceExists(Guid id);
+
+    Task<Service> CreateService(ServiceCreateCommand createCommand);
+
+    Task<Service> EditService(ServiceUpdateCommand updateCommand);
+
+    Task DeleteService(ServiceDeleteCommand deleteCommand);
 }

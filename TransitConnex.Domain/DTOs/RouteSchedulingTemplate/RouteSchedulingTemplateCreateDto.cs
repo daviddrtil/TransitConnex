@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.RouteSchedulingTemplate
+namespace TransitConnex.Domain.DTOs.RouteSchedulingTemplate;
+
+public class RouteSchedulingTemplateCreateDto
 {
-    public class RouteSchedulingTemplateCreateDto
-    {
-        
-    }
 }

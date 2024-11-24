@@ -1,21 +1,22 @@
 using TransitConnex.Domain.DTOs.Icon;
+using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.Icon;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces
+namespace TransitConnex.Infrastructure.Services.Interfaces;
+
+public interface IIconService
 {
-    public interface IIconService
-    {
-        Task<List<IconDto>> GetAllIcons();
+    Task<List<IconDto>> GetAllIcons();
 
-        Task<IconDto> GetIconById(Guid id);
+    Task<IconDto> GetIconById(Guid id);
 
-        Task<IconDto?> GetIconByName(string iconName);
+    Task<IconDto?> GetIconByName(string iconName);
 
-        Task<bool> IconExists(Guid id);
+    Task<bool> IconExists(Guid id);
 
-        Task<IconDto> CreateIcon(IconCreateDto iconDto);
+    Task<Icon> CreateIcon(IconCreateCommand createCommand);
 
-        Task<IconDto> EditIcon(Guid id, IconCreateDto editedIcon);
-        
-        Task DeleteIcon(Guid id);
-    }
+    Task<Icon> EditIcon(IconUpdateCommand updateCommand);
+
+    Task DeleteIcon(IconDeleteCommand deleteCommand);
 }

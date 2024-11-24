@@ -1,12 +1,11 @@
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Data;
 
-namespace TransitConnex.Infrastructure.Seeds
+namespace TransitConnex.Infrastructure.Seeds;
+
+public class UserSeed
 {
-    public class UserSeed
+    public static void Seed(AppDbContext context)
     {
-        public static void Seed(AppDbContext context)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

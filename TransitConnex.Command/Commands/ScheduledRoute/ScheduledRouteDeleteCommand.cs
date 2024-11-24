@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.ScheduledRoute
+namespace TransitConnex.Infrastructure.Commands.ScheduledRoute;
+
+public class ScheduledRouteDeleteCommand : IScheduledRouteCommand
 {
-    public class ScheduledRouteDeleteCommand
-    {
-        
-    }
+    public required Guid Id { get; set; }
 }

@@ -1,7 +1,13 @@
-namespace TransitConnex.Infrastructure.Commands.Stop
+using System.ComponentModel.DataAnnotations;
+using TransitConnex.Domain.Enums;
+
+namespace TransitConnex.Infrastructure.Commands.Stop;
+
+public class StopCreateCommand : IStopCommand
 {
-    public class StopCreateCommand
-    {
-        
-    }
+    [MaxLength(255)]
+    public required string Name { get; set; }
+    public required double Latitude { get; set; }
+    public required double Longitude { get; set; }
+    public required StopTypeEnum StopType { get; set; }
 }

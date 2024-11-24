@@ -1,26 +1,15 @@
-using Microsoft.EntityFrameworkCore;
 using TransitConnex.Domain.Models;
 using TransitConnex.Infrastructure.Commands.Vehicle;
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Data;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
-namespace TransitConnex.Infrastructure.Repositories
-{
-    public class VehicleRepository : BaseRepository<Vehicle, VehicleUpdateCommand>, IVehicleRepository
-    {
-        private readonly AppDbContext _db;
-        
-        public VehicleRepository(
-            AppDbContext db
-        ) : base(db)
-        {
-            _db = db;
-        }
+namespace TransitConnex.Infrastructure.Repositories;
 
-        // todo QueryAll probably retrive all data and filter it in memory not on sql
-        public IQueryable<Vehicle> QueryById(Guid vehicleId)
-        {
-            return QueryAll().Where(v => v.Id == vehicleId);
-        }
+public class VehicleRepository(AppDbContext db) : BaseRepository<Vehicle, VehicleUpdateCommand>(db), IVehicleRepository
+{
+    // todo QueryAll probably retrive all data and filter it in memory not on sql
+    public IQueryable<Vehicle> QueryById(Guid vehicleId)
+    {
+        return QueryAll().Where(v => v.Id == vehicleId);
     }
 }

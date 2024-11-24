@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.Location
+namespace TransitConnex.Domain.DTOs.Location;
+
+public class LocationCreateDto
 {
-    public class LocationCreateDto
-    {
-        
-    }
 }

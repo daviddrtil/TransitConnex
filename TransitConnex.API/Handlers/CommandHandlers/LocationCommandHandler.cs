@@ -2,30 +2,32 @@ using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.Location;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class LocationCommandHandler(ILocationService locationService) : IBaseCommandHandler<ILocationCommand>
 {
-    public class LocationCommandHandler : IBaseCommandHandler<ILocationCommand>
+    private readonly ILocationService _locationService = locationService;
+
+    public async Task<Guid> HandleCreate(ILocationCommand command)
     {
-        private readonly ILocationService _locationService;
-
-        public LocationCommandHandler(ILocationService locationService)
+        if (command is not LocationCreateCommand)
         {
-            _locationService = locationService;
-        }
-        
-        public Task HandleCreate(ILocationCommand command)
-        {
-            throw new NotImplementedException();
         }
 
-        public Task HandleUpdate(ILocationCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        return new Guid();
+    }
 
-        public Task HandleDelete(ILocationCommand command)
+    public async Task HandleUpdate(ILocationCommand command)
+    {
+        if (command is not LocationUpdateCommand)
         {
-            throw new NotImplementedException();
+        }
+    }
+
+    public async Task HandleDelete(ILocationCommand command)
+    {
+        if (command is not LocationDeleteCommand)
+        {
         }
     }
 }

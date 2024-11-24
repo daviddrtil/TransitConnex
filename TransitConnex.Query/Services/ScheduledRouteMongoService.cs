@@ -20,14 +20,20 @@ public class ScheduledRouteMongoService(
     {
         var sr = await scheduledRouteRepo.GetById(id);
         if (sr == null)
+        {
             return null;
+        }
+
         return mapper.Map<ScheduledRoute>(sr);
     }
 
     public async Task<Guid> Create(ScheduledRoute sr)
     {
         if (sr.Id == Guid.Empty)
+        {
             sr.Id = Guid.NewGuid(); // Always only add
+        }
+
         var srDoc = mapper.Map<ScheduledRouteDoc>(sr);
         await scheduledRouteRepo.Upsert(srDoc);
         return sr.Id;
@@ -37,7 +43,10 @@ public class ScheduledRouteMongoService(
     {
         var srDoc = await scheduledRouteRepo.GetById(sr.Id);
         if (srDoc == null)
-            return;     // Document not exists, update is not performed
+        {
+            return; // Document not exists, update is not performed
+        }
+
         var newSRDoc = mapper.Map<ScheduledRouteDoc>(sr);
         await scheduledRouteRepo.Upsert(newSRDoc);
     }

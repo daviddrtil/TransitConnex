@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.Stop
+namespace TransitConnex.Domain.DTOs.Stop;
+
+public class StopCreateDto
 {
-    public class StopCreateDto
-    {
-        
-    }
 }

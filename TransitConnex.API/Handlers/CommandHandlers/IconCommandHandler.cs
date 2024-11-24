@@ -2,30 +2,39 @@ using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.Icon;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class IconCommandHandler(IIconService iconService) : IBaseCommandHandler<IIconCommand>
 {
-    public class IconCommandHandler : IBaseCommandHandler<IIconCommand>
+    public async Task<Guid> HandleCreate(IIconCommand command)
     {
-        private readonly IIconService _iconService;
-
-        public IconCommandHandler(IIconService iconService)
+        if (command is not IconCreateCommand createCommand)
         {
-            _iconService = iconService;
-        }
-        
-        public Task HandleCreate(IIconCommand command)
-        {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected IconCreateCommand.");
         }
 
-        public Task HandleUpdate(IIconCommand command)
+        var created = await iconService.CreateIcon(createCommand);
+
+        return created.Id;
+    }
+
+    public async Task HandleUpdate(IIconCommand command)
+    {
+        if (command is not IconUpdateCommand updateCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected IconUpdateCommand.");
         }
 
-        public Task HandleDelete(IIconCommand command)
+        await iconService.EditIcon(updateCommand);
+    }
+
+    public async Task HandleDelete(IIconCommand command)
+    {
+        if (command is not IconDeleteCommand deleteCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected IconDeleteCommand.");
         }
+
+        await iconService.DeleteIcon(deleteCommand);
     }
 }

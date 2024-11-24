@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.Service
+namespace TransitConnex.Infrastructure.Commands.Service;
+
+public class ServiceDeleteCommand : IServiceCommand
 {
-    public class ServiceDeleteCommand
-    {
-        
-    }
+    public required Guid Id { get; set; }
 }

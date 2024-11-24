@@ -1,7 +1,5 @@
-namespace TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate
+namespace TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate;
+
+public interface IRouteSchedulingTemplateCommand : IBaseCommand
 {
-    public interface IRouteSchedulingTemplateCommand
-    {
-        
-    }
 }

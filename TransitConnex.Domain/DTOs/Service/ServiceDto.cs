@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.Service
+namespace TransitConnex.Domain.DTOs.Service;
+
+public class ServiceDto
 {
-    public class ServiceDto
-    {
-        
-    }
 }

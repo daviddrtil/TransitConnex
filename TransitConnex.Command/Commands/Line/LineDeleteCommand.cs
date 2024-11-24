@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.Line
+namespace TransitConnex.Infrastructure.Commands.Line;
+
+public class LineDeleteCommand : ILineCommand
 {
-    public class LineDeleteCommand
-    {
-        
-    }
+    public required Guid Id { get; init; }
 }

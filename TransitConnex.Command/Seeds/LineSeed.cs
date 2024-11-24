@@ -1,28 +1,17 @@
 using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Data;
 
-namespace TransitConnex.Infrastructure.Seeds
+namespace TransitConnex.Infrastructure.Seeds;
+
+public class LineSeed
 {
-    public class LineSeed
+    public static void Seed(AppDbContext context)
     {
-        public static void Seed(AppDbContext context)
+        var linesToBeSeeded = new List<Line>
         {
-            var linesToBeSeeded = new List<Line>()
-            {
-                new()
-                {
-                    Label = "",
-                    Name = "",
-                    LineType = LineTypeEnum.BUS,
-                },
-                new()
-                {
-                    Label = "",
-                    Name = "",
-                    LineType = LineTypeEnum.BUS,
-                }
-            };        
-        }
+            new() {Label = "", Name = "", LineType = LineTypeEnum.BUS},
+            new() {Label = "", Name = "", LineType = LineTypeEnum.BUS}
+        };
     }
 }

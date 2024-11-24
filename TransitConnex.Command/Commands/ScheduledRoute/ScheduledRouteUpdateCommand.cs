@@ -1,7 +1,9 @@
-namespace TransitConnex.Infrastructure.Commands.ScheduledRoute
+namespace TransitConnex.Infrastructure.Commands.ScheduledRoute;
+
+public class ScheduledRouteUpdateCommand : IScheduledRouteCommand
 {
-    public class ScheduledRouteUpdateCommand
-    {
-        
-    }
+    public required Guid Id { get; set; }
+    public required DateTime StartTime { get; set; }
+    public required Guid VehicleId { get; set; }
+    public required Guid RouteId { get; set; }
 }

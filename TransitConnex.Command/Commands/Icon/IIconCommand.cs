@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.Icon
+namespace TransitConnex.Infrastructure.Commands.Icon;
+
+public interface IIconCommand : IBaseCommand
 {
-    public interface IIconCommand
-    {
-        
-    }
+  
 }

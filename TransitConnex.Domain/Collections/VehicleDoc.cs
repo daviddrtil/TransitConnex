@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TransitConnex.Domain.Enums;
+﻿using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Domain.Collections;

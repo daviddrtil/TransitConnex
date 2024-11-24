@@ -2,80 +2,74 @@ using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Infrastructure.Commands.Vehicle;
-using TransitConnex.Infrastructure.Persistence;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Controllers
+namespace TransitConnex.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Controller
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class VehicleController : Controller
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<VehicleDto>>> GetVehicles()
     {
-        // private readonly AppDbContext _context;
-        private readonly IVehicleService _vehicleService;
-        private readonly VehicleCommandHandler _vehicleCommandHandler;
+        // return await _vehicleService.GetAllVehicles();
+        return null;
+    }
 
-        public VehicleController(AppDbContext context, IVehicleService vehicleService, VehicleCommandHandler vehicleCommandHandler)
-        {
-            // _context = context;
-            _vehicleService = vehicleService;
-            _vehicleCommandHandler = vehicleCommandHandler;
-        }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<VehicleDto>> GetVehicle(Guid id)
+    {
+        // if (!await _vehicleService.VehicleExists(id))
+        // {
+        //     return NotFound($"Vehicle with id: {id} was not found.");
+        // }
+        //
+        // return await _vehicleService.GetVehicleById(id);
+        return null;
+    }
 
-        // GET: api/Vehicle
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<VehicleDto>>> GetVehicles()
-        {
-            return await _vehicleService.GetAllVehicles();
-        }
+    [HttpPost]
+    public async Task<ActionResult<Guid>> CreateVehicle(VehicleCreateCommand createCommand)
+    {
+        return Ok(await vehicleCommandHandler.HandleCreate(createCommand));
+    }
+    
+    [HttpPost("batch")]
+    public async Task<Guid> CreateVehicles(List<VehicleCreateCommand> createCommands)
+    {
+        // return await VehicleCommandHandler.HandleCreate(createCommand);
+        return new Guid(); // TODO
+    }
 
-        // GET: api/Vehicle/{id}
-        [HttpGet("{id}")]
-        public async Task<ActionResult<VehicleDto>> GetVehicle(Guid id)
-        {
-            if (!await _vehicleService.VehicleExists(id))
-            {
-                return NotFound($"Vehicle with id: {id} was not found.");
-            }
-            
-            return await _vehicleService.GetVehicleById(id);
-        }
+    [HttpPut]
+    public async Task<IActionResult> UpdateVehicle(VehicleUpdateCommand editCommand)
+    {
+        await vehicleCommandHandler.HandleUpdate(editCommand);
 
-        // POST: api/Vehicle
-        [HttpPost]
-        public async Task<IActionResult> CreateVehicle(VehicleCreateCommand vehicle)
-        {
-            // return await _vehicleService.CreateVehicle(vehicle);
-            await _vehicleCommandHandler.HandleCreate(vehicle);
-            return Ok();
-        }
-        
-        // // PUT: api/Vehicle/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVehicle(Guid id, VehicleUpdateCommand editedVehicle)
-        {
-            if (!await _vehicleService.VehicleExists(id))
-            {
-                return NotFound($"Vehicle with id: {id} was not found.");
-            }
-        
-            await _vehicleService.EditVehicle(id, editedVehicle);
-        
-            return NoContent();
-        }
-        
-        // // DELETE: api/Vehicle/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVehicle(Guid id)
-        {
-            if (!await _vehicleService.VehicleExists(id))
-            {
-                return NotFound($"Vehicle with ID {id} was not found.");
-            }
+        return Ok();
+    }
+    
+    [HttpPut("batch")]
+    public async Task<IActionResult> EditScheduledRoutes(List<VehicleUpdateCommand> updateCommand)
+    {
+        // TODO
 
-            await _vehicleService.DeleteVehicle(id);
-        
-            return NoContent();
-        }
+        return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteVehicle(VehicleDeleteCommand deleteCommand)
+    {
+        await vehicleCommandHandler.HandleDelete(deleteCommand);
+
+        return Ok();
+    }
+    
+    [HttpDelete("batch")]
+    public async Task<IActionResult> DeleteVehicles(List<Guid> deleteIds)
+    {
+        // await VehicleCommandHandler.HandleDelete(deleteCommand); // TODO
+
+        return Ok();
     }
 }

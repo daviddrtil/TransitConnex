@@ -1,7 +1,6 @@
-namespace TransitConnex.Infrastructure.Commands.Vehicle
+namespace TransitConnex.Infrastructure.Commands.Vehicle;
+
+public class VehicleDeleteCommand : IVehicleCommand
 {
-    public class VehicleDeleteCommand : IVehicleCommand
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

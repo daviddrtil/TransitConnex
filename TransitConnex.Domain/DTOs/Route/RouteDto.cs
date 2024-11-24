@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.Route
+namespace TransitConnex.Domain.DTOs.Route;
+
+public class RouteDto
 {
-    public class RouteDto
-    {
-        
-    }
 }

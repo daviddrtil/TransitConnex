@@ -1,7 +1,5 @@
-namespace TransitConnex.Infrastructure.Commands.RouteTicket
+namespace TransitConnex.Infrastructure.Commands.RouteTicket;
+
+public interface IRouteTicketCommand : IBaseCommand
 {
-    public interface IRouteTicketCommand
-    {
-        
-    }
 }

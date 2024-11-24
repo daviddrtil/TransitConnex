@@ -1,7 +1,5 @@
-namespace TransitConnex.Domain.DTOs.RouteTicket
+namespace TransitConnex.Domain.DTOs.RouteTicket;
+
+public class RouteTicketCreateDto
 {
-    public class RouteTicketCreateDto
-    {
-        
-    }
 }

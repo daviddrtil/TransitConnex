@@ -1,19 +1,47 @@
 using Microsoft.AspNetCore.Mvc;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
+using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.Infrastructure.Commands.Location;
 
-namespace TransitConnex.API.Controllers
+namespace TransitConnex.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class LocationController(LocationCommandHandler locationCommandHandler) : Controller
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class LocationController : Controller
+    [HttpPost]
+    public async Task<Guid> CreateLocation(LocationCreateCommand createCommand)
     {
-        private readonly ILocationRepository _locationRepository;
+        return await locationCommandHandler.HandleCreate(createCommand);
+    }
+    
+    [HttpPost("batch")]
+    public async Task<Guid> CreateLocations(List<LocationCreateCommand> createCommands)
+    {
+        // return await LocationCommandHandler.HandleCreate(createCommand);
+        return new Guid(); // TODO
+    }
 
-        public LocationController(ILocationRepository locationRepository)
-        {
-            _locationRepository = locationRepository;
-        }
-        
-        
+    [HttpPut]
+    public async Task<IActionResult> EditLocation(LocationUpdateCommand updateCommand)
+    {
+        await locationCommandHandler.HandleUpdate(updateCommand);
+
+        return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteLocation(LocationDeleteCommand deleteCommand)
+    {
+        await locationCommandHandler.HandleDelete(deleteCommand);
+
+        return Ok();
+    }
+    
+    [HttpDelete("batch")]
+    public async Task<IActionResult> DeleteLocations(List<Guid> deleteIds)
+    {
+        // await LocationCommandHandler.HandleDelete(deleteCommand); // TODO
+
+        return Ok();
     }
 }

@@ -1,7 +1,5 @@
-namespace TransitConnex.Infrastructure.Commands.Seat
+namespace TransitConnex.Infrastructure.Commands.Seat;
+
+public interface ISeatCommand : IBaseCommand
 {
-    public interface ISeatCommand
-    {
-        
-    }
 }

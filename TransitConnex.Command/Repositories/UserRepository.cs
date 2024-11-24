@@ -1,22 +1,14 @@
 using TransitConnex.Domain.Models;
 using TransitConnex.Infrastructure.Commands.User;
-using TransitConnex.Infrastructure.Persistence;
+using TransitConnex.Infrastructure.Data;
 using TransitConnex.Infrastructure.Repositories.Interfaces;
 
-namespace TransitConnex.Infrastructure.Repositories
+namespace TransitConnex.Infrastructure.Repositories;
+
+public class UserRepository(AppDbContext db) : BaseRepository<User, UserUpdateCommand>(db), IUserRepository
 {
-    public class UserRepository : BaseRepository<User, UserUpdateCommand>, IUserRepository
+    public IQueryable<User> QueryById(Guid id)
     {
-        private readonly AppDbContext _db;
-
-        public UserRepository(AppDbContext db) : base(db)
-        {
-            _db = db;
-        }
-
-        public IQueryable<User> QueryById(Guid id)
-        {
-            return QueryAll().Where(x => x.Id == id);
-        }
+        return QueryAll().Where(x => x.Id == id);
     }
 }

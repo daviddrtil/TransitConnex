@@ -23,7 +23,6 @@
     },
     "http-seed": {
       "commandName": "Project",
-      
       "dotnetRunMessages": true,
       "launchBrowser": false,
       "launchUrl": "swagger",

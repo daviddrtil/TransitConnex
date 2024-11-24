@@ -15,7 +15,7 @@ namespace TransitConnex.Query;
 public static class ConfigureServices
 {
     /// <summary>
-    /// Adds the read database context to the service collection.
+    ///     Adds the read database context to the service collection.
     /// </summary>
     /// <param name="services">The service collection.</param>
     public static IServiceCollection AddReadDbContext(this IServiceCollection services)
@@ -32,7 +32,7 @@ public static class ConfigureServices
 
     // todo rename read-only repositories
     /// <summary>
-    /// Adds read-only repositories to the service collection.
+    ///     Adds read-only repositories to the service collection.
     /// </summary>
     /// <param name="services">The service collection.</param>
     public static void AddMongoDbRepositories(this IServiceCollection services)
@@ -54,7 +54,7 @@ public static class ConfigureServices
     }
 
     /// <summary>
-    /// Configures the MongoDB settings and mappings.
+    ///     Configures the MongoDB settings and mappings.
     /// </summary>
     private static void ConfigureMongoDb()
     {
@@ -63,13 +63,13 @@ public static class ConfigureServices
 
         // Configure the conventions to be applied to all mappings
         ConventionRegistry.Register("Conventions",
-        new ConventionPack
-        {
-            new CamelCaseElementNameConvention(), // Convert element names to camel case
-            new EnumRepresentationConvention(BsonType.String), // Serialize enums as strings
-            new IgnoreExtraElementsConvention(true), // Ignore extra elements when deserializing
-            new IgnoreIfNullConvention(true), // Ignore null values when serializing
-        },
-        _ => true);
+            new ConventionPack
+            {
+                new CamelCaseElementNameConvention(), // Convert element names to camel case
+                new EnumRepresentationConvention(BsonType.String), // Serialize enums as strings
+                new IgnoreExtraElementsConvention(true), // Ignore extra elements when deserializing
+                new IgnoreIfNullConvention(true) // Ignore null values when serializing
+            },
+            _ => true);
     }
 }

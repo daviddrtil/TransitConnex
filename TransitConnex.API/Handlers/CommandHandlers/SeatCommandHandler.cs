@@ -2,30 +2,32 @@ using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.Seat;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class SeatCommandHandler(ISeatService seatService) : IBaseCommandHandler<ISeatCommand>
 {
-    public class SeatCommandHandler : IBaseCommandHandler<ISeatCommand>
+    public async Task<Guid> HandleCreate(ISeatCommand command)
     {
-        private readonly ISeatService _seatService;
+        throw new NotImplementedException();
+    }
 
-        public SeatCommandHandler(ISeatService seatService)
+    public async Task HandleUpdate(ISeatCommand command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task HandleDelete(ISeatCommand command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task HandleSeatReservation(ISeatCommand command)
+    {
+        if (command is not SeatReservationCommand reservationCommand)
         {
-            _seatService = seatService;
-        }
-        
-        public Task HandleCreate(ISeatCommand command)
-        {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected SeatReservationCommand.");
         }
 
-        public Task HandleUpdate(ISeatCommand command)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task HandleDelete(ISeatCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        await seatService.ReserveSeats(reservationCommand);
     }
 }

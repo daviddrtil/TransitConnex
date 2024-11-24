@@ -5,18 +5,18 @@ using TransitConnex.Domain.Collections.NestedDocuments;
 
 namespace CollectionGenerator;
 
-class Program
+internal class Program
 {
-    public static string ProjectPath { get; set; } = Path.Combine(Environment.CurrentDirectory, "..", "..", "..");
-    public static string CollectionPath { get; set; } = Path.Combine(ProjectPath, "ParsedCollections");
-
     private static readonly Faker Faker = new("cz");
 
     private static readonly JsonSerializerOptions Options = new()
     {
         WriteIndented = true, // For pretty-printing
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // Ensures camelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase // Ensures camelCase
     };
+
+    public static string ProjectPath { get; set; } = Path.Combine(Environment.CurrentDirectory, "..", "..", "..");
+    public static string CollectionPath { get; set; } = Path.Combine(ProjectPath, "ParsedCollections");
 
     private static void StoreAsJsonFile<T>(List<T> collection)
     {
@@ -25,7 +25,7 @@ class Program
         File.WriteAllText(path, jsonOutput);
     }
 
-    static void Main()
+    private static void Main()
     {
         var vehicleRTIs = VehicleParser.LoadVehicleRTIs();
         StoreAsJsonFile(vehicleRTIs);
@@ -51,8 +51,8 @@ class Program
                 Coordinates = new Coordinate
                 {
                     Latitude = Faker.Address.Latitude(49.0, 50.0),
-                    Longitude = Faker.Address.Longitude(16.0, 17.0),
-                },
+                    Longitude = Faker.Address.Longitude(16.0, 17.0)
+                }
             }
         ).ToList();
         StoreAsJsonFile(locations);
@@ -61,7 +61,7 @@ class Program
         var routeStops = new List<RouteStopDoc>();
         for (int i = 0; i < stopIds.Count; i++)
         {
-            DateTime start = Faker.Date.Future(1);
+            var start = Faker.Date.Future();
             int stopsPerRoute = Faker.Random.Int(5, 20);
             for (int j = 0; j < stopsPerRoute; j++)
             {
@@ -70,12 +70,14 @@ class Program
                     Id = stopIds.ElementAt(i),
                     Start = start,
                     TimeDurationFromFirstStop = Faker.Random.Int(20, 60),
-                    Order = j + 1,
+                    Order = j + 1
                 };
                 routeStops.Add(routeStop);
                 i++;
                 if (i >= stopIds.Count)
+                {
                     break;
+                }
             }
         }
 
@@ -86,9 +88,9 @@ class Program
                 Id = Guid.NewGuid(),
                 RouteId = routeId,
                 VehicleId = Faker.Random.CollectionItem(vehicleIds),
-                Start = Faker.Date.Past(1),
-                End = Faker.Date.Future(1),
-                Stops = Faker.Random.ListItems(routeStops, Faker.Random.Int(5, 20)),    // todo stops are not in order
+                Start = Faker.Date.Past(),
+                End = Faker.Date.Future(),
+                Stops = Faker.Random.ListItems(routeStops, Faker.Random.Int(5, 20)) // todo stops are not in order
             }
         ).ToList();
         StoreAsJsonFile(scheduledRoutes);
@@ -104,11 +106,12 @@ class Program
                 UserId = Guid.NewGuid(),
                 FromLocation = Faker.Random.CollectionItem(locations).Name,
                 ToLocation = Faker.Random.CollectionItem(locations).Name,
-                Time = Faker.Date.Past(1),
-                ScheduledRouteIds = Faker.Random.ListItems(scheduledRouteIds, 5),
+                Time = Faker.Date.Past(),
+                ScheduledRouteIds = Faker.Random.ListItems(scheduledRouteIds, 5)
             };
             searchedRoutes.Add(searchedRoute);
         }
+
         StoreAsJsonFile(searchedRoutes);
     }
 }

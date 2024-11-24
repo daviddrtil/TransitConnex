@@ -1,7 +1,5 @@
-namespace TransitConnex.Infrastructure.Commands.Location
+namespace TransitConnex.Infrastructure.Commands.Location;
+
+public interface ILocationCommand : IBaseCommand
 {
-    public interface ILocationCommand
-    {
-        
-    }
 }

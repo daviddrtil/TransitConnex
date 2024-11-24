@@ -1,7 +1,5 @@
-namespace TransitConnex.Infrastructure.Commands.Line
+namespace TransitConnex.Infrastructure.Commands.Line;
+
+public interface ILineCommand : IBaseCommand
 {
-    public interface ILineCommand
-    {
-        
-    }
 }

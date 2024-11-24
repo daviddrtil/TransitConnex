@@ -2,30 +2,36 @@ using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate;
 using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.API.Handlers.CommandHandlers
+namespace TransitConnex.API.Handlers.CommandHandlers;
+
+public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateService routeSchedulingTemplateService)
+    : IBaseCommandHandler<IRouteSchedulingTemplateCommand>
 {
-    public class RouteSchedulingTemplateCommandHandler : IBaseCommandHandler<IRouteSchedulingTemplateCommand>
+    private readonly IRouteSchedulingTemplateService _routeSchedulingTemplateService = routeSchedulingTemplateService;
+
+    public async Task<Guid> HandleCreate(IRouteSchedulingTemplateCommand command)
     {
-        private readonly IRouteSchedulingTemplateService _routeSchedulingTemplateService;
-
-        public RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateService routeSchedulingTemplateService)
+        if (command is not RouteSchedulingTemplateCreateCommand)
         {
-            _routeSchedulingTemplateService = routeSchedulingTemplateService;
-        }
-        
-        public Task HandleCreate(IRouteSchedulingTemplateCommand command)
-        {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected RouteSchedulingtemplateCreateCommand.");
         }
 
-        public Task HandleUpdate(IRouteSchedulingTemplateCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        return new Guid();
+    }
 
-        public Task HandleDelete(IRouteSchedulingTemplateCommand command)
+    public async Task HandleUpdate(IRouteSchedulingTemplateCommand command)
+    {
+        if (command is not RouteSchedulingTemplateUpdateCommand)
         {
-            throw new NotImplementedException();
+            throw new InvalidCastException("Invalid command given, expected RouteSchedulingtemplateUpdateCommand.");
+        }
+    }
+
+    public async Task HandleDelete(IRouteSchedulingTemplateCommand command)
+    {
+        if (command is not RouteSchedulingTemplateDeleteCommand)
+        {
+            throw new InvalidCastException("Invalid command given, expected RouteSchedulingtemplateDeleteCommand.");
         }
     }
 }

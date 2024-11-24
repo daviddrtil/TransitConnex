@@ -1,19 +1,20 @@
 using TransitConnex.Domain.DTOs.User;
+using TransitConnex.Domain.Models;
+using TransitConnex.Infrastructure.Commands.User;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces
+namespace TransitConnex.Infrastructure.Services.Interfaces;
+
+public interface IUserService
 {
-    public interface IUserService
-    {
-        Task<List<UserDto>> GetAllUsers();
-        
-        Task<UserDto> GetUserById(Guid id);
-        
-        Task<bool> UserExists(Guid id);
-        
-        Task<UserDto> CreateUser(UserCreateDto userDto);
+    Task<List<UserDto>> GetAllUsers();
 
-        Task<UserDto> EditUser(Guid id, UserCreateDto editedUser);
-        
-        Task DeleteUser(Guid id);
-    }
+    Task<UserDto> GetUserById(Guid id);
+
+    Task<bool> UserExists(Guid id);
+
+    Task<User> CreateUser(UserCreateCommand createCommand);
+
+    Task<User> EditUser(UserUpdateCommand updateCommand);
+
+    Task DeleteUser(UserDeleteCommand deleteCommand);
 }
