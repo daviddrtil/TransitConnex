@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Location;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Location;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface ILocationRepository : IBaseRepository<Location, LocationUpdateCommand>
 {

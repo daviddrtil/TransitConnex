@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Icon;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IIconRepository : IBaseRepository<Icon, IconUpdateCommand>
 {

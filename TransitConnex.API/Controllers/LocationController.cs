@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.Location;
+using TransitConnex.Command.Commands.Location;
 
 namespace TransitConnex.API.Controllers;
 
@@ -13,7 +13,7 @@ public class LocationController(LocationCommandHandler locationCommandHandler) :
     {
         return await locationCommandHandler.HandleCreate(createCommand);
     }
-    
+
     [HttpPost("batch")]
     public async Task<Guid> CreateLocations(List<LocationCreateCommand> createCommands)
     {
@@ -36,7 +36,7 @@ public class LocationController(LocationCommandHandler locationCommandHandler) :
 
         return Ok();
     }
-    
+
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteLocations(List<Guid> deleteIds)
     {

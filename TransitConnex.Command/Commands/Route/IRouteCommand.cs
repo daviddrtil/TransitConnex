@@ -1,4 +1,4 @@
-namespace TransitConnex.Infrastructure.Commands.Route;
+namespace TransitConnex.Command.Commands.Route;
 
 public interface IRouteCommand : IBaseCommand
 {

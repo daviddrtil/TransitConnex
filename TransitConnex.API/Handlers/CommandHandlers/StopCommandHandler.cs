@@ -1,6 +1,6 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
-using TransitConnex.Infrastructure.Commands.Stop;
-using TransitConnex.Infrastructure.Services.Interfaces;
+using TransitConnex.Command.Commands.Stop;
+using TransitConnex.Command.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
@@ -12,9 +12,9 @@ public class StopCommandHandler(IStopService stopService) : IBaseCommandHandler<
         {
             throw new InvalidCastException("Invalid command given, expected StopCreateCommand.");
         }
-        
+
         var created = await stopService.CreateStop(createCommand);
-        
+
         return created.Id;
     }
 
@@ -24,7 +24,7 @@ public class StopCommandHandler(IStopService stopService) : IBaseCommandHandler<
         {
             throw new InvalidCastException("Invalid command given, expected StopUpdateCommand.");
         }
-        
+
         await stopService.EditStop(updateCommand);
     }
 
@@ -34,7 +34,7 @@ public class StopCommandHandler(IStopService stopService) : IBaseCommandHandler<
         {
             throw new InvalidCastException("Invalid command given, expected StopDeleteCommand.");
         }
-        
+
         await stopService.DeleteStop(deleteCommand);
     }
 }

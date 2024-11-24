@@ -1,8 +1,8 @@
+using TransitConnex.Command.Repositories.Interfaces;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Route;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.Infrastructure.Services;
+namespace TransitConnex.Command.Services;
 
 public class RouteService(IRouteRepository routeRepository) : IRouteService
 {

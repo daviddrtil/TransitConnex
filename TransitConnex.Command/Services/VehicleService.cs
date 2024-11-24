@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using TransitConnex.Command.Commands.Vehicle;
+using TransitConnex.Command.Repositories.Interfaces;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Mappings;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Vehicle;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.Infrastructure.Services;
+namespace TransitConnex.Command.Services;
 
 public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleService
 {
@@ -65,7 +65,7 @@ public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleServ
             });
 
         await vehicleRepository.AddBatch(createdVehicles);
-        
+
         return createdVehicles;
     }
 
@@ -107,12 +107,12 @@ public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleServ
     {
         var existingVehicles = await vehicleRepository.QueryExistingIds(ids).ToListAsync();
         var errorIds = ids.Except(existingVehicles.Select(x => x.Id)).ToList();
-        
+
         if (errorIds.Count != 0)
         {
             throw new KeyNotFoundException($"Given vehicles to be deleted do not exist: [{string.Join(',', errorIds)}]");
         }
-        
+
         await vehicleRepository.DeleteBatch(existingVehicles);
     }
 }

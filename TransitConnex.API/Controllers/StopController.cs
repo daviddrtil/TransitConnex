@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.Stop;
+using TransitConnex.Command.Commands.Stop;
 
 namespace TransitConnex.API.Controllers;
 
@@ -13,7 +13,7 @@ public class StopController(StopCommandHandler stopCommandHandler) : Controller
     {
         return await stopCommandHandler.HandleCreate(createCommand);
     }
-    
+
     [HttpPost("batch")]
     public async Task<Guid> CreateStops(List<StopCreateCommand> createCommands)
     {
@@ -28,7 +28,7 @@ public class StopController(StopCommandHandler stopCommandHandler) : Controller
 
         return Ok();
     }
-    
+
     [HttpPut("batch")]
     public async Task<IActionResult> EditScheduledRoutes(List<StopUpdateCommand> updateCommand)
     {
@@ -44,7 +44,7 @@ public class StopController(StopCommandHandler stopCommandHandler) : Controller
 
         return Ok();
     }
-    
+
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteStops(List<Guid> deleteIds)
     {

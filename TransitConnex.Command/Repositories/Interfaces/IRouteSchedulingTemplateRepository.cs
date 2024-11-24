@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.RouteSchedulingTemplate;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface
     IRouteSchedulingTemplateRepository : IBaseRepository<RouteSchedulingTemplate, RouteSchedulingTemplateUpdateCommand>

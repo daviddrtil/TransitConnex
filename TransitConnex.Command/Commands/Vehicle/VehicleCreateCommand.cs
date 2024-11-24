@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using TransitConnex.Domain.Enums;
 
-namespace TransitConnex.Infrastructure.Commands.Vehicle;
+namespace TransitConnex.Command.Commands.Vehicle;
 
 public class VehicleCreateCommand : IVehicleCommand
-{ 
+{
     [MaxLength(255)]
     public required string Label { get; set; }
     [MaxLength(255)]

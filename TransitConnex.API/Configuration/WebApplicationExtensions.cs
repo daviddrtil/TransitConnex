@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TransitConnex.Infrastructure.Data;
+using TransitConnex.Command.Data;
 using TransitConnex.Query.Abstraction;
 
-namespace TransitConnex.API.Extensions;
+namespace TransitConnex.API.Configuration;
 
 internal static class WebApplicationExtensions
 {

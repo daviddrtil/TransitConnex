@@ -1,10 +1,10 @@
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IBaseRepository<T, U>
 {
     IQueryable<T> QueryAll(bool asNoTracking = true);
     IQueryable<T> QueryExistingIds(IEnumerable<Guid> ids);
-    
+
     Task Add(T entity);
     Task AddBatch(IEnumerable<T> entities);
     Task Update(T entity, U updatedEntity);

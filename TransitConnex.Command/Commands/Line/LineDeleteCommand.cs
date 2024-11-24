@@ -1,4 +1,4 @@
-namespace TransitConnex.Infrastructure.Commands.Line;
+namespace TransitConnex.Command.Commands.Line;
 
 public class LineDeleteCommand : ILineCommand
 {

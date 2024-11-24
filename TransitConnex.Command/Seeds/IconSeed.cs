@@ -1,7 +1,7 @@
+using TransitConnex.Command.Data;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Data;
 
-namespace TransitConnex.Infrastructure.Seeds;
+namespace TransitConnex.Command.Seeds;
 
 public class IconSeed
 {

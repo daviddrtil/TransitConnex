@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using TransitConnex.Command.Commands.Seat;
+using TransitConnex.Command.Repositories.Interfaces;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Seat;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Seat;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.Infrastructure.Services;
+namespace TransitConnex.Command.Services;
 
 public class SeatService(ISeatRepository seatRepository, IScheduledRouteRepository scheduledRouteRepository) : ISeatService
 {
@@ -32,9 +32,9 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
             VagonNumber = createCommand.VagonNumber,
             VehicleId = createCommand.VehicleId
         };
-        
+
         await seatRepository.Add(newSeat);
-        
+
         return newSeat;
     }
 
@@ -51,7 +51,7 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
         {
             throw new KeyNotFoundException($"ScheduledRoute with ID: {reservationCommands.ScheduledRouteId} not found.");
         }
-        
+
         var availableSeats = await seatRepository.QueryAvailableSeats(scheduledRoute, reservationCommands.SeatIds);
 
         if (availableSeats.Count != reservationCommands.SeatIds.Count)
@@ -61,15 +61,15 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
         }
 
         var reservations = availableSeats.Select(seat => new ScheduledRouteSeat
-            {
-                SeatId = seat.Id,
-                ScheduledRouteId = scheduledRoute.Id,
-                ReservedById = reservationCommands.UserId,
-                ReservedUntil = DateTime.Now.Add(new TimeSpan(900)),
-                IsBought = false
-            })
+        {
+            SeatId = seat.Id,
+            ScheduledRouteId = scheduledRoute.Id,
+            ReservedById = reservationCommands.UserId,
+            ReservedUntil = DateTime.Now.Add(new TimeSpan(900)),
+            IsBought = false
+        })
             .ToList();
-        
+
         await seatRepository.AddReservations(reservations);
     }
 
@@ -81,7 +81,7 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
         {
             throw new KeyNotFoundException($"Seat with ID {editCommand.Id} was not found.");
         }
-        
+
         await seatRepository.Update(seat);
 
         return seat;
@@ -95,7 +95,7 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
         {
             throw new KeyNotFoundException($"Seat with ID {deleteCommand.Id} was not found.");
         }
-        
+
         await seatRepository.Delete(seat);
     }
 
@@ -104,7 +104,7 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
         // TODO -> think if we want to create ScheduledRoute_Seat for each seat in ScheduledRoute or if we want to create it just when reservation is made
         // 1) option when creating ScheduledRoute -> create ScheduledRoute_Seat -> will create a lot records but it will be easier to fetch free seats for given scheduled route -> not good
         // 2) option create ScheduledRoute_Seat only when reservation made -> much less records little worse querying -> will have to 
-        
+
         // TODO -> check if seats are free
         // TODO -> reserve seats for 15 minutes
         throw new NotImplementedException();

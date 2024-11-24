@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Line;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Line;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface ILineRepository : IBaseRepository<Line, LineUpdateCommand>
 {

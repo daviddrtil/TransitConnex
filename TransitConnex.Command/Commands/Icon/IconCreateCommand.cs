@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TransitConnex.Infrastructure.Commands.Icon;
+namespace TransitConnex.Command.Commands.Icon;
 
 public class IconCreateCommand : IIconCommand
 {

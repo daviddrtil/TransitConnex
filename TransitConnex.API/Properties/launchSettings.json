@@ -1,4 +1,79 @@
-﻿{
+{
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SeedDatabase": "false",
+        "UnseedDatabase": "false",
+        "UpdateDb": "false"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5265"
+    },
+    "http-seed": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SeedDatabase": "true",
+        "UnseedDatabase": "false",
+        "UpdateDb": "true"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5265"
+    },
+    "http-unseed": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SeedDatabase": "false",
+        "UnseedDatabase": "true",
+        "UpdateDb": "false"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5265"
+    },
+    "https": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SeedDatabase": "false",
+        "UnseedDatabase": "false"
+      },
+      "seed": false,
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7234;http://localhost:5265"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SeedDatabase": "false",
+        "UnseedDatabase": "false"
+      },
+      "seed": false
+    },
+    "http-refresh": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SeedDatabase": "true",
+        "UnseedDatabase": "true",
+        "UpdateDb": "true"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5265"
+    }
+  },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -6,68 +81,6 @@
     "iisExpress": {
       "applicationUrl": "http://localhost:24458",
       "sslPort": 44381
-    }
-  },
-  "profiles": {
-    "http": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5265",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SeedDatabase": "false",
-        "UnseedDatabase": "false"
-      }
-    },
-    "http-seed": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5265",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SeedDatabase": "true",
-        "UnseedDatabase": "false"
-      }
-    },
-    "http-unseed": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5265",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SeedDatabase": "false",
-        "UnseedDatabase": "true"
-      }
-    },
-    "https": {
-      "commandName": "Project",
-      "seed": false,
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7234;http://localhost:5265",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SeedDatabase": "false",
-        "UnseedDatabase": "false"
-      }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "seed": false,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SeedDatabase": "false",
-        "UnseedDatabase": "false"
-      }
     }
   }
 }

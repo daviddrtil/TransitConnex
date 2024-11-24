@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.Command.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
-using TransitConnex.Infrastructure.Commands.Vehicle;
 
 namespace TransitConnex.API.Controllers;
 
@@ -12,7 +13,7 @@ public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Co
     [HttpGet]
     public async Task<ActionResult<IEnumerable<VehicleDto>>> GetVehicles()
     {
-        // return await _vehicleService.GetAllVehicles();
+        //return await _vehicleService.GetAllVehicles();
         return null;
     }
 
@@ -28,12 +29,14 @@ public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Co
         return null;
     }
 
+    [AuthorizedByAdmin]
     [HttpPost]
     public async Task<ActionResult<Guid>> CreateVehicle(VehicleCreateCommand createCommand)
     {
         return Ok(await vehicleCommandHandler.HandleCreate(createCommand));
     }
-    
+
+    [AuthorizedByAdmin]
     [HttpPost("batch")]
     public async Task<Guid> CreateVehicles(List<VehicleCreateCommand> createCommands)
     {
@@ -41,6 +44,7 @@ public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Co
         return new Guid(); // TODO
     }
 
+    [AuthorizedByAdmin]
     [HttpPut]
     public async Task<IActionResult> UpdateVehicle(VehicleUpdateCommand editCommand)
     {
@@ -48,7 +52,8 @@ public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Co
 
         return Ok();
     }
-    
+
+    [AuthorizedByAdmin]
     [HttpPut("batch")]
     public async Task<IActionResult> EditScheduledRoutes(List<VehicleUpdateCommand> updateCommand)
     {
@@ -57,6 +62,7 @@ public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Co
         return Ok();
     }
 
+    [AuthorizedByAdmin]
     [HttpDelete]
     public async Task<IActionResult> DeleteVehicle(VehicleDeleteCommand deleteCommand)
     {
@@ -64,7 +70,8 @@ public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Co
 
         return Ok();
     }
-    
+
+    [AuthorizedByAdmin]
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteVehicles(List<Guid> deleteIds)
     {

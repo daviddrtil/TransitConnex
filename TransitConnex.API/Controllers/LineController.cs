@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.Line;
+using TransitConnex.Command.Commands.Line;
 
 namespace TransitConnex.API.Controllers;
 
@@ -20,7 +20,7 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
         // return await lineCommandHandler.HandleCreate(createCommand);
         return new Guid(); // TODO
     }
-    
+
     [HttpPut]
     public async Task<IActionResult> EditLine(LineUpdateCommand updateCommand)
     {
@@ -28,7 +28,7 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
 
         return Ok();
     }
-    
+
     [HttpPut("batch")]
     public async Task<IActionResult> EditScheduledRoutes(List<LineUpdateCommand> updateCommand)
     {
@@ -44,7 +44,7 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
 
         return Ok();
     }
-    
+
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteLines(List<Guid> deleteIds)
     {

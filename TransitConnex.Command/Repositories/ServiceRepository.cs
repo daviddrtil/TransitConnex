@@ -1,9 +1,9 @@
+using TransitConnex.Command.Commands.Service;
+using TransitConnex.Command.Data;
+using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Service;
-using TransitConnex.Infrastructure.Data;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
 
-namespace TransitConnex.Infrastructure.Repositories;
+namespace TransitConnex.Command.Repositories;
 
 public class ServiceRepository : BaseRepository<Service, ServiceUpdateCommand>, IServiceRepository
 {

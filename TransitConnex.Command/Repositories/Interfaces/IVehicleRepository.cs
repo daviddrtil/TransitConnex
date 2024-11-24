@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Vehicle;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Vehicle;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IVehicleRepository : IBaseRepository<Vehicle, VehicleUpdateCommand>
 {

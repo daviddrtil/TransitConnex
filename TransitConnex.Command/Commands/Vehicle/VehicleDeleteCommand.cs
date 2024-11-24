@@ -1,4 +1,4 @@
-namespace TransitConnex.Infrastructure.Commands.Vehicle;
+namespace TransitConnex.Command.Commands.Vehicle;
 
 public class VehicleDeleteCommand : IVehicleCommand
 {

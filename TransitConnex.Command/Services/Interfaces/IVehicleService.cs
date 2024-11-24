@@ -1,8 +1,8 @@
+using TransitConnex.Command.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Vehicle;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces;
+namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IVehicleService
 {
@@ -13,12 +13,12 @@ public interface IVehicleService
     Task<bool> VehicleExists(Guid id);
 
     Task<Vehicle> CreateVehicle(VehicleCreateCommand createCommand);
-    
-    Task<List<Vehicle>>  CreateVehicles(List<VehicleCreateCommand> createCommands);
+
+    Task<List<Vehicle>> CreateVehicles(List<VehicleCreateCommand> createCommands);
 
     Task<Vehicle> EditVehicle(VehicleUpdateCommand editCommand);
 
     Task DeleteVehicle(Guid id);
-    
+
     Task DeleteVehicles(List<Guid> ids);
 }

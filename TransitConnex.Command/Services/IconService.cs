@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using TransitConnex.Command.Commands.Icon;
+using TransitConnex.Command.Repositories.Interfaces;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Icon;
 using TransitConnex.Domain.Mappings;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Icon;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.Infrastructure.Services;
+namespace TransitConnex.Command.Services;
 
 public class IconService(IIconRepository iconRepository) : IIconService
 {
@@ -33,7 +33,7 @@ public class IconService(IIconRepository iconRepository) : IIconService
 
     public async Task<Icon> CreateIcon(IconCreateCommand createCommand)
     {
-        var newIcon = new Icon {Name = createCommand.Name, Svg = createCommand.Svg};
+        var newIcon = new Icon { Name = createCommand.Name, Svg = createCommand.Svg };
 
         await iconRepository.Add(newIcon);
 

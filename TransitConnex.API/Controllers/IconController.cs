@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Domain.DTOs.Icon;
-using TransitConnex.Infrastructure.Commands.Icon;
 
 namespace TransitConnex.API.Controllers;
 
@@ -9,6 +9,7 @@ namespace TransitConnex.API.Controllers;
 [ApiController]
 public class IconController(IconCommandHandler iconCommandHandler) : Controller
 {
+    [HttpGet]
     public async Task<List<IconDto>> GetAll()
     {
         // TODO -> query handler

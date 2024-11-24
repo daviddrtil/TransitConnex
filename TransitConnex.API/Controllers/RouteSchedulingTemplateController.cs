@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate;
+using TransitConnex.Command.Commands.RouteSchedulingTemplate;
 
 namespace TransitConnex.API.Controllers;
 

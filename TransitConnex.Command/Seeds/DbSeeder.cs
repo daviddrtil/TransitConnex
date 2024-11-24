@@ -1,16 +1,23 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using TransitConnex.Infrastructure.Data;
+using TransitConnex.Command.Data;
+using TransitConnex.Domain.Models;
 
-namespace TransitConnex.Infrastructure.Seeds;
+namespace TransitConnex.Command.Seeds;
 
-public static class DbSeeder
+public class DbSeeder
 {
-    public static void SeedAll(IServiceProvider serviceProvider)
+    public static async Task SeedAll(IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-        // UserSeed.Seed(context);
+        // Asynchronous seeding
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+        await UserSeed.Seed(userManager, roleManager);
+
+        // Synchronous seeding
         IconSeed.Seed(context);
         ServiceSeed.Seed(context);
         LocationSeed.Seed(context);

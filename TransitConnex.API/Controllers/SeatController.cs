@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.RouteTicket;
-using TransitConnex.Infrastructure.Commands.Seat;
+using TransitConnex.Command.Commands.Seat;
 
 namespace TransitConnex.API.Controllers;
 
@@ -14,14 +13,14 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
     {
         return await seatCommandHandler.HandleCreate(createCommand);
     }
-    
+
     [HttpPost("batch")]
     public async Task<Guid> CreateSeats(List<SeatCreateCommand> createCommands)
     {
         // return await SeatCommandHandler.HandleCreate(createCommand);
         return new Guid(); // TODO
     }
-    
+
     [HttpPost("reserve")]
     public async Task ReserveSeats(SeatReservationCommand reserveCommand)
     {
@@ -35,7 +34,7 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
 
         return Ok();
     }
-    
+
     [HttpPut("batch")]
     public async Task<IActionResult> EditScheduledRoutes(List<SeatUpdateCommand> updateCommand)
     {
@@ -51,7 +50,7 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
 
         return Ok();
     }
-    
+
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteSeats(List<Guid> deleteIds)
     {

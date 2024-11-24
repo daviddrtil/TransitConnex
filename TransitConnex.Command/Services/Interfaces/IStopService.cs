@@ -1,8 +1,8 @@
+using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Stop;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces;
+namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IStopService
 {

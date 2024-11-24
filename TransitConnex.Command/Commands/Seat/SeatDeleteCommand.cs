@@ -1,4 +1,4 @@
-namespace TransitConnex.Infrastructure.Commands.Seat;
+namespace TransitConnex.Command.Commands.Seat;
 
 public class SeatDeleteCommand : ISeatCommand
 {

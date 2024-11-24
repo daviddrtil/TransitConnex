@@ -13,9 +13,9 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
 {
     #region Constructor
 
-    private static readonly ReplaceOptions DefaultReplaceOptions = new() {IsUpsert = true};
+    private static readonly ReplaceOptions DefaultReplaceOptions = new() { IsUpsert = true };
 
-    private static readonly CreateIndexOptions DefaultCreateIndexOptions = new() {Unique = true, Sparse = true};
+    private static readonly CreateIndexOptions DefaultCreateIndexOptions = new() { Unique = true, Sparse = true };
 
     private readonly IMongoDatabase _database;
     private readonly ILogger<NoSqlDbContext> _logger;
@@ -55,7 +55,7 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
                 _logger.LogInformation("----- MongoDB: creating the Collection {Name}", collectionName);
 
                 await _database.CreateCollectionAsync(collectionName,
-                    new CreateCollectionOptions {ValidationLevel = DocumentValidationLevel.Strict});
+                    new CreateCollectionOptions { ValidationLevel = DocumentValidationLevel.Strict });
             }
             else
             {

@@ -1,11 +1,11 @@
 using MongoDB.Driver.Linq;
+using TransitConnex.Command.Commands.User;
+using TransitConnex.Command.Repositories.Interfaces;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.User;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.Infrastructure.Services;
+namespace TransitConnex.Command.Services;
 
 public class UserService(IUserRepository userRepository) : IUserService
 {
@@ -29,7 +29,7 @@ public class UserService(IUserRepository userRepository) : IUserService
         throw new NotImplementedException();
     }
 
-    public async Task<User> EditUser(UserUpdateCommand updateCommand)
+    public User EditUser(UserUpdateCommand updateCommand)
     {
         throw new NotImplementedException();
     }
@@ -44,5 +44,15 @@ public class UserService(IUserRepository userRepository) : IUserService
         }
 
         await userRepository.Delete(user);
+    }
+
+    Task<User> IUserService.CreateUser(UserCreateCommand createCommand)
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<User> IUserService.EditUser(UserUpdateCommand updateCommand)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.Route;
+using TransitConnex.Command.Commands.Route;
 
 namespace TransitConnex.API.Controllers;
 
@@ -13,7 +13,7 @@ public class RouteController(RouteCommandHandler routeCommandHandler) : Controll
     {
         return await routeCommandHandler.HandleCreate(createCommand);
     }
-    
+
     [HttpPost("batch")]
     public async Task<Guid> CreateRoutes(List<RouteCreateCommand> createCommands)
     {
@@ -36,7 +36,7 @@ public class RouteController(RouteCommandHandler routeCommandHandler) : Controll
 
         return Ok();
     }
-    
+
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteRoutes(List<Guid> deleteIds)
     {

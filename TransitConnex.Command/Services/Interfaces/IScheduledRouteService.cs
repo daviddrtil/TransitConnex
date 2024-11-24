@@ -1,6 +1,6 @@
 using TransitConnex.Domain.DTOs.ScheduledRoute;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces;
+namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IScheduledRouteService
 {

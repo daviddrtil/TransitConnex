@@ -1,8 +1,8 @@
+using TransitConnex.Command.Commands.Service;
 using TransitConnex.Domain.DTOs.Service;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Service;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces;
+namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IServiceService
 {
