@@ -1,9 +1,9 @@
+using TransitConnex.Command.Commands.ScheduledRoute;
+using TransitConnex.Command.Data;
+using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.ScheduledRoute;
-using TransitConnex.Infrastructure.Data;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
 
-namespace TransitConnex.Infrastructure.Repositories;
+namespace TransitConnex.Command.Repositories;
 
 public class ScheduledRouteRepository : BaseRepository<ScheduledRoute, ScheduledRouteUpdateCommand>,
     IScheduledRouteRepository

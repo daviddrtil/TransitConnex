@@ -48,7 +48,9 @@ internal class VehicleParser
         string datasetPath = Path.Combine(Program.ProjectPath, "Datasets", "vehicleDataset.csv");
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
-            Delimiter = ",", HeaderValidated = null, MissingFieldFound = null
+            Delimiter = ",",
+            HeaderValidated = null,
+            MissingFieldFound = null
         };
         using var reader = new StreamReader(datasetPath);
         using var csv = new CsvReader(reader, config);

@@ -1,6 +1,6 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
-using TransitConnex.Infrastructure.Commands.Service;
-using TransitConnex.Infrastructure.Services.Interfaces;
+using TransitConnex.Command.Commands.Service;
+using TransitConnex.Command.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 

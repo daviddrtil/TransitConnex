@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Seat;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Seat;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface ISeatRepository : IBaseRepository<Seat, SeatUpdateCommand>
 {

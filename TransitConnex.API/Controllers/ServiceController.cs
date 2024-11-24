@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.Service;
+using TransitConnex.Command.Commands.Service;
 
 namespace TransitConnex.API.Controllers;
 

@@ -53,7 +53,7 @@ public abstract class BaseMongoRepository<TQueryModel, Tkey>(IReadDbContext cont
     public async Task Upsert(TQueryModel queryModel)
     {
         var filter = Builders<TQueryModel>.Filter.Eq(q => q.Id, queryModel.Id);
-        var options = new ReplaceOptions {IsUpsert = true};
+        var options = new ReplaceOptions { IsUpsert = true };
         await Collection.ReplaceOneAsync(filter, queryModel, options);
     }
 

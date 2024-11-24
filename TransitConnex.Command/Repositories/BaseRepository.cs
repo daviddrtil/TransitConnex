@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using TransitConnex.Infrastructure.Data;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
+using TransitConnex.Command.Data;
+using TransitConnex.Command.Repositories.Interfaces;
 
-namespace TransitConnex.Infrastructure.Repositories;
+namespace TransitConnex.Command.Repositories;
 
 public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
 {
@@ -32,7 +32,7 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
         _dbSet.Add(entity);
         await _appDbContext.SaveChangesAsync();
     }
-    
+
     public async Task AddBatch(IEnumerable<T> entities)
     {
         _dbSet.AddRange(entities);
@@ -60,7 +60,7 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
         _dbSet.Update(entity);
         await _appDbContext.SaveChangesAsync();
     }
-    
+
     // TODO -> batch update?
 
     public async Task Delete(T entity)
@@ -68,7 +68,7 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
         _dbSet.Remove(entity);
         await _appDbContext.SaveChangesAsync();
     }
-    
+
     public async Task DeleteBatch(IEnumerable<T> entities)
     {
         _dbSet.RemoveRange(entities);

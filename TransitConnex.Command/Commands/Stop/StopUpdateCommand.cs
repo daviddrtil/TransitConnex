@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using TransitConnex.Domain.Enums;
 
-namespace TransitConnex.Infrastructure.Commands.Stop;
+namespace TransitConnex.Command.Commands.Stop;
 
 public class StopUpdateCommand : IStopCommand
 {

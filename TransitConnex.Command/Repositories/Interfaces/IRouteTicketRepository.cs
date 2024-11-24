@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.RouteTicket;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.RouteTicket;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IRouteTicketRepository : IBaseRepository<RouteTicket, RouteTicketUpdateCommand>
 {

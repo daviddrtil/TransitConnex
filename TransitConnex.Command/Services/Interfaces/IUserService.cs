@@ -1,8 +1,8 @@
+using TransitConnex.Command.Commands.User;
 using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.User;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces;
+namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IUserService
 {

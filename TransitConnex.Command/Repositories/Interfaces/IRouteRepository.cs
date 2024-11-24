@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Route;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Route;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IRouteRepository : IBaseRepository<Route, RouteUpdateCommand>
 {

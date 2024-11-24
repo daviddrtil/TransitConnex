@@ -1,11 +1,11 @@
 using MongoDB.Driver.Linq;
+using TransitConnex.Command.Commands.Service;
+using TransitConnex.Command.Repositories.Interfaces;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Service;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Service;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.Infrastructure.Services;
+namespace TransitConnex.Command.Services;
 
 public class ServiceService(IServiceRepository serviceRepository) : IServiceService
 {

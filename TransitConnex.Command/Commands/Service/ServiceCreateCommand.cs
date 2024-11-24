@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TransitConnex.Infrastructure.Commands.Service;
+namespace TransitConnex.Command.Commands.Service;
 
 public class ServiceCreateCommand : IServiceCommand
 {

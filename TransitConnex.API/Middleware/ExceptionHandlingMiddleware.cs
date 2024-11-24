@@ -34,7 +34,7 @@ public class ExceptionHandlingMiddleware
     {
         context.Response.ContentType = "application/json";
 
-        var response = new {error = new {message, statusCode = (int)statusCode, timestamp = DateTime.UtcNow}};
+        var response = new { error = new { message, statusCode = (int)statusCode, timestamp = DateTime.UtcNow } };
 
         await context.Response.WriteAsync(JsonSerializer.Serialize(response));
     }

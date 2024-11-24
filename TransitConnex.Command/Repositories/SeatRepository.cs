@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using TransitConnex.Command.Commands.Seat;
+using TransitConnex.Command.Data;
+using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Seat;
-using TransitConnex.Infrastructure.Data;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
 
-namespace TransitConnex.Infrastructure.Repositories;
+namespace TransitConnex.Command.Repositories;
 
 public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepository
 {
@@ -23,14 +23,14 @@ public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepo
     public async Task<List<Seat>> QueryAvailableSeats(ScheduledRoute scheduledRoute, List<Guid>? SeatIds)
     {
         var takenSeatIds = _db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRoute.Id).Select(x => x.SeatId).ToList();
-        
+
         var query = QueryAll().Where(x => !takenSeatIds.Contains(x.Id));
 
         if (SeatIds != null && SeatIds.Any())
         {
             query = query.Where(x => SeatIds.Contains(x.Id));
         }
-        
+
         return await query.ToListAsync();
     }
 

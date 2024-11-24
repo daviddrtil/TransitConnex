@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.User;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.User;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IUserRepository : IBaseRepository<User, UserUpdateCommand>
 {

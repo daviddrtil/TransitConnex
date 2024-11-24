@@ -1,7 +1,7 @@
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
-using TransitConnex.Infrastructure.Services.Interfaces;
 
-namespace TransitConnex.Infrastructure.Services;
+namespace TransitConnex.Command.Services;
 
 public class ScheduledRouteService(IRouteService routeService) : IScheduledRouteService
 {

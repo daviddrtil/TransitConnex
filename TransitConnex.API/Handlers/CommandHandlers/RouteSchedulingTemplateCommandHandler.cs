@@ -1,6 +1,6 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
-using TransitConnex.Infrastructure.Commands.RouteSchedulingTemplate;
-using TransitConnex.Infrastructure.Services.Interfaces;
+using TransitConnex.Command.Commands.RouteSchedulingTemplate;
+using TransitConnex.Command.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 

@@ -1,12 +1,12 @@
+using TransitConnex.Command.Data;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Data;
 
-namespace TransitConnex.Infrastructure.Seeds;
+namespace TransitConnex.Command.Seeds;
 
 public class RouteSeed
 {
     public static void Seed(AppDbContext context)
     {
-        var routesToBeSeeded = new List<Route> {new() {Name = ""}};
+        var routesToBeSeeded = new List<Route> { new() { Name = "" } };
     }
 }

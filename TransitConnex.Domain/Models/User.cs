@@ -1,10 +1,10 @@
-﻿namespace TransitConnex.Domain.Models;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class User // TODO -> login -> identity
+namespace TransitConnex.Domain.Models;
+
+public class User : IdentityUser<Guid>
 {
-    public Guid Id { get; set; }
-    public string? Email { get; set; }
-    public string? Password { get; set; }
+    //public Guid UserId { get => Guid.Parse(Id); }
     public DateTime Created { get; set; }
     public DateTime Updated { get; set; }
     public bool Deleted { get; set; }

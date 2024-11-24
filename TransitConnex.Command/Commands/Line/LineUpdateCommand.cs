@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using TransitConnex.Domain.Enums;
 
-namespace TransitConnex.Infrastructure.Commands.Line;
+namespace TransitConnex.Command.Commands.Line;
 
 public class LineUpdateCommand : ILineCommand
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using TransitConnex.Domain.Enums;
 
-namespace TransitConnex.Infrastructure.Commands.Location;
+namespace TransitConnex.Command.Commands.Location;
 
 public class LocationUpdateCommand : ILocationCommand
 {

@@ -1,16 +1,19 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TransitConnex.API.Extensions;
+using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.API.Middleware;
+using TransitConnex.Command.Data;
+using TransitConnex.Command.Repositories;
+using TransitConnex.Command.Repositories.Interfaces;
+using TransitConnex.Command.Seeds;
+using TransitConnex.Command.Services;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.Automapping;
-using TransitConnex.Infrastructure.Data;
-using TransitConnex.Infrastructure.Repositories;
-using TransitConnex.Infrastructure.Repositories.Interfaces;
-using TransitConnex.Infrastructure.Seeds;
-using TransitConnex.Infrastructure.Services;
-using TransitConnex.Infrastructure.Services.Interfaces;
+using TransitConnex.Domain.Models;
 using TransitConnex.Query;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +33,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     {
         options.EnableRetryOnFailure();
     }));
+
+// User authentication
+builder.Services.AddIdentity<User, IdentityRole<Guid>>(
+        IdentityConfiguration.ConfigureIdentityOptions)
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
 // Handlers
 // builder.Services.AddScoped(typeof(IBaseCommandHandler<>));
@@ -79,36 +88,55 @@ builder.Services.AddReadDbContext();
 builder.Services.AddMongoDbRepositories();
 builder.Services.AddMongoDbServices();
 
+// Verbose logging
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.AddConsole();
+    logging.AddDebug();
+});
+
 var app = builder.Build();
 
+bool updateDb = builder.Configuration.GetValue<bool>("UpdateDb");
 bool seedDb = builder.Configuration.GetValue<bool>("SeedDatabase");
 bool unseedDb = builder.Configuration.GetValue<bool>("UnseedDatabase");
-
-if (unseedDb)
+if (updateDb || seedDb || unseedDb)
 {
-    using var scope = app.Services.CreateScope();
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    DbCleaner.DeleteEntireDb(dbContext);
+    if (unseedDb)
+    {
+        DbCleaner.DeleteEntireDb(app.Services);
+        app.Logger.LogInformation("Database cleaning completed.");
+    }
+
+    if (updateDb)
+    {
+        using var scope = app.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        context.Database.Migrate();
+        app.Logger.LogInformation("Database migration completed.");
+    }
+
+    if (seedDb)
+    {
+        await DbSeeder.SeedAll(app.Services);
+        app.Logger.LogInformation("Database seeding completed.");
+    }
     return;
 }
+await app.MigrateDatabasesAsync();
 
-if (seedDb)
-{
-    DbSeeder.SeedAll(app.Services);
-    return;
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    await app.MigrateDatabasesAsync();
-
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();

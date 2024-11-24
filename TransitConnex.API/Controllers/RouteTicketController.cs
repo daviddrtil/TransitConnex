@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
-using TransitConnex.Infrastructure.Commands.RouteTicket;
+using TransitConnex.Command.Commands.RouteTicket;
 
 namespace TransitConnex.API.Controllers;
 
@@ -21,7 +21,7 @@ public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandH
 
         return Ok();
     }
-    
+
     [HttpPut("batch")]
     public async Task<IActionResult> EditScheduledRoutes(List<RouteTicketUpdateCommand> updateCommand)
     {
@@ -37,7 +37,7 @@ public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandH
 
         return Ok();
     }
-    
+
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteRouteTickets(List<Guid> deleteIds)
     {

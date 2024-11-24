@@ -1,6 +1,6 @@
 using TransitConnex.Domain.DTOs.Line;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces;
+namespace TransitConnex.Command.Services.Interfaces;
 
 public interface ILineService
 {

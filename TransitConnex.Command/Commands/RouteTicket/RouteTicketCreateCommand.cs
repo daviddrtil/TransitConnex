@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TransitConnex.Infrastructure.Commands.RouteTicket;
+namespace TransitConnex.Command.Commands.RouteTicket;
 
 public class RouteTicketCreateCommand : IRouteTicketCommand
 {

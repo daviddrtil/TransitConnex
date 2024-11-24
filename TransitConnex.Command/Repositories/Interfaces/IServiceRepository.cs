@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Service;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Service;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IServiceRepository : IBaseRepository<Service, ServiceUpdateCommand>
 {

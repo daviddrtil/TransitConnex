@@ -1,6 +1,6 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
-using TransitConnex.Infrastructure.Commands.User;
-using TransitConnex.Infrastructure.Services.Interfaces;
+using TransitConnex.Command.Commands.User;
+using TransitConnex.Command.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
@@ -16,7 +16,7 @@ public class UserCommandHandler(IUserService userService) : IBaseCommandHandler<
         // TODO -> validation for already existing user? -> prolly in service
 
         var created = await userService.CreateUser(createCommand);
-        
+
         return created.Id;
     }
 
@@ -26,7 +26,7 @@ public class UserCommandHandler(IUserService userService) : IBaseCommandHandler<
         {
             throw new InvalidCastException("Invalid command given, expected UserUpdateCommand.");
         }
-        
+
         await userService.EditUser(updateCommand);
     }
 

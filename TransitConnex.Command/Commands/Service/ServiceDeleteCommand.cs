@@ -1,4 +1,4 @@
-namespace TransitConnex.Infrastructure.Commands.Service;
+namespace TransitConnex.Command.Commands.Service;
 
 public class ServiceDeleteCommand : IServiceCommand
 {

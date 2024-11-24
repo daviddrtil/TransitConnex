@@ -1,6 +1,6 @@
 ﻿namespace TransitConnex.Domain.Models;
 
-public class VehicleService
+public class VehicleOfferedService
 {
     public Guid VehicleId { get; set; }
     public Vehicle? Vehicle { get; set; }

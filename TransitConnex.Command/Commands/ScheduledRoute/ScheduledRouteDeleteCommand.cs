@@ -1,4 +1,4 @@
-namespace TransitConnex.Infrastructure.Commands.ScheduledRoute;
+namespace TransitConnex.Command.Commands.ScheduledRoute;
 
 public class ScheduledRouteDeleteCommand : IScheduledRouteCommand
 {

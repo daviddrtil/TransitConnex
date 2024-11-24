@@ -1,8 +1,8 @@
+using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Domain.DTOs.Icon;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Icon;
 
-namespace TransitConnex.Infrastructure.Services.Interfaces;
+namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IIconService
 {

@@ -1,7 +1,7 @@
+using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.Models;
-using TransitConnex.Infrastructure.Commands.Stop;
 
-namespace TransitConnex.Infrastructure.Repositories.Interfaces;
+namespace TransitConnex.Command.Repositories.Interfaces;
 
 public interface IStopRepository : IBaseRepository<Stop, StopUpdateCommand>
 {
