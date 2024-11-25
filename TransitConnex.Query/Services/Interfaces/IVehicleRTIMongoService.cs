@@ -1,11 +1,11 @@
-﻿using TransitConnex.Domain.DTOs.VehicleRTI;
+﻿using TransitConnex.Domain.Collections;
+using TransitConnex.Domain.DTOs;
 
 namespace TransitConnex.Query.Services.Interfaces;
 
 public interface IVehicleRTIMongoService
 {
-    // todo VehicleRTIDto rewrite to model?
     Task<IEnumerable<VehicleRTIDto>> GetAll();
-    Task<VehicleRTIDto?> GetById(Guid id);
+    Task<VehicleRTIDto?> GetByVehicleId(Guid id);
     Task<Guid> Create(VehicleRTIDto vehicleRTI);
 }

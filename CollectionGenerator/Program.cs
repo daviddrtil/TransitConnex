@@ -1,7 +1,8 @@
 ﻿using Bogus;
+using MongoDB.Driver.GeoJsonObjectModel;
 using System.Text.Json;
 using TransitConnex.Domain.Collections;
-using TransitConnex.Domain.Collections.NestedDocuments;
+using TransitConnex.Domain.Enums;
 
 namespace CollectionGenerator;
 
@@ -12,7 +13,8 @@ internal class Program
     private static readonly JsonSerializerOptions Options = new()
     {
         WriteIndented = true, // For pretty-printing
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase // Ensures camelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // Ensures camelCase
+        Converters = { new GeoJsonPointConverter() },
     };
 
     public static string ProjectPath { get; set; } = Path.Combine(Environment.CurrentDirectory, "..", "..", "..");
@@ -41,18 +43,18 @@ internal class Program
         }
 
         // Create locations
-        string[] vehicleType = ["bus", "tram", "trolleybus"];
         var locations = stopIds.Select(
             stopId => new LocationDoc
             {
                 Id = Guid.NewGuid(),
                 Name = Faker.Address.City(),
-                Type = Faker.Random.CollectionItem(vehicleType),
-                Coordinates = new Coordinate
-                {
-                    Latitude = Faker.Address.Latitude(49.0, 50.0),
-                    Longitude = Faker.Address.Longitude(16.0, 17.0)
-                }
+                LocationType = LocationTypeEnum.CITY,
+                Coordinates = new GeoJsonPoint<GeoJson2DCoordinates>(
+                    new GeoJson2DCoordinates(
+                        Faker.Address.Latitude(49.0, 50.0),
+                        Faker.Address.Longitude(16.0, 17.0)
+                    )
+                ),
             }
         ).ToList();
         StoreAsJsonFile(locations);

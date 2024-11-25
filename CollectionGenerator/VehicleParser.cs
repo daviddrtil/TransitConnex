@@ -3,7 +3,6 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
 using TransitConnex.Domain.Collections;
-using TransitConnex.Domain.Collections.NestedDocuments;
 
 namespace CollectionGenerator;
 
@@ -22,12 +21,8 @@ internal class VehicleParser
                 null,
                 DateTimeStyles.RoundtripKind
             ),
-            Coordinates =
-                new Coordinate
-                {
-                    Latitude = double.Parse(csv.GetField<string>("lat") ?? "0"),
-                    Longitude = double.Parse(csv.GetField<string>("lng") ?? "0")
-                },
+            Latitude = double.Parse(csv.GetField<string>("lat") ?? "0"),
+            Longitude = double.Parse(csv.GetField<string>("lng") ?? "0"),
             Speed = double.Round(Faker.Random.Double(0.0, 60.0), 1),
             Temperature = double.Round(Faker.Random.Double(15.0, 25.0), 2),
             Occupancy = Faker.Random.Int(0, 200),

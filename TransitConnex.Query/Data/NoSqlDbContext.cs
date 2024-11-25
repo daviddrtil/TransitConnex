@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -62,8 +63,6 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
                 _logger.LogInformation("----- MongoDB: the {Name} collection already exists", collectionName);
             }
         }
-
-        await CreateIndexAsync();
     }
 
     private async Task CreateVehicleRTIIndexesAsync()
@@ -89,11 +88,72 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
         }
     }
 
-    private async Task CreateIndexAsync()
+    private async Task CreateLocationSpatialIndexAsync()
+    {
+        // Define the index key for geospatial queries
+        string indexKey = "coordinates"; // todo nameof(LocationDoc.Coordinates);
+
+        // Create the index definition for a 2dsphere index
+        var indexDefinition = Builders<LocationDoc>.IndexKeys
+            .Geo2DSphere(indexKey);
+
+        // Create the index model
+        var indexModel = new CreateIndexModel<LocationDoc>(indexDefinition, DefaultCreateIndexOptions);
+
+        // Get the collection
+        var collection = GetCollection<LocationDoc>();
+
+        // Check if the index already exists
+        var existingIndexes = await collection.Indexes.ListAsync();
+        var indexesList = await existingIndexes.ToListAsync();
+        bool indexExists = indexesList.Any(index =>
+            index["key"].AsBsonDocument.Contains(indexKey) &&
+            index["key"].AsBsonDocument[indexKey] == "2dsphere");
+
+        // If the index doesn't exist, create it
+        if (!indexExists)
+        {
+            string indexName = await collection.Indexes.CreateOneAsync(indexModel);
+            _logger.LogInformation("----- MongoDB: Location spatial index successfully created - {indexName}", indexName);
+        }
+    }
+
+    private async Task CreateLocationNameIndexAsync()
+    {
+        string indexField = nameof(LocationDoc.Name);
+        var collection = GetCollection<LocationDoc>(); // Replace with your collection accessor
+
+        // Define an ascending index on the "Name" field
+        var indexDefinition = Builders<LocationDoc>.IndexKeys.Ascending(indexField);
+        var indexModel = new CreateIndexModel<LocationDoc>(indexDefinition);
+
+        // Check if the index already exists
+        var existingIndexes = await collection.Indexes.ListAsync();
+        var indexesList = await existingIndexes.ToListAsync();
+
+        bool indexExists = indexesList.Any(index =>
+            index["key"].AsBsonDocument.Contains(indexField));
+
+        if (!indexExists)
+        {
+            // Create the index
+            string indexName = await collection.Indexes.CreateOneAsync(indexModel);
+            _logger.LogInformation("----- MongoDB: Index on '{IndexField}' successfully created - {IndexName}", indexField, indexName);
+        }
+        else
+        {
+            _logger.LogInformation("----- MongoDB: Index on '{IndexField}' already exists", indexField);
+        }
+    }
+
+    public async Task CreateIndexAsync()
     {
         _logger.LogInformation("----- MongoDB: creating indexes...");
 
         await CreateVehicleRTIIndexesAsync();
+
+        await CreateLocationNameIndexAsync();
+        await CreateLocationSpatialIndexAsync();
 
         _logger.LogInformation("----- MongoDB: indexes successfully created");
     }

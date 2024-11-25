@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using MongoDB.Driver.GeoJsonObjectModel;
 using TransitConnex.Domain.Collections;
+using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
-using TransitConnex.Domain.DTOs.SearchedRoute;
 using TransitConnex.Domain.DTOs.Vehicle;
-using TransitConnex.Domain.DTOs.VehicleRTI;
+using TransitConnex.Domain.Enums;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Domain.Automapping;
 
@@ -12,21 +14,67 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        MapModels();
-        MapCollections();
+        MapEnums();
+        MapModelsToDTOs();
+        MapModelsToCollections();
+        MapCollectionsToDTOs();
     }
 
-    private void MapModels()
+    public void MapEnums()
     {
-        // todo
+        CreateMap<int, LineTypeEnum>().ConvertUsing(src => (LineTypeEnum)src);
+        CreateMap<LineTypeEnum, int>().ConvertUsing(src => (int)src);
+
+        CreateMap<int, LocationTypeEnum>().ConvertUsing(src => (LocationTypeEnum)src);
+        CreateMap<LocationTypeEnum, int>().ConvertUsing(src => (int)src);
+
+        CreateMap<int, StopTypeEnum>().ConvertUsing(src => (StopTypeEnum)src);
+        CreateMap<StopTypeEnum, int>().ConvertUsing(src => (int)src);
+
+        CreateMap<int, VehicleTypeEnum>().ConvertUsing(src => (VehicleTypeEnum)src);
+        CreateMap<VehicleTypeEnum, int>().ConvertUsing(src => (int)src);
     }
 
-    private void MapCollections()
+    private void MapModelsToDTOs()
     {
-        CreateMap<LocationDoc, LocationDto>();
-        CreateMap<ScheduledRouteDoc, ScheduledRouteDto>();
-        CreateMap<SearchedRouteDoc, SearchedRouteDto>();
-        CreateMap<VehicleDoc, VehicleDto>();
-        CreateMap<VehicleRTIDoc, VehicleRTIDto>();
+        CreateMap<Location, LocationDto>().ReverseMap();
+        CreateMap<ScheduledRoute, ScheduledRouteDto>().ReverseMap();
+        CreateMap<Vehicle, VehicleDto>().ReverseMap();
+    }
+
+    private void MapModelsToCollections()
+    {
+        CreateMap<ScheduledRoute, ScheduledRouteDoc>().ReverseMap();
+        CreateMap<Vehicle, VehicleDoc>().ReverseMap();
+
+        // Map location coordinates
+        CreateMap<Location, LocationDoc>()
+            .ForMember(dest => dest.Coordinates,
+                opt => opt.MapFrom(src => new GeoJsonPoint<GeoJson2DCoordinates>(
+                    new GeoJson2DCoordinates(src.Longitude ?? 0, src.Latitude ?? 0))));
+        CreateMap<LocationDoc, Location>()
+            .ForMember(dest => dest.Longitude,
+                opt => opt.MapFrom(src => src.Coordinates.Coordinates.X))
+            .ForMember(dest => dest.Latitude,
+                opt => opt.MapFrom(src => src.Coordinates.Coordinates.Y));
+    }
+
+    private void MapCollectionsToDTOs()
+    {
+        CreateMap<ScheduledRouteDoc, ScheduledRouteDto>().ReverseMap();
+        CreateMap<SearchedRouteDoc, SearchedRouteDto>().ReverseMap();
+        CreateMap<VehicleDoc, VehicleDto>().ReverseMap();
+        CreateMap<VehicleRTIDoc, VehicleRTIDto>().ReverseMap();
+
+        // Map location coordinates
+        CreateMap<LocationDto, LocationDoc>()
+            .ForMember(dest => dest.Coordinates,
+                opt => opt.MapFrom(src => new GeoJsonPoint<GeoJson2DCoordinates>(
+                    new GeoJson2DCoordinates(src.Longitude ?? 0, src.Latitude ?? 0))));
+        CreateMap<LocationDoc, LocationDto>()
+            .ForMember(dest => dest.Longitude,
+                opt => opt.MapFrom(src => src.Coordinates.Coordinates.X))
+            .ForMember(dest => dest.Latitude,
+                opt => opt.MapFrom(src => src.Coordinates.Coordinates.Y));
     }
 }

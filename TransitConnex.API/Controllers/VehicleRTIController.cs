@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.QueryHandlers;
-using TransitConnex.Domain.DTOs.VehicleRTI;
+using TransitConnex.Domain.DTOs;
 
 namespace TransitConnex.API.Controllers;
 
@@ -18,11 +18,9 @@ public class VehicleRTIController(
     [HttpGet("GetByVehicleId/{id}")]
     public async Task<VehicleRTIDto?> GetByVehicleId(Guid id)
     {
-        return await vehicleRTIQueryHandler.HandleGetById(id);
-        //return vehicle is null ? Ok(vehicle) : NotFound();
+        return await vehicleRTIQueryHandler.HandleGetByVehicleId(id);
     }
 
-    // todo rename endpoint
     [HttpPost]
     public async Task<Guid> AddVehicleRTI(VehicleRTIDto vehicleRTI)
     {

@@ -27,6 +27,20 @@ public class LocationMongoService(
         return mapper.Map<Location>(location);
     }
 
+    public async Task<IEnumerable<Location>> GetByName(string name)
+    {
+        var locationDocs = await locationRepo.GetByName(name);
+        return mapper.Map<IEnumerable<Location>>(locationDocs);
+    }
+
+    public async Task<Location?> GetClosest(double latitude, double longitude)
+    {
+        var locationDoc = await locationRepo.GetClosest(latitude, longitude);
+        if (locationDoc == null)
+            return null;
+        return mapper.Map<Location>(locationDoc);
+    }
+
     public async Task<Guid> Create(Location location)
     {
         if (location.Id == Guid.Empty)
@@ -54,5 +68,23 @@ public class LocationMongoService(
     public async Task Delete(Guid id)
     {
         await locationRepo.Delete(id);
+    }
+
+    public async Task<IEnumerable<Guid>> Create(IEnumerable<Location> locations)
+    {
+        foreach (var location in locations)
+        {
+            if (location.Id == Guid.Empty)
+                location.Id = Guid.NewGuid(); // Always only add
+        }
+
+        var locationDocs = mapper.Map<IEnumerable<LocationDoc>>(locations);
+        await locationRepo.Upsert(locationDocs);
+        return locationDocs.Select(v => v.Id);
+    }
+
+    public async Task Delete(IEnumerable<Guid> ids)
+    {
+        await locationRepo.Delete(ids);
     }
 }

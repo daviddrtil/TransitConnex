@@ -58,14 +58,48 @@ public abstract class BaseMongoRepository<TQueryModel, Tkey>(IReadDbContext cont
     }
 
     /// <summary>
+    ///     Upserts a collection of query models in a single batch operation.
+    /// </summary>
+    /// <param name="queryModels">The collection of query models to upsert.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    public async Task Upsert(IEnumerable<TQueryModel> queryModels)
+    {
+        var requests = queryModels
+            .Select(queryModel =>
+                new ReplaceOneModel<TQueryModel>(
+                    Builders<TQueryModel>.Filter.Eq(q => q.Id, queryModel.Id),
+                    queryModel)
+                { IsUpsert = true }
+            )
+            .ToList();
+        await Collection.BulkWriteAsync(requests, new BulkWriteOptions { IsOrdered = false });
+    }
+
+
+    /// <summary>
     ///     Deletes a query model by its ID.
     /// </summary>
-    /// <param name="id">The ID of the query model to delete.</param>
+    /// <param name="id">The ID of the query models to delete.</param>
     /// <returns>True whether document was deleted, otherwise false.</returns>
     public async Task<bool> Delete(Tkey id)
     {
         var filter = Builders<TQueryModel>.Filter.Eq(queryModel => queryModel.Id, id);
         var result = await Collection.DeleteOneAsync(filter);
+        return result.DeletedCount > 0;
+    }
+
+    /// <summary>
+    ///     Deletes a collection of query models by their IDs in a single batch operation.
+    /// </summary>
+    /// <param name="ids">The collection of IDs of the query models to delete.</param>
+    /// <returns>True if any document was deleted, otherwise false</returns>
+    public async Task<bool> Delete(IEnumerable<Tkey> ids)
+    {
+        var requests = ids
+            .Select(id => new DeleteOneModel<TQueryModel>(
+                Builders<TQueryModel>.Filter.Eq(queryModel => queryModel.Id, id)))
+            .ToList();
+        var result = await Collection.BulkWriteAsync(requests, new BulkWriteOptions { IsOrdered = false });
         return result.DeletedCount > 0;
     }
 }

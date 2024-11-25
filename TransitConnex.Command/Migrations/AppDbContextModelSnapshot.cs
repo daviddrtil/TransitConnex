@@ -167,7 +167,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Icons");
+                    b.ToTable("Icon");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Line", b =>
@@ -187,7 +187,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Lines");
+                    b.ToTable("Line");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Location", b =>
@@ -210,7 +210,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Location");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.LocationStop", b =>
@@ -225,7 +225,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("StopId");
 
-                    b.ToTable("LocationStops");
+                    b.ToTable("LocationStop");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Route", b =>
@@ -269,7 +269,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("StartStopId");
 
-                    b.ToTable("Routes");
+                    b.ToTable("Route");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.RouteSchedulingTemplate", b =>
@@ -288,7 +288,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("RouteId");
 
-                    b.ToTable("RouteSchedulingTemplates");
+                    b.ToTable("RouteSchedulingTemplate");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.RouteStop", b =>
@@ -309,7 +309,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("StopId");
 
-                    b.ToTable("RouteStops");
+                    b.ToTable("RouteStop");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.RouteTicket", b =>
@@ -344,7 +344,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RouteTickets");
+                    b.ToTable("RouteTicket");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.ScheduledRoute", b =>
@@ -371,7 +371,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("ScheduledRoutes");
+                    b.ToTable("ScheduledRoute");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.ScheduledRouteSeat", b =>
@@ -397,7 +397,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("SeatId");
 
-                    b.ToTable("ScheduledRouteSeats");
+                    b.ToTable("ScheduledRouteSeat");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Seat", b =>
@@ -419,7 +419,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("Seats");
+                    b.ToTable("Seat");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Service", b =>
@@ -441,7 +441,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("IconId");
 
-                    b.ToTable("Services");
+                    b.ToTable("Service");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Stop", b =>
@@ -464,7 +464,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stops");
+                    b.ToTable("Stop");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.User", b =>
@@ -557,7 +557,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("LineId");
 
-                    b.ToTable("UserLineFavourites");
+                    b.ToTable("UserLineFavourite");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.UserLocationFavourite", b =>
@@ -572,7 +572,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("UserLocationFavourites");
+                    b.ToTable("UserLocationFavourite");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Vehicle", b =>
@@ -608,7 +608,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("LineId");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicle");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.VehicleOfferedService", b =>
@@ -623,7 +623,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("VehicleServices");
+                    b.ToTable("VehicleOfferedService");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

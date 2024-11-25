@@ -1,13 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Location;
+using TransitConnex.Domain.DTOs.Location;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class LocationController(LocationCommandHandler locationCommandHandler) : Controller
+public class LocationController(
+    LocationCommandHandler locationCommandHandler,
+    LocationQueryHandler locationQueryHandler) : Controller
 {
+    [HttpGet("ByName")]
+    public async Task<IEnumerable<LocationDto>> GetByName(string name)
+    {
+        return await locationQueryHandler.HandleGetByName(name);
+    }
+
+    [HttpGet("Closest")]
+    public async Task<LocationDto> GetClosestLocation(double latitude, double longitude)
+    {
+        return await locationQueryHandler.HandleGetClosest(latitude, longitude);
+    }
+
     [HttpPost]
     public async Task<Guid> CreateLocation(LocationCreateCommand createCommand)
     {

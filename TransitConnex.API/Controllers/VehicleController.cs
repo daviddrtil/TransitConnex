@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Vehicle;
 using TransitConnex.Domain.DTOs.Vehicle;
 
@@ -8,25 +9,20 @@ namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class VehicleController(VehicleCommandHandler vehicleCommandHandler) : Controller
+public class VehicleController(
+    VehicleCommandHandler vehicleCommandHandler,
+    VehicleQueryHandler vehicleQueryHandler) : Controller
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<VehicleDto>>> GetVehicles()
+    public async Task<IEnumerable<VehicleDto>> GetVehicles()
     {
-        //return await _vehicleService.GetAllVehicles();
-        return null;
+        return await vehicleQueryHandler.HandleGetAll();
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<VehicleDto>> GetVehicle(Guid id)
+    public async Task<VehicleDto?> GetVehicle(Guid id)
     {
-        // if (!await _vehicleService.VehicleExists(id))
-        // {
-        //     return NotFound($"Vehicle with id: {id} was not found.");
-        // }
-        //
-        // return await _vehicleService.GetVehicleById(id);
-        return null;
+        return await vehicleQueryHandler.HandleGetById(id);
     }
 
     [AuthorizedByAdmin]

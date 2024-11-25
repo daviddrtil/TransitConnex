@@ -55,4 +55,22 @@ public class ScheduledRouteMongoService(
     {
         await scheduledRouteRepo.Delete(id);
     }
+
+    public async Task<IEnumerable<Guid>> Create(IEnumerable<ScheduledRoute> scheduledRoutes)
+    {
+        foreach (var scheduledRoute in scheduledRoutes)
+        {
+            if (scheduledRoute.Id == Guid.Empty)
+                scheduledRoute.Id = Guid.NewGuid(); // Always only add
+        }
+
+        var srDocs = mapper.Map<IEnumerable<ScheduledRouteDoc>>(scheduledRoutes);
+        await scheduledRouteRepo.Upsert(srDocs);
+        return srDocs.Select(v => v.Id);
+    }
+
+    public async Task Delete(IEnumerable<Guid> ids)
+    {
+        await scheduledRouteRepo.Delete(ids);
+    }
 }

@@ -55,4 +55,22 @@ public class VehicleMongoService(
     {
         await vehicleRepo.Delete(id);
     }
+
+    public async Task<IEnumerable<Guid>> Create(IEnumerable<Vehicle> vehicles)
+    {
+        foreach (var vehicle in vehicles)
+        {
+            if (vehicle.Id == Guid.Empty)
+                vehicle.Id = Guid.NewGuid(); // Always only add
+        }
+
+        var vehicleDocs = mapper.Map<IEnumerable<VehicleDoc>>(vehicles);
+        await vehicleRepo.Upsert(vehicleDocs);
+        return vehicleDocs.Select(v => v.Id);
+    }
+
+    public async Task Delete(IEnumerable<Guid> ids)
+    {
+        await vehicleRepo.Delete(ids);
+    }
 }
