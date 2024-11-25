@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Data;
@@ -21,7 +22,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     public required DbSet<Service> Services { get; set; }
     public required DbSet<VehicleOfferedService> VehicleServices { get; set; }
     public required DbSet<Seat> Seats { get; set; }
-    public required DbSet<User> Users { get; set; }
+    //public required DbSet<User> Users { get; set; }
     public required DbSet<ScheduledRouteSeat> ScheduledRouteSeats { get; set; }
     public required DbSet<RouteTicket> RouteTickets { get; set; }
     public required DbSet<UserLocationFavourite> UserLocationFavourites { get; set; }
@@ -29,6 +30,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        foreach (var entityType in builder.Model.GetEntityTypes())
+        {
+            // Set the table name to be the same as the entity name without pluralization
+            entityType.SetTableName(entityType.ClrType.Name);
+        }
         base.OnModelCreating(builder);
 
         // Relationships

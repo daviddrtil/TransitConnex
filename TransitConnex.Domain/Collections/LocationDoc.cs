@@ -1,10 +1,11 @@
-﻿using TransitConnex.Domain.Collections.NestedDocuments;
+﻿using MongoDB.Driver.GeoJsonObjectModel;
+using TransitConnex.Domain.Enums;
 
 namespace TransitConnex.Domain.Collections;
 
 public class LocationDoc : QueryModelBase<Guid>
 {
     public string? Name { get; set; }
-    public string? Type { get; set; }
-    public required Coordinate Coordinates { get; set; }
+    public LocationTypeEnum LocationType { get; set; }
+    public required GeoJsonPoint<GeoJson2DCoordinates> Coordinates { get; set; }
 }

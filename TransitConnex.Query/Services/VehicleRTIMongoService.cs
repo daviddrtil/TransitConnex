@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using TransitConnex.Domain.Collections;
-using TransitConnex.Domain.DTOs.VehicleRTI;
+using TransitConnex.Domain.DTOs;
 using TransitConnex.Query.Repositories.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
@@ -16,7 +16,7 @@ public class VehicleRTIMongoService(
         return mapper.Map<IEnumerable<VehicleRTIDto>>(vehicleRTIDocs);
     }
 
-    public async Task<VehicleRTIDto?> GetById(Guid vehicleId)
+    public async Task<VehicleRTIDto?> GetByVehicleId(Guid vehicleId)
     {
         var vehicleRTIDoc = await vehicleRTIRepo.GetByVehicleId(vehicleId);
         if (vehicleRTIDoc == null)

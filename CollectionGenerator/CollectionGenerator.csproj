@@ -18,4 +18,8 @@
         <ProjectReference Include="..\TransitConnex.Domain\TransitConnex.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ParsedCollections\" />
+    </ItemGroup>
+
 </Project>

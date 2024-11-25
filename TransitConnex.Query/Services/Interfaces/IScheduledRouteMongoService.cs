@@ -9,4 +9,7 @@ public interface IScheduledRouteMongoService
     Task<Guid> Create(ScheduledRoute scheduledRoute);
     Task Update(ScheduledRoute scheduledRoute);
     Task Delete(Guid id);
+
+    Task<IEnumerable<Guid>> Create(IEnumerable<ScheduledRoute> scheduledRoutes);
+    Task Delete(IEnumerable<Guid> ids);
 }

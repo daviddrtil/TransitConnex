@@ -1,0 +1,2123 @@
+[
+  {
+    "_id": "59c7828a-be8f-4347-9031-2c05c6031195",
+    "routeId": "7c346cf0-84d1-98c2-8b02-38c2bd41153d",
+    "vehicleId": "9a514e70-7f18-8058-06af-aa3689e67c46",
+    "start": "2024-03-06T19:55:33.8336323+01:00",
+    "end": "2025-07-09T18:27:19.0012472+02:00",
+    "stops": [
+      {
+        "_id": "806585b1-300d-d46c-d4ce-cdc79fdb4495",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 7
+      },
+      {
+        "_id": "6b8707d4-2675-d992-4d3e-e210850938e0",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 9
+      },
+      {
+        "_id": "5e04c8c5-d261-7a61-c1cb-4c0076d7f4ab",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 26,
+        "order": 3
+      },
+      {
+        "_id": "b80eff18-329a-3459-4d57-68002e0fdc3a",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 38,
+        "order": 6
+      },
+      {
+        "_id": "b7e47c11-f45f-2c21-5ecc-a9a8ed99bc95",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 12
+      },
+      {
+        "_id": "b92ca5c3-eb76-68f4-3265-095e60751582",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 3
+      },
+      {
+        "_id": "38ba3dda-e49d-8ad3-8bff-7d567b1574ca",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 7
+      },
+      {
+        "_id": "4b37fc84-1a76-d28e-eea6-297dd01bb0ea",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 46,
+        "order": 9
+      },
+      {
+        "_id": "48128c75-85a3-41ea-6657-ea4d5dbc676d",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 1
+      },
+      {
+        "_id": "1af53bfd-986c-778c-d18b-186fc0c19919",
+        "start": "2025-10-01T05:59:13.2024402+02:00",
+        "timeDurationFromFirstStop": 44,
+        "order": 1
+      },
+      {
+        "_id": "33cac095-31f8-fa1b-df9f-3b2afff530a1",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 8
+      },
+      {
+        "_id": "59b261e3-c96a-b897-8298-d6fc0df4db58",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 50,
+        "order": 4
+      },
+      {
+        "_id": "8bad3f7b-25d6-46b3-8d54-26ae761be3e1",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 35,
+        "order": 8
+      },
+      {
+        "_id": "08ee0a64-d347-d569-2ff5-a9b0bba01395",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 2
+      },
+      {
+        "_id": "001592f7-af32-5e29-454f-fba07e6f12d2",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 11
+      },
+      {
+        "_id": "694b7902-ce9e-b776-2f2d-d30b4c99d067",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 1
+      },
+      {
+        "_id": "1b0a09c9-618e-6bc9-9abd-d71009d14587",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 38,
+        "order": 5
+      },
+      {
+        "_id": "66fe64a7-bf03-b1d8-d6d0-d627532db022",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 29,
+        "order": 2
+      }
+    ]
+  },
+  {
+    "_id": "cb5320d7-b8af-4f2f-8279-f2802260fee3",
+    "routeId": "48500dc3-e586-bc03-81c8-3ecbcaa8e83d",
+    "vehicleId": "f430e63a-e766-fdb3-89e8-677454e7ba68",
+    "start": "2024-10-30T08:43:30.5389672+01:00",
+    "end": "2025-03-27T16:26:54.1799996+01:00",
+    "stops": [
+      {
+        "_id": "e6823820-237b-5cab-770b-751d6fa70592",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 4
+      },
+      {
+        "_id": "ea43c127-b586-310a-3bb5-76f82db78a22",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 5
+      },
+      {
+        "_id": "d8ac2799-6553-be00-b4a7-f54739202dcf",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 4
+      },
+      {
+        "_id": "fde0ba12-1402-b4e5-4786-b9549d37fc1e",
+        "start": "2025-10-01T05:59:13.2024402+02:00",
+        "timeDurationFromFirstStop": 53,
+        "order": 2
+      },
+      {
+        "_id": "a4bfc26f-ec57-6d60-41f5-3031f28d49f3",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 45,
+        "order": 3
+      },
+      {
+        "_id": "ffa31b37-97ed-347c-2fea-c7919091dc07",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 3
+      },
+      {
+        "_id": "80b85751-209a-327a-3ad9-4760dfdb65e8",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 7
+      },
+      {
+        "_id": "41c5fba1-a869-456b-5dc3-77e494567c77",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 44,
+        "order": 16
+      },
+      {
+        "_id": "a8f9c87b-fbfd-c092-6621-2176d406bee3",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 3
+      },
+      {
+        "_id": "3bb7f18f-1cc9-5577-062e-05c16cc5682a",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 38,
+        "order": 10
+      },
+      {
+        "_id": "fa10ab7f-3c7e-0cd0-4264-fde9ee7402cc",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 12
+      },
+      {
+        "_id": "817d0833-89bd-241d-88e0-9651846ac8f0",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 16
+      },
+      {
+        "_id": "8672bddb-a2ff-b727-62af-a9e47ecc1bf3",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 4
+      },
+      {
+        "_id": "48c8cf6f-a184-6986-e191-c43a31cbf773",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 6
+      },
+      {
+        "_id": "aaaad313-92e5-74fe-dbcd-09e1b827711c",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 6
+      },
+      {
+        "_id": "a9d6e234-761e-a77b-ecdf-f80bcf6a8466",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 13
+      },
+      {
+        "_id": "99927f83-54d8-ad5f-cf5d-d92a07e1ed2f",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 47,
+        "order": 15
+      },
+      {
+        "_id": "a74e609a-e6fd-cfa3-83bb-a693adcb77a3",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 1
+      }
+    ]
+  },
+  {
+    "_id": "93e00aa4-7b72-41f3-8e0c-262fea855d05",
+    "routeId": "b61fad60-46b4-4656-7ab4-ba43861bf2f4",
+    "vehicleId": "568945ce-4bfd-4a2a-9e07-c38e3a559da1",
+    "start": "2023-12-25T00:23:28.4117698+01:00",
+    "end": "2025-02-03T16:18:45.4745499+01:00",
+    "stops": [
+      {
+        "_id": "29df9470-ddb6-5b36-9ffc-c51a78a0741b",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 13
+      },
+      {
+        "_id": "44cc974f-d6a0-5834-7706-1bd34bf78da9",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 46,
+        "order": 16
+      },
+      {
+        "_id": "948fff85-bbe2-37a5-4e44-89a3376f936d",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 2
+      },
+      {
+        "_id": "bad1baf5-93c2-2b82-3379-51c237bb7fe0",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 10
+      },
+      {
+        "_id": "6f9aa949-d5ca-995c-3a6a-06e8bf86e90a",
+        "start": "2025-10-01T05:59:13.2024402+02:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 4
+      },
+      {
+        "_id": "2795b1bd-5298-c728-d22d-9b7357cddb21",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 41,
+        "order": 5
+      },
+      {
+        "_id": "08ee0a64-d347-d569-2ff5-a9b0bba01395",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 2
+      },
+      {
+        "_id": "474e6d97-846a-214f-66b1-a8324c8a5012",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 9
+      },
+      {
+        "_id": "b82b8ffc-8e27-5826-7ff0-88ec98f33689",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 5
+      },
+      {
+        "_id": "24a78dde-f954-cc04-c334-bb0e8c39d2a1",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 14
+      },
+      {
+        "_id": "92eafed8-f408-0c20-88ee-10828c01e530",
+        "start": "2025-05-19T10:00:49.9655816+02:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 5
+      },
+      {
+        "_id": "6e2f6206-25a7-fd07-573e-d43be9870660",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 44,
+        "order": 3
+      },
+      {
+        "_id": "ea195617-4fed-cf63-3999-afbc8b764612",
+        "start": "2025-11-09T18:21:15.8710067+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 7
+      },
+      {
+        "_id": "4135ff09-1e57-5dd7-ac40-15ab5c352ae0",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 41,
+        "order": 7
+      }
+    ]
+  },
+  {
+    "_id": "66ce1902-a66f-4bcf-adeb-ff010e09e3ef",
+    "routeId": "ed22a2ef-2dd8-4d4e-22e6-b957e6296ba3",
+    "vehicleId": "9a514e70-7f18-8058-06af-aa3689e67c46",
+    "start": "2024-09-29T10:41:18.6937022+02:00",
+    "end": "2024-12-01T19:44:01.6636589+01:00",
+    "stops": [
+      {
+        "_id": "3656a7c7-693b-c574-e791-ea2fcf6ce9dd",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 44,
+        "order": 8
+      },
+      {
+        "_id": "29d6f040-7ba7-ca77-67b4-3cc8c4726508",
+        "start": "2025-05-07T14:39:42.140165+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 7
+      },
+      {
+        "_id": "f3789742-f0d9-9d45-53e7-103747932677",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 4
+      },
+      {
+        "_id": "89cbb2df-2e8a-3d29-11f3-72025f049790",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 2
+      },
+      {
+        "_id": "c5259edf-8cf1-91ad-c2e4-39b3cf3942c2",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 5
+      },
+      {
+        "_id": "524695b7-66a6-9e1c-6daf-8fcc51ee2a9d",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 9
+      },
+      {
+        "_id": "33cac095-31f8-fa1b-df9f-3b2afff530a1",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 8
+      },
+      {
+        "_id": "52db8462-38ed-9032-18d5-a3fda9f650e5",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 3
+      },
+      {
+        "_id": "66fe64a7-bf03-b1d8-d6d0-d627532db022",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 29,
+        "order": 2
+      },
+      {
+        "_id": "153c0bcc-9576-820e-26d9-62221f3fbede",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 4
+      },
+      {
+        "_id": "81baa2fe-f505-3a2a-c49e-46aecc86d538",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 13
+      },
+      {
+        "_id": "32a078d7-d62b-921b-275b-082fd6dbc96f",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 35,
+        "order": 3
+      },
+      {
+        "_id": "445068b6-74e1-4bc1-fc1c-dabee1bab5f2",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 7
+      },
+      {
+        "_id": "e9ab3f3c-15a2-ca05-968a-f470d7bd4ce8",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 30,
+        "order": 2
+      },
+      {
+        "_id": "4b8a598c-d335-ce1a-6fa7-63831b48dbee",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 11
+      },
+      {
+        "_id": "146d95c6-071f-be89-3493-c41bb8bc0bc5",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 26,
+        "order": 8
+      },
+      {
+        "_id": "8a72098c-4255-c0c4-daed-49251444d592",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 7
+      },
+      {
+        "_id": "4485056c-8775-b33d-54e1-1b0ae11d09b6",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 18
+      }
+    ]
+  },
+  {
+    "_id": "c54629f9-58ec-4788-a887-42ccaf3b0900",
+    "routeId": "dcb93c9d-ce07-8af6-c19a-224d83c7bf6d",
+    "vehicleId": "5647d080-3883-510c-fa90-c55ace65727c",
+    "start": "2024-06-20T22:37:00.2291718+02:00",
+    "end": "2025-03-29T03:58:57.2788868+01:00",
+    "stops": [
+      {
+        "_id": "4f36a1ca-85c2-bfed-92c1-cc13f2a0a57f",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 4
+      },
+      {
+        "_id": "d477a8a8-6f80-fa48-9c42-cf30325cf7e9",
+        "start": "2025-05-07T14:39:42.140165+02:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 3
+      },
+      {
+        "_id": "e94b63f1-da84-0bc8-c7b0-b6b491dc31c1",
+        "start": "2025-11-09T18:21:15.8710067+01:00",
+        "timeDurationFromFirstStop": 53,
+        "order": 4
+      },
+      {
+        "_id": "ca8e50bc-5bbb-63ff-9f25-a0d71468733b",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 14
+      },
+      {
+        "_id": "1ab40772-54f3-a8a6-900f-317c2b95d5a4",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 15
+      },
+      {
+        "_id": "106bef05-7337-2440-8cf7-4e276c6e1b6d",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 6
+      },
+      {
+        "_id": "51989df2-e20d-04cd-017b-65bfbb9c4fbf",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 6
+      },
+      {
+        "_id": "d951edff-e4d5-43b9-ed06-8ab275064a91",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 9
+      },
+      {
+        "_id": "2a6ccb61-bd04-ad52-292a-54ff87af561c",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 1
+      },
+      {
+        "_id": "f7d264ec-a6b9-04da-64a5-0d29d1d7a961",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 11
+      },
+      {
+        "_id": "4135ff09-1e57-5dd7-ac40-15ab5c352ae0",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 41,
+        "order": 7
+      },
+      {
+        "_id": "ae4140c1-86a0-a5a2-cf28-052af0adf8b0",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 6
+      },
+      {
+        "_id": "5f9d820e-9a1d-21f0-2dc8-0a3399fbce29",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 12
+      },
+      {
+        "_id": "f15ad2d0-4f9a-0ecb-290d-b6abd3a988d0",
+        "start": "2025-07-08T02:41:14.5429229+02:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 4
+      },
+      {
+        "_id": "12b86386-d845-f67a-398a-400406756ef5",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 7
+      },
+      {
+        "_id": "ff61c96f-8349-4a95-fa31-8959ccb153ce",
+        "start": "2025-11-09T15:45:50.7109615+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 2
+      },
+      {
+        "_id": "3d99cbe5-0169-d9d6-9915-57e32cd835ac",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 28,
+        "order": 8
+      }
+    ]
+  },
+  {
+    "_id": "b17c4c93-b9e6-44a0-b039-2cafc0860cad",
+    "routeId": "c1fb6fa4-6852-3bcf-210f-b5c7bc53bd90",
+    "vehicleId": "edaccb2a-be3d-1827-1a99-b17590dfe15b",
+    "start": "2024-07-29T08:37:27.1466011+02:00",
+    "end": "2025-09-20T09:15:09.9777188+02:00",
+    "stops": [
+      {
+        "_id": "5aa75ece-6ff7-60a4-0a58-36525d43809a",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 3
+      },
+      {
+        "_id": "a8f9c87b-fbfd-c092-6621-2176d406bee3",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 3
+      },
+      {
+        "_id": "98bec630-4862-6539-ab9f-5c89b5dde5e1",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 30,
+        "order": 1
+      },
+      {
+        "_id": "65171f4d-191c-9078-b8f9-9282900b07b9",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 14
+      },
+      {
+        "_id": "7a8d7fd8-7214-81ea-f2d0-cbed55b5f279",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 3
+      },
+      {
+        "_id": "aaa11745-1c4b-fe00-4a69-72aafeeeae67",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 6
+      },
+      {
+        "_id": "5c1bc125-f7ab-7af3-b826-26470950458f",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 8
+      },
+      {
+        "_id": "db959739-ec74-3313-2a74-1fd47849085f",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 11
+      },
+      {
+        "_id": "74615b6b-09d0-5715-30aa-640736d87f97",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 10
+      },
+      {
+        "_id": "72b2d38e-d9bb-7c60-993f-b7f515bc7315",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 31,
+        "order": 10
+      },
+      {
+        "_id": "6811bfba-8f29-9904-a398-15702c9c2809",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 55,
+        "order": 18
+      }
+    ]
+  },
+  {
+    "_id": "ffd069c5-a9d7-4f2f-b127-198f7dcd5020",
+    "routeId": "436aabec-0fb9-9238-8908-3777f42fc1c3",
+    "vehicleId": "28512213-33c7-506a-29ed-155101646dbb",
+    "start": "2024-04-01T16:04:11.7741035+02:00",
+    "end": "2025-08-17T07:48:23.1343551+02:00",
+    "stops": [
+      {
+        "_id": "9b340eeb-b0af-a4fa-12df-2fc06a683a3e",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 8
+      },
+      {
+        "_id": "d748993b-2738-8b41-0845-00657072f76e",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 14
+      },
+      {
+        "_id": "4374d6c5-eab4-e1f1-80da-1f0b8703f781",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 3
+      },
+      {
+        "_id": "df774aef-2b75-9f54-e00a-1f0755d385f8",
+        "start": "2025-11-09T15:45:50.7109615+01:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 3
+      },
+      {
+        "_id": "6e8d48e1-0530-2600-bd7b-6223b132403c",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 3
+      },
+      {
+        "_id": "572be569-58ac-4b4c-1fc5-dd38689bc1f7",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 11
+      },
+      {
+        "_id": "38a87389-833e-029a-aa3e-ca644295359e",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 6
+      },
+      {
+        "_id": "81eac076-42cb-ca73-44d5-37911ab1b2e3",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 1
+      }
+    ]
+  },
+  {
+    "_id": "8e674cb7-3803-4dbe-822e-03077dfbb6c2",
+    "routeId": "d367e98a-cdc0-9901-d5e7-60a4b45c6ae6",
+    "vehicleId": "b96da36e-d36c-6704-1283-67ccc0b097a3",
+    "start": "2024-01-08T02:23:13.871693+01:00",
+    "end": "2025-09-02T16:46:11.5966913+02:00",
+    "stops": [
+      {
+        "_id": "9cddafae-9923-7acb-1e44-cc3278aada96",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 5
+      },
+      {
+        "_id": "d1668e7a-8d43-33a4-5042-d05ae8541325",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 44,
+        "order": 2
+      },
+      {
+        "_id": "b12893fc-c65e-5eaf-f1ca-e0e2ec8d93e3",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 28,
+        "order": 9
+      },
+      {
+        "_id": "99421577-8760-f198-9c72-638343b36279",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 9
+      },
+      {
+        "_id": "56a77c11-bfc1-a5f0-5bbc-581d3ae6bb81",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 1
+      },
+      {
+        "_id": "d05f2187-e431-4f0c-4459-8259a46c1cb1",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 14
+      },
+      {
+        "_id": "e560770b-467f-cd2e-243a-c0b2f0a2da0a",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 12
+      },
+      {
+        "_id": "de0a4027-7de0-5b52-1c16-c6eeb5d905f3",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 29,
+        "order": 9
+      },
+      {
+        "_id": "2e67072d-2c9a-d050-44f6-172a2a38105e",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 47,
+        "order": 2
+      },
+      {
+        "_id": "66e5c01a-86c9-a06c-1649-8735c943a102",
+        "start": "2025-05-19T10:00:49.9655816+02:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 3
+      },
+      {
+        "_id": "7d18fda5-5386-750a-14ab-8c7b1285d508",
+        "start": "2025-10-01T05:59:13.2024402+02:00",
+        "timeDurationFromFirstStop": 28,
+        "order": 6
+      },
+      {
+        "_id": "b61f7835-aa3c-a33b-913b-342b4b13f32e",
+        "start": "2025-10-01T05:59:13.2024402+02:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 7
+      },
+      {
+        "_id": "106bef05-7337-2440-8cf7-4e276c6e1b6d",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 6
+      },
+      {
+        "_id": "78d29e99-6a63-2744-e14b-6d0870dbfc29",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 10
+      },
+      {
+        "_id": "29df9470-ddb6-5b36-9ffc-c51a78a0741b",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 13
+      },
+      {
+        "_id": "79196f7c-12fc-f218-2c6d-5d69ff09f810",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 8
+      },
+      {
+        "_id": "51989df2-e20d-04cd-017b-65bfbb9c4fbf",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 6
+      },
+      {
+        "_id": "a1e32b60-04a5-6d43-6e2e-fbd1c30a5e87",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 7
+      }
+    ]
+  },
+  {
+    "_id": "3117e98e-b517-4054-b8d7-afddd8984410",
+    "routeId": "fa9a29e1-72ae-5cd5-4415-bd670d42b3be",
+    "vehicleId": "b296457d-47b5-a7cc-83de-a46ee04cf9f3",
+    "start": "2024-06-03T00:25:46.2652705+02:00",
+    "end": "2025-11-12T03:03:15.8336904+01:00",
+    "stops": [
+      {
+        "_id": "48c8cf6f-a184-6986-e191-c43a31cbf773",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 6
+      },
+      {
+        "_id": "2d96cdeb-fb9b-4510-6ad7-f3bd99c2d0e5",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 11
+      },
+      {
+        "_id": "e137ff72-ed88-cf24-1976-6575ed66da39",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 1
+      },
+      {
+        "_id": "9e18534c-dec3-e27c-f366-79fbd88070c4",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 15
+      },
+      {
+        "_id": "40a9ba02-3016-200b-da9b-6c42aeb60eaf",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 4
+      },
+      {
+        "_id": "6c84dfb2-3c8e-9bd7-daa0-b7e21dc56587",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 5
+      },
+      {
+        "_id": "89cbb2df-2e8a-3d29-11f3-72025f049790",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 2
+      },
+      {
+        "_id": "001592f7-af32-5e29-454f-fba07e6f12d2",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 11
+      },
+      {
+        "_id": "29d6f040-7ba7-ca77-67b4-3cc8c4726508",
+        "start": "2025-05-07T14:39:42.140165+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 7
+      },
+      {
+        "_id": "97e263d1-468c-5c0c-fd3b-217d5a7082cd",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "_id": "9b7635c5-91be-4685-aa86-68172758f550",
+    "routeId": "afc63f16-5208-cf71-2256-4d922b3cfe72",
+    "vehicleId": "a92545c8-ebd3-4dd3-bfa3-8410d42951bb",
+    "start": "2024-05-26T15:01:07.1952133+02:00",
+    "end": "2025-08-05T12:46:40.1518843+02:00",
+    "stops": [
+      {
+        "_id": "2314f7de-8f6e-63e3-4f24-4ad9b6f27fee",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 32,
+        "order": 17
+      },
+      {
+        "_id": "9077ab91-3842-397f-5de5-deecf76f14f4",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 55,
+        "order": 9
+      },
+      {
+        "_id": "ceb36ee6-eb50-b6fc-8e19-3326ec29b323",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 35,
+        "order": 2
+      },
+      {
+        "_id": "ebe53e48-6684-a8d4-8b4f-524cd156dd7e",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 7
+      },
+      {
+        "_id": "f12e181f-03a9-30d2-8253-f505e6a79be5",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 4
+      },
+      {
+        "_id": "6175019c-e8c6-d33c-23dc-ad7c5dc59dc7",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 18
+      },
+      {
+        "_id": "9e18534c-dec3-e27c-f366-79fbd88070c4",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 15
+      },
+      {
+        "_id": "e409bf41-3ec7-87e3-59cd-39db64dc04f1",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 15
+      },
+      {
+        "_id": "7d18fda5-5386-750a-14ab-8c7b1285d508",
+        "start": "2025-10-01T05:59:13.2024402+02:00",
+        "timeDurationFromFirstStop": 28,
+        "order": 6
+      },
+      {
+        "_id": "524695b7-66a6-9e1c-6daf-8fcc51ee2a9d",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 9
+      },
+      {
+        "_id": "f20dd8b5-afff-392a-67aa-8b655c8563c4",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 3
+      },
+      {
+        "_id": "d3f28ec5-02c9-1b0f-d49b-a6433580b640",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 7
+      },
+      {
+        "_id": "bc961d4d-da32-ea57-fff5-55903ef54930",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 50,
+        "order": 8
+      },
+      {
+        "_id": "b6de210e-4560-3733-bf8e-25e55296195f",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 51,
+        "order": 4
+      },
+      {
+        "_id": "4457359d-77f0-0fc3-ffa7-cf48c21e6305",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 11
+      },
+      {
+        "_id": "65171f4d-191c-9078-b8f9-9282900b07b9",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 14
+      },
+      {
+        "_id": "fce59fcc-2e77-7c25-b458-5a7cab00e3a7",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 44,
+        "order": 3
+      },
+      {
+        "_id": "9cddafae-9923-7acb-1e44-cc3278aada96",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "_id": "5bdd8e8a-8887-465f-a386-6e6cbeb06d07",
+    "routeId": "6d887dae-4e83-f6d0-be4d-4e78020a812d",
+    "vehicleId": "677f9b02-d163-f91a-7434-e8d81509536e",
+    "start": "2024-05-17T11:01:06.2452508+02:00",
+    "end": "2025-01-20T18:34:45.7207756+01:00",
+    "stops": [
+      {
+        "_id": "4457359d-77f0-0fc3-ffa7-cf48c21e6305",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 11
+      },
+      {
+        "_id": "32a078d7-d62b-921b-275b-082fd6dbc96f",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 35,
+        "order": 3
+      },
+      {
+        "_id": "1b0a09c9-618e-6bc9-9abd-d71009d14587",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 38,
+        "order": 5
+      },
+      {
+        "_id": "9b10cd37-0af4-9de2-e85b-666fcbbf233e",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 16
+      },
+      {
+        "_id": "0a2de31c-44f3-bb63-6ed6-dce6166162b8",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 35,
+        "order": 7
+      },
+      {
+        "_id": "299daeac-9b3e-56b7-a9cc-7094315ec7f7",
+        "start": "2025-07-08T02:41:14.5429229+02:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 7
+      },
+      {
+        "_id": "7b77b031-13dc-b08e-8fe1-6985c277bb72",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 28,
+        "order": 13
+      },
+      {
+        "_id": "a75dee66-f695-de4e-458e-6b13a130564b",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 32,
+        "order": 15
+      },
+      {
+        "_id": "d3721a54-bcf4-8727-68b0-d4041c4a199a",
+        "start": "2025-07-05T17:59:30.7628261+02:00",
+        "timeDurationFromFirstStop": 26,
+        "order": 3
+      },
+      {
+        "_id": "0c0fb71b-f3ca-3a0d-72a8-4238601bb519",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 7
+      },
+      {
+        "_id": "7283f192-bd6a-4780-6710-94aaba329015",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 9
+      }
+    ]
+  },
+  {
+    "_id": "a7741e4f-08d8-43aa-b85f-edc98f2c61d9",
+    "routeId": "ceabd6cb-d5ad-e973-4bdf-9ec8ce4691b2",
+    "vehicleId": "a9d97624-b362-fb7e-d619-1f6d6ab80343",
+    "start": "2024-07-01T18:24:11.218623+02:00",
+    "end": "2025-03-09T22:51:15.8797385+01:00",
+    "stops": [
+      {
+        "_id": "c5259edf-8cf1-91ad-c2e4-39b3cf3942c2",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 5
+      },
+      {
+        "_id": "4eeb1784-4754-4de0-669b-fed0cc1a3a7b",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 1
+      },
+      {
+        "_id": "aa7705ca-161d-a219-79ab-97c62682db80",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 47,
+        "order": 10
+      },
+      {
+        "_id": "db3feeed-5309-afb0-fed5-c0d55dcddfd2",
+        "start": "2025-07-31T11:39:14.508072+02:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 16
+      },
+      {
+        "_id": "d86e4eb8-8339-98c7-1501-9ad9aa443095",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 1
+      },
+      {
+        "_id": "153c0bcc-9576-820e-26d9-62221f3fbede",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 4
+      },
+      {
+        "_id": "32a078d7-d62b-921b-275b-082fd6dbc96f",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 35,
+        "order": 3
+      },
+      {
+        "_id": "1293f3dc-c7b6-d33d-0ae7-072d424ac75e",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 53,
+        "order": 1
+      },
+      {
+        "_id": "aaaad313-92e5-74fe-dbcd-09e1b827711c",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 6
+      },
+      {
+        "_id": "617adfd6-d535-0d5e-e0bf-3b1d10c8a782",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 13
+      },
+      {
+        "_id": "77f37a30-c086-8fcc-db15-69cbe0daff4e",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 3
+      },
+      {
+        "_id": "b16edd22-39c9-9f5c-a977-9a11ecd73755",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 17
+      },
+      {
+        "_id": "e6c639a3-07aa-2683-ea16-61077192bbc1",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 14
+      },
+      {
+        "_id": "ddd6e404-8216-6b1f-a340-49b49c39e189",
+        "start": "2025-05-07T14:39:42.140165+02:00",
+        "timeDurationFromFirstStop": 53,
+        "order": 8
+      },
+      {
+        "_id": "b261ec02-13c2-1d16-30a4-3b08f4eb6c7c",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 10
+      }
+    ]
+  },
+  {
+    "_id": "caad349b-f960-48bb-b13e-992651d18956",
+    "routeId": "91acf0ee-7217-5139-90d6-e5ea52cb4f6a",
+    "vehicleId": "86740dde-15d3-1785-da93-2b249b013b9b",
+    "start": "2024-09-22T16:39:43.559175+02:00",
+    "end": "2025-07-26T22:22:30.8046094+02:00",
+    "stops": [
+      {
+        "_id": "29d6f040-7ba7-ca77-67b4-3cc8c4726508",
+        "start": "2025-05-07T14:39:42.140165+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 7
+      },
+      {
+        "_id": "8b400fce-a90b-e85f-0658-29c551a128e6",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 30,
+        "order": 1
+      },
+      {
+        "_id": "f89dd516-8963-3b98-4f46-7d2bb78d60dd",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 11
+      },
+      {
+        "_id": "56a77c11-bfc1-a5f0-5bbc-581d3ae6bb81",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 1
+      },
+      {
+        "_id": "106bef05-7337-2440-8cf7-4e276c6e1b6d",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 6
+      },
+      {
+        "_id": "5aa75ece-6ff7-60a4-0a58-36525d43809a",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 3
+      },
+      {
+        "_id": "539c2de5-e559-3f5d-c956-20f2db29801e",
+        "start": "2025-11-09T18:21:15.8710067+01:00",
+        "timeDurationFromFirstStop": 53,
+        "order": 6
+      },
+      {
+        "_id": "e53c625c-34c1-178e-4843-bf7f82e8e07f",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 5
+      },
+      {
+        "_id": "1d164166-fac1-29f1-3662-e9d81dc994fe",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 15
+      },
+      {
+        "_id": "5e04c8c5-d261-7a61-c1cb-4c0076d7f4ab",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 26,
+        "order": 3
+      },
+      {
+        "_id": "f8245bcc-30d1-dd2d-dc82-c9729531332d",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 1
+      },
+      {
+        "_id": "2192e855-bbb5-2b45-4a23-3ea68b53a1ce",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 50,
+        "order": 7
+      },
+      {
+        "_id": "f15ad2d0-4f9a-0ecb-290d-b6abd3a988d0",
+        "start": "2025-07-08T02:41:14.5429229+02:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 4
+      },
+      {
+        "_id": "12b86386-d845-f67a-398a-400406756ef5",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 7
+      },
+      {
+        "_id": "3704e5e5-9f47-23cf-6bfc-9b389593cc70",
+        "start": "2025-07-05T17:59:30.7628261+02:00",
+        "timeDurationFromFirstStop": 47,
+        "order": 1
+      },
+      {
+        "_id": "cb5aa168-bd82-02e6-54d0-1a666871bf98",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 6
+      },
+      {
+        "_id": "4c915562-a7b7-25ff-f4d4-e9372e5e6121",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 14
+      }
+    ]
+  },
+  {
+    "_id": "04c9a1b1-9677-4da2-a638-dcd86496cfad",
+    "routeId": "47184289-1788-f587-523a-909208da2a3b",
+    "vehicleId": "654bfae2-b3af-426c-0a3a-8d8ee2cea1ce",
+    "start": "2024-07-19T13:38:15.1170546+02:00",
+    "end": "2025-09-14T05:19:27.9923577+02:00",
+    "stops": [
+      {
+        "_id": "e53c625c-34c1-178e-4843-bf7f82e8e07f",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 5
+      },
+      {
+        "_id": "b61f7835-aa3c-a33b-913b-342b4b13f32e",
+        "start": "2025-10-01T05:59:13.2024402+02:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 7
+      },
+      {
+        "_id": "0cc2c6bc-3426-da9d-3189-08ccebbb4a74",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 14
+      },
+      {
+        "_id": "617adfd6-d535-0d5e-e0bf-3b1d10c8a782",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 13
+      },
+      {
+        "_id": "7883eab7-4d61-047d-a243-9e2e19cf957a",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 15
+      },
+      {
+        "_id": "8b400fce-a90b-e85f-0658-29c551a128e6",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 30,
+        "order": 1
+      },
+      {
+        "_id": "dde47dee-2678-3481-16b2-684a7c41de1b",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 55,
+        "order": 6
+      },
+      {
+        "_id": "9d28bbad-5314-059a-9fb7-a82003a4551c",
+        "start": "2025-05-19T10:00:49.9655816+02:00",
+        "timeDurationFromFirstStop": 36,
+        "order": 4
+      },
+      {
+        "_id": "fbcd69f2-5e3d-e770-88e0-5d768d1382ea",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 9
+      },
+      {
+        "_id": "97e263d1-468c-5c0c-fd3b-217d5a7082cd",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 5
+      },
+      {
+        "_id": "1eb3cc6b-13fa-0c65-60aa-cb6b83cdd468",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 5
+      },
+      {
+        "_id": "8e4d8dda-4b30-e024-6456-8d3cfb63cce0",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 11
+      },
+      {
+        "_id": "7089ed55-9329-01fe-df5d-ebbd56715b4d",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 38,
+        "order": 6
+      },
+      {
+        "_id": "d05f2187-e431-4f0c-4459-8259a46c1cb1",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 14
+      },
+      {
+        "_id": "29df9470-ddb6-5b36-9ffc-c51a78a0741b",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 13
+      },
+      {
+        "_id": "a267ff01-8a60-653b-c5d6-e6d62769a462",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 45,
+        "order": 3
+      },
+      {
+        "_id": "a03049e9-9033-072b-38bb-545268fcf6f7",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 50,
+        "order": 9
+      },
+      {
+        "_id": "72b2d38e-d9bb-7c60-993f-b7f515bc7315",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 31,
+        "order": 10
+      },
+      {
+        "_id": "5aa75ece-6ff7-60a4-0a58-36525d43809a",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "_id": "449446bf-c51f-4e98-9059-68383eec1877",
+    "routeId": "8a1082f6-3492-76d8-41fd-8dc232214c24",
+    "vehicleId": "e16d0722-b651-1950-4f6b-3f4c4c9c1bdc",
+    "start": "2024-03-06T04:32:09.9048399+01:00",
+    "end": "2025-08-22T14:30:26.6876512+02:00",
+    "stops": [
+      {
+        "_id": "b7e47c11-f45f-2c21-5ecc-a9a8ed99bc95",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 12
+      },
+      {
+        "_id": "3704e5e5-9f47-23cf-6bfc-9b389593cc70",
+        "start": "2025-07-05T17:59:30.7628261+02:00",
+        "timeDurationFromFirstStop": 47,
+        "order": 1
+      },
+      {
+        "_id": "51989df2-e20d-04cd-017b-65bfbb9c4fbf",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 6
+      },
+      {
+        "_id": "4b37fc84-1a76-d28e-eea6-297dd01bb0ea",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 46,
+        "order": 9
+      },
+      {
+        "_id": "e1ef543b-bb19-0849-43d0-c42552997e3e",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 8
+      },
+      {
+        "_id": "1d164166-fac1-29f1-3662-e9d81dc994fe",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 15
+      },
+      {
+        "_id": "9419a5d5-b91d-6672-5368-56327a7cba0b",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 8
+      },
+      {
+        "_id": "cb1b6b73-ad32-fa9f-13b3-43c57d680f64",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 9
+      },
+      {
+        "_id": "ceb36ee6-eb50-b6fc-8e19-3326ec29b323",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 35,
+        "order": 2
+      }
+    ]
+  },
+  {
+    "_id": "3c7aede5-cdcc-4e84-8160-6ea9181aa1ad",
+    "routeId": "ea029720-1e9b-566c-3ea2-629950bdae8b",
+    "vehicleId": "d33b8a34-7a38-079d-e679-164c5db6aa68",
+    "start": "2024-11-14T01:15:11.3499403+01:00",
+    "end": "2025-10-11T09:45:48.0212852+02:00",
+    "stops": [
+      {
+        "_id": "153c0bcc-9576-820e-26d9-62221f3fbede",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 4
+      },
+      {
+        "_id": "6c84dfb2-3c8e-9bd7-daa0-b7e21dc56587",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 5
+      },
+      {
+        "_id": "c50bfb09-ecf7-9749-e4e6-10e25959f224",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 4
+      },
+      {
+        "_id": "6cc39b15-bb60-2480-81e0-3151fcdad2a1",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 2
+      },
+      {
+        "_id": "40a9ba02-3016-200b-da9b-6c42aeb60eaf",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 4
+      },
+      {
+        "_id": "84aa1078-f8b1-2c61-a9a2-a8d8ad8749d7",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 11
+      },
+      {
+        "_id": "56a77c11-bfc1-a5f0-5bbc-581d3ae6bb81",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 1
+      },
+      {
+        "_id": "b82bd0e7-dd11-1782-94c2-f779ad83bd7b",
+        "start": "2025-05-07T14:39:42.140165+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 6
+      },
+      {
+        "_id": "48128c75-85a3-41ea-6657-ea4d5dbc676d",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 1
+      },
+      {
+        "_id": "d951edff-e4d5-43b9-ed06-8ab275064a91",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 9
+      },
+      {
+        "_id": "29d6f040-7ba7-ca77-67b4-3cc8c4726508",
+        "start": "2025-05-07T14:39:42.140165+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 7
+      },
+      {
+        "_id": "62a726fe-30ae-e962-b1ba-dd2c9387c4b7",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 30,
+        "order": 5
+      },
+      {
+        "_id": "e547d655-bf39-64ad-8c62-8239d9e1cb52",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 13
+      },
+      {
+        "_id": "222edcbd-a0f5-6630-dedb-6af55f4d7695",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 32,
+        "order": 7
+      },
+      {
+        "_id": "65171f4d-191c-9078-b8f9-9282900b07b9",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 14
+      },
+      {
+        "_id": "6c8fdcd3-5140-b07a-2127-a7ac2bd4c9d4",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 10
+      },
+      {
+        "_id": "474e6d97-846a-214f-66b1-a8324c8a5012",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 9
+      },
+      {
+        "_id": "fc0c8ded-6af6-c87a-622f-8c41ecc7c10a",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 16
+      },
+      {
+        "_id": "06b39074-339e-6d32-988b-dc23548d6710",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 34,
+        "order": 15
+      }
+    ]
+  },
+  {
+    "_id": "6d8bdae4-9991-4a55-ad9c-84847027fe7f",
+    "routeId": "ab247b4d-384b-821e-dca9-ba5491ad758f",
+    "vehicleId": "57a6e34b-9242-da7e-552a-b6bc45c9d737",
+    "start": "2024-04-01T02:43:08.7299273+02:00",
+    "end": "2024-11-30T22:16:23.0606547+01:00",
+    "stops": [
+      {
+        "_id": "56a77c11-bfc1-a5f0-5bbc-581d3ae6bb81",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 1
+      },
+      {
+        "_id": "bd18f468-c316-a338-63ed-97187fec421f",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 10
+      },
+      {
+        "_id": "9b10cd37-0af4-9de2-e85b-666fcbbf233e",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 16
+      },
+      {
+        "_id": "40a9ba02-3016-200b-da9b-6c42aeb60eaf",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 4
+      },
+      {
+        "_id": "c50bfb09-ecf7-9749-e4e6-10e25959f224",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 4
+      },
+      {
+        "_id": "2c688207-3244-2799-09af-0c148c363946",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 4
+      },
+      {
+        "_id": "66e5c01a-86c9-a06c-1649-8735c943a102",
+        "start": "2025-05-19T10:00:49.9655816+02:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 3
+      },
+      {
+        "_id": "1b5d3b67-5e57-a579-3557-8acac50879fa",
+        "start": "2024-12-25T16:30:21.3091927+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 12
+      },
+      {
+        "_id": "6175019c-e8c6-d33c-23dc-ad7c5dc59dc7",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 18
+      },
+      {
+        "_id": "33b9e8f3-4299-808e-f348-afb4c4c30049",
+        "start": "2025-11-09T18:21:15.8710067+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 8
+      },
+      {
+        "_id": "451c818b-e604-33a7-9e4f-a0d9d8d03b54",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 9
+      },
+      {
+        "_id": "788384fc-47bf-911b-dc88-91a1e518f4a1",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 1
+      },
+      {
+        "_id": "762ab179-c092-f396-f321-81b7db6e8513",
+        "start": "2025-07-31T11:39:14.508072+02:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 6
+      },
+      {
+        "_id": "6c84dfb2-3c8e-9bd7-daa0-b7e21dc56587",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 5
+      },
+      {
+        "_id": "cc958838-cad7-ef10-0a98-9c8fffc0aee0",
+        "start": "2025-07-08T02:41:14.5429229+02:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 5
+      },
+      {
+        "_id": "68ad33ff-7400-8179-614f-5febfd2c1c6d",
+        "start": "2025-07-05T17:59:30.7628261+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 2
+      },
+      {
+        "_id": "251e0146-837d-06e7-96bc-73470cf56cf7",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 41,
+        "order": 13
+      },
+      {
+        "_id": "bad1baf5-93c2-2b82-3379-51c237bb7fe0",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 10
+      },
+      {
+        "_id": "27f6e281-0d2e-1c33-06e1-0cff36a849a1",
+        "start": "2025-07-31T11:39:14.508072+02:00",
+        "timeDurationFromFirstStop": 32,
+        "order": 13
+      },
+      {
+        "_id": "42b059e2-068c-7339-7e9e-be009ddb2f78",
+        "start": "2025-07-08T02:41:14.5429229+02:00",
+        "timeDurationFromFirstStop": 40,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "_id": "4a8c83c2-fb9f-4aa8-b373-a6637e4a6d1a",
+    "routeId": "6017adfc-8d35-3bc0-537c-7865221ae85b",
+    "vehicleId": "152f591b-bac4-5794-312e-9cf829533b19",
+    "start": "2024-01-12T02:49:04.8316442+01:00",
+    "end": "2025-03-04T09:45:02.7987991+01:00",
+    "stops": [
+      {
+        "_id": "a8f9c87b-fbfd-c092-6621-2176d406bee3",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 3
+      },
+      {
+        "_id": "2e67072d-2c9a-d050-44f6-172a2a38105e",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 47,
+        "order": 2
+      },
+      {
+        "_id": "38ba3dda-e49d-8ad3-8bff-7d567b1574ca",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 7
+      },
+      {
+        "_id": "bc961d4d-da32-ea57-fff5-55903ef54930",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 50,
+        "order": 8
+      },
+      {
+        "_id": "b80eff18-329a-3459-4d57-68002e0fdc3a",
+        "start": "2025-09-17T16:03:58.0519674+02:00",
+        "timeDurationFromFirstStop": 38,
+        "order": 6
+      },
+      {
+        "_id": "617adfd6-d535-0d5e-e0bf-3b1d10c8a782",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 13
+      },
+      {
+        "_id": "04272403-e8d3-f9c1-415e-27ab5c3d0159",
+        "start": "2025-05-19T10:00:49.9655816+02:00",
+        "timeDurationFromFirstStop": 32,
+        "order": 2
+      },
+      {
+        "_id": "29805ba9-926e-2923-a9b5-c090de192bc3",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 34,
+        "order": 14
+      },
+      {
+        "_id": "ca9d3091-d5ff-373b-dd79-faa62995deef",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 28,
+        "order": 2
+      },
+      {
+        "_id": "d7fa55aa-bad5-88ca-23b9-fedee610477d",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 13
+      },
+      {
+        "_id": "9db1d6f7-4ac3-9674-d993-8ddc6f2e374a",
+        "start": "2025-03-14T10:16:51.323389+01:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "_id": "713a9f84-d180-4ce5-9c8d-9d84775adb60",
+    "routeId": "98f51036-2433-5869-fff7-d5cbc5b23f8c",
+    "vehicleId": "045a3c72-fee5-ea8f-efae-7b1f36ba1235",
+    "start": "2024-03-22T12:47:36.9763806+01:00",
+    "end": "2025-06-15T23:53:35.9949731+02:00",
+    "stops": [
+      {
+        "_id": "a3c3b7c0-d82c-3dd6-1f2f-681ac759eddb",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 36,
+        "order": 6
+      },
+      {
+        "_id": "1eb3cc6b-13fa-0c65-60aa-cb6b83cdd468",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 5
+      },
+      {
+        "_id": "539c2de5-e559-3f5d-c956-20f2db29801e",
+        "start": "2025-11-09T18:21:15.8710067+01:00",
+        "timeDurationFromFirstStop": 53,
+        "order": 6
+      },
+      {
+        "_id": "788384fc-47bf-911b-dc88-91a1e518f4a1",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 1
+      },
+      {
+        "_id": "dc6f5fc1-df31-5c1c-3d39-e231e82f8238",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 31,
+        "order": 17
+      },
+      {
+        "_id": "75e54938-6099-081f-9aed-de21560c5261",
+        "start": "2025-02-04T03:51:07.0767255+01:00",
+        "timeDurationFromFirstStop": 33,
+        "order": 5
+      },
+      {
+        "_id": "da7b1a54-4377-b62f-14d9-92b996e70ba3",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 54,
+        "order": 12
+      },
+      {
+        "_id": "08a4af16-a6f5-20b5-6b7e-8739b041a5ec",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 26,
+        "order": 13
+      },
+      {
+        "_id": "e9ab3f3c-15a2-ca05-968a-f470d7bd4ce8",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 30,
+        "order": 2
+      },
+      {
+        "_id": "2d96cdeb-fb9b-4510-6ad7-f3bd99c2d0e5",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 24,
+        "order": 11
+      },
+      {
+        "_id": "e6c639a3-07aa-2683-ea16-61077192bbc1",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 14
+      },
+      {
+        "_id": "20dc5233-c85a-bd20-3fac-6254ee96ea91",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 55,
+        "order": 7
+      },
+      {
+        "_id": "72b2d38e-d9bb-7c60-993f-b7f515bc7315",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 31,
+        "order": 10
+      }
+    ]
+  },
+  {
+    "_id": "43834f67-6697-4d2f-9b8d-89fa16d102e6",
+    "routeId": "a3769c63-7f31-cd81-6137-d8078d0711b0",
+    "vehicleId": "3ee22576-2956-959e-40bb-841d5d709af3",
+    "start": "2024-05-31T00:27:58.7791324+02:00",
+    "end": "2025-04-11T08:18:44.3711415+02:00",
+    "stops": [
+      {
+        "_id": "34a01cba-4672-813d-ddeb-8a103f724fb1",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 4
+      },
+      {
+        "_id": "0663071e-9a62-fcaf-e7a8-e62b38cb57fb",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 51,
+        "order": 4
+      },
+      {
+        "_id": "120e1de0-f9f1-1751-f596-bc51b82a2779",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 29,
+        "order": 3
+      },
+      {
+        "_id": "106bef05-7337-2440-8cf7-4e276c6e1b6d",
+        "start": "2025-05-21T05:31:01.979685+02:00",
+        "timeDurationFromFirstStop": 48,
+        "order": 6
+      },
+      {
+        "_id": "cb1b6b73-ad32-fa9f-13b3-43c57d680f64",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 60,
+        "order": 9
+      },
+      {
+        "_id": "b89f9686-f466-8b6a-d6cb-18b4687422f4",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 12
+      },
+      {
+        "_id": "948fff85-bbe2-37a5-4e44-89a3376f936d",
+        "start": "2025-07-31T20:31:45.1313351+02:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 2
+      },
+      {
+        "_id": "186bb492-95a8-8a1b-4e72-346dbc57e0ab",
+        "start": "2025-10-22T23:58:51.8424504+02:00",
+        "timeDurationFromFirstStop": 42,
+        "order": 2
+      },
+      {
+        "_id": "a3c3b7c0-d82c-3dd6-1f2f-681ac759eddb",
+        "start": "2024-12-26T01:51:12.6648993+01:00",
+        "timeDurationFromFirstStop": 36,
+        "order": 6
+      },
+      {
+        "_id": "c3a91735-b7da-86dc-9daf-335d4c21c87e",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 18
+      },
+      {
+        "_id": "9e18534c-dec3-e27c-f366-79fbd88070c4",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 15
+      },
+      {
+        "_id": "02cfd843-852b-9cd5-a245-3e770f2d63e4",
+        "start": "2025-03-23T14:44:47.9358413+01:00",
+        "timeDurationFromFirstStop": 49,
+        "order": 4
+      }
+    ]
+  },
+  {
+    "_id": "3ef55eeb-2226-4f70-9c9b-8bb616391d96",
+    "routeId": "9f2b3c13-0bf0-c160-c5f6-949b9a2f84e1",
+    "vehicleId": "9a514e70-7f18-8058-06af-aa3689e67c46",
+    "start": "2023-12-04T22:58:01.1526854+01:00",
+    "end": "2025-10-03T07:40:47.8023235+02:00",
+    "stops": [
+      {
+        "_id": "ebe53e48-6684-a8d4-8b4f-524cd156dd7e",
+        "start": "2025-10-20T08:00:06.109992+02:00",
+        "timeDurationFromFirstStop": 43,
+        "order": 7
+      },
+      {
+        "_id": "c3a91735-b7da-86dc-9daf-335d4c21c87e",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 18
+      },
+      {
+        "_id": "ea43c127-b586-310a-3bb5-76f82db78a22",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 20,
+        "order": 5
+      },
+      {
+        "_id": "1a034bba-223b-af72-3165-ed441776a523",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 1
+      },
+      {
+        "_id": "6c84dfb2-3c8e-9bd7-daa0-b7e21dc56587",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 5
+      },
+      {
+        "_id": "2f755591-2aa6-3a55-9d77-649b964dfb49",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 25,
+        "order": 10
+      },
+      {
+        "_id": "3344a7ba-0279-e3fa-9828-6f0bec73a211",
+        "start": "2025-07-08T02:41:14.5429229+02:00",
+        "timeDurationFromFirstStop": 52,
+        "order": 6
+      }
+    ]
+  },
+  {
+    "_id": "aea9bd04-3a91-4324-9b49-901d30cd653b",
+    "routeId": "b993bb39-e25e-6fb5-5729-a244b90f62bd",
+    "vehicleId": "9ceca736-227b-59ec-0908-c2252b115064",
+    "start": "2024-06-06T07:59:21.8532132+02:00",
+    "end": "2025-02-03T00:46:27.8419876+01:00",
+    "stops": [
+      {
+        "_id": "e6823820-237b-5cab-770b-751d6fa70592",
+        "start": "2025-07-26T10:10:54.4963058+02:00",
+        "timeDurationFromFirstStop": 57,
+        "order": 4
+      },
+      {
+        "_id": "0a81c3b1-fdf6-5b1a-b217-dbce6ea3e4f1",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 2
+      },
+      {
+        "_id": "d3f28ec5-02c9-1b0f-d49b-a6433580b640",
+        "start": "2025-07-31T13:21:29.1108781+02:00",
+        "timeDurationFromFirstStop": 56,
+        "order": 7
+      },
+      {
+        "_id": "c50bfb09-ecf7-9749-e4e6-10e25959f224",
+        "start": "2024-12-16T18:17:56.1767029+01:00",
+        "timeDurationFromFirstStop": 59,
+        "order": 4
+      },
+      {
+        "_id": "f7fea79a-a7c7-9dff-31a3-5ca7a431fb37",
+        "start": "2025-07-31T11:39:14.508072+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 1
+      },
+      {
+        "_id": "89cbb2df-2e8a-3d29-11f3-72025f049790",
+        "start": "2025-02-26T02:16:53.8291648+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 2
+      },
+      {
+        "_id": "0c95f3bb-f360-8ff3-5bd0-5bef5c81c85b",
+        "start": "2025-01-31T10:06:49.4558073+01:00",
+        "timeDurationFromFirstStop": 50,
+        "order": 2
+      },
+      {
+        "_id": "80b85751-209a-327a-3ad9-4760dfdb65e8",
+        "start": "2025-03-08T12:50:41.5383272+01:00",
+        "timeDurationFromFirstStop": 21,
+        "order": 7
+      },
+      {
+        "_id": "bad1baf5-93c2-2b82-3379-51c237bb7fe0",
+        "start": "2024-11-27T20:02:28.9586321+01:00",
+        "timeDurationFromFirstStop": 27,
+        "order": 10
+      },
+      {
+        "_id": "788384fc-47bf-911b-dc88-91a1e518f4a1",
+        "start": "2025-05-27T11:50:06.757714+02:00",
+        "timeDurationFromFirstStop": 39,
+        "order": 1
+      },
+      {
+        "_id": "120e1de0-f9f1-1751-f596-bc51b82a2779",
+        "start": "2025-04-27T13:20:00.463499+02:00",
+        "timeDurationFromFirstStop": 29,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "_id": "a77a9e04-5e5b-43e2-9e58-bfe45219e6c2",
+    "routeId": "c004a555-a18d-2bbe-87bf-8c50643710cb",
+    "vehicleId": "f430e63a-e766-fdb3-89e8-677454e7ba68",
+    "start": "2024-06-25T09:22:31.7803391+02:00",
+    "end": "2025-05-04T00:39:51.5235064+02:00",
+    "stops": [
+      {
+        "_id": "cc3c6972-fbf5-abdb-cbf7-f31f31f7d00d",
+        "start": "2025-07-31T11:39:14.508072+02:00",
+        "timeDurationFromFirstStop": 30,
+        "order": 3
+      },
+      {
+        "_id": "29df9470-ddb6-5b36-9ffc-c51a78a0741b",
+        "start": "2025-09-27T17:45:50.5828557+02:00",
+        "timeDurationFromFirstStop": 58,
+        "order": 13
+      },
+      {
+        "_id": "7c70c354-1a7e-3b2e-4d0f-7b799a67f74d",
+        "start": "2024-12-11T11:25:57.4024277+01:00",
+        "timeDurationFromFirstStop": 37,
+        "order": 17
+      },
+      {
+        "_id": "5aa75ece-6ff7-60a4-0a58-36525d43809a",
+        "start": "2025-03-07T11:59:54.1253243+01:00",
+        "timeDurationFromFirstStop": 22,
+        "order": 3
+      },
+      {
+        "_id": "6c84dfb2-3c8e-9bd7-daa0-b7e21dc56587",
+        "start": "2024-12-05T00:45:58.2892514+01:00",
+        "timeDurationFromFirstStop": 23,
+        "order": 5
+      }
+    ]
+  }
+]

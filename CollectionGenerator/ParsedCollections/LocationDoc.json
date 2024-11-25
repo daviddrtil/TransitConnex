@@ -1,0 +1,5042 @@
+[
+  {
+    "_id": "8a8b34de-95d9-4054-ab54-6b049a848373",
+    "name": "Milovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4059,
+        16.2461
+      ]
+    }
+  },
+  {
+    "_id": "e363e7d9-5e31-4ca2-a39b-ceebcb124466",
+    "name": "Humpolec",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9199,
+        16.551
+      ]
+    }
+  },
+  {
+    "_id": "2d6298ff-c576-4f2a-adc2-173f52a07473",
+    "name": "Stochov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.275,
+        16.1444
+      ]
+    }
+  },
+  {
+    "_id": "7e341b1a-cfcf-4a57-bf1e-191f87f3e0c7",
+    "name": "Jablonn\u00E9 nad Orlic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6596,
+        16.0995
+      ]
+    }
+  },
+  {
+    "_id": "e6fbc018-8550-4be6-aacd-53d6e35cbe17",
+    "name": "Byst\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9348,
+        16.4584
+      ]
+    }
+  },
+  {
+    "_id": "e82cefac-d11a-431b-ae65-e1608b027677",
+    "name": "Kop\u0159ivnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6793,
+        16.7786
+      ]
+    }
+  },
+  {
+    "_id": "841f7840-0f5b-4299-873c-8f986f900559",
+    "name": "Plan\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1967,
+        16.0002
+      ]
+    }
+  },
+  {
+    "_id": "b4935cc1-f069-4152-84e5-9e9bb61ef28e",
+    "name": "Pacov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9299,
+        16.8647
+      ]
+    }
+  },
+  {
+    "_id": "18167c62-3619-4a1e-9406-dc56a1b2ea0c",
+    "name": "Litom\u011B\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3202,
+        16.5137
+      ]
+    }
+  },
+  {
+    "_id": "51d4cf63-441e-4c62-bd80-08a92cb81a33",
+    "name": "Ji\u010D\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5323,
+        16.4069
+      ]
+    }
+  },
+  {
+    "_id": "99531df3-af03-4667-ae93-49395666acd6",
+    "name": "Moravsk\u00FD Krumlov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5031,
+        16.2502
+      ]
+    }
+  },
+  {
+    "_id": "e81e1443-18d2-49a1-aec9-865723adc246",
+    "name": "Kyjov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3908,
+        16.4606
+      ]
+    }
+  },
+  {
+    "_id": "ddefe344-bda0-48dd-a987-d57f1eb96213",
+    "name": "Mezim\u011Bst\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6833,
+        16.8167
+      ]
+    }
+  },
+  {
+    "_id": "f240b8c4-80d8-4e1e-88d9-7a0c8dab8d37",
+    "name": "Hradec nad Moravic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3447,
+        16.5819
+      ]
+    }
+  },
+  {
+    "_id": "7a93d4d6-26fb-4f7d-b6f4-8adcfd05e980",
+    "name": "Rab\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8021,
+        16.2129
+      ]
+    }
+  },
+  {
+    "_id": "222ca459-e859-4628-9ae4-d395426be45f",
+    "name": "Se\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4513,
+        16.3086
+      ]
+    }
+  },
+  {
+    "_id": "814a83bf-80d8-405e-ac10-7f4ac30934e0",
+    "name": "M\u011Bsto Albrechtice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5865,
+        16.0648
+      ]
+    }
+  },
+  {
+    "_id": "11d996c8-aac1-4dda-9550-295120f959f2",
+    "name": "Lom",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7824,
+        16.5413
+      ]
+    }
+  },
+  {
+    "_id": "606d6134-9f8d-4d69-a1c5-ca9f9fbe9c3e",
+    "name": "\u00DAvaly",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.079,
+        16.2554
+      ]
+    }
+  },
+  {
+    "_id": "3136cc2c-4918-4b70-9a61-689f3a5f324f",
+    "name": "Bezdru\u017Eice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6021,
+        16.7321
+      ]
+    }
+  },
+  {
+    "_id": "3f31b2e6-8e14-490c-abbc-e267689cc011",
+    "name": "T\u00FDn nad Vltavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1942,
+        16.9163
+      ]
+    }
+  },
+  {
+    "_id": "5449f3c3-ebc0-4fb8-94ee-ad24ee4656ee",
+    "name": "Raspenava",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6125,
+        16.7696
+      ]
+    }
+  },
+  {
+    "_id": "75c54f4a-1677-4185-b26d-2c1e1bd8bcb4",
+    "name": "Doln\u00ED Bene\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5311,
+        16.8029
+      ]
+    }
+  },
+  {
+    "_id": "f275ef83-7047-40f0-87a9-961707e911fd",
+    "name": "Doma\u017Elice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9188,
+        16.7235
+      ]
+    }
+  },
+  {
+    "_id": "8d55e10d-7149-411a-a1c8-b3637311e270",
+    "name": "Py\u0161ely",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3418,
+        16.3938
+      ]
+    }
+  },
+  {
+    "_id": "1650195b-c210-49e7-a5dc-82f112128c12",
+    "name": "Hostomice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3101,
+        16.375
+      ]
+    }
+  },
+  {
+    "_id": "d6f0cba3-8275-454c-8678-be2a8586c572",
+    "name": "Nov\u00E9 Hrady",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6664,
+        16.7308
+      ]
+    }
+  },
+  {
+    "_id": "864e4a99-d06f-406f-a4d5-458595073548",
+    "name": "Vrbno pod Prad\u011Bdem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0752,
+        16.6625
+      ]
+    }
+  },
+  {
+    "_id": "e83cb97b-fde6-4086-9386-013e0ad2a340",
+    "name": "Jirkov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2836,
+        16.3152
+      ]
+    }
+  },
+  {
+    "_id": "980688a1-9d11-4d58-a942-293254814bf2",
+    "name": "\u017Delezn\u00E1 Ruda",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8744,
+        16.3701
+      ]
+    }
+  },
+  {
+    "_id": "e2308422-7e9d-4674-adec-37ba9edc816b",
+    "name": "Vesel\u00ED nad Moravou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4181,
+        16.2479
+      ]
+    }
+  },
+  {
+    "_id": "29d46b7b-f6b8-49ee-90b2-d644af59633c",
+    "name": "Star\u00FD Plzenec",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7325,
+        16.513
+      ]
+    }
+  },
+  {
+    "_id": "b5182d0e-fd45-4db2-87a3-08adc9bdf445",
+    "name": "Jihlava",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2867,
+        16.3902
+      ]
+    }
+  },
+  {
+    "_id": "ceaee93b-ca40-4ba9-aaec-b8a49b8bcb43",
+    "name": "Str\u00E1\u017E pod Ralskem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8315,
+        16.021
+      ]
+    }
+  },
+  {
+    "_id": "215dd728-ed97-4f2b-9099-a6ceedfa8d2b",
+    "name": "Klimkovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9543,
+        16.9197
+      ]
+    }
+  },
+  {
+    "_id": "fdf58d14-fb98-4dcd-956d-4826c77707cd",
+    "name": "Rychnov nad Kn\u011B\u017Enou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8263,
+        16.6936
+      ]
+    }
+  },
+  {
+    "_id": "d45c99e7-ba67-4191-b287-6ab020605e1f",
+    "name": "Lib\u010Dice nad Vltavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5038,
+        16.8524
+      ]
+    }
+  },
+  {
+    "_id": "1425bb5c-8d82-4396-b5f2-dec072aac77a",
+    "name": "\u017Dd\u00E1nice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7507,
+        16.4728
+      ]
+    }
+  },
+  {
+    "_id": "eec7cc5f-9860-4cc9-9608-acde71d7fdd2",
+    "name": "Kralupy nad Vltavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2069,
+        16.5639
+      ]
+    }
+  },
+  {
+    "_id": "d9cc9d3a-d5a7-4d54-828a-c38d21ac57ce",
+    "name": "L\u00E1zn\u011B Bohdane\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0552,
+        16.8801
+      ]
+    }
+  },
+  {
+    "_id": "d1bb728a-c115-4530-be50-8a9662930946",
+    "name": "Neveklov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3137,
+        16.1866
+      ]
+    }
+  },
+  {
+    "_id": "5ca8ae35-8a19-4bba-9807-df1f29e25804",
+    "name": "Sobotka",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5222,
+        16.8692
+      ]
+    }
+  },
+  {
+    "_id": "84c8d9c7-8529-4207-b34b-a7314e468226",
+    "name": "Borovany",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0013,
+        16.2592
+      ]
+    }
+  },
+  {
+    "_id": "f0d39c63-1bb2-4ed1-b72a-79bf57c45b55",
+    "name": "Sv\u011Btl\u00E1 nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3478,
+        16.4705
+      ]
+    }
+  },
+  {
+    "_id": "a12c9c3b-2107-4f90-9275-bef839ef8866",
+    "name": "Rakovn\u00EDk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8525,
+        16.9606
+      ]
+    }
+  },
+  {
+    "_id": "e730407d-d180-4d78-879d-adcebe08d8e3",
+    "name": "Nasavrky",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7248,
+        16.048
+      ]
+    }
+  },
+  {
+    "_id": "41bbcd31-2aa3-4c85-9209-29d2d26b5fdd",
+    "name": "Kyjov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9494,
+        16.0455
+      ]
+    }
+  },
+  {
+    "_id": "f4645a56-e921-47a5-8453-025a3ba5df0a",
+    "name": "Rtyn\u011B v Podkrkono\u0161\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6404,
+        16.2285
+      ]
+    }
+  },
+  {
+    "_id": "fc6d7f78-86fc-444e-bee1-07c243af1c57",
+    "name": "Velk\u00FD \u0160enov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6924,
+        16.2953
+      ]
+    }
+  },
+  {
+    "_id": "2fafb7cc-1633-4f4f-b48d-85a54a71235d",
+    "name": "Nasavrky",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3872,
+        16.7903
+      ]
+    }
+  },
+  {
+    "_id": "86238a5c-ad62-45d8-adb8-ee87d0998eb6",
+    "name": "Trhov\u00E9 Sviny",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.521,
+        16.1035
+      ]
+    }
+  },
+  {
+    "_id": "51af88ac-eee9-4f7b-b479-3b84e831cd52",
+    "name": "He\u0159man\u016Fv M\u011Bstec",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7664,
+        16.0337
+      ]
+    }
+  },
+  {
+    "_id": "2a7b634d-4808-4c1d-b7ff-79355a4a13f8",
+    "name": "Sv\u011Btl\u00E1 nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3126,
+        16.9043
+      ]
+    }
+  },
+  {
+    "_id": "59b04ead-a665-4f83-8d2e-c0daa7a039d9",
+    "name": "T\u0159ebo\u0148",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5765,
+        16.2158
+      ]
+    }
+  },
+  {
+    "_id": "0f68ef40-7a3d-48a2-b32b-71e2b328cefc",
+    "name": "Libu\u0161\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.148,
+        16.6211
+      ]
+    }
+  },
+  {
+    "_id": "89785dd1-f749-4b8c-aa70-053d8727db48",
+    "name": "Luby",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1388,
+        16.2288
+      ]
+    }
+  },
+  {
+    "_id": "752bdb86-56bb-419f-a8ab-f99b92cf4846",
+    "name": "Sta\u0148kov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3562,
+        16.2605
+      ]
+    }
+  },
+  {
+    "_id": "a7c1898c-ef53-4409-b731-c9089fafd6f5",
+    "name": "Kdyn\u011B",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6629,
+        16.6204
+      ]
+    }
+  },
+  {
+    "_id": "f8b6f288-4688-49f0-9161-8218ce179221",
+    "name": "Nov\u00E1 Paka",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5197,
+        16.4604
+      ]
+    }
+  },
+  {
+    "_id": "7fc4b246-7cc6-4347-a0f8-399f7ae2c2a5",
+    "name": "Ro\u017E\u010Falovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1458,
+        16.3517
+      ]
+    }
+  },
+  {
+    "_id": "2f7516da-8607-4a87-bfab-002fc3eadded",
+    "name": "\u010Cesk\u00E1 Skalice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6586,
+        16.9003
+      ]
+    }
+  },
+  {
+    "_id": "2454f116-8bb0-46ff-abcc-8a10c470620c",
+    "name": "Janovice nad \u00DAhlavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0304,
+        16.3718
+      ]
+    }
+  },
+  {
+    "_id": "7826a687-7789-4e4f-974d-127c1cb2ef7e",
+    "name": "\u017Damberk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7397,
+        16.0197
+      ]
+    }
+  },
+  {
+    "_id": "66dc5b7c-27f4-490a-9880-d82712176b5a",
+    "name": "Plan\u00E1 nad Lu\u017Enic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9074,
+        16.0295
+      ]
+    }
+  },
+  {
+    "_id": "54cb46c6-bf04-4b57-9ab8-f200977b2886",
+    "name": "Hradec nad Moravic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8622,
+        16.6689
+      ]
+    }
+  },
+  {
+    "_id": "1d89a877-e407-4061-b6c3-4840a86b7284",
+    "name": "Rokytnice v Orlick\u00FDch hor\u00E1ch",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9246,
+        16.6806
+      ]
+    }
+  },
+  {
+    "_id": "074b350f-f446-4472-963f-45f544ce4ff2",
+    "name": "De\u0161tn\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9918,
+        16.8276
+      ]
+    }
+  },
+  {
+    "_id": "d6bb38dd-4a96-4a08-8bf6-2c615ad91ca1",
+    "name": "Havl\u00ED\u010Dk\u016Fv Brod",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3589,
+        16.3811
+      ]
+    }
+  },
+  {
+    "_id": "c5a824c7-59f8-40ca-b84c-c33e3ce9f2ed",
+    "name": "Moravsk\u00E9 Bud\u011Bjovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3774,
+        16.0441
+      ]
+    }
+  },
+  {
+    "_id": "b2cee31b-bb69-4ace-bc8e-2e5b4f0fa3db",
+    "name": "Bu\u0161t\u011Bhrad",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8906,
+        16.0065
+      ]
+    }
+  },
+  {
+    "_id": "8be44b28-e0ae-4f92-8c70-67783d7dc2b2",
+    "name": "\u010Cerno\u0161\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0321,
+        16.1502
+      ]
+    }
+  },
+  {
+    "_id": "5e7a3c5a-5f21-40b6-b488-e1200b0fccce",
+    "name": "Fr\u00FDdlant nad Ostravic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1786,
+        16.8726
+      ]
+    }
+  },
+  {
+    "_id": "9a7bfb59-0d08-4afb-ac85-bcf7a739fcf6",
+    "name": "Miro\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0886,
+        16.7661
+      ]
+    }
+  },
+  {
+    "_id": "3e01f290-de2d-440e-b117-495e32cc1b1d",
+    "name": "Mlad\u00E1 Vo\u017Eice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7868,
+        16.0469
+      ]
+    }
+  },
+  {
+    "_id": "b9fb0618-06d6-4d96-8f57-69d650f20878",
+    "name": "Teplice nad Metuj\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7527,
+        16.4942
+      ]
+    }
+  },
+  {
+    "_id": "de880159-f1c7-47ae-80a8-e9297f88a321",
+    "name": "Ho\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8098,
+        16.7275
+      ]
+    }
+  },
+  {
+    "_id": "54a5d7ab-04a3-4f4d-80a2-a23abc595079",
+    "name": "Bakov nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.64,
+        16.279
+      ]
+    }
+  },
+  {
+    "_id": "4f44c72a-b2bb-47ba-a477-81d37ce8be48",
+    "name": "Vysok\u00E9 M\u00FDto",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9133,
+        16.5426
+      ]
+    }
+  },
+  {
+    "_id": "a69ca4b8-3c30-46f3-8872-928af4b13358",
+    "name": "Mn\u00ED\u0161ek pod Brdy",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2355,
+        16.7647
+      ]
+    }
+  },
+  {
+    "_id": "7981c2cb-0056-4d55-a53a-519ca46c9f17",
+    "name": "Kop\u0159ivnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5296,
+        16.6808
+      ]
+    }
+  },
+  {
+    "_id": "63b32d99-7d11-4407-ba17-d6b2636e75e4",
+    "name": "L\u00E1zn\u011B Kyn\u017Evart",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2268,
+        16.6102
+      ]
+    }
+  },
+  {
+    "_id": "58c070a5-f6a7-481b-827f-01221a809cb5",
+    "name": "B\u0159eznice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4061,
+        16.3426
+      ]
+    }
+  },
+  {
+    "_id": "1ce83325-eebe-4b02-86e8-3b2ac921bdf9",
+    "name": "Kyjov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8638,
+        16.7262
+      ]
+    }
+  },
+  {
+    "_id": "b01e8b3f-7b62-48d0-8a1a-4c4ca5b4f57d",
+    "name": "Mlad\u00E1 Vo\u017Eice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0141,
+        16.527
+      ]
+    }
+  },
+  {
+    "_id": "b5a93be0-a899-4af6-9659-4af91d39ec5e",
+    "name": "Sv\u011Btl\u00E1 nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8543,
+        16.1953
+      ]
+    }
+  },
+  {
+    "_id": "51da65f3-7fee-4f2f-a52d-23d05d8c1731",
+    "name": "Dob\u0159any",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4982,
+        16.0258
+      ]
+    }
+  },
+  {
+    "_id": "d6cf13b4-b00d-4e61-8a13-7f537a9186e4",
+    "name": "Kyn\u0161perk nad Oh\u0159\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5754,
+        16.6292
+      ]
+    }
+  },
+  {
+    "_id": "381bd4b0-5e10-4161-85dd-3b599af7bc07",
+    "name": "Loket",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7504,
+        16.047
+      ]
+    }
+  },
+  {
+    "_id": "3ce3cd48-c783-4256-a265-990c76b9ab53",
+    "name": "Podiv\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1663,
+        16.4363
+      ]
+    }
+  },
+  {
+    "_id": "bef4b6e2-f80c-40b4-ad6b-073e2a634dbe",
+    "name": "B\u00EDlovec",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3293,
+        16.7605
+      ]
+    }
+  },
+  {
+    "_id": "96132d6d-dc13-4f7c-883c-7ec6d4762c57",
+    "name": "Ro\u017E\u010Falovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3545,
+        16.0394
+      ]
+    }
+  },
+  {
+    "_id": "0cad6f43-6025-48ab-85f4-5044e3056dbc",
+    "name": "R\u00E1jec-Jest\u0159eb\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7587,
+        16.6938
+      ]
+    }
+  },
+  {
+    "_id": "06a04314-cf00-45e4-a691-9041bc5eb4a1",
+    "name": "Skaln\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5706,
+        16.7382
+      ]
+    }
+  },
+  {
+    "_id": "8c5be095-a8f8-4dfa-9d5e-916a648089d9",
+    "name": "Karvin\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8413,
+        16.2471
+      ]
+    }
+  },
+  {
+    "_id": "ccdb042f-51de-4930-9a48-736e8177cd41",
+    "name": "Lo\u0161tice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0362,
+        16.0333
+      ]
+    }
+  },
+  {
+    "_id": "2fdfc5c0-c5a2-4c23-b724-7271e016440e",
+    "name": "Skute\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1545,
+        16.2532
+      ]
+    }
+  },
+  {
+    "_id": "f055b6a7-217c-44a4-9fe4-30891a7b7e04",
+    "name": "Dob\u0159any",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8471,
+        16.6242
+      ]
+    }
+  },
+  {
+    "_id": "00c0c5a3-cd86-4a14-9633-70fe14baad62",
+    "name": "Horn\u00ED Bene\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7696,
+        16.9651
+      ]
+    }
+  },
+  {
+    "_id": "616ebddc-e74e-4578-8568-b409e9f894ed",
+    "name": "Karlovy Vary",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4783,
+        16.3419
+      ]
+    }
+  },
+  {
+    "_id": "e0e40cc9-18d0-45e8-8e86-83fcd723cf27",
+    "name": "Vy\u0161\u0161\u00ED Brod",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.219,
+        16.5152
+      ]
+    }
+  },
+  {
+    "_id": "386ddcc8-a417-432a-9cac-333ed31d0546",
+    "name": "Letohrad",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3972,
+        16.0594
+      ]
+    }
+  },
+  {
+    "_id": "5e3ee0eb-b806-4181-a5ec-3c23c6888a85",
+    "name": "Man\u011Bt\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4907,
+        16.2188
+      ]
+    }
+  },
+  {
+    "_id": "91803181-502b-4aba-bf25-9f73a7dbaedb",
+    "name": "Neveklov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.41,
+        16.0447
+      ]
+    }
+  },
+  {
+    "_id": "37ca983b-c2f0-46b0-8c3c-e3f098f6dd45",
+    "name": "Kosmonosy",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7294,
+        16.7245
+      ]
+    }
+  },
+  {
+    "_id": "92edb422-6e46-4098-b0f8-84b6452d241d",
+    "name": "Rumburk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2816,
+        16.3691
+      ]
+    }
+  },
+  {
+    "_id": "fa3eabc4-f129-47ff-88a5-2c733c89df3a",
+    "name": "Byst\u0159ice pod Host\u00FDnem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8518,
+        16.5929
+      ]
+    }
+  },
+  {
+    "_id": "526a7733-2f39-48b4-bef2-5440ef50506c",
+    "name": "Nov\u00FD Kn\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3251,
+        16.9334
+      ]
+    }
+  },
+  {
+    "_id": "b908ac09-6fea-40b4-864e-39feb05aa74d",
+    "name": "Slavi\u010D\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.838,
+        16.4586
+      ]
+    }
+  },
+  {
+    "_id": "f95fd7d6-8ffe-434d-bd45-4742fb693145",
+    "name": "Jirkov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4446,
+        16.4878
+      ]
+    }
+  },
+  {
+    "_id": "9bf53bcb-a089-4b04-b271-3b70fcea778b",
+    "name": "Sta\u0148kov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1314,
+        16.5235
+      ]
+    }
+  },
+  {
+    "_id": "a188bb6c-ba70-4d37-8051-a4c6f4a2ff00",
+    "name": "Trhov\u00FD \u0160t\u011Bp\u00E1nov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6578,
+        16.0733
+      ]
+    }
+  },
+  {
+    "_id": "7cf6fdbb-aeab-4e23-89b7-e3f2db4f050d",
+    "name": "Lomnice nad Popelkou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7535,
+        16.0678
+      ]
+    }
+  },
+  {
+    "_id": "7999bdbd-9e2e-4a93-8151-8a7815499df6",
+    "name": "Lipn\u00EDk nad Be\u010Dvou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.28,
+        16.7651
+      ]
+    }
+  },
+  {
+    "_id": "8baeece7-4fbd-4ca3-9671-b8475e66828c",
+    "name": "\u017Dandov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7981,
+        16.4647
+      ]
+    }
+  },
+  {
+    "_id": "3086a4d2-683e-4026-91e3-f8d59a166577",
+    "name": "Kun\u0161t\u00E1t",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8622,
+        16.6359
+      ]
+    }
+  },
+  {
+    "_id": "f9750837-0709-4f5b-8b20-0e318e75d198",
+    "name": "Lo\u0161tice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2955,
+        16.2808
+      ]
+    }
+  },
+  {
+    "_id": "a9d993f5-581d-49a0-9bff-e1066fdfbe27",
+    "name": "Kel\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.339,
+        16.054
+      ]
+    }
+  },
+  {
+    "_id": "95805dcb-7fd1-49f7-8f96-848f56a69c61",
+    "name": "Svratka",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.489,
+        16.0738
+      ]
+    }
+  },
+  {
+    "_id": "3b6e7bcf-5d5e-4900-875b-551be41882ec",
+    "name": "Lou\u010Dn\u00E1 pod Kl\u00EDnovcem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7905,
+        16.8297
+      ]
+    }
+  },
+  {
+    "_id": "078d39bc-29da-4708-854d-4937b5006676",
+    "name": "Chy\u0161e",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4832,
+        16.4915
+      ]
+    }
+  },
+  {
+    "_id": "a0a8c489-4b5f-4aac-b2b3-3c9796d61022",
+    "name": "Kasejovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7808,
+        16.3722
+      ]
+    }
+  },
+  {
+    "_id": "f23b8929-21d0-4ce8-9933-01f5f1b1f89a",
+    "name": "Ro\u017Emit\u00E1l pod T\u0159em\u0161\u00EDnem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0108,
+        16.0245
+      ]
+    }
+  },
+  {
+    "_id": "3fc8b22b-0049-4ae5-b970-27d1e392ff95",
+    "name": "Hlu\u010D\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9249,
+        16.882
+      ]
+    }
+  },
+  {
+    "_id": "71488ea2-930d-4db3-a50c-aa2e76974620",
+    "name": "Hav\u00ED\u0159ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0917,
+        16.3231
+      ]
+    }
+  },
+  {
+    "_id": "827ebaca-02f9-404d-bb98-a77848d4deba",
+    "name": "Poho\u0159elice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.31,
+        16.0055
+      ]
+    }
+  },
+  {
+    "_id": "1e915bee-aafb-4020-9f2f-fb361ab0bb89",
+    "name": "T\u0159eb\u00ED\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6912,
+        16.5158
+      ]
+    }
+  },
+  {
+    "_id": "6eb2890e-49c1-4758-a57f-60680bcf5216",
+    "name": "Rudolfov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2394,
+        16.9136
+      ]
+    }
+  },
+  {
+    "_id": "f434ed49-fc18-45b3-af6a-c7d5100052f6",
+    "name": "Strmilov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9773,
+        16.711
+      ]
+    }
+  },
+  {
+    "_id": "4854e9dc-58af-486e-8759-1db7d06353f6",
+    "name": "Slavi\u010D\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2174,
+        16.7345
+      ]
+    }
+  },
+  {
+    "_id": "d9e1e3de-bb92-4aee-8fe0-b16b65677747",
+    "name": "Sob\u011Bslav",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7676,
+        16.3917
+      ]
+    }
+  },
+  {
+    "_id": "d9b64926-c96e-4050-a72b-fb7989e0f305",
+    "name": "Rokytnice nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5627,
+        16.1399
+      ]
+    }
+  },
+  {
+    "_id": "1b307762-3913-4f7b-b6a1-f8612462e28d",
+    "name": "Kory\u010Dany",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8312,
+        16.6421
+      ]
+    }
+  },
+  {
+    "_id": "4750c199-2d0e-4177-8cff-df58674fc5ef",
+    "name": "Mohelnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9957,
+        16.8614
+      ]
+    }
+  },
+  {
+    "_id": "3f88901c-d7c9-41be-9128-cbbf58bf2b3e",
+    "name": "Be\u010Dov nad Teplou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.612,
+        16.2729
+      ]
+    }
+  },
+  {
+    "_id": "c64696c8-bb60-4427-b787-21f599995848",
+    "name": "Mohelnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1983,
+        16.6752
+      ]
+    }
+  },
+  {
+    "_id": "d223ea93-1776-49a3-b5cb-243416361f4c",
+    "name": "\u017Dulov\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9803,
+        16.9848
+      ]
+    }
+  },
+  {
+    "_id": "898d42f9-20de-41c8-8ce0-5e726fe3d114",
+    "name": "\u010Cesk\u00FD Brod",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6312,
+        16.864
+      ]
+    }
+  },
+  {
+    "_id": "aceec61c-6e7d-4693-bbb9-ac22d8969817",
+    "name": "Milet\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3688,
+        16.8326
+      ]
+    }
+  },
+  {
+    "_id": "afb7c54c-3a0d-4d76-abb7-07e4b8b2b7ea",
+    "name": "Ralsko",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1059,
+        16.557
+      ]
+    }
+  },
+  {
+    "_id": "776c8eca-9ead-4a5e-9be8-62320dc081cb",
+    "name": "Slavi\u010D\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8029,
+        16.5789
+      ]
+    }
+  },
+  {
+    "_id": "5503edcd-b90c-4e99-9fb4-215446d0cd5f",
+    "name": "St\u0159\u00EDbro",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7568,
+        16.9226
+      ]
+    }
+  },
+  {
+    "_id": "a1c612a3-7276-4cc2-88c4-7cec284ae61e",
+    "name": "Hora Svat\u00E9 Kate\u0159iny",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2023,
+        16.5156
+      ]
+    }
+  },
+  {
+    "_id": "f26c50cd-86c9-43f1-b028-9133465a9e4f",
+    "name": "Vracov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0892,
+        16.7809
+      ]
+    }
+  },
+  {
+    "_id": "5a4abc7d-02ee-4eae-bf1a-d22f847a4a12",
+    "name": "Rudn\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6362,
+        16.2337
+      ]
+    }
+  },
+  {
+    "_id": "a7e4ca0b-c547-4969-88ee-4939009f26e5",
+    "name": "Bochov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9161,
+        16.1289
+      ]
+    }
+  },
+  {
+    "_id": "f7e5668e-ed4f-46d3-ac81-1f54f00eb0f8",
+    "name": "Fr\u00FDdlant",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8738,
+        16.3708
+      ]
+    }
+  },
+  {
+    "_id": "f348b2eb-e57d-45ad-b475-a9cf14a3a9ee",
+    "name": "Jansk\u00E9 L\u00E1zn\u011B",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.978,
+        16.9409
+      ]
+    }
+  },
+  {
+    "_id": "3e47668f-3c4f-494a-a976-7394a2b7a807",
+    "name": "Ose\u010Dn\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6339,
+        16.2513
+      ]
+    }
+  },
+  {
+    "_id": "69aaf834-c9fa-4e91-a385-c89c433d34a4",
+    "name": "Kralupy nad Vltavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4107,
+        16.3085
+      ]
+    }
+  },
+  {
+    "_id": "b295c2ee-1b8a-4553-bd88-8178a1d6fd74",
+    "name": "Byst\u0159ice nad Pern\u0161tejnem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3311,
+        16.8679
+      ]
+    }
+  },
+  {
+    "_id": "58b4d344-e946-4124-81e8-86520f5276a4",
+    "name": "Nepomuk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7012,
+        16.113
+      ]
+    }
+  },
+  {
+    "_id": "35ea73ee-550d-4765-a22b-5c8e00903eae",
+    "name": "Sezemice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.366,
+        16.479
+      ]
+    }
+  },
+  {
+    "_id": "36e1ad57-d7c7-4af1-9840-ab7dc7d16871",
+    "name": "Ho\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8196,
+        16.2737
+      ]
+    }
+  },
+  {
+    "_id": "c87c7ead-891b-4f8b-b3d1-08586f1c1066",
+    "name": "Kr\u00E1sn\u00E9 \u00DAdol\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7706,
+        16.6588
+      ]
+    }
+  },
+  {
+    "_id": "b5726f75-8d02-4d85-beb7-1efc5bdbb858",
+    "name": "Hronov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5365,
+        16.759
+      ]
+    }
+  },
+  {
+    "_id": "dedb54d3-782b-4c39-bff3-c9a036c8cfc7",
+    "name": "\u017Dulov\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9399,
+        16.6669
+      ]
+    }
+  },
+  {
+    "_id": "19109a09-7f40-4471-9191-2782ad160a04",
+    "name": "Jarom\u011B\u0159",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4149,
+        16.1199
+      ]
+    }
+  },
+  {
+    "_id": "c652c493-48d9-42f2-abbc-4f64da67286b",
+    "name": "Lu\u017Ee",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9233,
+        16.564
+      ]
+    }
+  },
+  {
+    "_id": "edcd2e25-5a02-4248-be1d-98f85256d64a",
+    "name": "Hodon\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.258,
+        16.7519
+      ]
+    }
+  },
+  {
+    "_id": "8ebd8a1b-525b-4d52-8f63-2660eebb35df",
+    "name": "Napajedla",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7577,
+        16.9573
+      ]
+    }
+  },
+  {
+    "_id": "437aa927-0cec-4dcb-9531-bec5582048f8",
+    "name": "Chrast",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4709,
+        16.8123
+      ]
+    }
+  },
+  {
+    "_id": "d7dfdacd-3080-4be8-831b-468cdfdeb586",
+    "name": "Jarom\u011B\u0159ice nad Rokytnou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1889,
+        16.038
+      ]
+    }
+  },
+  {
+    "_id": "30e5fb40-2997-407d-a16d-259199fa4ed5",
+    "name": "Tova\u010Dov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4828,
+        16.6803
+      ]
+    }
+  },
+  {
+    "_id": "a33daf95-24ff-4584-9308-3a6b2339b17c",
+    "name": "Z\u00E1kupy",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5177,
+        16.3894
+      ]
+    }
+  },
+  {
+    "_id": "9c084a50-82df-4110-ae08-ef8a61e88dd8",
+    "name": "T\u0159ebo\u0148",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1706,
+        16.8165
+      ]
+    }
+  },
+  {
+    "_id": "5778d4b0-5963-4331-954e-ac8bfd0ca84f",
+    "name": "Rychvald",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1351,
+        16.123
+      ]
+    }
+  },
+  {
+    "_id": "363babdb-14ff-4979-a1db-8cfa98ffc725",
+    "name": "Prachatice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.237,
+        16.7291
+      ]
+    }
+  },
+  {
+    "_id": "d5a68adb-18b3-4592-873f-e05f4030d504",
+    "name": "Zdice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3977,
+        16.1247
+      ]
+    }
+  },
+  {
+    "_id": "7d9615aa-2727-430d-9aee-2a05b76fd55d",
+    "name": "Bu\u010Dovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.137,
+        16.0241
+      ]
+    }
+  },
+  {
+    "_id": "3ec959ec-fb6c-49bf-b55d-b893d13101f0",
+    "name": "\u010Cel\u00E1kovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1095,
+        16.3834
+      ]
+    }
+  },
+  {
+    "_id": "d1ba4c55-f519-4f1f-9195-481eec94fe71",
+    "name": "Terez\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.556,
+        16.6406
+      ]
+    }
+  },
+  {
+    "_id": "9d87116e-e456-499d-96a2-a0b114792a53",
+    "name": "Ku\u0159im",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.99,
+        16.5188
+      ]
+    }
+  },
+  {
+    "_id": "050ba9b7-44f3-4220-a208-68eee3b1e403",
+    "name": "Hrotovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3112,
+        16.9896
+      ]
+    }
+  },
+  {
+    "_id": "c09d4614-898e-4cb8-98f8-025ac7f41a5a",
+    "name": "Kr\u00E1sno",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7635,
+        16.1072
+      ]
+    }
+  },
+  {
+    "_id": "b168f5f0-b372-41b8-8430-3ec4cb4b8ead",
+    "name": "Kladruby",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6804,
+        16.5704
+      ]
+    }
+  },
+  {
+    "_id": "e41acc71-7ec6-4f08-9409-4655a696e77f",
+    "name": "Hol\u00FD\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5084,
+        16.9505
+      ]
+    }
+  },
+  {
+    "_id": "226bae5b-9bc9-4f96-83b0-6cd6fd81e029",
+    "name": "Letohrad",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.997,
+        16.5098
+      ]
+    }
+  },
+  {
+    "_id": "15d24855-8d25-4beb-b731-09b799da31fb",
+    "name": "Nov\u00E9 M\u011Bsto na Morav\u011B",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1777,
+        16.2481
+      ]
+    }
+  },
+  {
+    "_id": "e9b42087-b255-4df2-b379-21ffb7efea4f",
+    "name": "Stud\u00E9nka",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8992,
+        16.1546
+      ]
+    }
+  },
+  {
+    "_id": "f1330268-80b8-4906-a219-e0f3e0cf9105",
+    "name": "Z\u00E1b\u0159eh",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6769,
+        16.1551
+      ]
+    }
+  },
+  {
+    "_id": "27cdbe14-16ab-42f6-9930-92922cbf6805",
+    "name": "Zub\u0159\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2486,
+        16.9074
+      ]
+    }
+  },
+  {
+    "_id": "2f43534e-f8d4-4cb2-a951-eca36765d1d1",
+    "name": "Ji\u0159\u00EDkov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7838,
+        16.9499
+      ]
+    }
+  },
+  {
+    "_id": "44b7caa2-ded5-44ee-be20-b4bceecfb75d",
+    "name": "Ch\u00FDnov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1379,
+        16.1632
+      ]
+    }
+  },
+  {
+    "_id": "5cfc832c-e60f-4d32-bef2-02c8ced83942",
+    "name": "Velk\u00E1 Byst\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2218,
+        16.4791
+      ]
+    }
+  },
+  {
+    "_id": "b3edb7e7-3593-4a22-9a3b-9ea22a345357",
+    "name": "Chodov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3579,
+        16.5929
+      ]
+    }
+  },
+  {
+    "_id": "c4f0fb76-b2e3-464e-88a7-8c6188c45786",
+    "name": "Semily",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2538,
+        16.2628
+      ]
+    }
+  },
+  {
+    "_id": "bb2bfef1-01ca-4f7c-a97d-b60ca5c569fa",
+    "name": "T\u00FDnec nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5169,
+        16.487
+      ]
+    }
+  },
+  {
+    "_id": "a6005419-230c-4345-a5a7-0acb25693597",
+    "name": "Hru\u0161ovany nad Jevi\u0161ovkou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8779,
+        16.16
+      ]
+    }
+  },
+  {
+    "_id": "3cd387ef-9124-4cf9-a056-d12a5536882d",
+    "name": "Hustope\u010De",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0245,
+        16.3895
+      ]
+    }
+  },
+  {
+    "_id": "a3391ff2-a504-4ae7-9eba-0115f36a77c5",
+    "name": "Moravsk\u00E9 Bud\u011Bjovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0222,
+        16.4794
+      ]
+    }
+  },
+  {
+    "_id": "9131e1a7-e33b-44a7-aaf6-b3b8fac79102",
+    "name": "Hor\u0161ovsk\u00FD T\u00FDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2561,
+        16.7379
+      ]
+    }
+  },
+  {
+    "_id": "f5be7919-21fc-4890-8f03-9070b99afab0",
+    "name": "Vysok\u00E9 M\u00FDto",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.997,
+        16.9085
+      ]
+    }
+  },
+  {
+    "_id": "031d3908-5142-427a-94dc-282200755725",
+    "name": "Prachatice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2204,
+        16.613
+      ]
+    }
+  },
+  {
+    "_id": "6234cbee-cf4d-4831-b7da-c2411286c18c",
+    "name": "Otrokovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8067,
+        16.0551
+      ]
+    }
+  },
+  {
+    "_id": "d60a9950-2dce-49c2-a9f7-88d8066cfd4d",
+    "name": "Kl\u00E1\u0161terec nad Oh\u0159\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0558,
+        16.2935
+      ]
+    }
+  },
+  {
+    "_id": "e26d5019-5cb5-4a5f-9ddf-1dd7e76c7b8b",
+    "name": "Mirovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6025,
+        16.675
+      ]
+    }
+  },
+  {
+    "_id": "6842d53d-63a2-4233-a087-634461965e5b",
+    "name": "Nasavrky",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6983,
+        16.0104
+      ]
+    }
+  },
+  {
+    "_id": "d1457c6a-afe8-47b8-8ef4-2e18193722c2",
+    "name": "St\u0159\u00EDbro",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2547,
+        16.303
+      ]
+    }
+  },
+  {
+    "_id": "f551001b-9489-4bcc-9739-fca3692b5640",
+    "name": "T\u00FDnec nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.428,
+        16.55
+      ]
+    }
+  },
+  {
+    "_id": "758f08b3-f5ff-4ff8-b64f-1414ace29f32",
+    "name": "\u0160umperk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.83,
+        16.743
+      ]
+    }
+  },
+  {
+    "_id": "39a87a86-d6cb-415a-834c-63b7ab8d9224",
+    "name": "Lovosice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9034,
+        16.2969
+      ]
+    }
+  },
+  {
+    "_id": "8705500a-3ac1-4c4b-a3e7-604454634c39",
+    "name": "Se\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.892,
+        16.4061
+      ]
+    }
+  },
+  {
+    "_id": "34136aca-336d-4d8f-b09c-0c9617ee7b8e",
+    "name": "Solnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6282,
+        16.7988
+      ]
+    }
+  },
+  {
+    "_id": "d0c33f60-9f50-4e6f-b53f-7ff7d3995a21",
+    "name": "Litom\u011B\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5253,
+        16.1933
+      ]
+    }
+  },
+  {
+    "_id": "e5cab1d9-b161-41a2-b824-2bfaf0aef89d",
+    "name": "Nechanice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6607,
+        16.1162
+      ]
+    }
+  },
+  {
+    "_id": "a202feee-8230-46ad-ae4a-06c07e2c8402",
+    "name": "Ronov nad Doubravou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0937,
+        16.1045
+      ]
+    }
+  },
+  {
+    "_id": "7a41f494-95a8-4a69-bc42-1e447da98c04",
+    "name": "Boskovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6212,
+        16.6647
+      ]
+    }
+  },
+  {
+    "_id": "678181de-1bac-4a97-b59f-3f31397c930f",
+    "name": "Terez\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1157,
+        16.5387
+      ]
+    }
+  },
+  {
+    "_id": "e8088523-a6b7-4c8a-88c3-138537add508",
+    "name": "Jablonec nad Nisou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6551,
+        16.7342
+      ]
+    }
+  },
+  {
+    "_id": "a36d7a41-f261-4dd3-a1e3-f37f2ff28583",
+    "name": "Hr\u00E1dek",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4788,
+        16.8861
+      ]
+    }
+  },
+  {
+    "_id": "77066863-2abe-476d-8657-5cefc5c76621",
+    "name": "Krnov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9951,
+        16.1789
+      ]
+    }
+  },
+  {
+    "_id": "5a34f596-17d6-48b0-9a40-ca87676f7acb",
+    "name": "Jablunkov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.759,
+        16.2244
+      ]
+    }
+  },
+  {
+    "_id": "6e6a4788-cb2e-4300-b08b-9882f90b17d8",
+    "name": "Sp\u00E1len\u00E9 Po\u0159\u00ED\u010D\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0895,
+        16.2253
+      ]
+    }
+  },
+  {
+    "_id": "514dd46c-3556-4be2-aa94-04002b73dec5",
+    "name": "Rakovn\u00EDk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.284,
+        16.286
+      ]
+    }
+  },
+  {
+    "_id": "79539ecf-8781-4032-b274-f5664f480517",
+    "name": "Letohrad",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5706,
+        16.5633
+      ]
+    }
+  },
+  {
+    "_id": "97726227-abf8-4e96-b1b7-7649e1db02ed",
+    "name": "Suchdol nad Lu\u017Enic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6012,
+        16.0289
+      ]
+    }
+  },
+  {
+    "_id": "fd57ae04-a1b9-431e-b9da-16a2bc257d50",
+    "name": "Zbiroh",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1467,
+        16.6538
+      ]
+    }
+  },
+  {
+    "_id": "f30ba48b-3d6c-4def-b14c-a7d337478d23",
+    "name": "Tepl\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0295,
+        16.6454
+      ]
+    }
+  },
+  {
+    "_id": "c64e5a4b-0285-43de-80eb-e987b4081c4c",
+    "name": "Poho\u0159elice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6909,
+        16.2466
+      ]
+    }
+  },
+  {
+    "_id": "eb993934-14cb-4e9a-840a-505aa271f47a",
+    "name": "Be\u010Dov nad Teplou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9102,
+        16.5586
+      ]
+    }
+  },
+  {
+    "_id": "0ae01953-d869-4eca-9684-0f24acd420e2",
+    "name": "Hranice (okres Cheb)",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8883,
+        16.1071
+      ]
+    }
+  },
+  {
+    "_id": "fcb5b4d2-2fb6-436b-917b-f691e4cb63a3",
+    "name": "Hora Svat\u00E9 Kate\u0159iny",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5732,
+        16.9219
+      ]
+    }
+  },
+  {
+    "_id": "b6c996ba-dede-457b-b594-1d8770c1990f",
+    "name": "Milevsko",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3207,
+        16.2946
+      ]
+    }
+  },
+  {
+    "_id": "b5c38497-f92f-424d-83cd-35a827bc35f9",
+    "name": "Police nad Metuj\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4656,
+        16.5331
+      ]
+    }
+  },
+  {
+    "_id": "ab3799cc-5f00-4735-9d10-3d37c18c5c28",
+    "name": "\u0160enov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2633,
+        16.3914
+      ]
+    }
+  },
+  {
+    "_id": "32eb8dd1-6bcd-4d17-ab41-f4a07a69cbfe",
+    "name": "Velk\u00E9 Pavlovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7654,
+        16.4156
+      ]
+    }
+  },
+  {
+    "_id": "e720457b-3de2-4995-ac57-96e81ea4e862",
+    "name": "Ben\u00E1tky nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3317,
+        16.9965
+      ]
+    }
+  },
+  {
+    "_id": "c83a5c60-7fc6-4334-bb29-465fec2c707a",
+    "name": "B\u00EDlina",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1183,
+        16.9254
+      ]
+    }
+  },
+  {
+    "_id": "e6f2b754-e38c-4c6e-b5c3-c06d277c3e98",
+    "name": "Kostelec nad \u010Cern\u00FDmi lesy",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2756,
+        16.7637
+      ]
+    }
+  },
+  {
+    "_id": "90a3810a-8be4-41d6-8558-306571496288",
+    "name": "Ho\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6409,
+        16.4922
+      ]
+    }
+  },
+  {
+    "_id": "2b56aed4-55a3-4f64-b23e-889700042072",
+    "name": "Mikul\u00E1\u0161ovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0393,
+        16.6896
+      ]
+    }
+  },
+  {
+    "_id": "7654eca7-1b93-4130-819e-f7f0ead0ac29",
+    "name": "Nov\u00E1 Paka",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7721,
+        16.2477
+      ]
+    }
+  },
+  {
+    "_id": "e082f244-a4ee-40d9-8e68-555b2e1ab5d4",
+    "name": "T\u0159ebo\u0148",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8251,
+        16.5523
+      ]
+    }
+  },
+  {
+    "_id": "4e16980f-5a18-4279-a684-7a4d60472f51",
+    "name": "Horn\u00ED Bene\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9836,
+        16.3126
+      ]
+    }
+  },
+  {
+    "_id": "9165e371-acb9-4674-a957-693909af6afc",
+    "name": "Hole\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3505,
+        16.9676
+      ]
+    }
+  },
+  {
+    "_id": "2ffc6042-f1a9-4a19-9155-5ff6a17061c3",
+    "name": "\u017Dd\u00EDrec nad Doubravou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2612,
+        16.6575
+      ]
+    }
+  },
+  {
+    "_id": "69312db7-59eb-4bee-b81a-fa9870cf1f71",
+    "name": "N\u011Bm\u010Dice nad Hanou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4075,
+        16.1772
+      ]
+    }
+  },
+  {
+    "_id": "6f29708c-7cf6-4e57-9afa-ba40821f6878",
+    "name": "Hradec nad Moravic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5537,
+        16.2473
+      ]
+    }
+  },
+  {
+    "_id": "d0a3af8f-3a62-4dc8-b42d-5d0ce77efbef",
+    "name": "\u017Dandov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.749,
+        16.4357
+      ]
+    }
+  },
+  {
+    "_id": "6fd88c34-c0a2-41a9-858b-82667687820e",
+    "name": "Kojet\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9745,
+        16.2677
+      ]
+    }
+  },
+  {
+    "_id": "5613e70d-feb1-49a3-9270-72d7359a831d",
+    "name": "T\u00E1bor",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.73,
+        16.7594
+      ]
+    }
+  },
+  {
+    "_id": "c707fb9a-af67-413a-a564-2061f7babcfe",
+    "name": "Horn\u00ED Bene\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6541,
+        16.4263
+      ]
+    }
+  },
+  {
+    "_id": "dd3d99da-c3b9-4903-8f22-e668cb71a815",
+    "name": "Brtnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8121,
+        16.126
+      ]
+    }
+  },
+  {
+    "_id": "2f7ab432-c16a-4f33-970b-05107c50729b",
+    "name": "\u0160tramberk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2284,
+        16.4671
+      ]
+    }
+  },
+  {
+    "_id": "cbc35d3d-988c-45d8-a5f5-fbdba5328c3f",
+    "name": "N\u011Bm\u010Dice nad Hanou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8238,
+        16.5264
+      ]
+    }
+  },
+  {
+    "_id": "ba383182-d9e5-4f49-8b88-56bbf595479a",
+    "name": "\u00DApice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.414,
+        16.4721
+      ]
+    }
+  },
+  {
+    "_id": "df95658b-c07c-4da6-acec-47bec0d7b72b",
+    "name": "Mirovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3181,
+        16.4368
+      ]
+    }
+  },
+  {
+    "_id": "76ac2b96-1d98-47cd-b1c9-de46e1764d1c",
+    "name": "Solnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0556,
+        16.207
+      ]
+    }
+  },
+  {
+    "_id": "d2e4b30e-4775-4c62-b41c-59286512f809",
+    "name": "Javorn\u00EDk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9055,
+        16.1606
+      ]
+    }
+  },
+  {
+    "_id": "934c5b13-e29a-446d-8bb4-96d2a3481abe",
+    "name": "Tanvald",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3468,
+        16.3919
+      ]
+    }
+  },
+  {
+    "_id": "31cfe79b-464d-4475-8613-7e4595654896",
+    "name": "Bezdru\u017Eice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8495,
+        16.6341
+      ]
+    }
+  },
+  {
+    "_id": "2dccde74-7a41-4338-b400-9f6b763bf5cb",
+    "name": "Kel\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.19,
+        16.7918
+      ]
+    }
+  },
+  {
+    "_id": "1edac0ca-ba13-4920-bce0-321433b4d9d6",
+    "name": "Jesen\u00EDk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8068,
+        16.9464
+      ]
+    }
+  },
+  {
+    "_id": "9a50873d-795f-41e6-abca-38d068d12ded",
+    "name": "Vysok\u00E9 nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7544,
+        16.7271
+      ]
+    }
+  },
+  {
+    "_id": "e58f1105-5aa0-4dd1-bc26-c274b4f19971",
+    "name": "Tepl\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4212,
+        16.7964
+      ]
+    }
+  },
+  {
+    "_id": "67329e39-b430-47a1-9dfc-5c8b0c122931",
+    "name": "Slavi\u010D\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4391,
+        16.7474
+      ]
+    }
+  },
+  {
+    "_id": "c9d49a88-f42d-4b93-be63-8a4956dc310f",
+    "name": "Horn\u00ED Bene\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5393,
+        16.9151
+      ]
+    }
+  },
+  {
+    "_id": "8ede8315-b38e-4c41-924b-3f407598cf9d",
+    "name": "Olov\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6147,
+        16.2036
+      ]
+    }
+  },
+  {
+    "_id": "e1800fd9-77fe-4e13-a1fd-adfe65ef108e",
+    "name": "Hroch\u016Fv T\u00FDnec",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2344,
+        16.1139
+      ]
+    }
+  },
+  {
+    "_id": "21ef9c2a-eeb0-4df9-a4d9-008a484811fd",
+    "name": "St\u00E1rkov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.134,
+        16.1767
+      ]
+    }
+  },
+  {
+    "_id": "bcff2c06-1870-4cda-bb42-8bc06eb6377b",
+    "name": "He\u0159man\u016Fv M\u011Bstec",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2482,
+        16.4384
+      ]
+    }
+  },
+  {
+    "_id": "fdf0436f-e7d9-4b01-90f2-ba925e62dd03",
+    "name": "Ivanovice na Han\u00E9",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4969,
+        16.3615
+      ]
+    }
+  },
+  {
+    "_id": "36f2d8d7-8f80-4ebc-a6e7-b932b3d20bd0",
+    "name": "Vysok\u00E9 nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6622,
+        16.2987
+      ]
+    }
+  },
+  {
+    "_id": "aa2294cd-e7b1-445c-966a-2cd81ec2fb9e",
+    "name": "\u010C\u00E1slav",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4798,
+        16.8186
+      ]
+    }
+  },
+  {
+    "_id": "719ca685-54b0-4838-a956-08767f097c38",
+    "name": "Ostrava",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0741,
+        16.8669
+      ]
+    }
+  },
+  {
+    "_id": "456b740a-348f-425d-bd22-2616e4735f61",
+    "name": "T\u00FDnec nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7728,
+        16.2931
+      ]
+    }
+  },
+  {
+    "_id": "1aad9462-20b2-423c-a168-04fa63a918a7",
+    "name": "Unho\u0161\u0165",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0571,
+        16.504
+      ]
+    }
+  },
+  {
+    "_id": "25c4ff7d-50e8-45fc-a868-4a3a03e465fb",
+    "name": "Rudn\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.058,
+        16.3188
+      ]
+    }
+  },
+  {
+    "_id": "d6800a6f-8f50-4223-a286-42c05b50c286",
+    "name": "Milevsko",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4911,
+        16.3314
+      ]
+    }
+  },
+  {
+    "_id": "fd23b7a6-629c-4ad1-a64a-70bdaa5c777e",
+    "name": "Dob\u0159any",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1239,
+        16.6339
+      ]
+    }
+  },
+  {
+    "_id": "84e299e0-c49a-4a49-aed7-18625c4bc786",
+    "name": "Z\u00E1kupy",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2016,
+        16.1621
+      ]
+    }
+  },
+  {
+    "_id": "92bfb510-cb22-458d-a1fa-3669876be0c3",
+    "name": "P\u0159e\u0161tice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5089,
+        16.6697
+      ]
+    }
+  },
+  {
+    "_id": "739f667a-367e-4815-87a3-4747a41bc465",
+    "name": "\u010Cesk\u00E1 Skalice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7818,
+        16.8161
+      ]
+    }
+  },
+  {
+    "_id": "0a9401d0-fde4-4f26-b996-1924ed7e15e5",
+    "name": "Plze\u0148",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9647,
+        16.8771
+      ]
+    }
+  },
+  {
+    "_id": "432e772c-f399-4c38-852f-ee5246cf97ae",
+    "name": "Slu\u0161ovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2021,
+        16.0029
+      ]
+    }
+  },
+  {
+    "_id": "a9ea38c0-2c13-4c24-b843-65995a092584",
+    "name": "Horn\u00ED B\u0159\u00EDza",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0389,
+        16.4992
+      ]
+    }
+  },
+  {
+    "_id": "de6737eb-3307-4fb1-8dff-68bec8cb1725",
+    "name": "V\u00FDslun\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1588,
+        16.1068
+      ]
+    }
+  },
+  {
+    "_id": "5f6f5239-f1ed-4893-8315-67ca22df42f1",
+    "name": "Tova\u010Dov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9539,
+        16.7111
+      ]
+    }
+  },
+  {
+    "_id": "64001a78-2caf-4b96-8135-de9cc2bc2a26",
+    "name": "Kostelec nad Labem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4444,
+        16.6801
+      ]
+    }
+  },
+  {
+    "_id": "99e3b4f8-ea83-4179-b26d-a9a49a83b247",
+    "name": "\u017Dulov\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1934,
+        16.6217
+      ]
+    }
+  },
+  {
+    "_id": "2d5799cd-07b6-4fa8-9286-626565543a59",
+    "name": "Rokytnice nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6124,
+        16.1724
+      ]
+    }
+  },
+  {
+    "_id": "e77e4696-984e-4329-8906-f1c3f6b83155",
+    "name": "Horn\u00ED Slavkov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1957,
+        16.6968
+      ]
+    }
+  },
+  {
+    "_id": "b731f20d-8744-4ccc-bf0e-204206c5f398",
+    "name": "Bakov nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.165,
+        16.8654
+      ]
+    }
+  },
+  {
+    "_id": "b06fc71e-9b13-4302-9869-bf498165692c",
+    "name": "Chy\u0161e",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2205,
+        16.0924
+      ]
+    }
+  },
+  {
+    "_id": "0bf11178-ffc7-4fee-ad7f-4ad7ef949d2c",
+    "name": "Kou\u0159im",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.482,
+        16.057
+      ]
+    }
+  },
+  {
+    "_id": "453fa9a8-6e3a-41cd-9bad-82d34abfc619",
+    "name": "\u0158evnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1795,
+        16.4326
+      ]
+    }
+  },
+  {
+    "_id": "f8e29671-7426-4b5a-b6c3-dab5b54bb894",
+    "name": "\u017Delezn\u00E1 Ruda",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4198,
+        16.2924
+      ]
+    }
+  },
+  {
+    "_id": "674e763a-0247-4eb4-9779-b1066adfb758",
+    "name": "Vracov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2399,
+        16.2899
+      ]
+    }
+  },
+  {
+    "_id": "df1b2152-8d85-47da-b54a-7762b86295e0",
+    "name": "N\u00FD\u0159any",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4566,
+        16.0539
+      ]
+    }
+  },
+  {
+    "_id": "f1f4a2df-f43b-4bb9-aa65-acddc14c5bba",
+    "name": "Hru\u0161ovany nad Jevi\u0161ovkou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7531,
+        16.0716
+      ]
+    }
+  },
+  {
+    "_id": "c055de3e-4b48-4974-a5e2-ad7b197dc5ca",
+    "name": "Nov\u00E9 Sedlo",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7456,
+        16.1652
+      ]
+    }
+  },
+  {
+    "_id": "fe16b09e-b291-447f-ba9e-8f34bc1f7bfd",
+    "name": "Vysok\u00E9 M\u00FDto",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4746,
+        16.0935
+      ]
+    }
+  },
+  {
+    "_id": "6f53339d-fbea-46a3-a38f-6ae46a503381",
+    "name": "Lys\u00E1 nad Labem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0047,
+        16.1288
+      ]
+    }
+  },
+  {
+    "_id": "b4975376-737a-4ce4-9a42-6392349b022a",
+    "name": "Kostelec nad Labem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7371,
+        16.5889
+      ]
+    }
+  },
+  {
+    "_id": "8eb6bf70-5b1c-4735-8327-e5df65a339d0",
+    "name": "Teplice nad Metuj\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8884,
+        16.1225
+      ]
+    }
+  },
+  {
+    "_id": "b75ece98-2149-440a-8c53-8ac998619e08",
+    "name": "Neratovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3041,
+        16.9422
+      ]
+    }
+  },
+  {
+    "_id": "f46f4910-5c22-487c-8665-5aa2026dab90",
+    "name": "Boskovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.614,
+        16.5316
+      ]
+    }
+  },
+  {
+    "_id": "1d600735-0335-483f-af2d-8f46997986bc",
+    "name": "Olomouc",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6544,
+        16.9027
+      ]
+    }
+  },
+  {
+    "_id": "dce4a98a-f8d5-48c8-bb4a-a5f038296361",
+    "name": "Rokytnice nad Jizerou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5677,
+        16.9697
+      ]
+    }
+  },
+  {
+    "_id": "fdca1a30-8ca1-484f-ac9c-d23c1b538b85",
+    "name": "Kryry",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0959,
+        16.1509
+      ]
+    }
+  },
+  {
+    "_id": "c5701acf-8a41-4c7d-80d0-dc5fd70e97ef",
+    "name": "Tanvald",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0351,
+        16.2881
+      ]
+    }
+  },
+  {
+    "_id": "20e11c75-557c-4cf9-8fc2-39b791ae109b",
+    "name": "Klobouky u Brna",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9349,
+        16.5795
+      ]
+    }
+  },
+  {
+    "_id": "8ee96e1e-6f82-4465-9cb6-463e648c7d62",
+    "name": "\u0160tramberk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8536,
+        16.7925
+      ]
+    }
+  },
+  {
+    "_id": "5095a9be-5538-4ace-af88-9d13ae1604cd",
+    "name": "Otrokovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6715,
+        16.9691
+      ]
+    }
+  },
+  {
+    "_id": "88e332cc-a15f-4ba1-99f9-f17e7ad57459",
+    "name": "Krnov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3206,
+        16.577
+      ]
+    }
+  },
+  {
+    "_id": "8790d20c-d1cd-4066-9db3-52fd0a832b9b",
+    "name": "Sedl\u010Dany",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7017,
+        16.5222
+      ]
+    }
+  },
+  {
+    "_id": "f447e3f9-1234-423a-a840-d948b8018c76",
+    "name": "Rosice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.479,
+        16.9382
+      ]
+    }
+  },
+  {
+    "_id": "e0a34b24-44a3-478b-886d-a63776f79e22",
+    "name": "Bo\u017E\u00ED Dar",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3013,
+        16.016
+      ]
+    }
+  },
+  {
+    "_id": "3b248d9f-cc8a-48fe-a606-c377ecf60e4e",
+    "name": "Brumov-Bylnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9383,
+        16.1233
+      ]
+    }
+  },
+  {
+    "_id": "cfb2bbb2-4f6c-4cc2-b718-538496d94b49",
+    "name": "Sobotka",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0468,
+        16.8327
+      ]
+    }
+  },
+  {
+    "_id": "1364df28-027c-4d62-a2db-f3559662ad0e",
+    "name": "Prost\u011Bjov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5506,
+        16.3998
+      ]
+    }
+  },
+  {
+    "_id": "bb88d888-b523-42f5-b470-fd0e87b6b8a0",
+    "name": "Litom\u011B\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2167,
+        16.7614
+      ]
+    }
+  },
+  {
+    "_id": "31255884-e760-475e-8800-f15ec910df71",
+    "name": "Doln\u00ED Bene\u0161ov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6449,
+        16.4753
+      ]
+    }
+  },
+  {
+    "_id": "57edb844-f108-4f72-8461-a60c2351bc15",
+    "name": "Str\u00E1\u017E pod Ralskem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5283,
+        16.6137
+      ]
+    }
+  },
+  {
+    "_id": "f010c3cf-b4f4-4400-9037-d507356e6e70",
+    "name": "Byst\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6022,
+        16.0276
+      ]
+    }
+  },
+  {
+    "_id": "0bcdce8d-be8e-449a-8aa7-ddc6d81158b6",
+    "name": "Ko\u017Elany",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4626,
+        16.4547
+      ]
+    }
+  },
+  {
+    "_id": "08c01377-70c9-4f16-9d39-d2d8d3d74168",
+    "name": "Podiv\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9225,
+        16.2621
+      ]
+    }
+  },
+  {
+    "_id": "774ba688-2e53-4e84-9e25-6279212bfa33",
+    "name": "Pob\u011B\u017Eovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1274,
+        16.4467
+      ]
+    }
+  },
+  {
+    "_id": "e98ab284-daf8-46fb-ae79-0a9960560826",
+    "name": "Habry",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6149,
+        16.8967
+      ]
+    }
+  },
+  {
+    "_id": "aedcf482-c897-4d73-bf8f-7a5ca0c468f7",
+    "name": "Miroslav",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3961,
+        16.5839
+      ]
+    }
+  },
+  {
+    "_id": "8c768320-dd2a-4ba0-875a-34bb9ae44646",
+    "name": "Kaplice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2687,
+        16.4916
+      ]
+    }
+  },
+  {
+    "_id": "12ac3773-0004-42fa-be80-c722667d2266",
+    "name": "Prost\u011Bjov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8026,
+        16.7747
+      ]
+    }
+  },
+  {
+    "_id": "7c66d49f-eb95-4748-9021-9cc9fd81fcda",
+    "name": "\u017Datec",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6802,
+        16.811
+      ]
+    }
+  },
+  {
+    "_id": "8bed2593-ee0e-4581-8920-9ba5430fc163",
+    "name": "Teplice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8354,
+        16.6713
+      ]
+    }
+  },
+  {
+    "_id": "696fb8f8-84e1-41d6-9d0e-069c95352078",
+    "name": "Nov\u00E9 Sedlo",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0822,
+        16.7514
+      ]
+    }
+  },
+  {
+    "_id": "06fbdbb5-74af-494f-af02-3a077568b32c",
+    "name": "And\u011Blsk\u00E1 Hora",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3327,
+        16.6209
+      ]
+    }
+  },
+  {
+    "_id": "0392c773-4155-4dd2-b568-973a26ac2e04",
+    "name": "Byst\u0159ice nad Pern\u0161tejnem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1077,
+        16.409
+      ]
+    }
+  },
+  {
+    "_id": "0c79c102-f8d0-4c16-85de-fb2a20d28164",
+    "name": "Uhersk\u00FD Brod",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9843,
+        16.7859
+      ]
+    }
+  },
+  {
+    "_id": "6d8a8367-7230-48d3-aa09-7a9dd6be32c1",
+    "name": "M\u00FDto",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.416,
+        16.1272
+      ]
+    }
+  },
+  {
+    "_id": "2a4b4860-e08b-45cf-bf50-b63b8ad6daf8",
+    "name": "Plumlov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3195,
+        16.3898
+      ]
+    }
+  },
+  {
+    "_id": "7e38852a-3ed0-4eeb-a918-ccd704cc158c",
+    "name": "Zub\u0159\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4017,
+        16.893
+      ]
+    }
+  },
+  {
+    "_id": "1d5ee474-b8c9-461f-b209-eefa6cdd30f0",
+    "name": "Boskovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8842,
+        16.7755
+      ]
+    }
+  },
+  {
+    "_id": "640b4213-60e3-4738-8318-52435a2cb720",
+    "name": "Bystr\u00E9",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4506,
+        16.2536
+      ]
+    }
+  },
+  {
+    "_id": "c4a46647-d036-469d-8ba1-54d09bed4cca",
+    "name": "Pe\u010Dky",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7251,
+        16.9635
+      ]
+    }
+  },
+  {
+    "_id": "b338ed46-ca7c-45ac-822e-94c77479aa0b",
+    "name": "Trutnov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6375,
+        16.5851
+      ]
+    }
+  },
+  {
+    "_id": "fb014a8c-6180-4b62-9076-dc5a6a859586",
+    "name": "Roudnice nad Labem",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9591,
+        16.5313
+      ]
+    }
+  },
+  {
+    "_id": "8b1b0cd3-fd17-4baa-bb0e-e752a0deed33",
+    "name": "Hostivice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9356,
+        16.1642
+      ]
+    }
+  },
+  {
+    "_id": "9f9c064b-f648-407d-8d44-dbb709d79217",
+    "name": "Horn\u00ED Ji\u0159et\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8828,
+        16.9464
+      ]
+    }
+  },
+  {
+    "_id": "5afbbbd9-a6cf-4942-962b-a2fbc2253507",
+    "name": "Su\u0161ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8475,
+        16.4259
+      ]
+    }
+  },
+  {
+    "_id": "d14bb9b1-27c6-4555-b8b5-8f87929c0dc3",
+    "name": "Poho\u0159elice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3771,
+        16.3756
+      ]
+    }
+  },
+  {
+    "_id": "591cc464-983e-44b0-88b3-f276917059a6",
+    "name": "B\u0159eznice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5775,
+        16.1795
+      ]
+    }
+  },
+  {
+    "_id": "e7231364-bda5-4e72-94dc-0a07e144e826",
+    "name": "Paskov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1879,
+        16.251
+      ]
+    }
+  },
+  {
+    "_id": "6c102b42-91ee-4de1-9464-1a345b6d859c",
+    "name": "Vrchlab\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4521,
+        16.5588
+      ]
+    }
+  },
+  {
+    "_id": "15f2ee8e-4cde-4b14-be4b-381334377c07",
+    "name": "Bl\u0161any",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5686,
+        16.6481
+      ]
+    }
+  },
+  {
+    "_id": "b61ae7e1-6761-4301-93df-805895a606cc",
+    "name": "Moravsk\u00FD Beroun",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5434,
+        16.0247
+      ]
+    }
+  },
+  {
+    "_id": "3dc3d2cc-56b2-4997-ad21-621643401a09",
+    "name": "Blovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.183,
+        16.6845
+      ]
+    }
+  },
+  {
+    "_id": "a5de1d7b-afa4-473f-bc73-a44e879facb9",
+    "name": "Paskov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5756,
+        16.5484
+      ]
+    }
+  },
+  {
+    "_id": "399c134e-aa00-46ab-b1ea-b38455ae85fd",
+    "name": "Janov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4657,
+        16.3143
+      ]
+    }
+  },
+  {
+    "_id": "b042f59c-5ea3-4192-a6c8-450dae3ead0b",
+    "name": "Budyn\u011B nad Oh\u0159\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9894,
+        16.5442
+      ]
+    }
+  },
+  {
+    "_id": "e9bd60af-570c-4036-a920-b2844607b9ba",
+    "name": "Libochovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2949,
+        16.8991
+      ]
+    }
+  },
+  {
+    "_id": "a346746a-ccd7-42c7-8a24-76a3d1e266eb",
+    "name": "Sedlice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1724,
+        16.4502
+      ]
+    }
+  },
+  {
+    "_id": "224e0002-4d75-4e04-a7d7-9f506830b94c",
+    "name": "Hluk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8159,
+        16.706
+      ]
+    }
+  },
+  {
+    "_id": "1477ee41-b464-42a2-b73d-06a62ac233a9",
+    "name": "N\u00E1m\u011B\u0161\u0165 nad Oslavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6617,
+        16.2332
+      ]
+    }
+  },
+  {
+    "_id": "fb422af5-34e8-43fd-ac4e-30c8ee93306b",
+    "name": "T\u00FDnec nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2919,
+        16.3878
+      ]
+    }
+  },
+  {
+    "_id": "71b1c8aa-d996-4875-932c-a1ca09345471",
+    "name": "Jilemnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4519,
+        16.6761
+      ]
+    }
+  },
+  {
+    "_id": "8267d32a-adfe-4da5-9881-026bf05d9979",
+    "name": "\u00DAter\u00FD",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4403,
+        16.5509
+      ]
+    }
+  },
+  {
+    "_id": "81fa72a2-60e0-4bc0-aaff-4fd5ce31891b",
+    "name": "Vratimov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5306,
+        16.8918
+      ]
+    }
+  },
+  {
+    "_id": "5825b16f-980b-44f2-bb39-9d27a9941e1b",
+    "name": "St\u0159\u00EDbro",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9296,
+        16.0785
+      ]
+    }
+  },
+  {
+    "_id": "dd12aabc-e69f-4bf6-88ac-bb8411be6684",
+    "name": "De\u0161tn\u00E1",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9336,
+        16.3314
+      ]
+    }
+  },
+  {
+    "_id": "89089945-b381-4730-bd57-dd45feeaab70",
+    "name": "M\u0161eno",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1437,
+        16.6914
+      ]
+    }
+  },
+  {
+    "_id": "0570017e-05c0-44d6-9722-02544202282b",
+    "name": "\u0160umperk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1395,
+        16.8816
+      ]
+    }
+  },
+  {
+    "_id": "f932b461-3320-4f8c-aed9-803dfd788ed3",
+    "name": "Doln\u00ED Kounice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6265,
+        16.0495
+      ]
+    }
+  },
+  {
+    "_id": "ddd0980f-b760-4df5-9de9-4af1a6b05981",
+    "name": "Hrozn\u011Bt\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3231,
+        16.5462
+      ]
+    }
+  },
+  {
+    "_id": "a0cc4af3-fa9c-4df4-ae31-0d1f0a9720d7",
+    "name": "Fulnek",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1839,
+        16.1262
+      ]
+    }
+  },
+  {
+    "_id": "1463e676-7bac-449b-8431-fd9a2d752f95",
+    "name": "Str\u00E1\u017E nad Ne\u017E\u00E1rkou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0373,
+        16.7763
+      ]
+    }
+  },
+  {
+    "_id": "3dbacb97-43ac-4511-add2-b0db6f544eba",
+    "name": "Lib\u011Bchov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.342,
+        16.0629
+      ]
+    }
+  },
+  {
+    "_id": "ab1230f2-d2e9-4402-8833-a52d9baa6c21",
+    "name": "Hostivice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.577,
+        16.6615
+      ]
+    }
+  },
+  {
+    "_id": "37d9a582-2205-4d21-9a87-8c2b257f5548",
+    "name": "Jevi\u0161ovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7533,
+        16.2597
+      ]
+    }
+  },
+  {
+    "_id": "ab03ffef-b233-4ff8-9034-c9108d234a03",
+    "name": "P\u0159ibyslav",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1676,
+        16.1639
+      ]
+    }
+  },
+  {
+    "_id": "3c93f89b-e39c-40b6-8750-a93925917b1f",
+    "name": "M\u00FDto",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5183,
+        16.0806
+      ]
+    }
+  },
+  {
+    "_id": "53f1b90f-7533-445f-91d6-ffc91f385360",
+    "name": "M\u0161eno",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7252,
+        16.8514
+      ]
+    }
+  },
+  {
+    "_id": "9f48d37b-8050-4cf3-b2be-c8c0ae3ba1e9",
+    "name": "Vejprty",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0253,
+        16.4169
+      ]
+    }
+  },
+  {
+    "_id": "bc0ca123-966b-43f1-b5e3-8cb958eb585b",
+    "name": "Bru\u0161perk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2399,
+        16.6336
+      ]
+    }
+  },
+  {
+    "_id": "2ce5f80d-4468-494e-89f3-96ff7e9fb49e",
+    "name": "Nov\u00E1 Role",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6731,
+        16.3904
+      ]
+    }
+  },
+  {
+    "_id": "b07594cf-97a4-4d6d-b445-a22dfc82f192",
+    "name": "Napajedla",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9394,
+        16.4542
+      ]
+    }
+  },
+  {
+    "_id": "6923c5f4-d107-45aa-b31f-7c420fb1711c",
+    "name": "Velk\u00E9 B\u00EDlovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6661,
+        16.6008
+      ]
+    }
+  },
+  {
+    "_id": "75cc7f70-d463-4a1e-941a-70f399bfe67b",
+    "name": "Uhersk\u00E9 Hradi\u0161t\u011B",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7526,
+        16.7781
+      ]
+    }
+  },
+  {
+    "_id": "934f3adc-f709-43b9-9679-e019a3a0fea3",
+    "name": "Jesen\u00EDk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6503,
+        16.3402
+      ]
+    }
+  },
+  {
+    "_id": "f3bb0339-397f-40c6-a83b-e9214dc78788",
+    "name": "\u010Cerno\u0161ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8819,
+        16.3394
+      ]
+    }
+  },
+  {
+    "_id": "24c54c94-1191-4d4a-bc83-187cbbfcda47",
+    "name": "Nov\u00FD Bor",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0044,
+        16.1267
+      ]
+    }
+  },
+  {
+    "_id": "99230bba-9b7a-459d-80de-40ae5549fe9a",
+    "name": "Hluk",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.446,
+        16.2217
+      ]
+    }
+  },
+  {
+    "_id": "a22ecddb-6359-470f-8af4-d9ea839efe1d",
+    "name": "Mezibo\u0159\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.501,
+        16.6919
+      ]
+    }
+  },
+  {
+    "_id": "0451f7e5-e996-4bc4-8d32-5fd70e1d9b22",
+    "name": "\u017Deleznice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9784,
+        16.6808
+      ]
+    }
+  },
+  {
+    "_id": "5d82f264-ace2-4525-a5a2-5e7622d30dc9",
+    "name": "Hlubok\u00E1 nad Vltavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4926,
+        16.5404
+      ]
+    }
+  },
+  {
+    "_id": "431e1478-8ed0-499f-a878-9076bf19798a",
+    "name": "J\u00EDlov\u00E9",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2877,
+        16.7946
+      ]
+    }
+  },
+  {
+    "_id": "460ddeb8-f998-4791-a84a-64d43dd25ec9",
+    "name": "\u017Delezn\u00E1 Ruda",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9413,
+        16.2798
+      ]
+    }
+  },
+  {
+    "_id": "00efef2d-f6fd-4a40-9e1f-8664e6ca6d99",
+    "name": "Kladruby",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4865,
+        16.4617
+      ]
+    }
+  },
+  {
+    "_id": "1c258f50-b3ae-441a-bb1c-8435f4327029",
+    "name": "Mimo\u0148",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2276,
+        16.7563
+      ]
+    }
+  },
+  {
+    "_id": "78e9f061-0baa-47d8-a241-07a5cd1b6d10",
+    "name": "Broumov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7424,
+        16.3738
+      ]
+    }
+  },
+  {
+    "_id": "63b93e6c-b85e-4598-ae33-25304b7a830d",
+    "name": "Boskovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8645,
+        16.1045
+      ]
+    }
+  },
+  {
+    "_id": "cfcabcf5-5465-435f-b13b-f4fa2b403660",
+    "name": "\u010Cerno\u0161\u00EDn",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4047,
+        16.4388
+      ]
+    }
+  },
+  {
+    "_id": "f83942f8-f921-4a91-9299-165cf9ea64ab",
+    "name": "Sedlec-Pr\u010Dice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0723,
+        16.9391
+      ]
+    }
+  },
+  {
+    "_id": "b63729b6-5a96-48bc-b988-83ca61d6d4ae",
+    "name": "Plan\u00E1 nad Lu\u017Enic\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.549,
+        16.8486
+      ]
+    }
+  },
+  {
+    "_id": "7cd1a02a-fb7b-4557-93ed-53e433ca96ba",
+    "name": "Vod\u0148any",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8873,
+        16.6023
+      ]
+    }
+  },
+  {
+    "_id": "66bc0ab4-9f53-4a2d-84ce-0c7493d9df19",
+    "name": "Semily",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0938,
+        16.1067
+      ]
+    }
+  },
+  {
+    "_id": "e5574a73-d6e7-4f2f-993b-a12e259dcf1b",
+    "name": "Bl\u0161any",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4963,
+        16.973
+      ]
+    }
+  },
+  {
+    "_id": "3bdb593d-a048-4caa-91b9-6cb51cb19298",
+    "name": "St\u00E1rkov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.9603,
+        16.2919
+      ]
+    }
+  },
+  {
+    "_id": "7863ff2b-672e-423b-a4dc-b7b963e58087",
+    "name": "Jablonn\u00E9 v Podje\u0161t\u011Bd\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.099,
+        16.1673
+      ]
+    }
+  },
+  {
+    "_id": "4dd945a4-4614-4e24-a178-7010bbc9855d",
+    "name": "Hranice (okres P\u0159erov)",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4269,
+        16.1721
+      ]
+    }
+  },
+  {
+    "_id": "d5ff4c90-2477-4e19-9397-d69124b8c72d",
+    "name": "Nov\u00E1 Byst\u0159ice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4635,
+        16.071
+      ]
+    }
+  },
+  {
+    "_id": "9f9bb4b4-3eb1-4ca6-acd0-130861b2786b",
+    "name": "P\u0159imda",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8249,
+        16.4521
+      ]
+    }
+  },
+  {
+    "_id": "62c9c8c4-ed03-43c8-9e2f-05d02fd77d73",
+    "name": "Solnice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5845,
+        16.4042
+      ]
+    }
+  },
+  {
+    "_id": "7f6e619f-5d30-4b1c-b628-fe82a22fffaa",
+    "name": "\u017D\u010F\u00E1r nad S\u00E1zavou",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.3679,
+        16.5352
+      ]
+    }
+  },
+  {
+    "_id": "12c89660-28f0-403a-bd79-71bda1165806",
+    "name": "Bavorov",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.5971,
+        16.4111
+      ]
+    }
+  },
+  {
+    "_id": "65a2c76e-323d-4a9f-ae37-56d384c186ae",
+    "name": "Mezim\u011Bst\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0796,
+        16.3351
+      ]
+    }
+  },
+  {
+    "_id": "ac7da9d7-f296-417a-9ada-3863d4e3b32c",
+    "name": "Kaplice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0451,
+        16.6886
+      ]
+    }
+  },
+  {
+    "_id": "7d1a00ee-6b97-48bf-9a35-632692a629db",
+    "name": "\u00DAter\u00FD",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7589,
+        16.5769
+      ]
+    }
+  },
+  {
+    "_id": "aed5dfc4-386f-45a0-8b2b-0a9c23055cac",
+    "name": "Letovice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.756,
+        16.0245
+      ]
+    }
+  },
+  {
+    "_id": "7806e144-5c6e-40d1-af53-7c5691a6983b",
+    "name": "Fren\u0161t\u00E1t pod Radho\u0161t\u011Bm",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.6799,
+        16.5786
+      ]
+    }
+  },
+  {
+    "_id": "15e98f4f-45f1-46a8-aad3-3192a8f52731",
+    "name": "Skute\u010D",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4748,
+        16.989
+      ]
+    }
+  },
+  {
+    "_id": "5615309a-40b2-4ea8-8006-dccb3cf2cec1",
+    "name": "Smr\u017Eovka",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4872,
+        16.5184
+      ]
+    }
+  },
+  {
+    "_id": "f68c3383-36fe-4229-9c9f-28e2289a4e33",
+    "name": "Hradec Kr\u00E1lov\u00E9",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.2319,
+        16.4077
+      ]
+    }
+  },
+  {
+    "_id": "955dd64b-16bc-4f18-8ef1-4b09b95a1b03",
+    "name": "M\u011Bsto Albrechtice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.258,
+        16.861
+      ]
+    }
+  },
+  {
+    "_id": "5dcb3187-318c-47f6-9a27-7c2ac9ff0a1e",
+    "name": "Hustope\u010De",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4734,
+        16.7115
+      ]
+    }
+  },
+  {
+    "_id": "0b11acbf-37c3-425e-bc61-0197a4e1e4a2",
+    "name": "Mezim\u011Bst\u00ED",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.8685,
+        16.9023
+      ]
+    }
+  },
+  {
+    "_id": "a0a1869c-9e0d-4305-b648-e72cf531e34b",
+    "name": "Olomouc",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.7287,
+        16.6418
+      ]
+    }
+  },
+  {
+    "_id": "b33c06dd-43c4-4082-bf73-80572166dfb0",
+    "name": "Py\u0161ely",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.548,
+        16.5488
+      ]
+    }
+  },
+  {
+    "_id": "16dab462-3517-4829-8971-59cea1ce2d93",
+    "name": "Trmice",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.0548,
+        16.6225
+      ]
+    }
+  },
+  {
+    "_id": "d0c7a6be-fc7d-46db-9e9b-d7aebfd86cfb",
+    "name": "Beroun",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.1396,
+        16.7127
+      ]
+    }
+  },
+  {
+    "_id": "fb017cf1-d275-4f12-aa80-cbb4314c2d05",
+    "name": "Blansko",
+    "locationType": 1,
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [
+        49.4244,
+        16.6233
+      ]
+    }
+  }
+]

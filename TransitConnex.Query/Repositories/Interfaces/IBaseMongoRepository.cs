@@ -32,9 +32,23 @@ public interface IBaseMongoRepository<TQueryModel, in TKey>
     Task Upsert(TQueryModel queryModel);
 
     /// <summary>
+    ///     Upserts a collection of query models in a single batch operation.
+    /// </summary>
+    /// <param name="queryModels">The collection of query models to upsert.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task Upsert(IEnumerable<TQueryModel> queryModels);
+
+    /// <summary>
     ///     Deletes a query model by its ID.
     /// </summary>
     /// <param name="id">The ID of the query model to delete.</param>
     /// <returns>True whether document was deleted, otherwise false.</returns>
     Task<bool> Delete(TKey id);
+
+    /// <summary>
+    ///     Deletes a collection of query models by their IDs in a single batch operation.
+    /// </summary>
+    /// <param name="ids">The collection of IDs of the query models to delete.</param>
+    /// <returns>True if any document was deleted, otherwise false</returns>
+    Task<bool> Delete(IEnumerable<TKey> ids);
 }

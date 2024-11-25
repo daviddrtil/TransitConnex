@@ -9,4 +9,7 @@ public interface IVehicleMongoService
     Task<Guid> Create(Vehicle vehicle);
     Task Update(Vehicle vehicle);
     Task Delete(Guid id);
+
+    Task<IEnumerable<Guid>> Create(IEnumerable<Vehicle> vehicles);
+    Task Delete(IEnumerable<Guid> ids);
 }

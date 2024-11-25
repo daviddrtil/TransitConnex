@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using TransitConnex.Domain.Collections;
-using TransitConnex.Domain.DTOs.SearchedRoute;
+using TransitConnex.Domain.DTOs;
 using TransitConnex.Query.Repositories.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
@@ -54,5 +54,23 @@ public class SearchedRouteMongoService(
     public async Task Delete(Guid id)
     {
         await searchedRouteRepo.Delete(id);
+    }
+
+    public async Task<IEnumerable<Guid>> Create(IEnumerable<SearchedRouteDto> searchedRoutes)
+    {
+        foreach (var searchedRoute in searchedRoutes)
+        {
+            if (searchedRoute.Id == Guid.Empty)
+                searchedRoute.Id = Guid.NewGuid(); // Always only add
+        }
+
+        var srDocs = mapper.Map<IEnumerable<SearchedRouteDoc>>(searchedRoutes);
+        await searchedRouteRepo.Upsert(srDocs);
+        return srDocs.Select(v => v.Id);
+    }
+
+    public async Task Delete(IEnumerable<Guid> ids)
+    {
+        await searchedRouteRepo.Delete(ids);
     }
 }
