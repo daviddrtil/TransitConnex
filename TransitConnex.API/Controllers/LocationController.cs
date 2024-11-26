@@ -25,16 +25,15 @@ public class LocationController(
     }
 
     [HttpPost]
-    public async Task<Guid> CreateLocation(LocationCreateCommand createCommand)
+    public async Task<ActionResult<Guid>> CreateLocation(LocationCreateCommand createCommand)
     {
-        return await locationCommandHandler.HandleCreate(createCommand);
+        return Ok(await locationCommandHandler.HandleCreate(createCommand));
     }
 
     [HttpPost("batch")]
-    public async Task<Guid> CreateLocations(List<LocationCreateCommand> createCommands)
+    public async Task<ActionResult<List<Guid>>> CreateLocations(LocationBatchCreateCommand createCommands)
     {
-        // return await LocationCommandHandler.HandleCreate(createCommand);
-        return new Guid(); // TODO
+        return Ok(await locationCommandHandler.HandleBatchCreate(createCommands));
     }
 
     [HttpPut]
@@ -46,9 +45,9 @@ public class LocationController(
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteLocation(LocationDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteLocation(Guid id)
     {
-        await locationCommandHandler.HandleDelete(deleteCommand);
+        await locationCommandHandler.HandleDelete(id);
 
         return Ok();
     }

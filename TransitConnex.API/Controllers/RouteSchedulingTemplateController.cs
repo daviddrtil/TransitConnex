@@ -25,9 +25,9 @@ public class RouteSchedulingTemplateController(
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteRouteSchedulingTemplate(RouteSchedulingTemplateDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteRouteSchedulingTemplate(Guid id)
     {
-        await routeSchedulingTemplateCommandHandler.HandleDelete(deleteCommand);
+        await routeSchedulingTemplateCommandHandler.HandleDelete(id);  
 
         return Ok();
     }

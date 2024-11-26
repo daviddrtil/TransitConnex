@@ -14,31 +14,15 @@ public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandH
         return await routeTicketCommandHandler.HandleCreate(createCommand);
     }
 
-    [HttpPut]
-    public async Task<IActionResult> EditRouteTicket(RouteTicketUpdateCommand updateCommand)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteRouteTicket(Guid id)
     {
-        await routeTicketCommandHandler.HandleUpdate(updateCommand);
+        await routeTicketCommandHandler.HandleDelete(id);
 
         return Ok();
     }
 
-    [HttpPut("batch")]
-    public async Task<IActionResult> EditScheduledRoutes(List<RouteTicketUpdateCommand> updateCommand)
-    {
-        // TODO
-
-        return Ok();
-    }
-
-    [HttpDelete]
-    public async Task<IActionResult> DeleteRouteTicket(RouteTicketDeleteCommand deleteCommand)
-    {
-        await routeTicketCommandHandler.HandleDelete(deleteCommand);
-
-        return Ok();
-    }
-
-    [HttpDelete("batch")]
+    [HttpDelete("batch")] 
     public async Task<IActionResult> DeleteRouteTickets(List<Guid> deleteIds)
     {
         // await RouteTicketCommandHandler.HandleDelete(deleteCommand); // TODO

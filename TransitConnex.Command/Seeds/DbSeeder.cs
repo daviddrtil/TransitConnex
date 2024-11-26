@@ -20,14 +20,15 @@ public class DbSeeder
         // Synchronous seeding
         IconSeed.Seed(context);
         ServiceSeed.Seed(context);
+        
         LocationSeed.Seed(context);
         LineSeed.Seed(context);
         StopSeed.Seed(context);
         RouteSeed.Seed(context);
         RouteSchedulingTemplateSeed.Seed(context);
-        ScheduledRouteSeed.Seed(context);
         VehicleSeed.Seed(context);
         SeatSeed.Seed(context);
+        ScheduledRouteSeed.Seed(context);
         RouteTicketSeed.Seed(context);
     }
 }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Command.Repositories.Interfaces;
@@ -8,7 +9,7 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class IconService(IIconRepository iconRepository) : IIconService
+public class IconService(IMapper mapper ,IIconRepository iconRepository) : IIconService
 {
     public async Task<List<IconDto>> GetAllIcons()
     {
@@ -33,8 +34,7 @@ public class IconService(IIconRepository iconRepository) : IIconService
 
     public async Task<Icon> CreateIcon(IconCreateCommand createCommand)
     {
-        var newIcon = new Icon { Name = createCommand.Name, Svg = createCommand.Svg };
-
+        var newIcon = mapper.Map<Icon>(createCommand);
         await iconRepository.Add(newIcon);
 
         return newIcon;
@@ -49,18 +49,19 @@ public class IconService(IIconRepository iconRepository) : IIconService
             throw new KeyNotFoundException($"Icon with ID {updateCommand.Id} was not found.");
         }
 
-        await iconRepository.Update(icon, updateCommand);
+        icon = mapper.Map(updateCommand, icon);
+        await iconRepository.Update(icon);
 
         return icon;
     }
 
-    public async Task DeleteIcon(IconDeleteCommand deleteCommand) // TODO -> fails on delete cascade even tho i set it ot setNull??????
+    public async Task DeleteIcon(Guid id)
     {
-        var icon = await iconRepository.QueryById(deleteCommand.Id).FirstOrDefaultAsync();
+        var icon = await iconRepository.QueryById(id).FirstOrDefaultAsync();
 
         if (icon == null)
         {
-            throw new KeyNotFoundException($"Icon with ID {deleteCommand.Id} was not found.");
+            throw new KeyNotFoundException($"Icon with ID {id} was not found.");
         }
 
         await iconRepository.Delete(icon);

@@ -30,10 +30,10 @@ public class IconController(IconCommandHandler iconCommandHandler) : Controller
         return Ok();
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> DeleteIcon(IconDeleteCommand deleteCommand)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteIcon(Guid id)
     {
-        await iconCommandHandler.HandleDelete(deleteCommand);
+        await iconCommandHandler.HandleDelete(id);
 
         return Ok();
     }

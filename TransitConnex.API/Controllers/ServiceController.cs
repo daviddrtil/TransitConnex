@@ -23,9 +23,9 @@ public class ServiceController(ServiceCommandHandler serviceCommandHandler) : Co
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteService(ServiceDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteService(Guid id)
     {
-        await serviceCommandHandler.HandleDelete(deleteCommand);
+        await serviceCommandHandler.HandleDelete(id); 
 
         return Ok();
     }

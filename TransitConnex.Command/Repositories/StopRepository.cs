@@ -18,4 +18,10 @@ public class StopRepository : BaseRepository<Stop, StopUpdateCommand>, IStopRepo
     {
         return QueryAll().Where(x => x.Id == id);
     }
+
+    public async Task AddLocationStops(List<LocationStop> locationStops)
+    {
+        _db.LocationStops.AddRange(locationStops);
+        await _db.SaveChangesAsync();
+    }
 }

@@ -8,8 +8,6 @@ public class RouteTicket
     public DateTime ValidTo { get; set; }
     public Guid UserId { get; set; }
     public User? User { get; set; }
-    public Guid RouteId { get; set; }
-    public ScheduledRoute? Route { get; set; }
-    public Guid SeatId { get; set; }
-    public Seat? Seat { get; set; }
+    public Guid ScheduledRouteId { get; set; }
+    public ScheduledRoute? ScheduledRoute { get; set; }
 }

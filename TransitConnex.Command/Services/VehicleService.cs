@@ -8,7 +8,7 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleService
+public class VehicleService(IVehicleRepository vehicleRepository, ISeatRepository seatRepository) : IVehicleService
 {
     public async Task<List<VehicleDto>> GetAllVehicles()
     {
@@ -23,17 +23,11 @@ public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleServ
         // return (await _vehicleRepository.QueryById(id).ToDto().FirstOrDefaultAsync())!;
     }
 
-    public async Task<bool> VehicleExists(Guid id)
-    {
-        return await vehicleRepository.QueryById(id).AnyAsync();
-    }
-
     public async Task<Vehicle> CreateVehicle(VehicleCreateCommand createCommand)
     {
         // TODO -> iconId validation?
         var newVehicle = new Vehicle
         {
-            Id = Guid.NewGuid(),
             Label = createCommand.Label,
             Spz = createCommand.Spz,
             Manufacturer = createCommand.Manufacturer,
@@ -42,8 +36,30 @@ public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleServ
             IconId = createCommand.IconId,
             LineId = createCommand.LineId
         };
-
         await vehicleRepository.Add(newVehicle);
+
+        if (createCommand.NumberOfSeats != 0)
+        {
+            var newSeats = new List<Seat>();
+            var vagonId = 1;
+            for (int i = 1; i <= createCommand.NumberOfSeats; i++)
+            {
+                var newSeat = new Seat
+                {
+                    SeatNumber = i,
+                    VehicleId = newVehicle.Id,
+                    VagonNumber = createCommand.SeatsPerVagon > 0 ? vagonId : 0
+                };
+                newSeats.Add(newSeat);
+                
+                if (createCommand.SeatsPerVagon > 0 && i % createCommand.SeatsPerVagon == 0)
+                {
+                    vagonId++;
+                }
+            }
+            
+            await seatRepository.AddBatch(newSeats);
+        }
 
         return newVehicle;
     }
@@ -51,10 +67,12 @@ public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleServ
     public async Task<List<Vehicle>> CreateVehicles(List<VehicleCreateCommand> createCommands)
     {
         // TODO -> iconId validation? -> private method?
-        var createdVehicles = createCommands
-            .ConvertAll(createCommand => new Vehicle
+        var newVehicles = new List<Vehicle>();
+        var newSeats = new List<Seat>();
+        foreach (var createCommand in createCommands)
+        {
+            var newVehicle = new Vehicle
             {
-                Id = Guid.NewGuid(),
                 Label = createCommand.Label,
                 Spz = createCommand.Spz,
                 Manufacturer = createCommand.Manufacturer,
@@ -62,11 +80,40 @@ public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleServ
                 VehicleType = createCommand.VehicleType,
                 IconId = createCommand.IconId,
                 LineId = createCommand.LineId
-            });
+            };
+            newVehicles.Add(newVehicle);
 
-        await vehicleRepository.AddBatch(createdVehicles);
+            // if (createCommand.NumberOfSeats != 0)
+            // {
+            //     for (int i = 1; i <= createCommand.NumberOfSeats; i++)
+            //     {
+            //         var newSeat = new Seat
+            //         {
+            //              SeatNumber = i,
+            //              VehicleId = newVehicle.Id
+            //         }
+            //     }
+            // }
+        }
+        
+        // var createdVehicles = createCommands
+        //     .ConvertAll(createCommand => new Vehicle
+        //     {
+        //         Id = Guid.NewGuid(),
+        //         Label = createCommand.Label,
+        //         Spz = createCommand.Spz,
+        //         Manufacturer = createCommand.Manufacturer,
+        //         Capacity = createCommand.Capacity,
+        //         VehicleType = createCommand.VehicleType,
+        //         IconId = createCommand.IconId,
+        //         LineId = createCommand.LineId
+        //     });
 
-        return createdVehicles;
+        await vehicleRepository.AddBatch(newVehicles);
+        
+        // TODO -> seat creation
+
+        return newVehicles;
     }
 
     public async Task<Vehicle> EditVehicle(VehicleUpdateCommand editCommand)

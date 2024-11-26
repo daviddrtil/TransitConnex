@@ -18,5 +18,5 @@ public interface IIconService
 
     Task<Icon> EditIcon(IconUpdateCommand updateCommand);
 
-    Task DeleteIcon(IconDeleteCommand deleteCommand);
+    Task DeleteIcon(Guid id);
 }

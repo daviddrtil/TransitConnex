@@ -38,9 +38,9 @@ public class ScheduledRouteController(ScheduledRouteCommandHandler scheduledRout
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteScheduledRoute(ScheduledRouteDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteScheduledRoute(Guid id)
     {
-        await scheduledRouteCommandHandler.HandleDelete(deleteCommand);
+        await scheduledRouteCommandHandler.HandleDelete(id); 
 
         return Ok();
     }

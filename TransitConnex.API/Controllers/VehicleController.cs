@@ -34,10 +34,11 @@ public class VehicleController(
 
     [AuthorizedByAdmin]
     [HttpPost("batch")]
-    public async Task<Guid> CreateVehicles(List<VehicleCreateCommand> createCommands)
+    public async Task<List<Guid>> CreateVehicles(VehicleBatchCreateCommand createCommand)
     {
         // return await VehicleCommandHandler.HandleCreate(createCommand);
-        return new Guid(); // TODO
+        // return new Guid(); // TODO
+        return new List<Guid>();
     }
 
     [AuthorizedByAdmin]
@@ -60,10 +61,9 @@ public class VehicleController(
 
     [AuthorizedByAdmin]
     [HttpDelete]
-    public async Task<IActionResult> DeleteVehicle(VehicleDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteVehicle(Guid id)
     {
-        await vehicleCommandHandler.HandleDelete(deleteCommand);
-
+        await vehicleCommandHandler.HandleDelete(id); 
         return Ok();
     }
 

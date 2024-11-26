@@ -102,6 +102,7 @@ namespace TransitConnex.Command.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Label = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Latitude = table.Column<double>(type: "float", nullable: true),
                     Longitude = table.Column<double>(type: "float", nullable: true),
                     StopType = table.Column<int>(type: "int", nullable: false)
@@ -233,31 +234,8 @@ namespace TransitConnex.Command.Migrations
                         name: "FK_Service_Icon_IconId",
                         column: x => x.IconId,
                         principalTable: "Icon",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserLineFavourite",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LineId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserLineFavourite", x => new { x.UserId, x.LineId });
-                    table.ForeignKey(
-                        name: "FK_UserLineFavourite_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserLineFavourite_Line_LineId",
-                        column: x => x.LineId,
-                        principalTable: "Line",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,6 +246,8 @@ namespace TransitConnex.Command.Migrations
                     Label = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Spz = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Vin = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manufactured = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
                     VehicleType = table.Column<int>(type: "int", nullable: false),
                     IconId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -286,6 +266,37 @@ namespace TransitConnex.Command.Migrations
                         column: x => x.LineId,
                         principalTable: "Line",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserConnectionFavourite",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FromLocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ToLocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserConnectionFavourite", x => new { x.UserId, x.FromLocationId, x.ToLocationId });
+                    table.ForeignKey(
+                        name: "FK_UserConnectionFavourite_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserConnectionFavourite_Location_FromLocationId",
+                        column: x => x.FromLocationId,
+                        principalTable: "Location",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserConnectionFavourite_Location_ToLocationId",
+                        column: x => x.ToLocationId,
+                        principalTable: "Location",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -342,6 +353,7 @@ namespace TransitConnex.Command.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Direction = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DurationTime = table.Column<TimeSpan>(type: "time", nullable: false),
                     LineId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StartStopId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -468,8 +480,9 @@ namespace TransitConnex.Command.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StartTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    EndTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: true),
                     VehicleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RouteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -499,8 +512,7 @@ namespace TransitConnex.Command.Migrations
                     ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ValidTo = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RouteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SeatId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ScheduledRouteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -512,17 +524,11 @@ namespace TransitConnex.Command.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RouteTicket_ScheduledRoute_RouteId",
-                        column: x => x.RouteId,
+                        name: "FK_RouteTicket_ScheduledRoute_ScheduledRouteId",
+                        column: x => x.ScheduledRouteId,
                         principalTable: "ScheduledRoute",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RouteTicket_Seat_SeatId",
-                        column: x => x.SeatId,
-                        principalTable: "Seat",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -531,9 +537,9 @@ namespace TransitConnex.Command.Migrations
                 {
                     ScheduledRouteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SeatId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsBought = table.Column<bool>(type: "bit", nullable: false),
+                    RouteTicketId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ReservedUntil = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ReservedById = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ReservedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -542,6 +548,12 @@ namespace TransitConnex.Command.Migrations
                         name: "FK_ScheduledRouteSeat_AspNetUsers_ReservedById",
                         column: x => x.ReservedById,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ScheduledRouteSeat_RouteTicket_RouteTicketId",
+                        column: x => x.RouteTicketId,
+                        principalTable: "RouteTicket",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -628,19 +640,24 @@ namespace TransitConnex.Command.Migrations
                 column: "StopId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RouteTicket_RouteId",
+                name: "IX_RouteTicket_ScheduledRouteId",
                 table: "RouteTicket",
-                column: "RouteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RouteTicket_SeatId",
-                table: "RouteTicket",
-                column: "SeatId");
+                column: "ScheduledRouteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RouteTicket_UserId",
                 table: "RouteTicket",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seat_VehicleId",
+                table: "Seat",
+                column: "VehicleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Service_IconId",
+                table: "Service",
+                column: "IconId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScheduledRoute_RouteId",
@@ -658,24 +675,24 @@ namespace TransitConnex.Command.Migrations
                 column: "ReservedById");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ScheduledRouteSeat_RouteTicketId",
+                table: "ScheduledRouteSeat",
+                column: "RouteTicketId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ScheduledRouteSeat_SeatId",
                 table: "ScheduledRouteSeat",
                 column: "SeatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seat_VehicleId",
-                table: "Seat",
-                column: "VehicleId");
+                name: "IX_UserConnectionFavourite_FromLocationId",
+                table: "UserConnectionFavourite",
+                column: "FromLocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_IconId",
-                table: "Service",
-                column: "IconId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserLineFavourite_LineId",
-                table: "UserLineFavourite",
-                column: "LineId");
+                name: "IX_UserConnectionFavourite_ToLocationId",
+                table: "UserConnectionFavourite",
+                column: "ToLocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLocationFavourite_LocationId",
@@ -726,13 +743,10 @@ namespace TransitConnex.Command.Migrations
                 name: "RouteStop");
 
             migrationBuilder.DropTable(
-                name: "RouteTicket");
-
-            migrationBuilder.DropTable(
                 name: "ScheduledRouteSeat");
 
             migrationBuilder.DropTable(
-                name: "UserLineFavourite");
+                name: "UserConnectionFavourite");
 
             migrationBuilder.DropTable(
                 name: "UserLocationFavourite");
@@ -744,19 +758,22 @@ namespace TransitConnex.Command.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ScheduledRoute");
+                name: "RouteTicket");
 
             migrationBuilder.DropTable(
                 name: "Seat");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Location");
 
             migrationBuilder.DropTable(
                 name: "Service");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "ScheduledRoute");
 
             migrationBuilder.DropTable(
                 name: "Route");

@@ -21,10 +21,16 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
         return new Guid(); // TODO
     }
 
-    [HttpPost("reserve")]
+    [HttpPost("reserve")] // TODO -> move to ScheduledRoute schema
     public async Task ReserveSeats(SeatReservationCommand reserveCommand)
     {
         await seatCommandHandler.HandleSeatReservation(reserveCommand);
+    }
+    
+    [HttpPost("free")] // TODO -> move to ScheduledRoute schema
+    public async Task FreeSeats(SeatReservationCommand freeCommand)
+    {
+        await seatCommandHandler.HandleSeatFree(freeCommand);
     }
 
     [HttpPut]
@@ -44,9 +50,9 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteSeat(SeatDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteSeat(Guid id)
     {
-        await seatCommandHandler.HandleDelete(deleteCommand);
+        await seatCommandHandler.HandleDelete(id);
 
         return Ok();
     }

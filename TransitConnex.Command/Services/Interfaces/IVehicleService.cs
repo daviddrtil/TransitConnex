@@ -10,8 +10,6 @@ public interface IVehicleService
 
     Task<VehicleDto> GetVehicleById(Guid id);
 
-    Task<bool> VehicleExists(Guid id);
-
     Task<Vehicle> CreateVehicle(VehicleCreateCommand createCommand);
 
     Task<List<Vehicle>> CreateVehicles(List<VehicleCreateCommand> createCommands);

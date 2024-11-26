@@ -4,5 +4,5 @@ public interface IBaseCommandHandler<T>
 {
     public Task<Guid> HandleCreate(T command);
     public Task HandleUpdate(T command);
-    public Task HandleDelete(T command);
+    public Task HandleDelete(Guid id);
 }

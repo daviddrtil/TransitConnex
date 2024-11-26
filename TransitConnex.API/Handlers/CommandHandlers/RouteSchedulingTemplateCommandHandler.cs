@@ -16,7 +16,7 @@ public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateServi
             throw new InvalidCastException("Invalid command given, expected RouteSchedulingtemplateCreateCommand.");
         }
 
-        return new Guid();
+        return new Guid(); 
     }
 
     public async Task HandleUpdate(IRouteSchedulingTemplateCommand command)
@@ -27,11 +27,8 @@ public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateServi
         }
     }
 
-    public async Task HandleDelete(IRouteSchedulingTemplateCommand command)
+    public async Task HandleDelete(Guid id) 
     {
-        if (command is not RouteSchedulingTemplateDeleteCommand)
-        {
-            throw new InvalidCastException("Invalid command given, expected RouteSchedulingtemplateDeleteCommand.");
-        }
+
     }
 }

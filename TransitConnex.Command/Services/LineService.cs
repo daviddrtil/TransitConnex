@@ -1,6 +1,8 @@
+using TransitConnex.Command.Commands.Line;
 using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Line;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
@@ -21,12 +23,36 @@ public class LineService(ILineRepository lineRepository) : ILineService
         throw new NotImplementedException();
     }
 
-    public Task<LineDto> CreateLine(LineCreateDto lineDto)
+    public async Task<Line> CreateLine(LineCreateCommand createCommand)
     {
-        throw new NotImplementedException();
+        var newLine = new Line
+        {
+            Label = createCommand.Label, Name = createCommand.Name, LineType = createCommand.LineType,
+        };
+        
+        await lineRepository.Add(newLine);
+        
+        return newLine;
     }
 
-    public Task<LineDto> EditLine(Guid id, LineCreateDto editedLine)
+    public async Task<List<Line>> CreateLines(List<LineCreateCommand> createCommands)
+    {
+        var newLines = new List<Line>();
+        foreach (var createCommand in createCommands)
+        {
+            var newLine = new Line
+            {
+                Label = createCommand.Label, Name = createCommand.Name, LineType = createCommand.LineType,
+            };
+            newLines.Add(newLine);
+        }
+        
+        await lineRepository.AddBatch(newLines);
+        
+        return newLines;
+    }
+
+    public Task<Line> EditLine(LineUpdateCommand editCommand)
     {
         throw new NotImplementedException();
     }

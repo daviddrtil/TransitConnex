@@ -1,18 +1,15 @@
+using TransitConnex.Command.Commands.ScheduledRoute;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IScheduledRouteService
 {
     Task<List<ScheduledRouteDto>> GetAllScheduledRoutes();
-
     Task<ScheduledRouteDto> GetScheduledRouteById(Guid id);
 
-    Task<bool> ScheduledRouteExists(Guid id);
-
-    Task<ScheduledRouteDto> CreateScheduledRoute(ScheduledRouteCreateDto scheduledRouteDto);
-
-    Task<ScheduledRouteDto> EditScheduledRoute(Guid id, ScheduledRouteCreateDto editedScheduledRoute);
-
+    Task<ScheduledRoute> CreateScheduledRoute(ScheduledRouteCreateCommand createCommand);
+    Task<ScheduledRoute> EditScheduledRoute(ScheduledRouteUpdateCommand editCommand);
     Task DeleteScheduledRoute(Guid id);
 }

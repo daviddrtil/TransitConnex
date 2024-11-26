@@ -1,9 +1,14 @@
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using TransitConnex.Command.Commands.ScheduledRoute;
+using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class ScheduledRouteService(IRouteService routeService) : IScheduledRouteService
+public class ScheduledRouteService(IMapper mapper, IScheduledRouteRepository scheduledRouteRepository, IRouteRepository routeRepository, IVehicleRepository vehicleRepository) : IScheduledRouteService
 {
     public Task<List<ScheduledRouteDto>> GetAllScheduledRoutes()
     {
@@ -15,22 +20,49 @@ public class ScheduledRouteService(IRouteService routeService) : IScheduledRoute
         throw new NotImplementedException();
     }
 
-    public Task<bool> ScheduledRouteExists(Guid id)
+    public async Task<ScheduledRoute> CreateScheduledRoute(ScheduledRouteCreateCommand createCommand)
     {
-        throw new NotImplementedException();
+        var route = await routeRepository.QueryById(createCommand.RouteId).FirstOrDefaultAsync();
+        if (route == null)
+        {
+            throw new KeyNotFoundException($"Route for specific new scheduled route with ID: {createCommand.RouteId} is not found.");
+        }
+
+        if (!await vehicleRepository.Exists(createCommand.VehicleId))
+        {
+            throw new KeyNotFoundException($"Vehicle for specific new scheduled route with ID: {createCommand.VehicleId} is not found.");
+        }
+
+        var newScheduled = new ScheduledRoute
+        {
+            Price = createCommand.Price,
+            StartTime = createCommand.StartTime,
+            EndTime = createCommand.StartTime.Add(route.DurationTime),
+            RouteId = createCommand.RouteId,
+            VehicleId = createCommand.VehicleId,
+        };
+        await scheduledRouteRepository.Add(newScheduled);
+        
+        return newScheduled;
     }
 
-    public Task<ScheduledRouteDto> CreateScheduledRoute(ScheduledRouteCreateDto scheduledRouteDto)
+    public async Task<ScheduledRoute> EditScheduledRoute(ScheduledRouteUpdateCommand editCommand)
     {
-        throw new NotImplementedException();
+        var scheduled = await scheduledRouteRepository.QueryById(editCommand.Id).FirstOrDefaultAsync();
+        if (scheduled == null)
+        {
+            throw new KeyNotFoundException($"Scheduled route with ID: {editCommand.Id} is not found.");
+        }
+        
+        scheduled = mapper.Map(editCommand, scheduled);
+        await scheduledRouteRepository.Update(scheduled);
+        
+        return scheduled;
     }
+    
+    // TODO -> remove/add stop to scheduledRoute?
 
-    public Task<ScheduledRouteDto> EditScheduledRoute(Guid id, ScheduledRouteCreateDto editedScheduledRoute)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteScheduledRoute(Guid id)
+    public Task DeleteScheduledRoute(Guid id) // TODO -> will be complicated? or just delete and refund
     {
         throw new NotImplementedException();
     }

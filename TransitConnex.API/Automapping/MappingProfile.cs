@@ -1,5 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver.GeoJsonObjectModel;
+using TransitConnex.Command.Commands.Icon;
+using TransitConnex.Command.Commands.Location;
+using TransitConnex.Command.Commands.ScheduledRoute;
+using TransitConnex.Command.Commands.Seat;
+using TransitConnex.Command.Commands.Service;
+using TransitConnex.Command.Commands.Stop;
+using TransitConnex.Command.Commands.User;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.Location;
@@ -8,13 +16,14 @@ using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
 
-namespace TransitConnex.Domain.Automapping;
+namespace TransitConnex.API.Automapping;
 
 public class MappingProfile : Profile
 {
     public MappingProfile()
     {
         MapEnums();
+        MapModelsToCommands();
         MapModelsToDTOs();
         MapModelsToCollections();
         MapCollectionsToDTOs();
@@ -33,6 +42,24 @@ public class MappingProfile : Profile
 
         CreateMap<int, VehicleTypeEnum>().ConvertUsing(src => (VehicleTypeEnum)src);
         CreateMap<VehicleTypeEnum, int>().ConvertUsing(src => (int)src);
+    }
+
+    private void MapModelsToCommands()
+    {
+        CreateMap<LocationCreateCommand, Location>();
+        CreateMap<IconCreateCommand, Icon>();
+        CreateMap<ServiceCreateCommand, Service>();
+        CreateMap<StopCreateCommand, Stop>();
+        CreateMap<SeatCreateCommand, Seat>();
+        // CreateMap<UserCreateCommand, User>();
+        
+        CreateMap<LocationUpdateCommand, Location>();
+        CreateMap<IconUpdateCommand, Icon>();
+        CreateMap<ServiceUpdateCommand, Service>();
+        CreateMap<UserUpdateCommand, User>();
+        CreateMap<StopUpdateCommand, Stop>();
+        CreateMap<SeatUpdateCommand, Seat>();
+        CreateMap<ScheduledRouteUpdateCommand, ScheduledRoute>();
     }
 
     private void MapModelsToDTOs()
