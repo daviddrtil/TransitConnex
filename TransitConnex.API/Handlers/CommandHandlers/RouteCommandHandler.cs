@@ -26,11 +26,8 @@ public class RouteCommandHandler(IRouteService routeService) : IBaseCommandHandl
         }
     }
 
-    public async Task HandleDelete(IRouteCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        if (command is not RouteDeleteCommand)
-        {
-            throw new InvalidCastException("Invalid command given, expected RouteDeleteCommand.");
-        }
+
     }
 }

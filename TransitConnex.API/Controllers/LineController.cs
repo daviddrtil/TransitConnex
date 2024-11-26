@@ -15,10 +15,9 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     }
 
     [HttpPost("batch")]
-    public async Task<Guid> CreateLines(List<LineCreateCommand> createCommands)
+    public async Task<List<Guid>> CreateLines(LineBatchCreateCommand createCommand)
     {
-        // return await lineCommandHandler.HandleCreate(createCommand);
-        return new Guid(); // TODO
+        return await lineCommandHandler.HandleBatchCreate(createCommand);
     }
 
     [HttpPut]
@@ -32,15 +31,15 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     [HttpPut("batch")]
     public async Task<IActionResult> EditScheduledRoutes(List<LineUpdateCommand> updateCommand)
     {
-        // TODO
+        // TODO -> is needed?
 
         return Ok();
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> DeleteLine(LineDeleteCommand deleteCommand)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteLine(Guid id)
     {
-        await lineCommandHandler.HandleDelete(deleteCommand);
+        await lineCommandHandler.HandleDelete(id);
 
         return Ok();
     }

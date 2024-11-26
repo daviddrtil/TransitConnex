@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TransitConnex.API.Automapping;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Middleware;
 using TransitConnex.Command.Data;
 using TransitConnex.Command.Seeds;
 using TransitConnex.Command;
-using TransitConnex.Domain.Automapping;
 using TransitConnex.Domain.Models;
 using TransitConnex.Query;
 

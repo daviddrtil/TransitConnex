@@ -234,6 +234,9 @@ namespace TransitConnex.Command.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Direction")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<TimeSpan>("DurationTime")
                         .HasColumnType("time");
 
@@ -321,10 +324,7 @@ namespace TransitConnex.Command.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
-                    b.Property<Guid>("RouteId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SeatId")
+                    b.Property<Guid>("ScheduledRouteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
@@ -338,9 +338,7 @@ namespace TransitConnex.Command.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RouteId");
-
-                    b.HasIndex("SeatId");
+                    b.HasIndex("ScheduledRouteId");
 
                     b.HasIndex("UserId");
 
@@ -353,14 +351,17 @@ namespace TransitConnex.Command.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeSpan>("EndTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float?>("Price")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("RouteId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("VehicleId")
                         .HasColumnType("uniqueidentifier");
@@ -382,18 +383,20 @@ namespace TransitConnex.Command.Migrations
                     b.Property<Guid>("SeatId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsBought")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("ReservedById")
+                    b.Property<Guid?>("ReservedById")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ReservedUntil")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("RouteTicketId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("ScheduledRouteId", "SeatId");
 
                     b.HasIndex("ReservedById");
+
+                    b.HasIndex("RouteTicketId");
 
                     b.HasIndex("SeatId");
 
@@ -449,6 +452,9 @@ namespace TransitConnex.Command.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Label")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Latitude")
                         .HasColumnType("float");
@@ -545,19 +551,24 @@ namespace TransitConnex.Command.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("TransitConnex.Domain.Models.UserLineFavourite", b =>
+            modelBuilder.Entity("TransitConnex.Domain.Models.UserConnectionFavourite", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("LineId")
+                    b.Property<Guid>("FromLocationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserId", "LineId");
+                    b.Property<Guid>("ToLocationId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("LineId");
+                    b.HasKey("UserId", "FromLocationId", "ToLocationId");
 
-                    b.ToTable("UserLineFavourite");
+                    b.HasIndex("FromLocationId");
+
+                    b.HasIndex("ToLocationId");
+
+                    b.ToTable("UserConnectionFavourite");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.UserLocationFavourite", b =>
@@ -593,6 +604,9 @@ namespace TransitConnex.Command.Migrations
                     b.Property<Guid?>("LineId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("Manufactured")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Manufacturer")
                         .HasColumnType("nvarchar(max)");
 
@@ -601,6 +615,9 @@ namespace TransitConnex.Command.Migrations
 
                     b.Property<int>("VehicleType")
                         .HasColumnType("int");
+
+                    b.Property<string>("Vin")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -755,16 +772,10 @@ namespace TransitConnex.Command.Migrations
 
             modelBuilder.Entity("TransitConnex.Domain.Models.RouteTicket", b =>
                 {
-                    b.HasOne("TransitConnex.Domain.Models.ScheduledRoute", "Route")
+                    b.HasOne("TransitConnex.Domain.Models.ScheduledRoute", "ScheduledRoute")
                         .WithMany()
-                        .HasForeignKey("RouteId")
+                        .HasForeignKey("ScheduledRouteId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TransitConnex.Domain.Models.Seat", "Seat")
-                        .WithMany()
-                        .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TransitConnex.Domain.Models.User", "User")
@@ -773,9 +784,7 @@ namespace TransitConnex.Command.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Route");
-
-                    b.Navigation("Seat");
+                    b.Navigation("ScheduledRoute");
 
                     b.Navigation("User");
                 });
@@ -804,8 +813,12 @@ namespace TransitConnex.Command.Migrations
                     b.HasOne("TransitConnex.Domain.Models.User", "ReservedBy")
                         .WithMany()
                         .HasForeignKey("ReservedById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TransitConnex.Domain.Models.RouteTicket", "RouteTicket")
+                        .WithMany()
+                        .HasForeignKey("RouteTicketId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("TransitConnex.Domain.Models.ScheduledRoute", "ScheduledRoute")
                         .WithMany()
@@ -820,6 +833,8 @@ namespace TransitConnex.Command.Migrations
                         .IsRequired();
 
                     b.Navigation("ReservedBy");
+
+                    b.Navigation("RouteTicket");
 
                     b.Navigation("ScheduledRoute");
 
@@ -841,17 +856,24 @@ namespace TransitConnex.Command.Migrations
                 {
                     b.HasOne("TransitConnex.Domain.Models.Icon", "Icon")
                         .WithMany()
-                        .HasForeignKey("IconId");
+                        .HasForeignKey("IconId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Icon");
                 });
 
-            modelBuilder.Entity("TransitConnex.Domain.Models.UserLineFavourite", b =>
+            modelBuilder.Entity("TransitConnex.Domain.Models.UserConnectionFavourite", b =>
                 {
-                    b.HasOne("TransitConnex.Domain.Models.Line", "Line")
+                    b.HasOne("TransitConnex.Domain.Models.Location", "FromLocation")
                         .WithMany()
-                        .HasForeignKey("LineId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("FromLocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TransitConnex.Domain.Models.Location", "ToLocation")
+                        .WithMany()
+                        .HasForeignKey("ToLocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TransitConnex.Domain.Models.User", "User")
@@ -860,7 +882,9 @@ namespace TransitConnex.Command.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Line");
+                    b.Navigation("FromLocation");
+
+                    b.Navigation("ToLocation");
 
                     b.Navigation("User");
                 });

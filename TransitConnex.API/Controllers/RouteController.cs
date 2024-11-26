@@ -30,9 +30,9 @@ public class RouteController(RouteCommandHandler routeCommandHandler) : Controll
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteRoute(RouteDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteRoute(Guid id)
     {
-        await routeCommandHandler.HandleDelete(deleteCommand);
+        await routeCommandHandler.HandleDelete(id);
 
         return Ok();
     }

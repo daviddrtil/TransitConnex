@@ -12,11 +12,8 @@ public class UserCommandHandler(IUserService userService) : IBaseCommandHandler<
         {
             throw new InvalidCastException("Invalid command given, expected UserCreateCommand.");
         }
-
-        // TODO -> validation for already existing user? -> prolly in service
-
+        
         var created = await userService.CreateUser(createCommand);
-
         return created.Id;
     }
 
@@ -30,13 +27,57 @@ public class UserCommandHandler(IUserService userService) : IBaseCommandHandler<
         await userService.EditUser(updateCommand);
     }
 
-    public async Task HandleDelete(IUserCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        if (command is not UserDeleteCommand deleteCommand)
-        {
-            throw new InvalidCastException("Invalid command given, expected UserDeleteCommand.");
-        }
+        await userService.DeleteUser(id);
+    }
+    
+    public async Task HandleRestore(Guid id)
+    {
+        await userService.RestoreUser(id);
+    }
 
-        await userService.DeleteUser(deleteCommand);
+    public async Task HandleLikeLocation(IUserCommand command)
+    {
+        if (command is not UserLikeLocationCommand likeCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(UserLikeLocationCommand)}.");
+        }
+        
+        await userService.LikeLocation(likeCommand);
+        // TODO -> sync with mongo
+    }
+
+    public async Task HandleLikeConnection(IUserCommand command)
+    {
+        if (command is not UserLikeConnectionCommand likeCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(UserLikeConnectionCommand)}.");
+        }
+        
+        await userService.LikeConnection(likeCommand);
+        // TODO -> sync with mongo
+    }
+    
+    public async Task HandleDislikeLocation(IUserCommand command)
+    {
+        if (command is not UserLikeLocationCommand likeCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(UserLikeLocationCommand)}.");
+        }
+        
+        await userService.DislikeLocation(likeCommand);
+        // TODO -> sync with mongo
+    }
+
+    public async Task HandleDislikeConnection(IUserCommand command)
+    {
+        if (command is not UserLikeConnectionCommand likeCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(UserLikeConnectionCommand)}.");
+        }
+        
+        await userService.DislikeConnection(likeCommand);
+        // TODO -> sync with mongo
     }
 }

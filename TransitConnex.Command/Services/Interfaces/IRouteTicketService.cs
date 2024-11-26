@@ -1,4 +1,6 @@
+using TransitConnex.Command.Commands.RouteTicket;
 using TransitConnex.Domain.DTOs.RouteTicket;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services.Interfaces;
 
@@ -10,9 +12,9 @@ public interface IRouteTicketService
 
     Task<bool> RouteTicketExists(Guid id);
 
-    Task<RouteTicketDto> CreateRouteTicket(RouteTicketCreateDto routeTicketDto);
+    Task<RouteTicket> CreateRouteTicket(RouteTicketCreateCommand createCommand);
 
-    Task<RouteTicketDto> EditRouteTicket(Guid id, RouteTicketCreateDto editedRouteTicket);
+    Task<RouteTicket> EditRouteTicket(RouteTicketUpdateCommand editCommand);
 
     Task DeleteRouteTicket(Guid id);
 }

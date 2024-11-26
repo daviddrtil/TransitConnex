@@ -184,7 +184,35 @@ public class StopSeed
                 Latitude = 49.197866314269035,
                 Longitude = 16.607127877171724,
                 StopType = StopTypeEnum.TRAM
-            }
+            },
+            new()
+            {
+                Name = "Přerov žst.",
+                Latitude = 49.44776753919592, 
+                Longitude = 17.44583561888692,
+                StopType = StopTypeEnum.TRAIN 
+            },
+            new()
+            {
+                Name = "Brno hln.",
+                Latitude = 49.19099098044296, 
+                Longitude = 16.612740388729577,
+                StopType = StopTypeEnum.TRAIN
+            },
+            new()
+            {
+                Name = "Vyškov, železniční Stanice",
+                Latitude = 49.27819162530004, 
+                Longitude = 16.99232046927684,
+                StopType = StopTypeEnum.TRAIN
+            },
         };
+
+        foreach (var stop in stopsToBeSeeded)
+        {
+            context.Stops.Add(stop);
+        }
+        
+        context.SaveChanges();
     }
 }

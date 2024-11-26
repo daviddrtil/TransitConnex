@@ -6,4 +6,6 @@ namespace TransitConnex.Command.Repositories.Interfaces;
 public interface IStopRepository : IBaseRepository<Stop, StopUpdateCommand>
 {
     IQueryable<Stop> QueryById(Guid id);
+
+    Task AddLocationStops(List<LocationStop> locationStops);
 }

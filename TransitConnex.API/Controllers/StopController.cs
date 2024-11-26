@@ -9,16 +9,15 @@ namespace TransitConnex.API.Controllers;
 public class StopController(StopCommandHandler stopCommandHandler) : Controller
 {
     [HttpPost]
-    public async Task<Guid> CreateStop(StopCreateCommand createCommand)
+    public async Task<ActionResult<Guid>> CreateStop(StopCreateCommand createCommand)
     {
         return await stopCommandHandler.HandleCreate(createCommand);
     }
 
     [HttpPost("batch")]
-    public async Task<Guid> CreateStops(List<StopCreateCommand> createCommands)
+    public async Task<ActionResult<List<Guid>>> CreateStops(StopBatchCreateCommand createCommands)
     {
-        // return await StopCommandHandler.HandleCreate(createCommand);
-        return new Guid(); // TODO
+        return await stopCommandHandler.HandleBatchCreate(createCommands);
     }
 
     [HttpPut]
@@ -38,9 +37,9 @@ public class StopController(StopCommandHandler stopCommandHandler) : Controller
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteStop(StopDeleteCommand deleteCommand)
+    public async Task<IActionResult> DeleteStop(Guid id)
     {
-        await stopCommandHandler.HandleDelete(deleteCommand);
+        await stopCommandHandler.HandleDelete(id); 
 
         return Ok();
     }

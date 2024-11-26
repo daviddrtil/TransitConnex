@@ -4,6 +4,7 @@ public class Route
 {
     public Guid Id { get; set; }
     public string? Name { get; set; }
+    public string? Direction { get; set; }
     public TimeSpan DurationTime { get; set; }
     public Guid LineId { get; set; }
     public Line? Line { get; set; }

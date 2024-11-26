@@ -18,6 +18,7 @@ public static class ConfigurateServices
         services.AddScoped<IRouteSchedulingTemplateRepository, RouteSchedulingTemplateRepository>();
         services.AddScoped<IRouteTicketRepository, RouteTicketRepository>();
         services.AddScoped<IScheduledRouteRepository, ScheduledRouteRepository>();
+        services.AddScoped<ISeatRepository, SeatRepository>();
         services.AddScoped<IServiceRepository, ServiceRepository>();
         services.AddScoped<IStopRepository, StopRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
@@ -33,6 +34,7 @@ public static class ConfigurateServices
         services.AddScoped<IRouteSchedulingTemplateService, RouteSchedulingTemplateService>();
         services.AddScoped<IRouteTicketService, RouteTicketService>();
         services.AddScoped<IScheduledRouteService, ScheduledRouteService>();
+        services.AddScoped<ISeatService, SeatService>();
         services.AddScoped<IServiceService, ServiceService>();
         services.AddScoped<IStopService, StopService>();
         services.AddScoped<IUserService, UserService>();

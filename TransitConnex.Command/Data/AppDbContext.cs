@@ -26,7 +26,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     public required DbSet<ScheduledRouteSeat> ScheduledRouteSeats { get; set; }
     public required DbSet<RouteTicket> RouteTickets { get; set; }
     public required DbSet<UserLocationFavourite> UserLocationFavourites { get; set; }
-    public required DbSet<UserLineFavourite> UserLineFavourites { get; set; }
+    public required DbSet<UserConnectionFavourite> UserConnectionFavourites { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -92,21 +92,21 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany()
             .HasForeignKey(srs => srs.ReservedById)
             .OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<ScheduledRouteSeat>()
+            .HasOne(srs => srs.RouteTicket)
+            .WithMany()
+            .HasForeignKey(srs => srs.RouteTicketId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.Entity<RouteTicket>()
-            .HasOne(rt => rt.Route)
+            .HasOne(rt => rt.ScheduledRoute)
             .WithMany()
-            .HasForeignKey(rt => rt.RouteId)
+            .HasForeignKey(rt => rt.ScheduledRouteId)
             .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<RouteTicket>()
             .HasOne(rt => rt.User)
             .WithMany()
             .HasForeignKey(rt => rt.UserId)
-            .OnDelete(DeleteBehavior.Restrict);
-        builder.Entity<RouteTicket>()
-            .HasOne(rt => rt.Seat)
-            .WithMany()
-            .HasForeignKey(rt => rt.SeatId)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.Entity<VehicleOfferedService>()
@@ -121,6 +121,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany()
             .HasForeignKey(vs => vs.ServiceId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.Entity<Service>()
+            .HasOne(sv => sv.Icon)
+            .WithMany()
+            .HasForeignKey(sv => sv.IconId)
+            .OnDelete(DeleteBehavior.SetNull);
 
         builder.Entity<UserLocationFavourite>()
             .HasKey(ulf => new { ulf.UserId, ulf.LocationId });
@@ -135,17 +141,30 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .HasForeignKey(ulf => ulf.LocationId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Entity<UserLineFavourite>()
-            .HasKey(ulf => new { ulf.UserId, ulf.LineId });
-        builder.Entity<UserLineFavourite>()
+        // builder.Entity<UserLineFavourite>()
+        //     .HasKey(ulf => new { ulf.UserId, ulf.LineId });
+        builder.Entity<UserConnectionFavourite>()
+            .HasKey(ulf => new { ulf.UserId, ulf.FromLocationId, ulf.ToLocationId });
+        builder.Entity<UserConnectionFavourite>()
             .HasOne(ulf => ulf.User)
             .WithMany()
             .HasForeignKey(ulf => ulf.UserId)
             .OnDelete(DeleteBehavior.Cascade);
-        builder.Entity<UserLineFavourite>()
-            .HasOne(ulf => ulf.Line)
+        // builder.Entity<UserLineFavourite>()
+        //     .HasOne(ulf => ulf.Line)
+        //     .WithMany()
+        //     .HasForeignKey(ulf => ulf.LineId)
+        //     .OnDelete(DeleteBehavior.Cascade);
+        // TODO -> why was this failing with cascade?
+        builder.Entity<UserConnectionFavourite>()
+            .HasOne(ulf => ulf.ToLocation)
             .WithMany()
-            .HasForeignKey(ulf => ulf.LineId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey(ulf => ulf.ToLocationId)
+            .OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<UserConnectionFavourite>()
+            .HasOne(ulf => ulf.FromLocation)
+            .WithMany()
+            .HasForeignKey(ulf => ulf.FromLocationId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

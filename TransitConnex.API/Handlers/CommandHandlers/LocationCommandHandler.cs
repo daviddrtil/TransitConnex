@@ -6,28 +6,41 @@ namespace TransitConnex.API.Handlers.CommandHandlers;
 
 public class LocationCommandHandler(ILocationService locationService) : IBaseCommandHandler<ILocationCommand>
 {
-    private readonly ILocationService _locationService = locationService;
-
     public async Task<Guid> HandleCreate(ILocationCommand command)
     {
-        if (command is not LocationCreateCommand)
+        if (command is not LocationCreateCommand createCommand)
         {
-        }
+            throw new InvalidCastException($"Invalid command given, expected {nameof(LocationCreateCommand)}.");
 
-        return new Guid();
+        }
+        
+        var created = await locationService.CreateLocation(createCommand);
+        return created.Id;
+    }
+
+    public async Task<List<Guid>> HandleBatchCreate(ILocationCommand command)
+    {
+        if (command is not LocationBatchCreateCommand createCommands)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(LocationBatchCreateCommand)}.");
+        }
+        
+        var created = await locationService.CreateLocations(createCommands.Locations);
+        return created.Select(x => x.Id).ToList();
     }
 
     public async Task HandleUpdate(ILocationCommand command)
     {
-        if (command is not LocationUpdateCommand)
+        if (command is not LocationUpdateCommand updateCommand)
         {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(LocationUpdateCommand)}.");
         }
+        
+        await locationService.EditLocation(updateCommand);
     }
 
-    public async Task HandleDelete(ILocationCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        if (command is not LocationDeleteCommand)
-        {
-        }
+        await locationService.DeleteLocation(id);
     }
 }

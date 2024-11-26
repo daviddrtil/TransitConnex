@@ -16,5 +16,12 @@ public interface IUserService
 
     Task<User> EditUser(UserUpdateCommand updateCommand);
 
-    Task DeleteUser(UserDeleteCommand deleteCommand);
+    Task DeleteUser(Guid id);
+
+    Task RestoreUser(Guid id);
+    
+    Task LikeLocation(UserLikeLocationCommand likeCommand);
+    Task LikeConnection(UserLikeConnectionCommand likeCommand);
+    Task DislikeLocation(UserLikeLocationCommand likeCommand);
+    Task DislikeConnection(UserLikeConnectionCommand likeCommand);
 }

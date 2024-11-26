@@ -1,4 +1,6 @@
+using TransitConnex.Command.Commands.Line;
 using TransitConnex.Domain.DTOs.Line;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services.Interfaces;
 
@@ -10,9 +12,11 @@ public interface ILineService
 
     Task<bool> LineExists(Guid id);
 
-    Task<LineDto> CreateLine(LineCreateDto lineDto);
+    Task<Line> CreateLine(LineCreateCommand createCommand);
+    
+    Task<List<Line>> CreateLines(List<LineCreateCommand> createCommands);
 
-    Task<LineDto> EditLine(Guid id, LineCreateDto editedLine);
+    Task<Line> EditLine(LineUpdateCommand editCommand);
 
     Task DeleteLine(Guid id);
 }

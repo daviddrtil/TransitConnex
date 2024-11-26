@@ -12,7 +12,7 @@ public class VehicleCommandHandler(IVehicleService vehicleService, IVehicleMongo
     {
         if (command is not VehicleCreateCommand createCommand)
         {
-            throw new InvalidCastException("Invalid command given, expected VehicleCreatedCommand.");
+            throw new InvalidCastException($"Invalid command given, expected {nameof(VehicleCreateCommand)}.");
         }
 
         var newVehicle = await vehicleService.CreateVehicle(createCommand);
@@ -20,7 +20,22 @@ public class VehicleCommandHandler(IVehicleService vehicleService, IVehicleMongo
 
         // TODO -> sync with mongo
 
-        return new Guid();
+        return newVehicle.Id; 
+    }
+    
+    public async Task<List<Guid>> HandleBatchCreate(IVehicleCommand command)
+    {
+        if (command is not VehicleBatchCreateCommand createCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(VehicleBatchCreateCommand)}.");
+        }
+        
+        var newVehicles = await vehicleService.CreateVehicles(createCommand.Vehicles);
+        // var id = await vehicleMongoService.Create(newVehicle);
+        //
+        // // TODO -> sync with mongo
+    
+        return newVehicles.Select(v => v.Id).ToList();
     }
 
     public async Task HandleUpdate(IVehicleCommand command)
@@ -35,13 +50,8 @@ public class VehicleCommandHandler(IVehicleService vehicleService, IVehicleMongo
         // TODO -> sync with mongo
     }
 
-    public async Task HandleDelete(IVehicleCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        if (command is not VehicleDeleteCommand deleteCommand)
-        {
-            throw new InvalidCastException("Invalid command given, expected VehicleDeleteCommand.");
-        }
-
-        await vehicleService.DeleteVehicle(deleteCommand.Id);
+        await vehicleService.DeleteVehicle(id);
     }
 }

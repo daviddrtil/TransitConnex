@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Commands.Seat;
 using TransitConnex.Command.Repositories.Interfaces;
@@ -7,7 +8,7 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class SeatService(ISeatRepository seatRepository, IScheduledRouteRepository scheduledRouteRepository) : ISeatService
+public class SeatService(IMapper mapper, ISeatRepository seatRepository, IScheduledRouteRepository scheduledRouteRepository, IVehicleRepository vehicleRepository) : ISeatService
 {
     public Task<List<SeatDto>> GetAllSeats()
     {
@@ -26,51 +27,76 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
 
     public async Task<Seat> CreateSeat(SeatCreateCommand createCommand)
     {
-        var newSeat = new Seat
+        if (!await vehicleRepository.Exists(createCommand.VehicleId))
         {
-            SeatNumber = createCommand.SeatNumber,
-            VagonNumber = createCommand.VagonNumber,
-            VehicleId = createCommand.VehicleId
-        };
-
+            throw new KeyNotFoundException($"Seats vehicle with id: {createCommand.VehicleId} does not exist");
+        }
+        
+        var newSeat = mapper.Map<Seat>(createCommand);
         await seatRepository.Add(newSeat);
 
         return newSeat;
     }
 
-    public Task<List<Seat>> CreateSeats(List<SeatCreateCommand> createCommands)
+    public async Task<List<Seat>> CreateSeats(List<SeatCreateCommand> createCommands)
     {
-        throw new NotImplementedException();
+        // TODO vehicle validations
+        // if(createCommands.Any(async x => !await vehicleRepository.Exists(x.VehicleId)))
+        
+        var newSeats = mapper.Map<List<Seat>>(createCommands);
+        await seatRepository.AddBatch(newSeats);
+        
+        return newSeats;
     }
 
-    public async Task ReserveSeats(SeatReservationCommand reservationCommands)
+    // TODO -> Init reserve will try to reserve all seats given from FE (for count of tickets to buy)
+    // Other reserves will always contain only one seat -> picking other seats
+        // user fake unlocks reserved seat, picks other, we try to reserve if success we free fake unlocked
+        // but that is FE logic so we dont care
+    public async Task ReserveSeats(SeatReservationCommand reservationCommands) // TODO -> add check if seats are valid for scheduledroute
     {
-        var scheduledRoute = await scheduledRouteRepository.QueryById(reservationCommands.ScheduledRouteId).FirstOrDefaultAsync();
-
-        if (scheduledRoute == null)
+        if (!await scheduledRouteRepository.Exists(reservationCommands.ScheduledRouteId))
         {
-            throw new KeyNotFoundException($"ScheduledRoute with ID: {reservationCommands.ScheduledRouteId} not found.");
+            throw new KeyNotFoundException($"ScheduledRoute with ID: {reservationCommands.ScheduledRouteId} not found."); 
         }
 
-        var availableSeats = await seatRepository.QueryAvailableSeats(scheduledRoute, reservationCommands.SeatIds);
+        // TODO -> sent timeLeft from FE? for reservation
+        var availableSeats = await seatRepository.QueryAvailableSeats(reservationCommands.ScheduledRouteId, reservationCommands.SeatIds);
 
         if (availableSeats.Count != reservationCommands.SeatIds.Count)
         {
             var notAvailableSeats = reservationCommands.SeatIds.Except(availableSeats.Select(s => s.Id));
             throw new Exception($"Seats with given IDs: {string.Join(", ", notAvailableSeats)} are not available.");
         }
-
+        
         var reservations = availableSeats.Select(seat => new ScheduledRouteSeat
         {
             SeatId = seat.Id,
-            ScheduledRouteId = scheduledRoute.Id,
+            ScheduledRouteId = reservationCommands.ScheduledRouteId,
             ReservedById = reservationCommands.UserId,
-            ReservedUntil = DateTime.Now.Add(new TimeSpan(900)),
-            IsBought = false
+            ReservedUntil = DateTime.Now.AddMinutes(15),
+            RouteTicket = null
         })
             .ToList();
 
-        await seatRepository.AddReservations(reservations);
+        await seatRepository.UpsertReservations(reservations);
+    }
+
+    public async Task FreeSeats(SeatReservationCommand reservationCommands)
+    {
+        if (!await scheduledRouteRepository.Exists(reservationCommands.ScheduledRouteId))
+        {
+            throw new KeyNotFoundException($"ScheduledRoute with ID: {reservationCommands.ScheduledRouteId} not found.");
+        }
+        
+        var reservations = await seatRepository.QuerySeatReservations(reservationCommands.ScheduledRouteId, reservationCommands.SeatIds, reservationCommands.UserId);
+        foreach (var reservation in reservations)
+        {
+            reservation.ReservedUntil = DateTime.Now;
+            reservation.ReservedById = null;
+        }
+        
+        await seatRepository.UpsertReservations(reservations);
     }
 
     public async Task<Seat> EditSeat(SeatUpdateCommand editCommand)
@@ -82,31 +108,21 @@ public class SeatService(ISeatRepository seatRepository, IScheduledRouteReposito
             throw new KeyNotFoundException($"Seat with ID {editCommand.Id} was not found.");
         }
 
+        seat = mapper.Map(editCommand, seat);
         await seatRepository.Update(seat);
 
         return seat;
     }
 
-    public async Task DeleteSeat(SeatDeleteCommand deleteCommand)
+    public async Task DeleteSeat(Guid id) // TODO -> should validate if seat is not reserved -> if so try to replace -> if not possible then dont delete?
     {
-        var seat = await seatRepository.QueryById(deleteCommand.Id).FirstOrDefaultAsync();
+        var seat = await seatRepository.QueryById(id).FirstOrDefaultAsync();
 
         if (seat == null)
         {
-            throw new KeyNotFoundException($"Seat with ID {deleteCommand.Id} was not found.");
+            throw new KeyNotFoundException($"Seat with ID {id} was not found.");
         }
 
         await seatRepository.Delete(seat);
-    }
-
-    public async Task ReserveSeats()
-    {
-        // TODO -> think if we want to create ScheduledRoute_Seat for each seat in ScheduledRoute or if we want to create it just when reservation is made
-        // 1) option when creating ScheduledRoute -> create ScheduledRoute_Seat -> will create a lot records but it will be easier to fetch free seats for given scheduled route -> not good
-        // 2) option create ScheduledRoute_Seat only when reservation made -> much less records little worse querying -> will have to 
-
-        // TODO -> check if seats are free
-        // TODO -> reserve seats for 15 minutes
-        throw new NotImplementedException();
     }
 }

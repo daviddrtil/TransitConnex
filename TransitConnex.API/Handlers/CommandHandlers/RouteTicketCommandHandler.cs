@@ -7,25 +7,30 @@ namespace TransitConnex.API.Handlers.CommandHandlers;
 public class RouteTicketCommandHandler(IRouteTicketService routeTicketService)
     : IBaseCommandHandler<IRouteTicketCommand>
 {
-    private readonly IRouteTicketService _routeTicketService = routeTicketService;
-
     public async Task<Guid> HandleCreate(IRouteTicketCommand command)
     {
         if (command is not RouteTicketCreateCommand routeTicketCreateCommand)
         {
             throw new InvalidCastException("Invalid command given, expected RouteTicketCommand.");
         }
+        
+        var created  = await routeTicketService.CreateRouteTicket(routeTicketCreateCommand);
 
-        return new Guid();
+        return created.Id;
     }
 
-    public async Task HandleUpdate(IRouteTicketCommand command)
+    public Task HandleUpdate(IRouteTicketCommand command)
+    {
+        return Task.CompletedTask;
+    }
+
+    public Task HandleDelete(IRouteTicketCommand command)
     {
         throw new NotImplementedException();
     }
 
-    public async Task HandleDelete(IRouteTicketCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        throw new NotImplementedException();
+        await routeTicketService.DeleteRouteTicket(id);
     }
 }

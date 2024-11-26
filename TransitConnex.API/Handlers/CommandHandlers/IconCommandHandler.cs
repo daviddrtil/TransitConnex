@@ -28,13 +28,8 @@ public class IconCommandHandler(IIconService iconService) : IBaseCommandHandler<
         await iconService.EditIcon(updateCommand);
     }
 
-    public async Task HandleDelete(IIconCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        if (command is not IconDeleteCommand deleteCommand)
-        {
-            throw new InvalidCastException("Invalid command given, expected IconDeleteCommand.");
-        }
-
-        await iconService.DeleteIcon(deleteCommand);
+        await iconService.DeleteIcon(id);
     }
 }

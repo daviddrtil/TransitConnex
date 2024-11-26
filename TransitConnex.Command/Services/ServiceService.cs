@@ -1,3 +1,4 @@
+using AutoMapper;
 using MongoDB.Driver.Linq;
 using TransitConnex.Command.Commands.Service;
 using TransitConnex.Command.Repositories.Interfaces;
@@ -7,7 +8,7 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class ServiceService(IServiceRepository serviceRepository) : IServiceService
+public class ServiceService(IMapper mapper, IServiceRepository serviceRepository) : IServiceService 
 {
     public Task<List<ServiceDto>> GetAllServices()
     {
@@ -26,14 +27,8 @@ public class ServiceService(IServiceRepository serviceRepository) : IServiceServ
 
     public async Task<Service> CreateService(ServiceCreateCommand createCommand)
     {
-        var newService = new Service
-        {
-            Id = Guid.NewGuid(),
-            IconId = createCommand.IconId,
-            Description = createCommand.Description,
-            Name = createCommand.Name
-        };
-
+        // TODO -> check if icon exists
+        var newService = mapper.Map<Service>(createCommand);
         await serviceRepository.Add(newService);
 
         return newService;
@@ -48,20 +43,21 @@ public class ServiceService(IServiceRepository serviceRepository) : IServiceServ
             throw new KeyNotFoundException($"Icon with ID {updateCommand.Id} was not found.");
         }
 
-        await serviceRepository.Update(service, updateCommand);
+        service = mapper.Map(updateCommand, service);
+        await serviceRepository.Update(service);
 
         return service;
     }
 
-    public async Task DeleteService(ServiceDeleteCommand deleteCommand)
+    public async Task DeleteService(Guid id)
     {
-        var service = await serviceRepository.QueryById(deleteCommand.Id).FirstOrDefaultAsync();
+        var service = await serviceRepository.QueryById(id).FirstOrDefaultAsync();
 
         if (service == null)
         {
-            throw new KeyNotFoundException($"Icon with ID {deleteCommand.Id} was not found.");
+            throw new KeyNotFoundException($"Icon with ID {id} was not found.");
         }
 
-        await serviceRepository.Delete(service);
+        await serviceRepository.Delete(service); 
     }
 }

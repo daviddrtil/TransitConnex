@@ -17,8 +17,10 @@ public interface ISeatService
     Task<List<Seat>> CreateSeats(List<SeatCreateCommand> createCommands);
 
     Task ReserveSeats(SeatReservationCommand reservationCommands);
+    
+    Task FreeSeats(SeatReservationCommand reservationCommands);
 
     Task<Seat> EditSeat(SeatUpdateCommand editCommand);
 
-    Task DeleteSeat(SeatDeleteCommand deleteCommand);
+    Task DeleteSeat(Guid id);
 }

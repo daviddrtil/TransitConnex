@@ -6,7 +6,7 @@ namespace TransitConnex.API.Handlers.CommandHandlers;
 
 public class ServiceCommandHandler(IServiceService serviceService) : IBaseCommandHandler<IServiceCommand>
 {
-    public async Task<Guid> HandleCreate(IServiceCommand command)
+    public async Task<Guid> HandleCreate(IServiceCommand command) 
     {
         if (command is not ServiceCreateCommand createCommand)
         {
@@ -28,13 +28,8 @@ public class ServiceCommandHandler(IServiceService serviceService) : IBaseComman
         await serviceService.EditService(updateCommand);
     }
 
-    public async Task HandleDelete(IServiceCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        if (command is not ServiceDeleteCommand deleteCommand)
-        {
-            throw new InvalidCastException("Invalid command given, expected ServiceDeleteCommand.");
-        }
-
-        await serviceService.DeleteService(deleteCommand);
+        await serviceService.DeleteService(id);
     }
 }

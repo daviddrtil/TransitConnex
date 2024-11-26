@@ -16,5 +16,5 @@ public interface IServiceService
 
     Task<Service> EditService(ServiceUpdateCommand updateCommand);
 
-    Task DeleteService(ServiceDeleteCommand deleteCommand);
+    Task DeleteService(Guid id); 
 }

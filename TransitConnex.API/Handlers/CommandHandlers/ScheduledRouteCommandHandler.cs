@@ -9,16 +9,33 @@ public class ScheduledRouteCommandHandler(IScheduledRouteService scheduledRouteS
 {
     public async Task<Guid> HandleCreate(IScheduledRouteCommand command)
     {
-        throw new NotImplementedException();
+        if (command is not ScheduledRouteCreateCommand createCommand)
+        {
+            throw new InvalidCastException();
+        }
+        
+        var scheduled = await scheduledRouteService.CreateScheduledRoute(createCommand);
+
+        // TODO -> sync
+        
+        return scheduled.Id;
     }
 
     public async Task HandleUpdate(IScheduledRouteCommand command)
     {
-        throw new NotImplementedException();
+        if (command is not ScheduledRouteUpdateCommand editCommand)
+        {
+            throw new InvalidCastException();
+        }
+        
+        var scheduled = await scheduledRouteService.EditScheduledRoute(editCommand);
+        // TODO -> sync
     }
 
-    public async Task HandleDelete(IScheduledRouteCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        throw new NotImplementedException();
+        await scheduledRouteService.DeleteScheduledRoute(id);
+        
+        // TODO -> sync
     }
 }

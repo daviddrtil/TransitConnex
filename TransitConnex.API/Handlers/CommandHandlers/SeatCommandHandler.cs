@@ -8,17 +8,40 @@ public class SeatCommandHandler(ISeatService seatService) : IBaseCommandHandler<
 {
     public async Task<Guid> HandleCreate(ISeatCommand command)
     {
-        throw new NotImplementedException();
+        if (command is not SeatCreateCommand createCommand)
+        {
+            throw new InvalidCastException();
+        }
+        
+        var seat = await seatService.CreateSeat(createCommand);
+        return seat.Id;
+    }
+
+    public async Task<List<Guid>> HandleBatchCreate(ISeatCommand command)
+    {
+        if (command is not SeatBatchCreateCommand createCommand)
+        {
+            throw new InvalidCastException();
+        }  
+        
+        var seats = await seatService.CreateSeats(createCommand.Seats);
+        
+        return seats.Select(s => s.Id).ToList();
     }
 
     public async Task HandleUpdate(ISeatCommand command)
     {
-        throw new NotImplementedException();
+        if (command is not SeatUpdateCommand editCommand)
+        {
+            throw new InvalidCastException();
+        }
+        
+        var seat = await seatService.EditSeat(editCommand);
     }
 
-    public async Task HandleDelete(ISeatCommand command)
+    public async Task HandleDelete(Guid id)
     {
-        throw new NotImplementedException();
+        await seatService.DeleteSeat(id);
     }
 
     public async Task HandleSeatReservation(ISeatCommand command)
@@ -29,5 +52,15 @@ public class SeatCommandHandler(ISeatService seatService) : IBaseCommandHandler<
         }
 
         await seatService.ReserveSeats(reservationCommand);
+    }
+    
+    public async Task HandleSeatFree(ISeatCommand command)
+    {
+        if (command is not SeatReservationCommand reservationCommand)
+        {
+            throw new InvalidCastException("Invalid command given, expected SeatReservationCommand.");
+        }
+
+        await seatService.FreeSeats(reservationCommand);
     }
 }
