@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TransitConnex.Domain.Collections;
+using TransitConnex.Domain.DTOs.ScheduledRoute;
 using TransitConnex.Domain.Models;
 using TransitConnex.Query.Repositories.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
@@ -7,9 +8,23 @@ using TransitConnex.Query.Services.Interfaces;
 namespace TransitConnex.Query.Services;
 
 public class ScheduledRouteMongoService(
-    IScheduledRouteMongoRepository scheduledRouteRepo,
-    IMapper mapper) : IScheduledRouteMongoService
+    IMapper mapper,
+    ILocationMongoRepository locationRepo,
+    IScheduledRouteMongoRepository scheduledRouteRepo) : IScheduledRouteMongoService
 {
+    // todo should return ScheduledRoute, not dto
+    public async Task<IEnumerable<ScheduledRouteDto>> GetScheduledRoutes(
+        Guid startLocationId, Guid endLocationId, DateTime startTime)
+    {
+        var startLocation = await locationRepo.GetById(startLocationId) ??
+            throw new ApplicationException($"Missing startLocationId: {startLocationId}");
+        var endLocation = await locationRepo.GetById(endLocationId) ??
+            throw new ApplicationException($"Missing endLocationId: {endLocationId}");
+        var srDocs = await scheduledRouteRepo.GetAll(
+            startLocation.Stops, endLocation.Stops, startTime);
+        return mapper.Map<IEnumerable<ScheduledRouteDto>>(srDocs);
+    }
+
     public async Task<IEnumerable<ScheduledRoute>> GetAll()
     {
         var srDocs = await scheduledRouteRepo.GetAll();

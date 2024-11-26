@@ -1,3 +1,4 @@
+using Bogus;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
@@ -7,6 +8,7 @@ using TransitConnex.Query.Abstraction;
 using TransitConnex.Query.Data;
 using TransitConnex.Query.Repositories;
 using TransitConnex.Query.Repositories.Interfaces;
+using TransitConnex.Query.Seeds;
 using TransitConnex.Query.Services;
 using TransitConnex.Query.Services.Interfaces;
 
@@ -37,6 +39,7 @@ public static class ConfigureMongoServices
     public static void AddMongoDbRepositories(this IServiceCollection services)
     {
         services.AddScoped<ILocationMongoRepository, LocationMongoRepository>();
+        services.AddScoped<IRouteStopMongoRepository, RouteStopMongoRepository>();
         services.AddScoped<IScheduledRouteMongoRepository, ScheduledRouteMongoRepository>();
         services.AddScoped<ISearchedRouteMongoRepository, SearchedRouteMongoRepository>();
         services.AddScoped<IVehicleMongoRepository, VehicleMongoRepository>();
@@ -50,6 +53,18 @@ public static class ConfigureMongoServices
         services.AddScoped<ISearchedRouteMongoService, SearchedRouteMongoService>();
         services.AddScoped<IVehicleMongoService, VehicleMongoService>();
         services.AddScoped<IVehicleRTIMongoService, VehicleRTIMongoService>();
+    }
+
+    public static void AddMongoDbSeeders(this IServiceCollection services)
+    {
+        services.AddSingleton(new Faker("cz"));
+        services.AddScoped<DbMongoSeeder>();
+        services.AddScoped<LocationDocSeeder>();
+        services.AddScoped<RouteStopDocSeeder>();
+        services.AddScoped<ScheduledRouteDocSeeder>();
+        services.AddScoped<SearchedRouteDocSeeder>();
+        services.AddScoped<VehicleDocSeeder>();
+        services.AddScoped<VehicleRTIDocSeeder>();
     }
 
     /// <summary>

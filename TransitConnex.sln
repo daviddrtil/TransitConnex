@@ -14,8 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransitConnex.Command", "Tr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{110B69AE-E798-4674-BF48-AD6320347D1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionGenerator", "CollectionGenerator\CollectionGenerator.csproj", "{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransitConnex.Query", "TransitConnex.Query\TransitConnex.Query.csproj", "{8220E375-AA72-46D5-80E5-B21062410191}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransitConnex.UnitTests", "TransitConnex.UnitTests\TransitConnex.UnitTests.csproj", "{996DCE81-1E31-4DC5-8B5D-56F240885104}"
@@ -53,12 +51,6 @@ Global
 		{A3247F6A-73B6-4511-8E6B-0BCF427ACC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3247F6A-73B6-4511-8E6B-0BCF427ACC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3247F6A-73B6-4511-8E6B-0BCF427ACC8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E}.dbUpdate|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E}.dbUpdate|Any CPU.Build.0 = Debug|Any CPU
-		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8220E375-AA72-46D5-80E5-B21062410191}.dbUpdate|Any CPU.ActiveCfg = Debug|Any CPU
 		{8220E375-AA72-46D5-80E5-B21062410191}.dbUpdate|Any CPU.Build.0 = Debug|Any CPU
 		{8220E375-AA72-46D5-80E5-B21062410191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -76,7 +68,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1D1A3302-E15E-45A9-BAF8-CE2BAE61286E} = {110B69AE-E798-4674-BF48-AD6320347D1B}
 		{996DCE81-1E31-4DC5-8B5D-56F240885104} = {110B69AE-E798-4674-BF48-AD6320347D1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

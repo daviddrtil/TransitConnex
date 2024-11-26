@@ -22,7 +22,7 @@ public interface IBaseMongoRepository<TQueryModel, in TKey>
     ///     Retrieves all query models from the collection.
     /// </summary>
     /// <returns>Enumerable of query models.</returns>
-    Task<IEnumerable<TQueryModel>> GetAll();
+    Task<IEnumerable<TQueryModel>> GetAll(int limit = 10);
 
     /// <summary>
     ///     Upserts a query model. If it exists, it will be updated; otherwise, a new document will be inserted.

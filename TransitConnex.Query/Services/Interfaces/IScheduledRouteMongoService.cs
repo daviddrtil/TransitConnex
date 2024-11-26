@@ -1,9 +1,13 @@
-﻿using TransitConnex.Domain.Models;
+﻿using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Query.Services.Interfaces;
 
 public interface IScheduledRouteMongoService
 {
+    Task<IEnumerable<ScheduledRouteDto>> GetScheduledRoutes(
+        Guid startLocationId, Guid endLocationId, DateTime startTime);
+
     Task<IEnumerable<ScheduledRoute>> GetAll();
     Task<ScheduledRoute?> GetById(Guid id);
     Task<Guid> Create(ScheduledRoute scheduledRoute);

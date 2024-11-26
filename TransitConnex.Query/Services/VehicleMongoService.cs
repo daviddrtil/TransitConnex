@@ -12,7 +12,7 @@ public class VehicleMongoService(
 {
     public async Task<IEnumerable<Vehicle>> GetAll()
     {
-        var vehicles = await vehicleRepo.GetAll();
+        var vehicles = await vehicleRepo.GetAll(limit: int.MaxValue);
         return mapper.Map<IEnumerable<Vehicle>>(vehicles);
     }
 
