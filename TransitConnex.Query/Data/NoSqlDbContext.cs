@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -30,17 +29,12 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
         _database = client.GetDatabase(mongoUrl.DatabaseName);
         _logger = logger;
     }
+    public string ConnectionString { get; }
 
     #endregion
 
+
     #region IReadDbContext
-
-    public string ConnectionString { get; }
-
-    public IMongoCollection<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel
-    {
-        return _database.GetCollection<TQueryModel>(typeof(TQueryModel).Name);
-    }
 
     public async Task CreateCollectionsAsync()
     {
@@ -65,6 +59,28 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
         }
     }
 
+    public async Task DeleteCollectionsAsync()
+    {
+        using var asyncCursor = await _database.ListCollectionNamesAsync();
+        var collections = await asyncCursor.ToListAsync();
+
+        var collectionNamesFromAssembly = GetCollectionNamesFromAssembly();
+        foreach (string collectionName in collectionNamesFromAssembly)
+        {
+            if (collections.Exists(db => db.Equals(collectionName, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                _logger.LogInformation("----- MongoDB: deleting the Collection {Name}", collectionName);
+
+                await _database.DropCollectionAsync(collectionName);
+            }
+            else
+            {
+                _logger.LogInformation("----- MongoDB: the {Name} collection does not exists", collectionName);
+            }
+        }
+    }
+
+    #region Indexes
     private async Task CreateVehicleRTIIndexesAsync()
     {
         string indexKey1 = "vehicleId";
@@ -157,6 +173,13 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
 
         _logger.LogInformation("----- MongoDB: indexes successfully created");
     }
+    #endregion Indexes
+
+    #region CollectionNames
+    public IMongoCollection<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel
+    {
+        return _database.GetCollection<TQueryModel>(typeof(TQueryModel).Name);
+    }
 
     private static List<string> GetCollectionNamesFromAssembly()
     {
@@ -173,6 +196,7 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
             .Distinct()
             .ToList();
     }
+    #endregion CollectionNames
 
     #endregion
 

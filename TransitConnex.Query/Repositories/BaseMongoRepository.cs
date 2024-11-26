@@ -37,11 +37,11 @@ public abstract class BaseMongoRepository<TQueryModel, Tkey>(IReadDbContext cont
     ///     Retrieves all query models from the collection.
     /// </summary>
     /// <returns>Enumerable of query models.</returns>
-    public async Task<IEnumerable<TQueryModel>> GetAll()
+    public async Task<IEnumerable<TQueryModel>> GetAll(int limit = 10)
     {
         return await Collection
             .Find(_ => true)
-            .Limit(5) // todo delete - only for testing
+            .Limit(10)
             .ToListAsync();
     }
 

@@ -1,13 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.ScheduledRoute;
+using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ScheduledRouteController(ScheduledRouteCommandHandler scheduledRouteCommandHandler) : Controller
+public class ScheduledRouteController(
+    ScheduledRouteCommandHandler scheduledRouteCommandHandler,
+    ScheduledRouteQueryHandler scheduledRouteQueryHandler) : Controller
 {
+    [HttpGet("GetScheduledRoutes")]
+    public async Task<IEnumerable<ScheduledRouteDto>> GetScheduledRoutes(
+        [Required] Guid startLocationId,
+        [Required] Guid endLocationId,
+        DateTime? startTime = null)
+    {
+        startTime ??= DateTime.Now; // Assign the current time if startTime is null
+        var query = new ScheduledRouteGetAllQuery(startLocationId, endLocationId, startTime.Value);
+        return await scheduledRouteQueryHandler.HandleGetScheduledRoutes(query);
+    }
+
     [HttpPost]
     public async Task<Guid> CreateScheduledRoute(ScheduledRouteCreateCommand createCommand)
     {

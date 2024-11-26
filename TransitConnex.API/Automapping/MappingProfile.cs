@@ -11,6 +11,7 @@ using TransitConnex.Command.Commands.User;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.Location;
+using TransitConnex.Domain.DTOs.RouteStop;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Enums;
@@ -92,6 +93,7 @@ public class MappingProfile : Profile
         CreateMap<SearchedRouteDoc, SearchedRouteDto>().ReverseMap();
         CreateMap<VehicleDoc, VehicleDto>().ReverseMap();
         CreateMap<VehicleRTIDoc, VehicleRTIDto>().ReverseMap();
+        CreateMap<RouteStopDoc, RouteStopDto>().ReverseMap();
 
         // Map location coordinates
         CreateMap<LocationDto, LocationDoc>()

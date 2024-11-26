@@ -54,6 +54,7 @@ builder.Services.AddServices();
 builder.Services.AddMongoDbContext();
 builder.Services.AddMongoDbRepositories();
 builder.Services.AddMongoDbServices();
+builder.Services.AddMongoDbSeeders();
 
 var app = builder.Build();
 
@@ -80,7 +81,7 @@ if (updateDb || seedDb || unseedDb)
     return;
 }
 
-await app.MigrateMongoDbAsync();    // todo delete later
+//await app.MigrateMongoDbAsync();    // todo move elsewhere
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
