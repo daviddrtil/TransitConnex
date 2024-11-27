@@ -16,6 +16,12 @@ public class LocationController(
     LocationCommandHandler locationCommandHandler,
     LocationQueryHandler locationQueryHandler) : Controller
 {
+    [HttpGet("GetById/{id}")]
+    public async Task<LocationDto?> GetById(Guid id)
+    {
+        return await locationQueryHandler.HandleGetById(id);
+    }
+
     [HttpGet("GetByName")]
     public async Task<IEnumerable<LocationDto>> GetByName([Required] string name)
     {

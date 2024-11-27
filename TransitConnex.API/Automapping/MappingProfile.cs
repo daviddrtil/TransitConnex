@@ -48,6 +48,12 @@ public class MappingProfile : Profile
 
         CreateMap<int, VehicleTypeEnum>().ConvertUsing(src => (VehicleTypeEnum)src);
         CreateMap<VehicleTypeEnum, int>().ConvertUsing(src => (int)src);
+
+        // todo
+        CreateMap<string, LocationTypeEnum>()
+            .ConvertUsing(src => Enum.Parse<LocationTypeEnum>(src, true));
+        CreateMap<LocationTypeEnum, string>()
+            .ConvertUsing(src => src.ToString());
     }
 
     private void MapModelsToCommands()

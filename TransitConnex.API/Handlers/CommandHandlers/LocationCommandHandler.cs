@@ -1,10 +1,14 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.Location;
 using TransitConnex.Command.Services.Interfaces;
+using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
-public class LocationCommandHandler(ILocationService locationService) : IBaseCommandHandler<ILocationCommand>
+public class LocationCommandHandler(
+    ILocationService locationService,
+    ILocationMongoService locationMongoService)
+        : IBaseCommandHandler<ILocationCommand>
 {
     public async Task<Guid> HandleCreate(ILocationCommand command)
     {
@@ -15,6 +19,7 @@ public class LocationCommandHandler(ILocationService locationService) : IBaseCom
         }
         
         var created = await locationService.CreateLocation(createCommand);
+        await locationMongoService.Create(created);
         return created.Id;
     }
 

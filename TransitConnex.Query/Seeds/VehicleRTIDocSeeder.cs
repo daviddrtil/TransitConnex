@@ -16,8 +16,11 @@ public class VehicleRTIDocSeeder(
     public static readonly HashSet<Guid> RouteIds = [];
     public static readonly HashSet<Guid> StopIds = [];
 
+    public static string SolutionPath = ProjectPathHelper.GetSolutionDirectory();
     public static string ProjectPath { get; set; } = Path.Combine(
-        Environment.CurrentDirectory, "..", "TransitConnex.Query");
+        SolutionPath, "TransitConnex.Query");
+    public static string DatasetPath = Path.Combine(ProjectPath,
+        "Seeds", "Datasets", "vehicleDataset.csv");
 
     private VehicleRTIDoc Parse(CsvReader csv)
     {
@@ -49,15 +52,13 @@ public class VehicleRTIDocSeeder(
     public List<VehicleRTIDoc> LoadVehicleRTIs()
     {
         var vehicleRTIs = new List<VehicleRTIDoc>();
-        string datasetPath = Path.Combine(ProjectPath, "Seeds", "Datasets", "vehicleDataset.csv");
-        Console.WriteLine(datasetPath); // todo
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             Delimiter = ",",
             HeaderValidated = null,
             MissingFieldFound = null
         };
-        using var reader = new StreamReader(datasetPath);
+        using var reader = new StreamReader(DatasetPath);
         using var csv = new CsvReader(reader, config);
         // Read header
         csv.Read();
