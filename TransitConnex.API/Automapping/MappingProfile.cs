@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver.GeoJsonObjectModel;
 using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Command.Commands.Location;
+using TransitConnex.Command.Commands.RouteSchedulingTemplate;
 using TransitConnex.Command.Commands.ScheduledRoute;
 using TransitConnex.Command.Commands.Seat;
 using TransitConnex.Command.Commands.Service;
@@ -10,9 +11,13 @@ using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Command.Commands.User;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs;
+using TransitConnex.Domain.DTOs.Icon;
 using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Domain.DTOs.RouteStop;
+using TransitConnex.Domain.DTOs.RouteSchedulingTemplate;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Domain.DTOs.Service;
+using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
@@ -52,7 +57,11 @@ public class MappingProfile : Profile
         CreateMap<ServiceCreateCommand, Service>();
         CreateMap<StopCreateCommand, Stop>();
         CreateMap<SeatCreateCommand, Seat>();
-        // CreateMap<UserCreateCommand, User>();
+        CreateMap<RouteSchedulingTemplateCreateCommand, RouteSchedulingTemplate>();
+        CreateMap<UserCreateCommand, User>()
+            .ForMember(dest => dest.IsAdmin, opt => opt.MapFrom(src => false))
+            .ForMember(dest => dest.Created, opt => opt.MapFrom(src => DateTime.Now))
+            .ForMember(dest => dest.Updated, opt => opt.MapFrom(src => DateTime.Now)); 
         
         CreateMap<LocationUpdateCommand, Location>();
         CreateMap<IconUpdateCommand, Icon>();
@@ -61,6 +70,7 @@ public class MappingProfile : Profile
         CreateMap<StopUpdateCommand, Stop>();
         CreateMap<SeatUpdateCommand, Seat>();
         CreateMap<ScheduledRouteUpdateCommand, ScheduledRoute>();
+        CreateMap<RouteSchedulingTemplateUpdateCommand, RouteSchedulingTemplate>();
     }
 
     private void MapModelsToDTOs()
@@ -68,6 +78,10 @@ public class MappingProfile : Profile
         CreateMap<Location, LocationDto>().ReverseMap();
         CreateMap<ScheduledRoute, ScheduledRouteDto>().ReverseMap();
         CreateMap<Vehicle, VehicleDto>().ReverseMap();
+        CreateMap<RouteSchedulingTemplate, RouteSchedulingTemplateDto>();
+        CreateMap<User, UserDto>();
+        CreateMap<Icon, IconDto>();
+        CreateMap<Service, ServiceDto>();
     }
 
     private void MapModelsToCollections()

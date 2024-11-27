@@ -39,5 +39,6 @@ public static class ConfigurateServices
         services.AddScoped<IStopService, StopService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IVehicleService, VehicleService>();
+        services.AddScoped<IRouteSchedulerService, RouteSchedulerService>();
     }
 }

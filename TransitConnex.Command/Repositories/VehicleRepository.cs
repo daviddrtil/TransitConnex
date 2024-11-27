@@ -12,4 +12,10 @@ public class VehicleRepository(AppDbContext db) : BaseRepository<Vehicle, Vehicl
     {
         return QueryAll().Where(v => v.Id == vehicleId);
     }
+
+    public async Task AddServicesToVehicle(List<VehicleOfferedService> vehicleServices)
+    {
+        db.VehicleServices.AddRange(vehicleServices);
+        await db.SaveChangesAsync();
+    }
 }

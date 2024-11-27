@@ -21,7 +21,7 @@ public class LocationSeed
             new()
             {
                 Id = Guid.Parse("c9a5f3bc-4ffe-464d-8645-f338b631798e"),
-                Name = "Hlavní nádraží",
+                Name = "Brno - Hlavní nádraží",
                 Latitude = 49.191106673687834, 
                 Longitude = 16.61228441319054,
                 LocationType = LocationTypeEnum.CITY_PART

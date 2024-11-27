@@ -5,7 +5,8 @@ namespace TransitConnex.Command.Commands.User;
 public class UserUpdateCommand : IUserCommand
 {
     public Guid Id { get; set; }
-
     [DataType(DataType.Password)]
-    public required string Password { get; set; }
+    public required string OldPassword { get; set; }
+    [DataType(DataType.Password)]
+    public required string NewPassword { get; set; }
 }
