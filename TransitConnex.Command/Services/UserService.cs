@@ -21,32 +21,21 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
         throw new NotImplementedException();
     }
 
-    public Task<bool> UserExists(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<User> CreateUser(UserCreateCommand createCommand)
     {
         if (await userRepository.EmailExists(createCommand.Email))
         {
-            throw new ArgumentException($"Email {createCommand.Email} already exists");
+            throw new ArgumentException($"Email {createCommand.Email} already exists.");
         }
 
         if (createCommand.Password != createCommand.ConfirmPassword) 
         {
-            throw new ArgumentException("Passwords do not match");
+            throw new ArgumentException("Passwords do not match.");
         }
 
-        var newUser = new User()
-        {
-            Email = createCommand.Email, 
-            IsAdmin = false, 
-            Created = DateTime.Now, 
-            Updated = DateTime.Now,
-        };
-        
+        var newUser = mapper.Map<User>(createCommand);
         var result = await userManager.CreateAsync(newUser, createCommand.Password);
+        
         if (!result.Succeeded)
         {
             throw new Exception(result.Errors.First().Description);
@@ -58,14 +47,16 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
     public async Task<User> EditUser(UserUpdateCommand updateCommand)
     {
         var user = await userRepository.QueryById(updateCommand.Id).FirstOrDefaultAsync();
-
         if (user == null)
         {
             throw new ArgumentException($"User with id {updateCommand.Id} does not exist");
         }
         
-        user = mapper.Map(updateCommand, user);
-        await userRepository.Update(user);
+        var res = await userManager.ChangePasswordAsync(user, updateCommand.OldPassword, updateCommand.NewPassword);
+        if (!res.Succeeded)
+        {
+            throw new ArgumentException(res.Errors.First().Description);
+        }
         
         return user;
     }
@@ -73,7 +64,6 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
     public async Task DeleteUser(Guid id)
     {
         var user = await userRepository.QueryById(id).FirstOrDefaultAsync();
-
         if (user == null)
         {
             throw new KeyNotFoundException($"Icon with ID {id} was not found.");
@@ -164,10 +154,5 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
         }
 
         await userRepository.DeleteUserConnectionFavourite(like);
-    }
-
-    Task<User> IUserService.EditUser(UserUpdateCommand updateCommand)
-    {
-        throw new NotImplementedException();
     }
 }

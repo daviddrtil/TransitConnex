@@ -7,28 +7,39 @@ namespace TransitConnex.API.Handlers.CommandHandlers;
 public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateService routeSchedulingTemplateService)
     : IBaseCommandHandler<IRouteSchedulingTemplateCommand>
 {
-    private readonly IRouteSchedulingTemplateService _routeSchedulingTemplateService = routeSchedulingTemplateService;
-
     public async Task<Guid> HandleCreate(IRouteSchedulingTemplateCommand command)
     {
-        if (command is not RouteSchedulingTemplateCreateCommand)
+        if (command is not RouteSchedulingTemplateCreateCommand createCommand)
         {
-            throw new InvalidCastException("Invalid command given, expected RouteSchedulingtemplateCreateCommand.");
+            throw new InvalidCastException($"Invalid command given, expected {nameof(RouteSchedulingTemplateCreateCommand)}.");
         }
-
-        return new Guid(); 
+        
+        var created = await routeSchedulingTemplateService.CreateRouteSchedulingTemplate(createCommand);
+        return created.Id; 
     }
 
     public async Task HandleUpdate(IRouteSchedulingTemplateCommand command)
     {
-        if (command is not RouteSchedulingTemplateUpdateCommand)
+        if (command is not RouteSchedulingTemplateUpdateCommand updateCommand)
         {
-            throw new InvalidCastException("Invalid command given, expected RouteSchedulingtemplateUpdateCommand.");
+            throw new InvalidCastException($"Invalid command given, expected {nameof(RouteSchedulingTemplateUpdateCommand)}.");
         }
+        
+        await routeSchedulingTemplateService.EditRouteSchedulingTemplate(updateCommand);
     }
 
     public async Task HandleDelete(Guid id) 
     {
+        await routeSchedulingTemplateService.DeleteRouteSchedulingTemplate(id);
+    }
 
+    public async Task HandleScheduler(IRouteSchedulingTemplateCommand command)
+    {
+        if (command is not RouteSchedulingTemplateRunSchedulerCommand runCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(RouteSchedulingTemplateRunSchedulerCommand)}.");
+        }
+        
+        await routeSchedulingTemplateService.RunScheduler(runCommand); 
     }
 }

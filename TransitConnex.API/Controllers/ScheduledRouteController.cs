@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.ScheduledRoute;
@@ -10,6 +11,7 @@ namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[AuthorizedByAdmin]
 public class ScheduledRouteController(
     ScheduledRouteCommandHandler scheduledRouteCommandHandler,
     ScheduledRouteQueryHandler scheduledRouteQueryHandler) : Controller
@@ -25,19 +27,24 @@ public class ScheduledRouteController(
         return await scheduledRouteQueryHandler.HandleGetScheduledRoutes(query);
     }
 
+    /// <summary>
+    /// Endpoint for creating ScheduledRoute.
+    ///
+    /// Only for special cases - for mass creating use scheduler instead.
+    /// </summary>
+    /// <param name="createCommand">Command containing information about created scheduled route.</param>
+    /// <returns>Method status with Id of created scheduled route.</returns>
     [HttpPost]
     public async Task<Guid> CreateScheduledRoute(ScheduledRouteCreateCommand createCommand)
     {
         return await scheduledRouteCommandHandler.HandleCreate(createCommand);
     }
 
-    [HttpPost("batch")]
-    public async Task<Guid> CreateScheduledRoutes(List<ScheduledRouteCreateCommand> createCommands)
-    {
-        // return await ScheduledRouteCommandHandler.HandleCreate(createCommand);
-        return new Guid(); // TODO
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="updateCommand"></param>
+    /// <returns></returns>
     [HttpPut]
     public async Task<IActionResult> EditScheduledRoute(ScheduledRouteUpdateCommand updateCommand)
     {
@@ -46,6 +53,11 @@ public class ScheduledRouteController(
         return Ok();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="updateCommand"></param>
+    /// <returns></returns>
     [HttpPut("batch")]
     public async Task<IActionResult> EditScheduledRoutes(List<ScheduledRouteUpdateCommand> updateCommand)
     {
@@ -54,6 +66,11 @@ public class ScheduledRouteController(
         return Ok();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete]
     public async Task<IActionResult> DeleteScheduledRoute(Guid id)
     {
@@ -62,6 +79,11 @@ public class ScheduledRouteController(
         return Ok();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="deleteIds"></param>
+    /// <returns></returns>
     [HttpDelete("batch")]
     public async Task<IActionResult> DeleteScheduledRoutes(List<Guid> deleteIds)
     {

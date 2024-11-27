@@ -25,6 +25,7 @@
     </PackageReference>
     <PackageReference Include="MongoDB.Bson" Version="3.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Scheduler\" />
   </ItemGroup>
 
 </Project>

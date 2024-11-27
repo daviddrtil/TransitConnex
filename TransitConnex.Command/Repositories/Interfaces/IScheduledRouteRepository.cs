@@ -7,5 +7,6 @@ public interface IScheduledRouteRepository : IBaseRepository<ScheduledRoute, Sch
 {
     IQueryable<ScheduledRoute> QueryById(Guid id);
 
+    Task UpsertBatch(List<ScheduledRoute> scheduledRoutes);
     // Task<bool> Exists(Guid id);
 }

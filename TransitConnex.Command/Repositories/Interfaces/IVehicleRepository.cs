@@ -6,4 +6,6 @@ namespace TransitConnex.Command.Repositories.Interfaces;
 public interface IVehicleRepository : IBaseRepository<Vehicle, VehicleUpdateCommand>
 {
     IQueryable<Vehicle> QueryById(Guid vehicleId);
+    
+    Task AddServicesToVehicle(List<VehicleOfferedService> vehicleServices);
 }

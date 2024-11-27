@@ -140,9 +140,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany()
             .HasForeignKey(ulf => ulf.LocationId)
             .OnDelete(DeleteBehavior.Cascade);
-
-        // builder.Entity<UserLineFavourite>()
-        //     .HasKey(ulf => new { ulf.UserId, ulf.LineId });
+        
         builder.Entity<UserConnectionFavourite>()
             .HasKey(ulf => new { ulf.UserId, ulf.FromLocationId, ulf.ToLocationId });
         builder.Entity<UserConnectionFavourite>()
@@ -150,12 +148,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany()
             .HasForeignKey(ulf => ulf.UserId)
             .OnDelete(DeleteBehavior.Cascade);
-        // builder.Entity<UserLineFavourite>()
-        //     .HasOne(ulf => ulf.Line)
-        //     .WithMany()
-        //     .HasForeignKey(ulf => ulf.LineId)
-        //     .OnDelete(DeleteBehavior.Cascade);
-        // TODO -> why was this failing with cascade?
         builder.Entity<UserConnectionFavourite>()
             .HasOne(ulf => ulf.ToLocation)
             .WithMany()
@@ -166,5 +158,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany()
             .HasForeignKey(ulf => ulf.FromLocationId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.Entity<ScheduledRoute>()
+            .HasIndex(sr => new { sr.StartTime, sr.RouteId })
+            .IsUnique();
     }
 }

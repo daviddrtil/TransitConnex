@@ -281,10 +281,15 @@ namespace TransitConnex.Command.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("RouteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Template")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -371,6 +376,9 @@ namespace TransitConnex.Command.Migrations
                     b.HasIndex("RouteId");
 
                     b.HasIndex("VehicleId");
+
+                    b.HasIndex("StartTime", "RouteId")
+                        .IsUnique();
 
                     b.ToTable("ScheduledRoute");
                 });

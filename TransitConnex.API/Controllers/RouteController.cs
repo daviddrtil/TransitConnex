@@ -8,6 +8,11 @@ namespace TransitConnex.API.Controllers;
 [ApiController]
 public class RouteController(RouteCommandHandler routeCommandHandler) : Controller
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="createCommand"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<Guid> CreateRoute(RouteCreateCommand createCommand)
     {
@@ -21,6 +26,11 @@ public class RouteController(RouteCommandHandler routeCommandHandler) : Controll
         return new Guid(); // TODO
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="updateCommand"></param>
+    /// <returns></returns>
     [HttpPut]
     public async Task<IActionResult> EditRoute(RouteUpdateCommand updateCommand)
     {
@@ -29,8 +39,13 @@ public class RouteController(RouteCommandHandler routeCommandHandler) : Controll
         return Ok();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete]
-    public async Task<IActionResult> DeleteRoute(Guid id)
+    public async Task<IActionResult> DeleteRoute(Guid id) // TODO -> very similar to deleting line -> delete scheduled or just mark as deleted and dont use for scheduling anymore?
     {
         await routeCommandHandler.HandleDelete(id);
 

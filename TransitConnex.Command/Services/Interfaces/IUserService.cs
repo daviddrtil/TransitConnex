@@ -7,17 +7,11 @@ namespace TransitConnex.Command.Services.Interfaces;
 public interface IUserService
 {
     Task<List<UserDto>> GetAllUsers();
-
     Task<UserDto> GetUserById(Guid id);
 
-    Task<bool> UserExists(Guid id);
-
     Task<User> CreateUser(UserCreateCommand createCommand);
-
     Task<User> EditUser(UserUpdateCommand updateCommand);
-
     Task DeleteUser(Guid id);
-
     Task RestoreUser(Guid id);
     
     Task LikeLocation(UserLikeLocationCommand likeCommand);

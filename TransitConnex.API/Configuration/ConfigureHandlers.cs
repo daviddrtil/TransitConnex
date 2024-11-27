@@ -12,8 +12,8 @@ internal static class ConfigureHandlers
         services.AddScoped<VehicleCommandHandler>();
         services.AddScoped<LocationCommandHandler>();
         services.AddScoped<LineCommandHandler>();
-        //services.AddScoped<RouteCommandHandler>();
-        //services.AddScoped<RouteSchedulingTemplateCommandHandler>();
+        services.AddScoped<RouteCommandHandler>();
+        services.AddScoped<RouteSchedulingTemplateCommandHandler>();
         services.AddScoped<RouteTicketCommandHandler>();
         services.AddScoped<ScheduledRouteCommandHandler>();
         services.AddScoped<SeatCommandHandler>();

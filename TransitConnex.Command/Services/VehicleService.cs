@@ -61,6 +61,17 @@ public class VehicleService(IVehicleRepository vehicleRepository, ISeatRepositor
             await seatRepository.AddBatch(newSeats);
         }
 
+        var vehicleServices = createCommand.Services 
+            .Select(service => 
+                new VehicleOfferedService
+                {
+                    VehicleId = newVehicle.Id, 
+                    ServiceId = service
+                }
+            )
+            .ToList();
+        await vehicleRepository.AddServicesToVehicle(vehicleServices);
+        
         return newVehicle;
     }
 

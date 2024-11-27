@@ -435,8 +435,9 @@ namespace TransitConnex.Command.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RouteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Template = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Template = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RouteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -663,6 +664,12 @@ namespace TransitConnex.Command.Migrations
                 name: "IX_ScheduledRoute_RouteId",
                 table: "ScheduledRoute",
                 column: "RouteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduledRoute_StartTime_RouteId",
+                table: "ScheduledRoute",
+                columns: new[] { "StartTime", "RouteId" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScheduledRoute_VehicleId",
