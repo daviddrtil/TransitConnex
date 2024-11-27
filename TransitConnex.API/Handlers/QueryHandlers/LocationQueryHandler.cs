@@ -10,6 +10,14 @@ public class LocationQueryHandler(
     IMapper mapper,
     ILocationMongoService locationService) : IBaseQueryHandler<LocationDto>
 {
+    public async Task<LocationDto?> HandleGetById(Guid id)
+    {
+        var location = await locationService.GetById(id);
+        if (location == null)
+            return null;
+        return mapper.Map<LocationDto>(location);
+    }
+
     public async Task<IEnumerable<LocationDto>> HandleGetByName(LocationGetByNameQuery query)
     {
         var locations = await locationService.GetByName(query.Name);

@@ -23,7 +23,13 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
     public NoSqlDbContext(IConfiguration configuration, ILogger<NoSqlDbContext> logger)
     {
         ConnectionString = configuration.GetConnectionString("NoSqlConnection")
-                           ?? throw new ApplicationException("Missing ConnectionStrings - NoSqlConnection");
+                           ?? throw new ApplicationException("Missing ConnectionStrings:NoSqlConnection");
+        bool isTestEnv = Environment.GetEnvironmentVariable("AppEnviroment") == "Test";
+        if (isTestEnv)
+        {
+            ConnectionString += "_test";
+        }
+
         var mongoUrl = MongoUrl.Create(ConnectionString);
         var client = new MongoClient(mongoUrl);
         _database = client.GetDatabase(mongoUrl.DatabaseName);
@@ -34,7 +40,7 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
     #endregion
 
 
-    #region IReadDbContext
+    #region CreateDeleteCollections
 
     public async Task CreateCollectionsAsync()
     {
@@ -80,7 +86,9 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
         }
     }
 
-    #region Indexes
+    #endregion CreateDeleteCollections
+
+    #region CreateIndexes
     private async Task CreateVehicleRTIIndexesAsync()
     {
         string indexKey1 = "vehicleId";
@@ -114,7 +122,8 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
             .Geo2DSphere(indexKey);
 
         // Create the index model
-        var indexModel = new CreateIndexModel<LocationDoc>(indexDefinition, DefaultCreateIndexOptions);
+        var indexModel = new CreateIndexModel<LocationDoc>(indexDefinition,
+            new CreateIndexOptions { Unique = false });
 
         // Get the collection
         var collection = GetCollection<LocationDoc>();
@@ -173,9 +182,9 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
 
         _logger.LogInformation("----- MongoDB: indexes successfully created");
     }
-    #endregion Indexes
+    #endregion CreateIndexes
 
-    #region CollectionNames
+    #region GetCollectionNames
     public IMongoCollection<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel
     {
         return _database.GetCollection<TQueryModel>(typeof(TQueryModel).Name);
@@ -196,9 +205,8 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
             .Distinct()
             .ToList();
     }
-    #endregion CollectionNames
+    #endregion GetCollectionNames
 
-    #endregion
 
     #region ISynchronizeDb
 
