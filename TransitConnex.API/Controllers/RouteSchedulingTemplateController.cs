@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.RouteSchedulingTemplate;
 using TransitConnex.Domain.DTOs.RouteSchedulingTemplate;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
@@ -10,19 +12,18 @@ namespace TransitConnex.API.Controllers;
 [ApiController]
 [AuthorizedByAdmin]
 public class RouteSchedulingTemplateController(
-    RouteSchedulingTemplateCommandHandler routeSchedulingTemplateCommandHandler)
-    : Controller
+    RouteSchedulingTemplateCommandHandler routeSchedulingTemplateCommandHandler,
+    RouteSchedulingTemplateQueryHandler routeSchedulingTemplateQueryHandler
+    ) : Controller
 {
     /// <summary>
     /// Endpoint for getting all templates.
     /// </summary>
     /// <returns>Returns list of DTO with templates.</returns>
-    [HttpGet]
-    public async Task<ActionResult<List<RouteSchedulingTemplateDto>>> GetRouteSchedulingTemplates()
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<RouteSchedulingTemplateDto>>> GetRouteSchedulingTemplates(RouteSchedulingTemplateFilteredQuery filter)
     {
-        //TODO -> implement
-
-        return Ok(null);
+        return Ok(await routeSchedulingTemplateQueryHandler.HandleGetFiltered(filter));
     }
     
     /// <summary>
@@ -31,11 +32,9 @@ public class RouteSchedulingTemplateController(
     /// <param name="id">Id of template.</param>
     /// <returns>Returns DTO containing template. </returns>
     [HttpGet("{id}")]
-    public async Task<ActionResult<RouteSchedulingTemplateDto>> GetRouteSchedulingTemplates(string id)
+    public async Task<ActionResult<RouteSchedulingTemplateDto>> GetRouteSchedulingTemplate(Guid id)
     {
-        //TODO -> implement
-
-        return Ok(null);
+        return Ok(await routeSchedulingTemplateQueryHandler.HandleGetById(id));
     }
     
     /// <summary>
@@ -83,9 +82,7 @@ public class RouteSchedulingTemplateController(
     [HttpDelete("{routeId}")]
     public async Task<IActionResult> DeleteRouteSchedulingTemplatesForRoute(Guid routeId)
     {
-        // await routeSchedulingTemplateCommandHandler.HandleDelete(routeId);  
-        // TODO -> will delete all templates for given route
-
+        await routeSchedulingTemplateCommandHandler.HandleDeleteForRoute(routeId);  
         return Ok();
     }
     
@@ -94,8 +91,8 @@ public class RouteSchedulingTemplateController(
     /// </summary>
     /// <param name="runCommand">Command containing ids of all routes we want to schedule.</param>
     /// <returns>Method status.</returns>
-    [HttpPost("run-scheduler-routes")]
-    public async Task<IActionResult> RunSchedulerForRoutes(RouteSchedulingTemplateRunSchedulerCommand runCommand)
+    [HttpPost("run-scheduler")]
+    public async Task<IActionResult> RunScheduler(RouteSchedulingTemplateRunSchedulerCommand runCommand)
     {
         await routeSchedulingTemplateCommandHandler.HandleScheduler(runCommand);
         return Ok();

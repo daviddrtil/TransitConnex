@@ -17,6 +17,8 @@ public interface ILineService
     Task<List<Line>> CreateLines(List<LineCreateCommand> createCommands);
 
     Task<Line> EditLine(LineUpdateCommand editCommand);
+    
+    Task<List<Line>> EditLines(List<LineUpdateCommand> editCommand);
 
     Task DeleteLine(Guid id);
 }

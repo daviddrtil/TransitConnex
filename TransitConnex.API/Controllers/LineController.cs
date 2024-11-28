@@ -16,20 +16,20 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     /// <param name="createCommand">Command containing information about created line.</param>
     /// <returns>Method status with Id of created line.</returns>
     [HttpPost]
-    public async Task<Guid> CreateLine(LineCreateCommand createCommand)
+    public async Task<ActionResult<Guid>> CreateLine(LineCreateCommand createCommand)
     {
-        return await lineCommandHandler.HandleCreate(createCommand);
+        return Ok(await lineCommandHandler.HandleCreate(createCommand));
     }
 
     /// <summary>
-    /// Endpoint for
+    /// Endpoint for creating multiple new Lines.
     /// </summary>
-    /// <param name="createCommand"></param>
-    /// <returns>Method status</returns>
+    /// <param name="createCommand">Command containing list of create commands.</param>
+    /// <returns>Method status with list of Ids of created lines.</returns>
     [HttpPost("batch")]
-    public async Task<List<Guid>> CreateLines(LineBatchCreateCommand createCommand)
+    public async Task<ActionResult<List<Guid>>> CreateLines(LineBatchCreateCommand createCommand)
     {
-        return await lineCommandHandler.HandleBatchCreate(createCommand);
+        return Ok(await lineCommandHandler.HandleBatchCreate(createCommand));
     }
 
     /// <summary>
@@ -50,10 +50,9 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     /// <param name="updateCommand"></param>
     /// <returns></returns>
     [HttpPut("batch")]
-    public async Task<IActionResult> EditLines(List<LineUpdateCommand> updateCommand)
+    public async Task<IActionResult> EditLines(LineBatchUpdateCommand updateCommand)
     {
-        // TODO -> is needed?
-
+        await lineCommandHandler.HandleBatchUpdate(updateCommand);
         return Ok();
     }
 

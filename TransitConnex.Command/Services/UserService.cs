@@ -11,14 +11,10 @@ namespace TransitConnex.Command.Services;
 
 public class UserService(IMapper mapper, IUserRepository userRepository, ILocationRepository locationRepository, ILineRepository lineRepository, UserManager<User> userManager) : IUserService
 {
-    public Task<List<UserDto>> GetAllUsers()
+    public async Task<List<UserDto>> GetAllUsers()
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<UserDto> GetUserById(Guid id)
-    {
-        throw new NotImplementedException();
+        var users = await userRepository.QueryAll().ToListAsync();
+        return mapper.Map<List<UserDto>>(users);
     }
 
     public async Task<User> CreateUser(UserCreateCommand createCommand)

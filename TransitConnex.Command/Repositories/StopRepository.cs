@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Command.Data;
 using TransitConnex.Command.Repositories.Interfaces;

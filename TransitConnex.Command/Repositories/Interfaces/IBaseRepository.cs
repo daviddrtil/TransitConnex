@@ -9,7 +9,9 @@ public interface IBaseRepository<T, U>
     Task AddBatch(IEnumerable<T> entities);
     Task Update(T entity, U updatedEntity);
     Task Update(T entity);
+    Task UpdateBatch(IEnumerable<T> entities);
     Task Delete(T entity);
     Task DeleteBatch(IEnumerable<T> entities);
     Task<bool> Exists(Guid id);
+    Task<bool> ExistsAll(List<Guid> ids);
 }

@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TransitConnex.Domain\TransitConnex.Domain.csproj" />
+    <ProjectReference Include="..\TransitConnex.Query\TransitConnex.Query.csproj" />
   </ItemGroup>
 
   <ItemGroup>

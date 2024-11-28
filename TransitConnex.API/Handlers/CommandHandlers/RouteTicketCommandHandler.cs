@@ -24,13 +24,13 @@ public class RouteTicketCommandHandler(IRouteTicketService routeTicketService)
         return Task.CompletedTask;
     }
 
-    public Task HandleDelete(IRouteTicketCommand command)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task HandleDelete(Guid id)
     {
         await routeTicketService.DeleteRouteTicket(id);
+    }
+    
+    public async Task HandleBatchDelete(List<Guid> id) // TODO
+    {
+        // await routeTicketService.DeleteRouteTicket(id);
     }
 }

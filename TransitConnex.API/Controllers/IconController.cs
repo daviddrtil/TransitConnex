@@ -1,21 +1,28 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Domain.DTOs.Icon;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [AuthorizedByAdmin]
-public class IconController(IconCommandHandler iconCommandHandler) : Controller
+public class IconController(IconCommandHandler iconCommandHandler, IconQueryHandler iconQueryHandler) : Controller
 {
-    [HttpGet]
-    public async Task<List<IconDto>> GetAll()
+    /// <summary>
+    /// Endpoint for getting Icons filtered by given filter.
+    /// </summary>
+    /// <param name="filter">Filter for icons</param>
+    /// <returns>Method status with list of DTOs representing icons.</returns>
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<IconDto>>> GetFiltered(IconFilteredQuery filter)
     {
-        // TODO -> query handler
-        return null;
+        return Ok(await iconQueryHandler.HandleGetFiltered(filter));
     }
 
     /// <summary>

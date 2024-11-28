@@ -5,19 +5,29 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Service;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
 public class ServiceService(IMapper mapper, IServiceRepository serviceRepository) : IServiceService 
 {
-    public Task<List<ServiceDto>> GetAllServices()
+    public async Task<List<ServiceDto>> GetFilteredServices(ServiceFilteredQuery filter)
     {
-        throw new NotImplementedException();
-    }
+        var query = serviceRepository.QueryAll();
+        if (filter.Name is not null)
+        {
+            var normalizedFilterName = filter.Name.ToLower();
+            query = query.Where(x => x.Name != null && x.Name.ToLower().Contains(normalizedFilterName));
+        }
 
-    public Task<ServiceDto> GetServiceById(Guid id)
-    {
-        throw new NotImplementedException();
+        if (filter.Ids is not null)
+        {
+            query = query.Where(x => filter.Ids.Contains(x.Id));
+        }
+        
+        var services = await query.ToListAsync();
+        
+        return mapper.Map<List<ServiceDto>>(services);
     }
 
     public Task<bool> ServiceExists(Guid id)
@@ -27,7 +37,7 @@ public class ServiceService(IMapper mapper, IServiceRepository serviceRepository
 
     public async Task<Service> CreateService(ServiceCreateCommand createCommand)
     {
-        // TODO -> check if icon exists
+        // TODO -> check if service exists
         var newService = mapper.Map<Service>(createCommand);
         await serviceRepository.Add(newService);
 
@@ -40,7 +50,7 @@ public class ServiceService(IMapper mapper, IServiceRepository serviceRepository
 
         if (service == null)
         {
-            throw new KeyNotFoundException($"Icon with ID {updateCommand.Id} was not found.");
+            throw new KeyNotFoundException($"Service with ID {updateCommand.Id} was not found.");
         }
 
         service = mapper.Map(updateCommand, service);
@@ -55,7 +65,7 @@ public class ServiceService(IMapper mapper, IServiceRepository serviceRepository
 
         if (service == null)
         {
-            throw new KeyNotFoundException($"Icon with ID {id} was not found.");
+            throw new KeyNotFoundException($"Service with ID {id} was not found.");
         }
 
         await serviceRepository.Delete(service); 

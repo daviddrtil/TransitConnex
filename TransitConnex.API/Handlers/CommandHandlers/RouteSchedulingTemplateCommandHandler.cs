@@ -33,6 +33,11 @@ public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateServi
         await routeSchedulingTemplateService.DeleteRouteSchedulingTemplate(id);
     }
 
+    public async Task HandleDeleteForRoute(Guid routeId)
+    {
+        await routeSchedulingTemplateService.DeleteRouteSchedulingTemplatesForRoute(routeId);
+    }
+
     public async Task HandleScheduler(IRouteSchedulingTemplateCommand command)
     {
         if (command is not RouteSchedulingTemplateRunSchedulerCommand runCommand)

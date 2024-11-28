@@ -1,17 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Service;
+using TransitConnex.Domain.DTOs.Service;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [AuthorizedByAdmin]
-public class ServiceController(ServiceCommandHandler serviceCommandHandler) : Controller
+public class ServiceController(ServiceCommandHandler serviceCommandHandler, ServiceQueryHandler serviceQueryHandler) : Controller
 {
     /// <summary>
-    /// Endpoint for creating new service.
+    /// Endpoint for getting Services filtered by given filter.
+    /// </summary>
+    /// <param name="filter">Filter for services</param>
+    /// <returns>Method status with list of DTOs representing services.</returns>
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<ServiceDto>>> GetFiltered(ServiceFilteredQuery filter)
+    {
+        return Ok(await serviceQueryHandler.HandleGetFiltered(filter));
+    }
+    
+    /// <summary>
+    /// Endpoint for creating new Service.
     /// </summary>
     /// <param name="createCommand">Command containing all necessary information about service.</param>
     /// <returns>Method status with Id of created service.</returns>

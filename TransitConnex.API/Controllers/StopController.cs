@@ -1,15 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Stop;
+using TransitConnex.Domain.DTOs.Stop;
+using TransitConnex.Query.Queries.Interfaces;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [AuthorizedByAdmin]
-public class StopController(StopCommandHandler stopCommandHandler) : Controller
+public class StopController(StopCommandHandler stopCommandHandler, StopQueryHandler stopQueryHandler) : Controller
 {
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<StopDto>>> GetFilteredStops(StopFilteredQuery filter)
+    {
+        return Ok(await stopQueryHandler.HandleGetFiltered(filter));
+    }
+    
     /// <summary>
     /// Endpoint for creating new stop.
     /// </summary>

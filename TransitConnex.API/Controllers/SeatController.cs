@@ -51,7 +51,7 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
     /// </summary>
     /// <param name="reserveCommand">Command containing seats for reservation.</param>
     /// <returns>Method status.</returns>
-    [HttpPost("reserve")] // TODO -> move to ScheduledRoute schema
+    [HttpPost("reserve")]
     public async Task<IActionResult> ReserveSeats(SeatReservationCommand reserveCommand)
     {
         await seatCommandHandler.HandleSeatReservation(reserveCommand);
@@ -63,7 +63,7 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
     /// </summary>
     /// <param name="freeCommand">Command containing seats to free.</param>
     /// <returns>Method status.</returns>
-    [HttpPost("free")] // TODO -> move to ScheduledRoute schema
+    [HttpPost("free")]
     public async Task<IActionResult> FreeSeats(SeatReservationCommand freeCommand)
     {
         await seatCommandHandler.HandleSeatFree(freeCommand);
@@ -80,7 +80,6 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
     public async Task<IActionResult> EditSeat(SeatUpdateCommand updateCommand)
     {
         await seatCommandHandler.HandleUpdate(updateCommand);
-
         return Ok();
     }
 
@@ -96,7 +95,6 @@ public class SeatController(SeatCommandHandler seatCommandHandler) : Controller
     public async Task<IActionResult> DeleteSeat(Guid id) // TODO -> route ticket delete logic, reservations
     {
         await seatCommandHandler.HandleDelete(id);
-
         return Ok();
     }
 

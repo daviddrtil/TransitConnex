@@ -651,6 +651,16 @@ namespace TransitConnex.Command.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Seat_VehicleId",
+                table: "Seat",
+                column: "VehicleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Service_IconId",
+                table: "Service",
+                column: "IconId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ScheduledRoute_RouteId",
                 table: "ScheduledRoute",
                 column: "RouteId");
@@ -680,16 +690,6 @@ namespace TransitConnex.Command.Migrations
                 name: "IX_ScheduledRouteSeat_SeatId",
                 table: "ScheduledRouteSeat",
                 column: "SeatId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Seat_VehicleId",
-                table: "Seat",
-                column: "VehicleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Service_IconId",
-                table: "Service",
-                column: "IconId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserConnectionFavourite_FromLocationId",

@@ -6,20 +6,42 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.RouteSchedulingTemplate;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
 public class RouteSchedulingTemplateService(IMapper mapper, IRouteSchedulingTemplateRepository routeSchedulingTemplateRepository, IRouteSchedulerService routeSchedulerService, IRouteRepository routeRepository)
     : IRouteSchedulingTemplateService
 {
-    public Task<List<RouteSchedulingTemplateDto>> GetAllRouteSchedulingTemplates()
+    public async Task<List<RouteSchedulingTemplateDto>> GetFilteredRouteSchedulingTemplates(RouteSchedulingTemplateFilteredQuery filter)
     {
-        throw new NotImplementedException();
+        var query = routeSchedulingTemplateRepository.QueryAll();
+        if (filter.Name is not null)
+        {
+            var normalizedFilterName = filter.Name.ToLower();
+            query = query.Where(x => x.Name.ToLower().Contains(normalizedFilterName));
+        }
+        
+        if (filter.Ids is not null)
+        {
+            query = query.Where(x => filter.Ids.Contains(x.Id));
+        }
+
+        if (filter.RouteId is not null)
+        {
+            query = query.Where(x => x.RouteId == filter.RouteId);
+        }
+        
+        var routeSchedulingTemplates = await query.ToListAsync();
+        
+        return mapper.Map<List<RouteSchedulingTemplateDto>>(routeSchedulingTemplates);
     }
 
-    public Task<RouteSchedulingTemplateDto> GetRouteSchedulingTemplateById(Guid id)
+    public async Task<RouteSchedulingTemplateDto> GetRouteSchedulingTemplateById(Guid id)
     {
-        throw new NotImplementedException();
+        var routeSchedulingTemplate = await routeSchedulingTemplateRepository.QueryById(id).FirstOrDefaultAsync();
+        
+        return mapper.Map<RouteSchedulingTemplateDto>(routeSchedulingTemplate);
     }
 
     public async Task<RouteSchedulingTemplate> CreateRouteSchedulingTemplate(
@@ -42,12 +64,21 @@ public class RouteSchedulingTemplateService(IMapper mapper, IRouteSchedulingTemp
 
     public async Task RunScheduler(RouteSchedulingTemplateRunSchedulerCommand runCommand)
     {
-        foreach (var routeId in runCommand.RouteIds)           
+        var routes = routeRepository.QueryAll();
+
+        if (runCommand.RouteIds is not null && runCommand.RouteIds.Any())
         {
-            var schedulingTemplates = await routeSchedulingTemplateRepository.QueryAll().Where(s => s.RouteId == routeId).ToListAsync();
+            routes = routes.Where(x => runCommand.RouteIds.Contains(x.Id));
+        }
+
+        var routesToSchedule = await routes.ToListAsync();
+        
+        foreach (var route in routesToSchedule)           
+        {
+            var schedulingTemplates = await routeSchedulingTemplateRepository.QueryAll().Where(s => s.RouteId == route.Id).ToListAsync();
             foreach (var schedulingTemplate in schedulingTemplates)
             {
-                await routeSchedulerService.ScheduleRoute(routeId, schedulingTemplate.Id, DateTime.Today.AddDays(1));
+                await routeSchedulerService.ScheduleRoute(route.Id, schedulingTemplate.Id, DateTime.Today.AddDays(1));
             }
         }
     }
@@ -75,5 +106,12 @@ public class RouteSchedulingTemplateService(IMapper mapper, IRouteSchedulingTemp
         }
 
         await routeSchedulingTemplateRepository.Delete(routeSchedulingTemplate);
+    }
+    
+    public async Task DeleteRouteSchedulingTemplatesForRoute(Guid routeId)
+    {
+        var routeSchedulingTemplates = await routeSchedulingTemplateRepository.QueryAll().Where(s => s.RouteId == routeId).ToListAsync();
+
+        await routeSchedulingTemplateRepository.DeleteBatch(routeSchedulingTemplates);
     }
 }

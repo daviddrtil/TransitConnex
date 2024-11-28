@@ -9,17 +9,12 @@ namespace TransitConnex.Command.Services;
 
 public class RouteTicketService(IRouteTicketRepository routeTicketRepository, IScheduledRouteRepository scheduledRouteRepository, ISeatRepository seatRepository) : IRouteTicketService
 {
-    public Task<List<RouteTicketDto>> GetAllRouteTickets()
+    public Task<List<RouteTicketDto>> GetRouteTicketsFiltered()
     {
         throw new NotImplementedException();
     }
 
     public Task<RouteTicketDto> GetRouteTicketById(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> RouteTicketExists(Guid id)
     {
         throw new NotImplementedException();
     }
@@ -82,6 +77,11 @@ public class RouteTicketService(IRouteTicketRepository routeTicketRepository, IS
         await seatRepository.DeleteReservations(reservations);
         
         await routeTicketRepository.Delete(routeTicket);
+    }
+
+    public Task DeleteRouteTickets(List<Guid> ids)
+    {
+        throw new NotImplementedException();
     }
 
     private Task ValidateCreateCommand(ScheduledRoute scheduledRoute, User user)

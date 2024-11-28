@@ -42,13 +42,23 @@ public class LineCommandHandler(ILineService lineService) : IBaseCommandHandler<
         var updated = await lineService.EditLine(updateCommand);
     }
 
-    public async Task HandleDelete(ILineCommand command)
+    public async Task HandleBatchUpdate(ILineCommand command)
     {
+        if (command is not LineBatchUpdateCommand batchUpdateCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(LineBatchUpdateCommand)}");
+        }
         
+        var updatedList = await lineService.EditLines(batchUpdateCommand.Lines);
     }
     
     public async Task HandleDelete(Guid id) // TODO
     {
         await lineService.DeleteLine(id);
+    }
+    
+    public async Task HandleBatchDelete(ILineCommand command)
+    {
+        // TODO
     }
 }
