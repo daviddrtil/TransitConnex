@@ -1,14 +1,13 @@
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries.Interfaces;
 
 namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IStopService
 {
-    Task<List<StopDto>> GetAllStops();
-    Task<StopDto> GetStopById(Guid id);
-    Task<bool> StopExists(Guid id);
+    Task<List<StopDto>> GetFilteredStops(StopFilteredQuery filter);
 
     Task<Stop> CreateStop(StopCreateCommand createCommand);
     Task<List<Stop>> CreateStops(List<StopCreateCommand> createCommands);

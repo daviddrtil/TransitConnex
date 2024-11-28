@@ -44,10 +44,9 @@ public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandH
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [AuthorizedByAdmin]
-    public async Task<IActionResult> DeleteRouteTickets(Guid routeId)
+    public async Task<IActionResult> DeleteRouteTickets(List<Guid> ids)
     {
-        // await RouteTicketCommandHandler.HandleDelete(deleteCommand); // TODO -> implement
-
+        await routeTicketCommandHandler.HandleBatchDelete(ids);
         return Ok();
     }
 }

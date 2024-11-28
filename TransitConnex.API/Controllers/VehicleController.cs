@@ -59,7 +59,6 @@ public class VehicleController(
     public async Task<IActionResult> EditVehicle(VehicleUpdateCommand editCommand)
     {
         await vehicleCommandHandler.HandleUpdate(editCommand);
-
         return Ok();
     }
 
@@ -102,5 +101,11 @@ public class VehicleController(
         // await VehicleCommandHandler.HandleDelete(deleteCommand); // TODO
 
         return Ok();
+    }
+
+    [HttpPost("replace")]
+    public async Task ReplaceVehicleOnScheduledRoutes()
+    {
+        // TODO
     }
 }

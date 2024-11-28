@@ -5,24 +5,39 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries.Interfaces;
 
 namespace TransitConnex.Command.Services;
 
 public class StopService(IMapper mapper, IStopRepository stopRepository) : IStopService
 {
-    public Task<List<StopDto>> GetAllStops()
+    public async Task<List<StopDto>> GetFilteredStops(StopFilteredQuery filter)
     {
-        throw new NotImplementedException();
-    }
+        var query = stopRepository.QueryAll();
 
-    public Task<StopDto> GetStopById(Guid id)
-    {
-        throw new NotImplementedException();
-    }
+        if (filter.Ids != null)
+        {
+            query = query.Where(s => filter.Ids.Contains(s.Id));
+        }
 
-    public Task<bool> StopExists(Guid id)
-    {
-        throw new NotImplementedException();
+        if (filter.Name != null)
+        {
+            query = query.Where(s => s.Name != null && s.Name.Contains(filter.Name));
+        }
+
+        if (filter.LocationId != null)
+        {
+            query = query.Where(x => x.LocationStops != null && x.LocationStops.Any(l => l.LocationId == filter.LocationId));
+        }
+
+        if (filter.RouteId != null)
+        {
+            query = query.Where(s => s.RouteStops != null && s.RouteStops.Any(rs => rs.RouteId == filter.RouteId));
+        }
+        
+        var stops = await query.ToListAsync();
+        
+        return mapper.Map<List<StopDto>>(stops);
     }
 
     public async Task<Stop> CreateStop(StopCreateCommand createCommand)

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.User;
 using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.Models;
@@ -9,14 +10,16 @@ namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UserController(UserCommandHandler userCommandHandler, SignInManager<User> signInManager) : Controller
+public class UserController(UserCommandHandler userCommandHandler, UserQueryHandler userQueryHandler, SignInManager<User> signInManager) : Controller
 {
+    /// <summary>
+    /// Endpoint for getting all users from Source of truth.
+    /// </summary>
+    /// <returns>List of DTOs containing info about Users.</returns>
     [HttpGet]
-    public async Task<List<UserDto>> GetAll()
+    public async Task<ActionResult<List<UserDto>>> GetAllSoT()
     {
-        // TODO -> Query handler
-
-        return null;
+        return Ok(await userQueryHandler.HandleGetAll());
     }
 
     /// <summary>
@@ -38,7 +41,7 @@ public class UserController(UserCommandHandler userCommandHandler, SignInManager
     /// <param name="model">TODO</param>
     /// <returns></returns>
     [HttpPost("login")]
-    public async Task<IActionResult> LoginUser([FromBody] LoginDto model) // TODO -> switch to queryHandler + add check for deleted user
+    public async Task<IActionResult> LoginUser([FromBody] LoginDto model)
     {
         if (ModelState.IsValid)
         {

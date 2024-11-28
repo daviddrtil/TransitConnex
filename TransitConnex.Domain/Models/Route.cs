@@ -16,4 +16,6 @@ public class Route
     public bool IsWeekendRoute { get; set; }
     public bool IsHolydayRoute { get; set; }
     public bool HasTickets { get; set; }
+    
+    public ICollection<RouteStop>? RouteStops { get; set; } = new List<RouteStop>();
 }

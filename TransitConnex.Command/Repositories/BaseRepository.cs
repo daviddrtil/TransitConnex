@@ -61,7 +61,11 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
         await _appDbContext.SaveChangesAsync();
     }
 
-    // TODO -> batch update?
+    public async Task UpdateBatch(IEnumerable<T> entities)
+    {
+        _dbSet.UpdateRange(entities);
+        await _appDbContext.SaveChangesAsync();
+    }
 
     public async Task Delete(T entity)
     {
@@ -78,5 +82,16 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
     public async Task<bool> Exists(Guid id) // TODO -> does not work?
     {
         return await _dbSet.AnyAsync(e => EF.Property<Guid>(e, "Id") == id);
+    }
+
+    public async Task<bool> ExistsAll(List<Guid> ids)
+    {
+        if (ids.Count == 0)
+        {
+            return false;
+        }
+
+        var count = await _dbSet.CountAsync(e => ids.Contains(EF.Property<Guid>(e, "Id")));
+        return count == ids.Count;
     }
 }

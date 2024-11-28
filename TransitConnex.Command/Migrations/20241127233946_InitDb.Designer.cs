@@ -12,7 +12,7 @@ using TransitConnex.Command.Data;
 namespace TransitConnex.Command.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241127155018_InitDb")]
+    [Migration("20241127233946_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -708,13 +708,13 @@ namespace TransitConnex.Command.Migrations
             modelBuilder.Entity("TransitConnex.Domain.Models.LocationStop", b =>
                 {
                     b.HasOne("TransitConnex.Domain.Models.Location", "Location")
-                        .WithMany()
+                        .WithMany("LocationStops")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TransitConnex.Domain.Models.Stop", "Stop")
-                        .WithMany()
+                        .WithMany("LocationStops")
                         .HasForeignKey("StopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -765,13 +765,13 @@ namespace TransitConnex.Command.Migrations
             modelBuilder.Entity("TransitConnex.Domain.Models.RouteStop", b =>
                 {
                     b.HasOne("TransitConnex.Domain.Models.Route", "Route")
-                        .WithMany()
+                        .WithMany("RouteStops")
                         .HasForeignKey("RouteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TransitConnex.Domain.Models.Stop", "Stop")
-                        .WithMany()
+                        .WithMany("RouteStops")
                         .HasForeignKey("StopId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -951,6 +951,23 @@ namespace TransitConnex.Command.Migrations
                     b.Navigation("Service");
 
                     b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("TransitConnex.Domain.Models.Location", b =>
+                {
+                    b.Navigation("LocationStops");
+                });
+
+            modelBuilder.Entity("TransitConnex.Domain.Models.Route", b =>
+                {
+                    b.Navigation("RouteStops");
+                });
+
+            modelBuilder.Entity("TransitConnex.Domain.Models.Stop", b =>
+                {
+                    b.Navigation("LocationStops");
+
+                    b.Navigation("RouteStops");
                 });
 #pragma warning restore 612, 618
         }

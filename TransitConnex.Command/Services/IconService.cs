@@ -4,25 +4,41 @@ using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Icon;
+using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Mappings;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
 public class IconService(IMapper mapper ,IIconRepository iconRepository) : IIconService
 {
-    public async Task<List<IconDto>> GetAllIcons()
+    public async Task<List<IconDto>> GetFilteredIcons(IconFilteredQuery filter)
     {
-        return await iconRepository.QueryAll().ToDto().ToListAsync();
+        var query = iconRepository.QueryAll();
+        if (filter.Name is not null)
+        {
+            var normalizedFilterName = filter.Name.ToLower();
+            query = query.Where(x => x.Name != null && x.Name.ToLower().Contains(normalizedFilterName));
+        }
+
+        if (filter.VehicleIcons)
+        {
+            var vehicleNames = EnumService.GetEnumDescriptions<VehicleTypeEnum>();
+            query = query.Where(x => x.Name != null && vehicleNames.Contains(x.Name));
+        }
+
+        if (filter.Ids is not null)
+        {
+            query = query.Where(x => filter.Ids.Contains(x.Id));
+        }
+        
+        var icons = await query.ToListAsync();
+        
+        return mapper.Map<List<IconDto>>(icons);
     }
 
-    public async Task<IconDto> GetIconById(Guid id)
-    {
-        return await iconRepository.QueryById(id).ToDto().FirstOrDefaultAsync() ??
-               throw new KeyNotFoundException($"Icon with ID {id} was not found ds.");
-    }
-
-    public async Task<IconDto?> GetIconByName(string iconName) // TODO -> mby remake -> return list?
+    public async Task<IconDto?> GetIconByName(string iconName)
     {
         return await iconRepository.QueryByName(iconName).ToDto().FirstOrDefaultAsync();
     }

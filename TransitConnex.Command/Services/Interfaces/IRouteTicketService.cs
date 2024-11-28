@@ -6,15 +6,11 @@ namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IRouteTicketService
 {
-    Task<List<RouteTicketDto>> GetAllRouteTickets();
-
+    Task<List<RouteTicketDto>> GetRouteTicketsFiltered();
     Task<RouteTicketDto> GetRouteTicketById(Guid id);
-
-    Task<bool> RouteTicketExists(Guid id);
+    
 
     Task<RouteTicket> CreateRouteTicket(RouteTicketCreateCommand createCommand);
-
-    Task<RouteTicket> EditRouteTicket(RouteTicketUpdateCommand editCommand);
-
     Task DeleteRouteTicket(Guid id);
+    Task DeleteRouteTickets(List<Guid> ids);
 }

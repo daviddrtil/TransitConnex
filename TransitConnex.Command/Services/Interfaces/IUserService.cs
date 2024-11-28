@@ -6,9 +6,10 @@ namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IUserService
 {
+    // SoT queries
     Task<List<UserDto>> GetAllUsers();
-    Task<UserDto> GetUserById(Guid id);
 
+    // Commands
     Task<User> CreateUser(UserCreateCommand createCommand);
     Task<User> EditUser(UserUpdateCommand updateCommand);
     Task DeleteUser(Guid id);

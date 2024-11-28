@@ -37,10 +37,10 @@ public class LocationController(
     }
 
     /// <summary>
-    /// Endpoint for
+    /// Endpoint for creating new Location.
     /// </summary>
-    /// <param name="createCommand"></param>
-    /// <returns></returns>
+    /// <param name="createCommand">Command containing all needed information for creating new location.</param>
+    /// <returns>Method status with Id of created location.</returns>
     [HttpPost]
     public async Task<ActionResult<Guid>> CreateLocation(LocationCreateCommand createCommand)
     {
@@ -48,10 +48,10 @@ public class LocationController(
     }
 
     /// <summary>
-    /// Endpoint for
+    /// Endpoint for creating multiple new Locations.
     /// </summary>
-    /// <param name="createCommands"></param>
-    /// <returns></returns>
+    /// <param name="createCommands">Command containing list of commands for creating location.</param>
+    /// <returns>Method status with Ids of created locations.</returns>
     [HttpPost("batch")]
     public async Task<ActionResult<List<Guid>>> CreateLocations(LocationBatchCreateCommand createCommands)
     {
@@ -59,15 +59,14 @@ public class LocationController(
     }
 
     /// <summary>
-    /// Endpoint for
+    /// Endpoint for editing Location.
     /// </summary>
-    /// <param name="updateCommand"></param>
-    /// <returns></returns>
+    /// <param name="updateCommand">Command containing all updated information about location.</param>
+    /// <returns>Method status.</returns>
     [HttpPut]
     public async Task<IActionResult> EditLocation(LocationUpdateCommand updateCommand)
     {
         await locationCommandHandler.HandleUpdate(updateCommand);
-
         return Ok();
     }
 

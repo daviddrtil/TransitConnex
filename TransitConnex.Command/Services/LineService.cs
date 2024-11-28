@@ -1,3 +1,5 @@
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Commands.Line;
 using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
@@ -6,7 +8,7 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class LineService(ILineRepository lineRepository) : ILineService
+public class LineService(IMapper mapper, ILineRepository lineRepository) : ILineService
 {
     public Task<List<LineDto>> GetAllLines()
     {
@@ -52,13 +54,46 @@ public class LineService(ILineRepository lineRepository) : ILineService
         return newLines;
     }
 
-    public Task<Line> EditLine(LineUpdateCommand editCommand)
+    public async Task<Line> EditLine(LineUpdateCommand editCommand)
     {
-        throw new NotImplementedException();
+        var line = await lineRepository.QueryById(editCommand.Id).FirstOrDefaultAsync();
+
+        if (line == null)
+        {
+            throw new KeyNotFoundException($"Line with ID: {editCommand.Id} does not exist");
+        }
+        
+        line = mapper.Map(editCommand, line);
+        await lineRepository.Update(line);
+        
+        return line;
     }
 
-    public Task DeleteLine(Guid id)
+    public async Task<List<Line>> EditLines(List<LineUpdateCommand> editCommand)
     {
-        throw new NotImplementedException();
+        var lineIds = editCommand.Select(x => x.Id).ToList();
+        var lines = await lineRepository.QueryAll().Where(x => lineIds.Contains(x.Id)).ToListAsync();
+        if (lines.Count != lineIds.Count)
+        {
+            var missing = lineIds.Except(lines.Select(x => x.Id)).ToList();
+            throw new KeyNotFoundException($"Lines with IDs: [{string.Join(", ", missing.ToArray())}] were not found.");
+        }
+        
+        lines = mapper.Map(editCommand, lines);
+        await lineRepository.UpdateBatch(lines);
+
+        return lines;
+    }
+
+    public async Task DeleteLine(Guid id)
+    {
+        var line = await lineRepository.QueryById(id).FirstOrDefaultAsync();
+        
+        if (line == null)
+        {
+            throw new KeyNotFoundException($"Line with ID: {id} does not exist");
+        }
+        
+        // TODO -> think about this logic
     }
 }

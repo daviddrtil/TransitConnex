@@ -53,12 +53,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .HasKey(rs => new { rs.RouteId, rs.StopId });
         builder.Entity<RouteStop>()
             .HasOne(rs => rs.Route)
-            .WithMany()
+            .WithMany(r => r.RouteStops)
             .HasForeignKey(rs => rs.RouteId)
             .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<RouteStop>()
             .HasOne(rs => rs.Stop)
-            .WithMany()
+            .WithMany(s => s.RouteStops)
             .HasForeignKey(rs => rs.StopId)
             .OnDelete(DeleteBehavior.Restrict);
 
@@ -66,12 +66,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .HasKey(ls => new { ls.LocationId, ls.StopId });
         builder.Entity<LocationStop>()
             .HasOne(ls => ls.Location)
-            .WithMany()
+            .WithMany(l => l.LocationStops)
             .HasForeignKey(ls => ls.LocationId)
             .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<LocationStop>()
             .HasOne(ls => ls.Stop)
-            .WithMany()
+            .WithMany(s => s.LocationStops)
             .HasForeignKey(ls => ls.StopId)
             .OnDelete(DeleteBehavior.Cascade);
 

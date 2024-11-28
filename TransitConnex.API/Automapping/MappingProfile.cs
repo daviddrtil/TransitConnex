@@ -17,6 +17,7 @@ using TransitConnex.Domain.DTOs.RouteStop;
 using TransitConnex.Domain.DTOs.RouteSchedulingTemplate;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
 using TransitConnex.Domain.DTOs.Service;
+using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Enums;
@@ -88,6 +89,7 @@ public class MappingProfile : Profile
         CreateMap<User, UserDto>();
         CreateMap<Icon, IconDto>();
         CreateMap<Service, ServiceDto>();
+        CreateMap<Stop, StopDto>();
     }
 
     private void MapModelsToCollections()
