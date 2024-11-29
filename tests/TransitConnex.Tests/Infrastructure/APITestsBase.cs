@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.SqlClient;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,21 +8,22 @@ using System.Data.Common;
 using System.Net.Http.Json;
 using TransitConnex.API;
 using TransitConnex.Command.Data;
-using TransitConnex.Command.Seeds;
 using TransitConnex.Domain.DTOs.User;
-using TransitConnex.Query.Seeds;
+using TransitConnex.TestSeeds;
+using TransitConnex.TestSeeds.NoSqlSeeds;
+using TransitConnex.TestSeeds.SqlSeeds;
 using Xunit.Abstractions;
 
 namespace TransitConnex.Tests.Infrastructure;
 
 public class ApiWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : class
 {
+    public const bool UseSqlServer = false;
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureServices(services =>
         {
-            bool useSqlServer = false;
-            if (useSqlServer)
+            if (!UseSqlServer)
             {
                 // Remove existing DbContext registrations
                 var dbContextDescriptor = services.SingleOrDefault(
@@ -93,8 +95,12 @@ public abstract class APITestsBase : IClassFixture<ApiWebApplicationFactory<Prog
         using var scope = Factory.Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-        //dbContext.Database.EnsureDeleted();   // cannot delete db using sql server
-        //dbContext.Database.EnsureCreated();
+        if (!ApiWebApplicationFactory<Program>.UseSqlServer)
+        {
+            // Can perform delete only in-memory db, not sql server
+            dbContext.Database.EnsureDeleted();
+            dbContext.Database.EnsureCreated();
+        }
 
         await DbSeeder.SeedAll(Factory.Services); // enable to seed sql db
 

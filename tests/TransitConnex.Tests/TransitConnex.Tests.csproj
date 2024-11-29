@@ -33,6 +33,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\TransitConnex.API\TransitConnex.API.csproj" />
+        <ProjectReference Include="..\TransitConnex.TestSeeds\TransitConnex.TestSeeds.csproj" />
     </ItemGroup>
 
 </Project>

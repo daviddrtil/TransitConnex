@@ -2,11 +2,11 @@
 using System.Net.Http.Json;
 using TransitConnex.API;
 using TransitConnex.Command.Commands.Location;
-using TransitConnex.Command.Seeds;
 using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Domain.Enums;
 using TransitConnex.Tests.Infrastructure;
 using Xunit.Abstractions;
+using TransitConnex.TestSeeds.SqlSeeds;
 
 namespace TransitConnex.Tests;
 
@@ -27,10 +27,9 @@ public class LocationTests(
         await PerformLogin(UserSeed.AdminLogin);
         var newLocation = new LocationCreateCommand()
         {
-            //Id = Guid.Parse("602A9649-187E-4A00-9199-C7D9A962CF06"),
-            Name = "Prerov",
-            Longitude = 16.607852,
-            Latitude = 49.176713,
+            Name = "Praha",
+            Longitude = 14.418540,
+            Latitude = 50.073658,
             Type = LocationTypeEnum.CITY,
         };
 
@@ -52,4 +51,10 @@ public class LocationTests(
         Assert.Equal(id, getLocation.Id);
         Assert.Equal(newLocation.Name, getLocation.Name);
     }
+
+    //[Fact]
+    //public async Task POST_Get_Closest_Location_OK()
+    //{
+        
+    //}
 }

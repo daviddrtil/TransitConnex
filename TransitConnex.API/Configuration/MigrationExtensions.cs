@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Data;
 using TransitConnex.Query.Data;
+using TransitConnex.TestSeeds.NoSqlSeeds;
 
 namespace TransitConnex.API.Configuration;
 
@@ -44,5 +45,12 @@ internal static class MigrationExtensions
         await context.CreateIndexAsync();
 
         app.Logger.LogInformation("----- MongoDB: collections were created successfully!");
+    }
+
+    public static async Task SeedMongoDb(this WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
+        var dbMongoSeeder = scope.ServiceProvider.GetRequiredService<DbMongoSeeder>();
+        await dbMongoSeeder.SeedAll();
     }
 }

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\tests\TransitConnex.TestSeeds\TransitConnex.TestSeeds.csproj" />
     <ProjectReference Include="..\TransitConnex.Domain\TransitConnex.Domain.csproj" />
     <ProjectReference Include="..\TransitConnex.Command\TransitConnex.Command.csproj" />
     <ProjectReference Include="..\TransitConnex.Query\TransitConnex.Query.csproj" />

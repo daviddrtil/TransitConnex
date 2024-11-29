@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransitConnex.Tests", "tests\TransitConnex.Tests\TransitConnex.Tests.csproj", "{C9DD7115-6FE6-4B20-B0F0-553532BAD5BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransitConnex.TestSeeds", "tests\TransitConnex.TestSeeds\TransitConnex.TestSeeds.csproj", "{61D0C19B-6027-4190-B77C-08748129D379}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		dbUpdate|Any CPU = dbUpdate|Any CPU
@@ -63,12 +65,19 @@ Global
 		{C9DD7115-6FE6-4B20-B0F0-553532BAD5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9DD7115-6FE6-4B20-B0F0-553532BAD5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9DD7115-6FE6-4B20-B0F0-553532BAD5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D0C19B-6027-4190-B77C-08748129D379}.dbUpdate|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D0C19B-6027-4190-B77C-08748129D379}.dbUpdate|Any CPU.Build.0 = Debug|Any CPU
+		{61D0C19B-6027-4190-B77C-08748129D379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D0C19B-6027-4190-B77C-08748129D379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D0C19B-6027-4190-B77C-08748129D379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D0C19B-6027-4190-B77C-08748129D379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C9DD7115-6FE6-4B20-B0F0-553532BAD5BD} = {110B69AE-E798-4674-BF48-AD6320347D1B}
+		{61D0C19B-6027-4190-B77C-08748129D379} = {110B69AE-E798-4674-BF48-AD6320347D1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA6BA01A-502E-42B6-941A-D834288F8B60}
