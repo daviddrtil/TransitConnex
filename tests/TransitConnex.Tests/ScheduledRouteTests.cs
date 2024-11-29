@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http.Json;
 using TransitConnex.API;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Tests.Infrastructure;
 using Xunit.Abstractions;
 
 namespace TransitConnex.Tests;

@@ -1,10 +1,10 @@
-﻿using TransitConnex.Domain.DTOs;
+﻿using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Query.Services.Interfaces;
 
 public interface IUserFavLocationMongoService
 {
-    Task<IEnumerable<UserFavLocationDto>> GetAll();
-    Task<UserFavLocationDto?> GetByUserId(Guid id);
-    Task<Guid> Create(UserFavLocationDto location);
+    Task<IEnumerable<UserLocationFavourite>> GetByUserId(Guid userId);
+    Task<Guid> Add(UserLocationFavourite location);
+    Task<bool> Remove(UserLocationFavourite location);
 }

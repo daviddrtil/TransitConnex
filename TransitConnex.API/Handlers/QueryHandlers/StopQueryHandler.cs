@@ -2,7 +2,7 @@ using AutoMapper;
 using TransitConnex.API.Handlers.QueryHandlers.Common;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Stop;
-using TransitConnex.Query.Queries.Interfaces;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Handlers.QueryHandlers;
 

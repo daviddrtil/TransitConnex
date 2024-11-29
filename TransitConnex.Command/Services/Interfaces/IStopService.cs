@@ -1,7 +1,7 @@
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.Models;
-using TransitConnex.Query.Queries.Interfaces;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services.Interfaces;
 

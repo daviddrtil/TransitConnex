@@ -1,10 +1,15 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.User;
 using TransitConnex.Command.Services.Interfaces;
+using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
-public class UserCommandHandler(IUserService userService) : IBaseCommandHandler<IUserCommand>
+public class UserCommandHandler(
+    IUserService userService,
+    IUserFavLocationMongoService locationMongoService,
+    IUserFavConnectionMongoService connectionMongoService)
+    : IBaseCommandHandler<IUserCommand>
 {
     public async Task<Guid> HandleCreate(IUserCommand command)
     {
@@ -45,6 +50,7 @@ public class UserCommandHandler(IUserService userService) : IBaseCommandHandler<
         }
         
         await userService.LikeLocation(likeCommand);
+        //await locationMongoService.Add();
         // TODO -> sync with mongo
     }
 
@@ -56,9 +62,10 @@ public class UserCommandHandler(IUserService userService) : IBaseCommandHandler<
         }
         
         await userService.LikeConnection(likeCommand);
+        //await locationMongoService.Add();
         // TODO -> sync with mongo
     }
-    
+
     public async Task HandleDislikeLocation(IUserCommand command)
     {
         if (command is not UserLikeLocationCommand likeCommand)

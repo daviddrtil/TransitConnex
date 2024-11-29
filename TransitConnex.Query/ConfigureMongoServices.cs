@@ -8,7 +8,6 @@ using TransitConnex.Query.Abstraction;
 using TransitConnex.Query.Data;
 using TransitConnex.Query.Repositories;
 using TransitConnex.Query.Repositories.Interfaces;
-using TransitConnex.Query.Seeds;
 using TransitConnex.Query.Services;
 using TransitConnex.Query.Services.Interfaces;
 
@@ -42,6 +41,8 @@ public static class ConfigureMongoServices
         services.AddScoped<IRouteStopMongoRepository, RouteStopMongoRepository>();
         services.AddScoped<IScheduledRouteMongoRepository, ScheduledRouteMongoRepository>();
         services.AddScoped<ISearchedRouteMongoRepository, SearchedRouteMongoRepository>();
+        services.AddScoped<IUserFavLocationMongoRepository, UserFavLocationMongoRepository>();
+        services.AddScoped<IUserFavConnectionMongoRepository, UserFavConnectionMongoRepository>();
         services.AddScoped<IVehicleMongoRepository, VehicleMongoRepository>();
         services.AddScoped<IVehicleRTIMongoRepository, VehicleRTIMongoRepository>();
     }
@@ -49,22 +50,13 @@ public static class ConfigureMongoServices
     public static void AddMongoDbServices(this IServiceCollection services)
     {
         services.AddScoped<ILocationMongoService, LocationMongoService>();
+        services.AddScoped<IRouteStopMongoService, RouteStopMongoService>();
         services.AddScoped<IScheduledRouteMongoService, ScheduledRouteMongoService>();
         services.AddScoped<ISearchedRouteMongoService, SearchedRouteMongoService>();
+        services.AddScoped<IUserFavLocationMongoService, UserFavLocationMongoService>();
+        services.AddScoped<IUserFavConnectionMongoService, UserFavConnectionMongoService>();
         services.AddScoped<IVehicleMongoService, VehicleMongoService>();
         services.AddScoped<IVehicleRTIMongoService, VehicleRTIMongoService>();
-    }
-
-    public static void AddMongoDbSeeders(this IServiceCollection services)
-    {
-        services.AddSingleton(new Faker("cz"));
-        services.AddScoped<DbMongoSeeder>();
-        services.AddScoped<LocationDocSeeder>();
-        services.AddScoped<RouteStopDocSeeder>();
-        services.AddScoped<ScheduledRouteDocSeeder>();
-        services.AddScoped<SearchedRouteDocSeeder>();
-        services.AddScoped<VehicleDocSeeder>();
-        services.AddScoped<VehicleRTIDocSeeder>();
     }
 
     /// <summary>

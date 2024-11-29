@@ -4,7 +4,7 @@ using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.DTOs.Stop;
-using TransitConnex.Query.Queries.Interfaces;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 

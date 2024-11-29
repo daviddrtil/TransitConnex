@@ -18,9 +18,9 @@ public class VehicleRTIDocSeeder(
 
     public static string SolutionPath = ProjectPathHelper.GetSolutionDirectory();
     public static string ProjectPath { get; set; } = Path.Combine(
-        SolutionPath, "TransitConnex.Query");
+        SolutionPath, "tests", "TransitConnex.Tests");
     public static string DatasetPath = Path.Combine(ProjectPath,
-        "Seeds", "Datasets", "vehicleDataset.csv");
+        "NoSqlSeeds", "Datasets", "vehicleDataset.csv");
 
     private VehicleRTIDoc Parse(CsvReader csv)
     {
@@ -74,9 +74,25 @@ public class VehicleRTIDocSeeder(
         return vehicleRTIs;
     }
 
+    public static void ModifyVehicleRTIs(List<VehicleRTIDoc> vehicleRTIs)
+    {
+        for (int i = 0; i < VehicleDocSeeder.VehicleIds.Count; i++)
+        {
+            Guid sqlVehicleId = VehicleDocSeeder.VehicleIds[i];
+            Guid datasetVehicleId = vehicleRTIs[i].VehicleId;
+            foreach (var vehicleRTI in vehicleRTIs)
+            {
+                if (vehicleRTI.VehicleId == datasetVehicleId)
+                    vehicleRTI.VehicleId = sqlVehicleId;
+            }
+        }
+    }
+
     public async Task Seed()
     {
         var vehicleRTIs = LoadVehicleRTIs();
+        ModifyVehicleRTIs(vehicleRTIs);
+        vehicleRTIs = vehicleRTIs.Take(100).ToList();
         await vehicleRTIRepo.Upsert(vehicleRTIs);
 
         foreach (var v in vehicleRTIs)

@@ -7,73 +7,74 @@ namespace TransitConnex.Command.Seeds;
 
 public class RouteSeed
 {
+    private static readonly Stop PrerovTrainStop = StopSeed.Stops
+        .First(s => s.Name == "Přerov žst." && s.StopType == StopTypeEnum.TRAIN);
+    private static readonly Stop BrnoTrainStop = StopSeed.Stops
+        .First(s => s.Name == "Brno hln." && s.StopType == StopTypeEnum.TRAIN);
+    private static readonly Line LinePrerovBrno = LineSeed.Lines.First(l => l.Label == "R8");
+
+    public static readonly List<Route> Routes = [
+        new()
+        {
+            Id = Guid.Parse("9d8c5c9f-ca03-4399-96ff-8f081b67d298"),
+            Name = "R8 Brno-Přerov hlavní",
+            Direction = "Přerov",
+            DurationTime = new TimeSpan(1,10,0),
+            HasTickets = true,
+            StartStopId = BrnoTrainStop!.Id,
+            EndStopId = PrerovTrainStop!.Id,
+            IsHolydayRoute = false,
+            IsWeekendRoute = false,
+            IsActive = true,
+            LineId = LinePrerovBrno!.Id,
+        },
+        new()
+        {
+            Id = Guid.Parse("dff25738-54e3-4190-b19d-282a300c8219"),
+            Name = "R8 Přerov-Brno hlavní",
+            Direction = "Brno",
+            DurationTime = new TimeSpan(1,10,0),
+            HasTickets = true,
+            StartStopId = PrerovTrainStop.Id,
+            EndStopId = BrnoTrainStop.Id,
+            IsHolydayRoute = false,
+            IsWeekendRoute = false,
+            IsActive = true,
+            LineId = LinePrerovBrno.Id,
+        },
+        new()
+        {
+            Id = Guid.Parse("f83d0060-c5ad-4e68-ac4d-8e9f1e7364e2"),
+            Name = "BRN-32 Srbská-Česká",
+            Direction = "Česká",
+            DurationTime = new TimeSpan(0,14,0),
+            HasTickets = false,
+            StartStopId = Guid.Parse("bbdb98bb-e842-4f53-8f4b-f01fc66302e5"),
+            EndStopId = Guid.Parse("afff64d8-870a-4261-a471-bbda33d054f1"),
+            IsHolydayRoute = false,
+            IsWeekendRoute = false,
+            IsActive = true,
+            LineId = Guid.Parse("84b25e26-d011-4487-86e2-53457b7c9e3f"),
+        },
+        new()
+        {
+            Id = Guid.Parse("829c534e-ae42-48f9-b66f-3f5521c522c3"),
+            Name = "BRN-32 Česká-Srbská",
+            Direction = "Srbská",
+            DurationTime = new TimeSpan(0,14,0),
+            HasTickets = false,
+            StartStopId = Guid.Parse("de15e587-eddb-4607-97e2-0ce91494a8fa"),
+            EndStopId = Guid.Parse("e3064840-6ff0-46a2-b9a4-c31ef7f3a640"),
+            IsHolydayRoute = false,
+            IsWeekendRoute = false,
+            IsActive = true,
+            LineId = Guid.Parse("84b25e26-d011-4487-86e2-53457b7c9e3f"),
+        }
+    ];
+
     public static void Seed(AppDbContext context)
     {
-        var prerovTrainStop = context.Stops.FirstOrDefault(s => s.Name == "Přerov žst." && s.StopType == StopTypeEnum.TRAIN);
-        var brnoTrainStop = context.Stops.FirstOrDefault(s => s.Name == "Brno hln." && s.StopType == StopTypeEnum.TRAIN);
-        var linePrerovBrno = context.Lines.FirstOrDefault(l => l.Label == "R8");
-        
-        var routesToBeSeeded = new List<Route>
-        {
-            new()
-            {
-                Id = Guid.Parse("9d8c5c9f-ca03-4399-96ff-8f081b67d298"),
-                Name = "R8 Brno-Přerov hlavní",
-                Direction = "Přerov",
-                DurationTime = new TimeSpan(1,10,0),
-                HasTickets = true,
-                StartStopId = brnoTrainStop!.Id,
-                EndStopId = prerovTrainStop!.Id,
-                IsHolydayRoute = false,
-                IsWeekendRoute = false,
-                IsActive = true,
-                LineId = linePrerovBrno!.Id,
-            },
-            new()
-            {
-                Id = Guid.Parse("dff25738-54e3-4190-b19d-282a300c8219"),
-                Name = "R8 Přerov-Brno hlavní",
-                Direction = "Brno",
-                DurationTime = new TimeSpan(1,10,0),
-                HasTickets = true,
-                StartStopId = prerovTrainStop.Id,
-                EndStopId = brnoTrainStop.Id,
-                IsHolydayRoute = false,
-                IsWeekendRoute = false,
-                IsActive = true,
-                LineId = linePrerovBrno.Id,
-            },
-            new()
-            {
-                Id = Guid.Parse("f83d0060-c5ad-4e68-ac4d-8e9f1e7364e2"),
-                Name = "BRN-32 Srbská-Česká",
-                Direction = "Česká",
-                DurationTime = new TimeSpan(0,14,0),
-                HasTickets = false,
-                StartStopId = Guid.Parse("bbdb98bb-e842-4f53-8f4b-f01fc66302e5"),
-                EndStopId = Guid.Parse("afff64d8-870a-4261-a471-bbda33d054f1"),
-                IsHolydayRoute = false,
-                IsWeekendRoute = false,
-                IsActive = true,
-                LineId = Guid.Parse("84b25e26-d011-4487-86e2-53457b7c9e3f"),
-            },
-            new()
-            {
-                Id = Guid.Parse("829c534e-ae42-48f9-b66f-3f5521c522c3"),
-                Name = "BRN-32 Česká-Srbská",
-                Direction = "Srbská",
-                DurationTime = new TimeSpan(0,14,0),
-                HasTickets = false,
-                StartStopId = Guid.Parse("de15e587-eddb-4607-97e2-0ce91494a8fa"),
-                EndStopId = Guid.Parse("e3064840-6ff0-46a2-b9a4-c31ef7f3a640"),
-                IsHolydayRoute = false,
-                IsWeekendRoute = false,
-                IsActive = true,
-                LineId = Guid.Parse("84b25e26-d011-4487-86e2-53457b7c9e3f"),
-            }
-        }; 
-        
-        context.Routes.AddRange(routesToBeSeeded);
+        context.Routes.AddRange(Routes);
         context.SaveChanges();
         
         // TODO -> route_stops

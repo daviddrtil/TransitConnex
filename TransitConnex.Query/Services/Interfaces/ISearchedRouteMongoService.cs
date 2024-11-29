@@ -5,7 +5,7 @@ namespace TransitConnex.Query.Services.Interfaces;
 public interface ISearchedRouteMongoService
 {
     Task<IEnumerable<SearchedRouteDto>> GetAll();
-    Task<SearchedRouteDto?> GetById(Guid id);
+    Task<IEnumerable<SearchedRouteDto>> GetByUserId(Guid userId);
     Task<Guid> Create(SearchedRouteDto searchedRoute);
     Task Update(SearchedRouteDto searchedRoute);
     Task Delete(Guid id);

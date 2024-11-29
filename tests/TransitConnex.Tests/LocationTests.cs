@@ -5,6 +5,7 @@ using TransitConnex.Command.Commands.Location;
 using TransitConnex.Command.Seeds;
 using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Domain.Enums;
+using TransitConnex.Tests.Infrastructure;
 using Xunit.Abstractions;
 
 namespace TransitConnex.Tests;

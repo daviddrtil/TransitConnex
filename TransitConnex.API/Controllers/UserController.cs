@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.User;
+using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.Models;
 
@@ -10,7 +11,10 @@ namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UserController(UserCommandHandler userCommandHandler, UserQueryHandler userQueryHandler, SignInManager<User> signInManager) : Controller
+public class UserController(
+    SignInManager<User> signInManager,
+    UserCommandHandler userCommandHandler,
+    UserQueryHandler userQueryHandler) : Controller
 {
     /// <summary>
     /// Endpoint for getting all users from Source of truth.
@@ -113,7 +117,25 @@ public class UserController(UserCommandHandler userCommandHandler, UserQueryHand
         await userCommandHandler.HandleRestore(id);
         return Ok();
     }
-    
+
+    [HttpGet("GetFavouriteLocations")]
+    public async Task<IEnumerable<UserFavLocationDto>> GetFavouriteLocations(Guid userId)
+    {
+        return await userQueryHandler.GetFavouriteLocations(userId);
+    }
+
+    [HttpGet("GetFavouriteConnections")]
+    public async Task<IEnumerable<UserFavConnectionDto>> GetFavouriteConnections(Guid userId)
+    {
+        return await userQueryHandler.GetFavouriteConnections(userId);
+    }
+
+    [HttpGet("GetSearchedRoutes")]
+    public async Task<IEnumerable<SearchedRouteDto>> GetSearchedRoutes(Guid userId)
+    {
+        return await userQueryHandler.GetSearchedRoutes(userId);
+    }
+
     /// <summary>
     /// Endpoint for creating new users favourite connection between two locations.
     /// </summary>

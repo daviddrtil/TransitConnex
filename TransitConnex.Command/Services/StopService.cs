@@ -5,7 +5,7 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.Models;
-using TransitConnex.Query.Queries.Interfaces;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 

@@ -102,7 +102,7 @@ public class RouteSchedulingTemplateController(
     /// Endpoint for running scheduler which will schedule all routes for the next year.
     /// </summary>
     /// <returns>Method status.</returns>
-    [HttpPost("run-scheduler")]
+    [HttpPost("run-scheduler2")]
     public async Task<IActionResult> RunScheduler()
     {
         // await routeSchedulingTemplateCommandHandler.HandleScheduler(); // TODO -> implement batch running

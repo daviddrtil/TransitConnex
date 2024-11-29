@@ -171,6 +171,96 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
         }
     }
 
+    private async Task CreateUserFavLocationIndexesAsync()
+    {
+        string indexKey1 = "userId";
+        string indexKey2 = "locationId";
+        string indexKey3 = "addTime";
+
+        // Define the index
+        var indexDefinition = Builders<UserFavLocationDoc>.IndexKeys
+            .Ascending(indexKey1)
+            .Ascending(indexKey2)
+            .Descending(indexKey3);
+
+        var indexModel = new CreateIndexModel<UserFavLocationDoc>(indexDefinition, DefaultCreateIndexOptions);
+        var collection = GetCollection<UserFavLocationDoc>();
+
+        // Check if the index already exists
+        var existingIndexes = await collection.Indexes.ListAsync();
+        var indexesList = await existingIndexes.ToListAsync();
+        bool indexExists = indexesList.Any(index =>
+            index["key"].AsBsonDocument.Contains(indexKey1)
+            && index["key"].AsBsonDocument.Contains(indexKey2)
+            && index["key"].AsBsonDocument.Contains(indexKey3));
+
+        // Create the index if it doesn't exist
+        if (!indexExists)
+        {
+            string indexName = await collection.Indexes.CreateOneAsync(indexModel);
+            _logger.LogInformation("----- MongoDB: UserFavLocation indexes successfully created - {indexName}", indexName);
+        }
+    }
+
+    private async Task CreateUserFavConnectionIndexesAsync()
+    {
+        string indexKey1 = "userId";
+        string indexKey2 = "fromLocationId";
+        string indexKey3 = "toLocationId";
+        string indexKey4 = "addTime";
+
+        // Define the index
+        var indexDefinition = Builders<UserFavConnectionDoc>.IndexKeys
+            .Ascending(indexKey1)
+            .Ascending(indexKey2)
+            .Ascending(indexKey3)
+            .Descending(indexKey4);
+
+        var indexModel = new CreateIndexModel<UserFavConnectionDoc>(indexDefinition, DefaultCreateIndexOptions);
+        var collection = GetCollection<UserFavConnectionDoc>();
+
+        // Check if the index already exists
+        var existingIndexes = await collection.Indexes.ListAsync();
+        var indexesList = await existingIndexes.ToListAsync();
+        bool indexExists = indexesList.Any(index =>
+            index["key"].AsBsonDocument.Contains(indexKey1)
+            && index["key"].AsBsonDocument.Contains(indexKey2)
+            && index["key"].AsBsonDocument.Contains(indexKey3)
+            && index["key"].AsBsonDocument.Contains(indexKey4));
+
+        // Create the index if it doesn't exist
+        if (!indexExists)
+        {
+            string indexName = await collection.Indexes.CreateOneAsync(indexModel);
+            _logger.LogInformation("----- MongoDB: UserFavConnection indexes successfully created - {indexName}", indexName);
+        }
+    }
+
+    private async Task CreateSearchedRouteIndexesAsync()
+    {
+        string indexKey1 = "userId";
+
+        // Define the index
+        var indexDefinition = Builders<SearchedRouteDoc>.IndexKeys
+            .Ascending(indexKey1);
+
+        var indexModel = new CreateIndexModel<SearchedRouteDoc>(indexDefinition);
+        var collection = GetCollection<SearchedRouteDoc>();
+
+        // Check if the index already exists
+        var existingIndexes = await collection.Indexes.ListAsync();
+        var indexesList = await existingIndexes.ToListAsync();
+        bool indexExists = indexesList.Any(index =>
+            index["key"].AsBsonDocument.Contains(indexKey1));
+
+        // Create the index if it doesn't exist
+        if (!indexExists)
+        {
+            string indexName = await collection.Indexes.CreateOneAsync(indexModel);
+            _logger.LogInformation("----- MongoDB: UserFavLocation indexes successfully created - {indexName}", indexName);
+        }
+    }
+
     public async Task CreateIndexAsync()
     {
         _logger.LogInformation("----- MongoDB: creating indexes...");
@@ -179,6 +269,10 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
 
         await CreateLocationNameIndexAsync();
         await CreateLocationSpatialIndexAsync();
+
+        await CreateUserFavLocationIndexesAsync();
+        await CreateUserFavConnectionIndexesAsync();
+        await CreateSearchedRouteIndexesAsync();
 
         _logger.LogInformation("----- MongoDB: indexes successfully created");
     }
@@ -206,7 +300,6 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
             .ToList();
     }
     #endregion GetCollectionNames
-
 
     #region ISynchronizeDb
 

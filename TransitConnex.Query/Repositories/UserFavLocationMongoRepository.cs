@@ -15,4 +15,14 @@ public class UserFavLocationMongoRepository(IReadDbContext readDbContext)
             .SortByDescending(l => l.AddTime)
             .ToListAsync();
     }
+
+    public async Task<bool> Delete(UserFavLocationDoc location)
+    {
+        var filter = Builders<UserFavLocationDoc>.Filter.And(
+            Builders<UserFavLocationDoc>.Filter.Eq(r => r.UserId, location.UserId),
+            Builders<UserFavLocationDoc>.Filter.Eq(r => r.LocationId, location.LocationId)
+        );
+        var result = await Collection.DeleteOneAsync(filter);
+        return result.DeletedCount > 0;
+    }
 }
