@@ -1,6 +1,7 @@
 using TransitConnex.Domain.Enums;
+using TransitConnex.Query.Queries.Interfaces;
 
-namespace TransitConnex.Query.Queries.Interfaces;
+namespace TransitConnex.Query.Queries;
 
 public class StopFilteredQuery : IStopFilteredQuery
 {

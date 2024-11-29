@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+using NetTopologySuite.Geometries;
+using TransitConnex.Command.Data;
 using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.Models;
 
@@ -44,7 +46,8 @@ public static class UserSeed
     };
     #endregion SeedData
 
-    public static async Task Seed(UserManager<User> userManager,
+    public static async Task Seed(
+        UserManager<User> userManager,
         RoleManager<IdentityRole<Guid>> roleManager)
     {
         await SeedRoles(roleManager);
@@ -86,6 +89,7 @@ public static class UserSeed
             }
         }
     }
+
     private static async Task SeedBasicUser(UserManager<User> userManager)
     {
         if (await userManager.FindByEmailAsync(BasicUserEmail) is null)

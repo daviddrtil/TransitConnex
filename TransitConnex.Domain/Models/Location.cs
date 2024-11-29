@@ -9,6 +9,7 @@ public class Location
     public LocationTypeEnum LocationType { get; set; }
     public double? Latitude { get; set; }
     public double? Longitude { get; set; }
-    
-    public ICollection<LocationStop>? LocationStops { get; set; } = new List<LocationStop>();
+
+    public ICollection<Stop> Stops { get; set; } = [];
+    public ICollection<LocationStop>? LocationStops { get; set; } = [];
 }

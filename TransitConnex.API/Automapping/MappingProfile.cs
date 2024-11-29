@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver.GeoJsonObjectModel;
 using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Command.Commands.Location;
@@ -87,6 +86,8 @@ public class MappingProfile : Profile
         CreateMap<Vehicle, VehicleDto>().ReverseMap();
         CreateMap<RouteSchedulingTemplate, RouteSchedulingTemplateDto>();
         CreateMap<User, UserDto>();
+        CreateMap<UserLocationFavourite, UserFavLocationDto>().ReverseMap();
+        CreateMap<UserConnectionFavourite, UserFavConnectionDto>().ReverseMap();
         CreateMap<Icon, IconDto>();
         CreateMap<Service, ServiceDto>();
         CreateMap<Stop, StopDto>();
@@ -94,14 +95,32 @@ public class MappingProfile : Profile
 
     private void MapModelsToCollections()
     {
-        CreateMap<ScheduledRoute, ScheduledRouteDoc>().ReverseMap();
         CreateMap<Vehicle, VehicleDoc>().ReverseMap();
+        CreateMap<UserLocationFavourite, UserFavLocationDoc>().ReverseMap();
+        CreateMap<UserConnectionFavourite, UserFavConnectionDoc>().ReverseMap();
+        CreateMap<RouteStop, RouteStopDoc>().ReverseMap();
+        CreateMap<ScheduledRoute, ScheduledRouteDoc>()
+            .ForMember(dest => dest.HasTickets, opt =>
+                opt.MapFrom(src => src.Route != null && src.Route.HasTickets))
+            .ForMember(dest => dest.Stops,
+                opt => opt.MapFrom(src => src.Route != null && src.Route.Stops != null
+                    ? src.Route.Stops.OrderBy(rs => rs.StopOrder)
+                        .Select(rs => new RouteStopDoc
+                        {
+                            Id = rs.StopId,
+                            Name = rs.Stop != null ? rs.Stop.Name : null,
+                            DepartureTime = src.StartTime.Add(rs.TimeDurationFromFirstStop),
+                            Order = rs.StopOrder
+                        }).ToList()
+                    : new List<RouteStopDoc>()));
 
         // Map location coordinates
         CreateMap<Location, LocationDoc>()
             .ForMember(dest => dest.Coordinates,
                 opt => opt.MapFrom(src => new GeoJsonPoint<GeoJson2DCoordinates>(
-                    new GeoJson2DCoordinates(src.Longitude ?? 0, src.Latitude ?? 0))));
+                    new GeoJson2DCoordinates(src.Longitude ?? 0, src.Latitude ?? 0))))
+            .ForMember(dest => dest.Stops,
+                opt => opt.MapFrom(src => src.Stops.Select(s => s.Id)));
         CreateMap<LocationDoc, Location>()
             .ForMember(dest => dest.Longitude,
                 opt => opt.MapFrom(src => src.Coordinates.Coordinates.X))
@@ -111,6 +130,8 @@ public class MappingProfile : Profile
 
     private void MapCollectionsToDTOs()
     {
+        CreateMap<UserFavLocationDoc, UserFavLocationDto>().ReverseMap();
+        CreateMap<UserFavConnectionDoc, UserFavConnectionDto>().ReverseMap();
         CreateMap<ScheduledRouteDoc, ScheduledRouteDto>().ReverseMap();
         CreateMap<SearchedRouteDoc, SearchedRouteDto>().ReverseMap();
         CreateMap<VehicleDoc, VehicleDto>().ReverseMap();

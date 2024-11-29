@@ -570,6 +570,9 @@ namespace TransitConnex.Command.Migrations
                     b.Property<Guid>("ToLocationId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("AddTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("UserId", "FromLocationId", "ToLocationId");
 
                     b.HasIndex("FromLocationId");
@@ -586,6 +589,9 @@ namespace TransitConnex.Command.Migrations
 
                     b.Property<Guid>("LocationId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("UserId", "LocationId");
 
@@ -762,7 +768,7 @@ namespace TransitConnex.Command.Migrations
             modelBuilder.Entity("TransitConnex.Domain.Models.RouteStop", b =>
                 {
                     b.HasOne("TransitConnex.Domain.Models.Route", "Route")
-                        .WithMany("RouteStops")
+                        .WithMany("Stops")
                         .HasForeignKey("RouteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -957,7 +963,7 @@ namespace TransitConnex.Command.Migrations
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Route", b =>
                 {
-                    b.Navigation("RouteStops");
+                    b.Navigation("Stops");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Stop", b =>

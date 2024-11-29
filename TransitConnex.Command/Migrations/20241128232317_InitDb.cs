@@ -274,7 +274,8 @@ namespace TransitConnex.Command.Migrations
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FromLocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ToLocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ToLocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -304,7 +305,8 @@ namespace TransitConnex.Command.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    LocationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -651,16 +653,6 @@ namespace TransitConnex.Command.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seat_VehicleId",
-                table: "Seat",
-                column: "VehicleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Service_IconId",
-                table: "Service",
-                column: "IconId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ScheduledRoute_RouteId",
                 table: "ScheduledRoute",
                 column: "RouteId");
@@ -690,6 +682,16 @@ namespace TransitConnex.Command.Migrations
                 name: "IX_ScheduledRouteSeat_SeatId",
                 table: "ScheduledRouteSeat",
                 column: "SeatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seat_VehicleId",
+                table: "Seat",
+                column: "VehicleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Service_IconId",
+                table: "Service",
+                column: "IconId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserConnectionFavourite_FromLocationId",

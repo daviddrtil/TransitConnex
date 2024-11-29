@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs;
+using TransitConnex.Domain.Models;
 using TransitConnex.Query.Repositories.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
@@ -16,15 +17,10 @@ public class SearchedRouteMongoService(
         return mapper.Map<IEnumerable<SearchedRouteDto>>(srDocs);
     }
 
-    public async Task<SearchedRouteDto?> GetById(Guid id)
+    public async Task<IEnumerable<SearchedRouteDto>> GetByUserId(Guid userId)
     {
-        var sr = await searchedRouteRepo.GetById(id);
-        if (sr == null)
-        {
-            return null;
-        }
-
-        return mapper.Map<SearchedRouteDto>(sr);
+        var searchedRouteDocs = await searchedRouteRepo.GetByUserId(userId);
+        return mapper.Map<IEnumerable<SearchedRouteDto>>(searchedRouteDocs);
     }
 
     public async Task<Guid> Create(SearchedRouteDto sr)

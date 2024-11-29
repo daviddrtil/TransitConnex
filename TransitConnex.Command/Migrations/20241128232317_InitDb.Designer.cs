@@ -12,7 +12,7 @@ using TransitConnex.Command.Data;
 namespace TransitConnex.Command.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241127233946_InitDb")]
+    [Migration("20241128232317_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -573,6 +573,9 @@ namespace TransitConnex.Command.Migrations
                     b.Property<Guid>("ToLocationId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("AddTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("UserId", "FromLocationId", "ToLocationId");
 
                     b.HasIndex("FromLocationId");
@@ -589,6 +592,9 @@ namespace TransitConnex.Command.Migrations
 
                     b.Property<Guid>("LocationId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("UserId", "LocationId");
 
@@ -765,7 +771,7 @@ namespace TransitConnex.Command.Migrations
             modelBuilder.Entity("TransitConnex.Domain.Models.RouteStop", b =>
                 {
                     b.HasOne("TransitConnex.Domain.Models.Route", "Route")
-                        .WithMany("RouteStops")
+                        .WithMany("Stops")
                         .HasForeignKey("RouteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -960,7 +966,7 @@ namespace TransitConnex.Command.Migrations
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Route", b =>
                 {
-                    b.Navigation("RouteStops");
+                    b.Navigation("Stops");
                 });
 
             modelBuilder.Entity("TransitConnex.Domain.Models.Stop", b =>

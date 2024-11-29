@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Data;
-using TransitConnex.Command.Seeds;
 using TransitConnex.Query.Data;
-using TransitConnex.Query.Seeds;
 
 namespace TransitConnex.API.Configuration;
 
@@ -45,13 +43,6 @@ internal static class MigrationExtensions
         await context.CreateCollectionsAsync();
         await context.CreateIndexAsync();
 
-        app.Logger.LogInformation("----- MongoDB: seeding...");
-
-
         app.Logger.LogInformation("----- MongoDB: collections were created successfully!");
-        var dbSeeder = serviceScope.ServiceProvider.GetRequiredService<DbMongoSeeder>();
-        await dbSeeder.SeedAll();
-
-        app.Logger.LogInformation("----- MongoDB: seeding was successful");
     }
 }

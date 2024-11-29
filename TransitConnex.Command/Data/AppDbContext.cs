@@ -53,7 +53,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .HasKey(rs => new { rs.RouteId, rs.StopId });
         builder.Entity<RouteStop>()
             .HasOne(rs => rs.Route)
-            .WithMany(r => r.RouteStops)
+            .WithMany(r => r.Stops)
             .HasForeignKey(rs => rs.RouteId)
             .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<RouteStop>()
@@ -74,6 +74,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany(s => s.LocationStops)
             .HasForeignKey(ls => ls.StopId)
             .OnDelete(DeleteBehavior.Cascade);
+        builder.Entity<Location>()
+            .HasMany(l => l.Stops)
+            .WithMany()
+            .UsingEntity<LocationStop>();
 
         builder.Entity<ScheduledRouteSeat>()
             .HasKey(srs => new { srs.ScheduledRouteId, srs.SeatId });
@@ -162,5 +166,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
         builder.Entity<ScheduledRoute>()
             .HasIndex(sr => new { sr.StartTime, sr.RouteId })
             .IsUnique();
+        builder.Entity<ScheduledRoute>()
+            .HasOne(sr => sr.Route)
+            .WithMany()
+            .IsRequired();
     }
 }
