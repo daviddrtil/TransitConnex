@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
-using System.Net;
-using System.Net.Http.Json;
-using TransitConnex.API;
-using TransitConnex.Domain.DTOs.ScheduledRoute;
+﻿using TransitConnex.API;
 using TransitConnex.Tests.Infrastructure;
 using Xunit.Abstractions;
 

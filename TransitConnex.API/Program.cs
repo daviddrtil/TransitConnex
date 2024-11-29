@@ -7,6 +7,10 @@ using TransitConnex.Command.Data;
 using TransitConnex.Command;
 using TransitConnex.Domain.Models;
 using TransitConnex.Query;
+using TransitConnex.TestSeeds.SqlSeeds;
+using TransitConnex.TestSeeds.NoSqlSeeds;
+using Microsoft.Extensions.DependencyInjection;
+using TransitConnex.TestSeeds;
 
 namespace TransitConnex.API;
 
@@ -59,37 +63,47 @@ public class Program
         builder.Services.AddMongoDbContext();
         builder.Services.AddMongoDbRepositories();
         builder.Services.AddMongoDbServices();
+        builder.Services.AddMongoDbSeeders();
 
         var app = builder.Build();
 
-        //bool updateDb = builder.Configuration.GetValue<bool>("UpdateDb");
-        //bool seedDb = builder.Configuration.GetValue<bool>("SeedDatabase");
-        //bool unseedDb = builder.Configuration.GetValue<bool>("UnseedDatabase");
-        //if (updateDb || seedDb || unseedDb)
-        //{
-        //    if (unseedDb)
-        //    {
-        //        DbCleaner.DeleteEntireDb(app.Services);
-        //        app.Logger.LogInformation("Database cleaning completed.");
-        //    }
-        //    if (updateDb)
-        //    {
-        //        await app.MigrateSqlDbAsync();
-        //        app.Logger.LogInformation("Database migration completed.");
-        //    }
-        //    if (seedDb)
-        //    {
-        //        await DbSeeder.SeedAll(app.Services);
-        //        app.Logger.LogInformation("Database seeding completed.");
-        //    }
-        //    return;
-        //}
+        bool updateDb = builder.Configuration.GetValue<bool>("UpdateDb");
+        bool seedDb = builder.Configuration.GetValue<bool>("SeedDatabase");
+        bool unseedDb = builder.Configuration.GetValue<bool>("UnseedDatabase");
+        if (updateDb || seedDb || unseedDb)
+        {
+            if (unseedDb)
+            {
+                DbCleaner.DeleteEntireDb(app.Services);
+                app.Logger.LogInformation("Database cleaning completed.");
+            }
+            if (updateDb)
+            {
+                await app.MigrateSqlDbAsync();
+                app.Logger.LogInformation("Database migration completed.");
+            }
+            if (seedDb)
+            {
+                await app.MigrateSqlDbAsync();
+                await DbSeeder.SeedAll(app.Services);
+
+                await app.MigrateMongoDbAsync();    // performs also delete
+                await app.SeedMongoDb();
+                
+                app.Logger.LogInformation("Database seeding completed.");
+            }
+            return;
+        }
 
         // For testing purposes
-        if (app.Environment.EnvironmentName.Equals("Test"))
-        {
-            await app.MigrateMongoDbAsync();
-        }
+        //if (app.Environment.EnvironmentName.Equals("Test"))
+        //{
+        //    await app.MigrateMongoDbAsync();
+        //    await app.SeedMongoDb();
+        //}
+
+        //await app.MigrateMongoDbAsync();
+        //await app.SeedMongoDb();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
