@@ -6,8 +6,6 @@ namespace TransitConnex.API.Handlers.CommandHandlers;
 
 public class LineCommandHandler(ILineService lineService) : IBaseCommandHandler<ILineCommand>
 {
-    private readonly ILineService _lineService = lineService;
-
     public async Task<Guid> HandleCreate(ILineCommand command)
     {
         if (command is not LineCreateCommand lineCreateCommand)
@@ -55,10 +53,5 @@ public class LineCommandHandler(ILineService lineService) : IBaseCommandHandler<
     public async Task HandleDelete(Guid id) // TODO
     {
         await lineService.DeleteLine(id);
-    }
-    
-    public async Task HandleBatchDelete(ILineCommand command)
-    {
-        // TODO
     }
 }

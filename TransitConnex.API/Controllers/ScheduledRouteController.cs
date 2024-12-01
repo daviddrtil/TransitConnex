@@ -49,58 +49,56 @@ public class ScheduledRouteController(
     }
 
     /// <summary>
-    /// 
+    /// Endpoint for editing information about ScheduledRoute.
     /// </summary>
-    /// <param name="updateCommand"></param>
-    /// <returns></returns>
+    /// <param name="updateCommand">Command containing updated information about scheduled.</param>
+    /// <returns>Method status.</returns>
     [HttpPut]
     [AuthorizedByAdmin]
     public async Task<IActionResult> EditScheduledRoute(ScheduledRouteUpdateCommand updateCommand)
     {
         await scheduledRouteCommandHandler.HandleUpdate(updateCommand);
-
         return Ok();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="updateCommand"></param>
-    /// <returns></returns>
-    [HttpPut("batch")]
-    [AuthorizedByAdmin]
-    public async Task<IActionResult> EditScheduledRoutes(List<ScheduledRouteUpdateCommand> updateCommand)
-    {
-        // await scheduledRouteCommandHandler.HandleUpdate(updateCommand); // TODO
+    // /// <summary> // TODO -> not supported for first release
+    // /// 
+    // /// </summary>
+    // /// <param name="updateCommand"></param>
+    // /// <returns></returns>
+    // [HttpPut("batch")]
+    // [AuthorizedByAdmin]
+    // public async Task<IActionResult> EditScheduledRoutes(List<ScheduledRouteUpdateCommand> updateCommand) // TODO -> edit routes with certain time for certain route?
+    // {
+    //     // await scheduledRouteCommandHandler.HandleUpdate(updateCommand);
+    //
+    //     return Ok();
+    // }
 
-        return Ok();
-    }
-
     /// <summary>
-    /// 
+    /// Endpoint for deleting ScheduledRoute.
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    [HttpDelete]
+    /// <param name="id">Id of deleted scheduled.</param>
+    /// <returns>Method status.</returns>
+    [HttpDelete("{id}")]
     [AuthorizedByAdmin]
     public async Task<IActionResult> DeleteScheduledRoute(Guid id)
     {
         await scheduledRouteCommandHandler.HandleDelete(id); 
-
         return Ok();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="deleteIds"></param>
-    /// <returns></returns>
-    [HttpDelete("batch")]
-    [AuthorizedByAdmin]
-    public async Task<IActionResult> DeleteScheduledRoutes(List<Guid> deleteIds)
-    {
-        // await ScheduledRouteCommandHandler.HandleDelete(deleteCommand); // TODO
-
-        return Ok();
-    }
+    // /// <summary> // TODO -> not supported for first release
+    // /// 
+    // /// </summary>
+    // /// <param name="deleteIds"></param>
+    // /// <returns></returns>
+    // [HttpDelete("batch")]
+    // [AuthorizedByAdmin]
+    // public async Task<IActionResult> DeleteScheduledRoutes(List<Guid> deleteIds)
+    // {
+    //     // await ScheduledRouteCommandHandler.HandleDelete(deleteCommand); // TODO
+    //
+    //     return Ok();
+    // }
 }

@@ -37,7 +37,15 @@ public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepo
         return await query.ToListAsync();
     }
 
-    public async Task<List<ScheduledRouteSeat>> QuerySeatReservations(Guid scheduledRouteId, List<Guid>? SeatIds,
+    public async Task<List<ScheduledRouteSeat>> QuerySeatReservations(Guid seatId)
+    {
+        var query = _db.ScheduledRouteSeats.Where(x => x.SeatId == seatId);
+        
+        return await query.ToListAsync();
+    }
+
+    public async Task<List<ScheduledRouteSeat>> QuerySeatReservationsForScheduled(Guid scheduledRouteId,
+        List<Guid>? SeatIds,
         Guid? UserId, bool QueryBought = true)
     {
         var query = _db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId);
@@ -81,12 +89,6 @@ public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepo
     public async Task UpdateReservations(List<ScheduledRouteSeat> scheduledRouteSeats)
     {
         _db.ScheduledRouteSeats.UpdateRange(scheduledRouteSeats);
-        await _db.SaveChangesAsync();
-    }
-
-    public async Task DeleteReservations(List<ScheduledRouteSeat> scheduledRouteSeats)
-    {
-        _db.ScheduledRouteSeats.RemoveRange(scheduledRouteSeats);
         await _db.SaveChangesAsync();
     }
 }

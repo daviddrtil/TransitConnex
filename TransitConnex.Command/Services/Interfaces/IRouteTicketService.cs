@@ -12,5 +12,4 @@ public interface IRouteTicketService
 
     Task<RouteTicket> CreateRouteTicket(RouteTicketCreateCommand createCommand);
     Task DeleteRouteTicket(Guid id);
-    Task DeleteRouteTickets(List<Guid> ids);
 }

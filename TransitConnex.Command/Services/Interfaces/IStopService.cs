@@ -1,3 +1,4 @@
+using TransitConnex.Command.Commands.Route;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.Models;
@@ -14,4 +15,7 @@ public interface IStopService
     Task<List<Stop>> CreateStops(List<StopCreateCommand> createCommands);
     Task<Stop> EditStop(StopUpdateCommand editCommand);
     Task DeleteStop(Guid id);
+
+    Task AssignStopToLocation(StopLocationCommand addCommand);
+    Task RemoveStopFromLocation(StopLocationCommand removeCommand);
 } 

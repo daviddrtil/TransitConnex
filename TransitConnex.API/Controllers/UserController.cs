@@ -97,7 +97,7 @@ public class UserController(
     /// </summary>
     /// <param name="id">Id of deleted user.</param>
     /// <returns>Method status.</returns>
-    [HttpDelete]
+    [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteUser(Guid id)

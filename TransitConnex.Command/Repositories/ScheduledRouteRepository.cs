@@ -20,7 +20,7 @@ public class ScheduledRouteRepository(AppDbContext db)
             .ThenInclude(rs => rs.Stop);
     }
 
-    public IQueryable<ScheduledRoute> QueryById(Guid id)
+    public IQueryable<ScheduledRoute> QueryById(Guid id) // TODO -> check because includes added
     {
         return QueryScheduledRoutes()
             .Where(x => x.Id == id);
@@ -31,16 +31,29 @@ public class ScheduledRouteRepository(AppDbContext db)
         return QueryScheduledRoutes();
     }
 
+    public async Task<List<ScheduledRouteSeat>> GetReservationsForScheduledRoute(Guid scheduledRouteId)
+    {
+       return await db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId).ToListAsync();
+    }
+
     public async Task UpsertBatch(List<ScheduledRoute> scheduledRoutes)
     {
-        await db.BulkInsertOrUpdateAsync(scheduledRoutes, options =>
-            {
-                options.UpdateByProperties = new List<string>
-                {
-                    nameof(ScheduledRoute.StartTime), nameof(ScheduledRoute.RouteId)
-                };
-                options.SetOutputIdentity = true;
-            }
-        );
+        // await db.BulkInsertOrUpdateAsync(scheduledRoutes, options =>
+        //     {
+        //         options.UpdateByProperties = new List<string>
+        //         {
+        //             nameof(ScheduledRoute.StartTime), nameof(ScheduledRoute.RouteId)
+        //         };
+        //         options.SetOutputIdentity = true;
+        //     }
+        // );
+        
+        await db.BulkInsertOrUpdateAsync(scheduledRoutes);
+    }
+    
+    public async Task DeleteReservations(List<ScheduledRouteSeat> scheduledRouteSeats)
+    {
+        db.ScheduledRouteSeats.RemoveRange(scheduledRouteSeats);
+        await db.SaveChangesAsync();
     }
 }

@@ -23,15 +23,16 @@ internal static class ConfigureHandlers
 
     public static void AddQueryHandlers(this IServiceCollection services)
     {
+        services.AddScoped<IconQueryHandler>();
         services.AddScoped<LocationQueryHandler>();
+        services.AddScoped<RouteSchedulingTemplateQueryHandler>();
         services.AddScoped<ScheduledRouteQueryHandler>();
         services.AddScoped<SearchedRouteQueryHandler>();
+        services.AddScoped<ServiceQueryHandler>();
+        services.AddScoped<SeatQueryHandler>();
+        services.AddScoped<StopQueryHandler>();
         services.AddScoped<UserQueryHandler>();
         services.AddScoped<VehicleQueryHandler>();
         services.AddScoped<VehicleRTIQueryHandler>();
-        services.AddScoped<IconQueryHandler>();
-        services.AddScoped<ServiceQueryHandler>();
-        services.AddScoped<UserQueryHandler>();
-        services.AddScoped<StopQueryHandler>();
     }
 }

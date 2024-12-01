@@ -10,17 +10,7 @@ namespace TransitConnex.Command.Services;
 
 public class LineService(IMapper mapper, ILineRepository lineRepository) : ILineService
 {
-    public Task<List<LineDto>> GetAllLines()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<LineDto> GetLineById(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> LineExists(Guid id)
+    public Task<List<LineDto>> GetLinesFiltered()
     {
         throw new NotImplementedException();
     }
@@ -94,6 +84,6 @@ public class LineService(IMapper mapper, ILineRepository lineRepository) : ILine
             throw new KeyNotFoundException($"Line with ID: {id} does not exist");
         }
         
-        // TODO -> think about this logic
+        await lineRepository.Delete(line);
     }
 }

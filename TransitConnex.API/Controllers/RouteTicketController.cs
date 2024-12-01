@@ -1,14 +1,24 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.Command.Commands.RouteTicket;
+using TransitConnex.Domain.DTOs.RouteTicket;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandHandler) : Controller
 {
+    [AuthorizedByAdmin]
+    public async Task<List<RouteTicketDto>> GetRouteTicketsFiltered()
+    {
+        throw new NotImplementedException();
+    }
+    
     /// <summary>
     /// Endpoint for creating RouteTicket aka "buying ticket".
     /// </summary>
@@ -32,21 +42,6 @@ public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandH
     public async Task<IActionResult> DeleteRouteTicket(Guid id)
     {
         await routeTicketCommandHandler.HandleDelete(id);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Endpoint for deleting tickets for given scheduled route - "mass refund" - admin action - only for case of canceling route.
-    /// </summary>
-    /// <param name="routeId"></param>
-    /// <returns></returns>
-    [HttpDelete("batch/route/{id}")] 
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [AuthorizedByAdmin]
-    public async Task<IActionResult> DeleteRouteTickets(List<Guid> ids)
-    {
-        await routeTicketCommandHandler.HandleBatchDelete(ids);
         return Ok();
     }
 }

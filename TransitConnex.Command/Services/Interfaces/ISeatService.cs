@@ -6,11 +6,7 @@ namespace TransitConnex.Command.Services.Interfaces;
 
 public interface ISeatService
 {
-    Task<List<SeatDto>> GetAllSeats();
-
-    Task<SeatDto> GetSeatById(Guid id);
-
-    Task<bool> SeatExists(Guid id);
+    Task<List<SeatDto>> GetSeatsForScheduledRoute(Guid scheduledRouteId);
 
     Task<Seat> CreateSeat(SeatCreateCommand createCommand);
 

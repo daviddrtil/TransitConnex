@@ -6,23 +6,21 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Repositories;
 
-public class StopRepository : BaseRepository<Stop, StopUpdateCommand>, IStopRepository
+public class StopRepository(AppDbContext db) : BaseRepository<Stop, StopUpdateCommand>(db), IStopRepository
 {
-    private readonly AppDbContext _db;
-
-    public StopRepository(AppDbContext db) : base(db)
-    {
-        _db = db;
-    }
-
     public IQueryable<Stop> QueryById(Guid id)
     {
         return QueryAll().Where(x => x.Id == id);
     }
 
+    public IQueryable<RouteStop> QueryRouteStopsByStopId(Guid stopId)
+    {
+        return db.RouteStops.Where(x => x.StopId == stopId).AsNoTracking();
+    }
+
     public async Task AddLocationStops(List<LocationStop> locationStops)
     {
-        _db.LocationStops.AddRange(locationStops);
-        await _db.SaveChangesAsync();
+        db.LocationStops.AddRange(locationStops);
+        await db.SaveChangesAsync();
     }
 }

@@ -27,7 +27,7 @@ public class RouteSchedulingTemplateController(
     }
     
     /// <summary>
-    /// Endpoint for getting single Scheduling template.
+    /// Endpoint for getting single SchedulingTemplate.
     /// </summary>
     /// <param name="id">Id of template.</param>
     /// <returns>Returns DTO containing template. </returns>
@@ -38,7 +38,7 @@ public class RouteSchedulingTemplateController(
     }
     
     /// <summary>
-    /// Endpoint for creating Scheduling template.
+    /// Endpoint for creating SchedulingTemplate.
     /// </summary>
     /// <param name="createCommand">Command containing template.</param>
     /// <returns>Method status.</returns>
@@ -49,7 +49,7 @@ public class RouteSchedulingTemplateController(
     }
 
     /// <summary>
-    /// Endpoint for editing Scheduling template.
+    /// Endpoint for editing SchedulingTemplate.
     ///
     /// If UpdateExistingScheduledRoutes is set to true scheduler will be ran for this template only starting for scheduled routes of next day (tomorrows).
     /// </summary>
@@ -63,11 +63,11 @@ public class RouteSchedulingTemplateController(
     }
 
     /// <summary>
-    /// Endpoint for deleting single Scheduling template.
+    /// Endpoint for deleting single SchedulingTemplate.
     /// </summary>
     /// <param name="id">Id of Scheduling template.</param>
     /// <returns>Method status.</returns>
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteRouteSchedulingTemplate(Guid id)
     {
         await routeSchedulingTemplateCommandHandler.HandleDelete(id);  
@@ -75,11 +75,11 @@ public class RouteSchedulingTemplateController(
     }
     
     /// <summary>
-    /// Endpoint for deleting all Scheduling templates of given Route.
+    /// Endpoint for deleting all SchedulingTemplates of given Route.
     /// </summary>
     /// <param name="routeId">Id of route for which we delete templates.</param>
     /// <returns>Method status.</returns>
-    [HttpDelete("{routeId}")]
+    [HttpDelete("by-route/{routeId}")]
     public async Task<IActionResult> DeleteRouteSchedulingTemplatesForRoute(Guid routeId)
     {
         await routeSchedulingTemplateCommandHandler.HandleDeleteForRoute(routeId);  
@@ -88,24 +88,16 @@ public class RouteSchedulingTemplateController(
     
     /// <summary>
     /// Endpoint for running scheduler which will schedule routes using all templates of routes listed in command.
+    ///
+    /// SERIOUS ACTION.
+    /// If reschedule is set to true, then all future scheduled routes will be deleted together with their tickets and reservations.
     /// </summary>
     /// <param name="runCommand">Command containing ids of all routes we want to schedule.</param>
     /// <returns>Method status.</returns>
     [HttpPost("run-scheduler")]
     public async Task<IActionResult> RunScheduler(RouteSchedulingTemplateRunSchedulerCommand runCommand)
     {
-        await routeSchedulingTemplateCommandHandler.HandleScheduler(runCommand);
+        await routeSchedulingTemplateCommandHandler.HandleScheduler(runCommand); // TODO -> for reschedule just simply delete all scheduled + tickets and make new scheduled without tickets
         return Ok();
-    }
-    
-    /// <summary>
-    /// Endpoint for running scheduler which will schedule all routes for the next year.
-    /// </summary>
-    /// <returns>Method status.</returns>
-    [HttpPost("run-scheduler2")]
-    public async Task<IActionResult> RunScheduler()
-    {
-        // await routeSchedulingTemplateCommandHandler.HandleScheduler(); // TODO -> implement batch running
-        return BadRequest();
     }
 }

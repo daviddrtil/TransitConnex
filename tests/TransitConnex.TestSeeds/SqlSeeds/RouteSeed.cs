@@ -135,14 +135,20 @@ public class RouteSeed
             Guid.Parse("946e8d9b-8922-4b71-a5f0-850551e86d89"),
             Guid.Parse("02095ed5-8d2e-4d8d-9a4c-e1afef525305")
         };
+        int i = 0;
         int trainStopDuration = 2100;
-        routeStops.AddRange(trainStopsIds.Select((stopId, index) => new RouteStop
+        foreach (var trainStopId in trainStopsIds)
         {
-            StopId = stopId,
-            RouteId = Guid.Parse("dff25738-54e3-4190-b19d-282a300c8219"),
-            StopOrder = index,
-            TimeDurationFromFirstStop = new TimeSpan(0, 0, index * trainStopDuration),
-        }));
+            var trainStop = context.Stops.First(s => s.Id == trainStopId);
+            routeStops.Add(new RouteStop
+            {
+                StopId = trainStop.Id,
+                RouteId = Guid.Parse("dff25738-54e3-4190-b19d-282a300c8219"),
+                StopOrder = i,
+                TimeDurationFromFirstStop = new TimeSpan(0, 0, i * trainStopDuration),
+            });
+            i++;
+        }
 
         // brno -> vyskov -> prerov
         trainStopsIds =
@@ -151,13 +157,18 @@ public class RouteSeed
             Guid.Parse("946e8d9b-8922-4b71-a5f0-850551e86d89"),
             Guid.Parse("b743d2f6-13aa-493c-b1eb-d07e6d091e1d"),
         ];
-        routeStops.AddRange(trainStopsIds.Select((stopId, index) => new RouteStop
+        foreach (var trainStopId in trainStopsIds)
         {
-            StopId = stopId,
-            RouteId = Guid.Parse("9d8c5c9f-ca03-4399-96ff-8f081b67d298"),
-            StopOrder = index,
-            TimeDurationFromFirstStop = new TimeSpan(0, 0, index * trainStopDuration),
-        }));
+            var trainStop = context.Stops.First(s => s.Id == trainStopId);
+            routeStops.Add(new RouteStop
+            {
+                StopId = trainStop.Id,
+                RouteId = Guid.Parse("9d8c5c9f-ca03-4399-96ff-8f081b67d298"),
+                StopOrder = i,
+                TimeDurationFromFirstStop = new TimeSpan(0, 0, i * trainStopDuration),
+            });
+            i++;
+        }
 
         foreach (var routeStop in routeStops)
         {

@@ -14,6 +14,11 @@ public class LocationService(
     IUserRepository userRepository
     ) : ILocationService
 {
+    public Task<List<LocationDto>> GetLocationsFiltered()
+    {
+        throw new NotImplementedException();
+    }
+    
     public async Task<Location?> GetLocationById(Guid id)
     {
         return await locationRepository
@@ -80,8 +85,6 @@ public class LocationService(
         {
             throw new KeyNotFoundException($"Location with ID: {id} was not found.");
         }
-        
-        // TODO -> how to handle stops??
 
         var favouriteConnections = await userRepository.QueryAllUserConnectionFavouritesWithLocationId(id).ToListAsync();
         await userRepository.DeleteUserConnectionFavourites(favouriteConnections);

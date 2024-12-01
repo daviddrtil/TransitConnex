@@ -7,4 +7,10 @@ public interface ILocationRepository : IBaseRepository<Location, LocationUpdateC
 {
     IQueryable<Location> QueryById(Guid id);
     IQueryable<Location> QueryAllLocations();
+
+    IQueryable<LocationStop> QueryLocationStop(Guid locationId, Guid stopId);
+    
+    Task AddStopToLocation(LocationStop locationStop);
+
+    Task RemoveStopFromLocation(LocationStop locationStop);
 }

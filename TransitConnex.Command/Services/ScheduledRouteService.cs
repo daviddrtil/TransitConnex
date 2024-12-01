@@ -8,11 +8,7 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class ScheduledRouteService(
-    IMapper mapper,
-    IScheduledRouteRepository scheduledRouteRepository,
-    IRouteRepository routeRepository, IVehicleRepository vehicleRepository)
-        : IScheduledRouteService
+public class ScheduledRouteService(IMapper mapper, IScheduledRouteRepository scheduledRouteRepository, IRouteRepository routeRepository, IVehicleRepository vehicleRepository, IRouteTicketRepository routeTicketRepository) : IScheduledRouteService
 {
     public Task<List<ScheduledRouteDto>> GetAllScheduledRoutes()
     {
@@ -72,11 +68,21 @@ public class ScheduledRouteService(
 
         return scheduled;
     }
-    
-    // TODO -> remove/add stop to scheduledRoute?
 
-    public Task DeleteScheduledRoute(Guid id) // TODO -> will be complicated? or just delete and refund
+    public async Task DeleteScheduledRoute(Guid id)
     {
-        throw new NotImplementedException();
+        var scheduledRoute = await scheduledRouteRepository.QueryById(id).FirstOrDefaultAsync();
+        if (scheduledRoute == null)
+        {
+            throw new KeyNotFoundException($"Scheduled route with ID: {id} is not found.");
+        }
+
+        var reservations = await scheduledRouteRepository.GetReservationsForScheduledRoute(scheduledRoute.Id);
+        await scheduledRouteRepository.DeleteReservations(reservations);
+        
+        var routeTickets = await routeTicketRepository.QueryAll().Where(x => x.ScheduledRouteId == scheduledRoute.Id).ToListAsync();
+        await routeTicketRepository.DeleteBatch(routeTickets);
+        
+        await scheduledRouteRepository.Delete(scheduledRoute);
     }
 }

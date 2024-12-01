@@ -1,18 +1,18 @@
+using TransitConnex.Command.Commands.Route;
+using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.DTOs.Route;
+using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IRouteService
 {
-    Task<List<RouteDto>> GetAllRoutes();
-
-    Task<RouteDto> GetRouteById(Guid id);
-
-    Task<bool> RouteExists(Guid id);
-
-    Task<RouteDto> CreateRoute(RouteCreateDto routeDto);
-
-    Task<RouteDto> EditRoute(Guid id, RouteCreateDto editedRoute);
-
+    Task<List<RouteDto>> GetRoutesFiltered();
+    
+    Task<Route> CreateRoute(RouteCreateCommand createCommand);
+    Task<Route> EditRoute(RouteUpdateCommand editCommand);
     Task DeleteRoute(Guid id);
+
+    Task AddStopToRoute(RouteStopAddCommand addCommand);
+    Task RemoveStopFromRoute(RouteStopRemoveCommand removeCommand);
 }

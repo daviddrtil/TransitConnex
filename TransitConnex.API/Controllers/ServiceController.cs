@@ -53,7 +53,7 @@ public class ServiceController(ServiceCommandHandler serviceCommandHandler, Serv
     /// </summary>
     /// <param name="id">Id of deleted service.</param>
     /// <returns>Method status</returns>
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteService(Guid id)
     {
         await serviceCommandHandler.HandleDelete(id); 
