@@ -15,5 +15,6 @@ public interface IScheduledRouteMongoService
     Task Delete(Guid id);
 
     Task<IEnumerable<Guid>> Create(IEnumerable<ScheduledRoute> scheduledRoutes);
+    Task Update(IEnumerable<ScheduledRoute> scheduledRoutes);
     Task Delete(IEnumerable<Guid> ids);
 }

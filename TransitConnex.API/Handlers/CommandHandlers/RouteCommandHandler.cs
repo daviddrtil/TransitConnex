@@ -1,10 +1,15 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.Route;
 using TransitConnex.Command.Services.Interfaces;
+using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
-public class RouteCommandHandler(IRouteService routeService) : IBaseCommandHandler<IRouteCommand>
+public class RouteCommandHandler(
+    IRouteService routeService,
+    IScheduledRouteService srService,
+    IScheduledRouteMongoService srMongoService)
+        : IBaseCommandHandler<IRouteCommand>
 {
     public async Task<Guid> HandleCreate(IRouteCommand command)
     {
@@ -12,9 +17,7 @@ public class RouteCommandHandler(IRouteService routeService) : IBaseCommandHandl
         {
             throw new InvalidCastException("Invalid command given, expected RouteCreateCommand.");
         }
-
         var created = await routeService.CreateRoute(createCommand);
-        
         return created.Id;
     }
 
@@ -24,13 +27,19 @@ public class RouteCommandHandler(IRouteService routeService) : IBaseCommandHandl
         {
             throw new InvalidCastException("Invalid command given, expected RouteUpdateCommand.");
         }
-        
         await routeService.EditRoute(editCommand);
+        var srs = await srService.GetAllByRouteId(editCommand.Id);
+        await srMongoService.Update(srs);
     }
 
     public async Task HandleDelete(Guid id)
     {
+        var srs = await srService.GetAllByRouteId(id);  // has to be done before deleting route
+        var srIds = srs.Select(sr => sr.Id);
+
         await routeService.DeleteRoute(id);
+
+        await srMongoService.Delete(srIds);
     }
     
     public async Task HandleAddStopToRoute(IRouteCommand command)
@@ -39,9 +48,9 @@ public class RouteCommandHandler(IRouteService routeService) : IBaseCommandHandl
         {
             throw new InvalidCastException("Invalid command given, expected StopRouteCommand.");
         }
-        
         await routeService.AddStopToRoute(stopRouteCommand);
-        // TODO -> will have to sync with mongo
+        var srs = await srService.GetAllByRouteId(stopRouteCommand.RouteId);
+        await srMongoService.Update(srs);
     }
     
     public async Task HandleRemoveStopFromRoute(IRouteCommand command)
@@ -50,8 +59,8 @@ public class RouteCommandHandler(IRouteService routeService) : IBaseCommandHandl
         {
             throw new InvalidCastException("Invalid command given, expected StopRouteCommand.");
         }
-        
         await routeService.RemoveStopFromRoute(stopRouteCommand);
-        // TODO -> will have to sync with mongo
+        var srs = await srService.GetAllByRouteId(stopRouteCommand.RouteId);
+        await srMongoService.Update(srs);
     }
 }

@@ -1,6 +1,5 @@
 using Microsoft.IdentityModel.Tokens;
 using TransitConnex.API.Handlers.CommandHandlers.Common;
-using TransitConnex.Command.Commands.Route;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.Models;
@@ -11,7 +10,9 @@ namespace TransitConnex.API.Handlers.CommandHandlers;
 public class StopCommandHandler(
     IStopService stopService,
     ILocationService locationService,
-    ILocationMongoService locationMongoService)
+    ILocationMongoService locationMongoService,
+    IScheduledRouteService srService,
+    IScheduledRouteMongoService srMongoService)
         : IBaseCommandHandler<IStopCommand>
 {
     /// <summary>
@@ -19,7 +20,7 @@ public class StopCommandHandler(
     /// </summary>
     /// <param name="stop"></param>
     /// <returns></returns>
-    private async Task SyncLocationCollection(Stop stop)
+    private async Task SyncLocationCache(Stop stop)
     {
         if (!stop.LocationStops.IsNullOrEmpty())
         {
@@ -30,6 +31,12 @@ public class StopCommandHandler(
         }
     }
 
+    private async Task SyncScheduledRouteCache(Stop stop)
+    {
+        var srs = await srService.GetAllByStopId(stop.Id);
+        await srMongoService.Update(srs);
+    }
+
     public async Task<Guid> HandleCreate(IStopCommand command)
     {
         if (command is not StopCreateCommand createCommand)
@@ -37,7 +44,7 @@ public class StopCommandHandler(
             throw new InvalidCastException($"Invalid command given, expected {nameof(StopCreateCommand)}.");
         }
         var stop = await stopService.CreateStop(createCommand);
-        await SyncLocationCollection(stop);
+        await SyncLocationCache(stop);
         return stop.Id;
     }
 
@@ -69,7 +76,8 @@ public class StopCommandHandler(
             throw new InvalidCastException("Invalid command given, expected StopUpdateCommand.");
         }
         var stop = await stopService.EditStop(updateCommand);
-        await SyncLocationCollection(stop);
+        await SyncLocationCache(stop);
+        await SyncScheduledRouteCache(stop);
     }
 
     public async Task HandleDelete(Guid id)
@@ -77,33 +85,33 @@ public class StopCommandHandler(
         var stop = await stopService.GetStopById(id)
             ?? throw new KeyNotFoundException($"Stop with ID: {id} not found.");
         await stopService.DeleteStop(id);
-
-        if (!stop.LocationStops.IsNullOrEmpty())
-        {
-            var locationIds = stop.LocationStops!.Select(x => x.LocationId).Distinct();
-            await locationMongoService.Delete(locationIds);
-        }
+        await SyncLocationCache(stop);
+        await SyncScheduledRouteCache(stop);
     }
 
     public async Task HandleAddStopToLocation(IStopCommand command)
     {
-        if (command is not StopLocationCommand stopLocationCommandCommand)
+        if (command is not StopLocationCommand stopCommand)
         {
             throw new InvalidCastException("Invalid command given, expected StopLocationCommand.");
         }
-        
-        await stopService.AssignStopToLocation(stopLocationCommandCommand);
-        // TODO -> will have to sync with mongo
+        await stopService.AssignStopToLocation(stopCommand);
+
+        var location = await locationService.GetLocationById(stopCommand.LocationId);
+        if (location is not null)
+            await locationMongoService.Update(location);
     }
     
     public async Task HandleRemoveStopFromLocation(IStopCommand command)
     {
-        if (command is not StopLocationCommand stopLocationCommandCommand)
+        if (command is not StopLocationCommand stopCommand)
         {
             throw new InvalidCastException("Invalid command given, expected StopLocationCommand.");
         }
-        
-        await stopService.RemoveStopFromLocation(stopLocationCommandCommand);
-        // TODO -> will have to sync with mongo
+        await stopService.RemoveStopFromLocation(stopCommand);
+
+        var location = await locationService.GetLocationById(stopCommand.LocationId);
+        if (location is not null)
+            await locationMongoService.Update(location);
     }
 }

@@ -13,11 +13,11 @@ namespace TransitConnex.API.Controllers;
 [Authorize]
 public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandHandler) : Controller
 {
-    [AuthorizedByAdmin]
-    public async Task<List<RouteTicketDto>> GetRouteTicketsFiltered()
-    {
-        throw new NotImplementedException();
-    }
+    //[AuthorizedByAdmin]
+    //public async Task<List<RouteTicketDto>> GetRouteTicketsFiltered()
+    //{
+    //    throw new NotImplementedException();
+    //}
     
     /// <summary>
     /// Endpoint for creating RouteTicket aka "buying ticket".

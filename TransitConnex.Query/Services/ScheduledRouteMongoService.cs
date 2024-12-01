@@ -94,6 +94,13 @@ public class ScheduledRouteMongoService(
         return srDocs.Select(v => v.Id);
     }
 
+    public async Task Update(IEnumerable<ScheduledRoute> scheduledRoutes)
+    {
+        var srDocs = mapper.Map<IEnumerable<ScheduledRouteDoc>>(scheduledRoutes);
+        if (!srDocs.Any())
+            await scheduledRouteRepo.Upsert(srDocs);
+    }
+
     public async Task Delete(IEnumerable<Guid> ids)
     {
         await scheduledRouteRepo.Delete(ids);

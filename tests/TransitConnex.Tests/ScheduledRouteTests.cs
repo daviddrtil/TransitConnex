@@ -18,16 +18,17 @@ public class ScheduledRouteTests(
     private const string Endpoint = "/api";
 
     [Fact]
-    public async Task GET_Scheduled_Routes_is_OK()
+    public async Task GET_Scheduled_Routes_OK()
     {
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);
         var dbFirstSr = ScheduledRouteSeed.ScheduledRoutes.First();
+        var searchTime = dbFirstSr.StartTime.AddHours(-2);
         var scheduledRouteQuery = new ScheduledRouteGetAllQuery(
             UserSeed.BasicUser.Id,
             LocationSeed.BrnoCityLocation.Id,
             LocationSeed.PrerovCityLocation.Id,
-            dbFirstSr.StartTime.AddHours(-2).ToUniversalTime());
+            searchTime);
         var queryParams = new Dictionary<string, string?>
         {
             { "startLocationId", scheduledRouteQuery.StartLocationId.ToString() },
@@ -48,7 +49,7 @@ public class ScheduledRouteTests(
 
         var firstSr = scheduledRoutes.First();
         Assert.Equal(dbFirstSr.Id, firstSr.Id);
-        Assert.True(dbFirstSr.StartTime > firstSr.StartTime);
+        Assert.True(searchTime < firstSr.StartTime);
     }
 
     [Fact]
@@ -56,14 +57,15 @@ public class ScheduledRouteTests(
     {
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);
-        var dbFirstSr = ScheduledRouteSeed.ScheduledRoutes
+        var dbLastSr = ScheduledRouteSeed.ScheduledRoutes
             .OrderBy(x => x.StartTime)
             .Last();
+        var searchTime = dbLastSr.StartTime.AddHours(2);
         var query = new ScheduledRouteGetAllQuery(
             UserSeed.BasicUser.Id,
             LocationSeed.BrnoCityLocation.Id,
             LocationSeed.PrerovCityLocation.Id,
-            dbFirstSr.StartTime.AddHours(1).ToUniversalTime());
+            searchTime);
         var queryParams = new Dictionary<string, string?>
         {
             { "startLocationId", query.StartLocationId.ToString() },
