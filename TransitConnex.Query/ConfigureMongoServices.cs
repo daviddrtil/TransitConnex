@@ -38,7 +38,6 @@ public static class ConfigureMongoServices
     public static void AddMongoDbRepositories(this IServiceCollection services)
     {
         services.AddScoped<ILocationMongoRepository, LocationMongoRepository>();
-        services.AddScoped<IRouteStopMongoRepository, RouteStopMongoRepository>();
         services.AddScoped<IScheduledRouteMongoRepository, ScheduledRouteMongoRepository>();
         services.AddScoped<ISearchedRouteMongoRepository, SearchedRouteMongoRepository>();
         services.AddScoped<IUserFavLocationMongoRepository, UserFavLocationMongoRepository>();
@@ -50,7 +49,6 @@ public static class ConfigureMongoServices
     public static void AddMongoDbServices(this IServiceCollection services)
     {
         services.AddScoped<ILocationMongoService, LocationMongoService>();
-        services.AddScoped<IRouteStopMongoService, RouteStopMongoService>();
         services.AddScoped<IScheduledRouteMongoService, ScheduledRouteMongoService>();
         services.AddScoped<ISearchedRouteMongoService, SearchedRouteMongoService>();
         services.AddScoped<IUserFavLocationMongoService, UserFavLocationMongoService>();
@@ -64,6 +62,9 @@ public static class ConfigureMongoServices
     /// </summary>
     private static void ConfigureMongoDb()
     {
+        // Register custom DateTime serializer for UTC handling
+        BsonSerializer.TryRegisterSerializer(new UtcDateTimeSerializer());
+
         // Configure the serializer for Guid type
         BsonSerializer.TryRegisterSerializer(new GuidSerializer(BsonType.String));
 

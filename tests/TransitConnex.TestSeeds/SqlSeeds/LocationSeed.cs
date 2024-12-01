@@ -153,7 +153,12 @@ public class LocationSeed
 
     private static void SeedUserFavLocations(AppDbContext context)
     {
-        context.UserLocationFavourites.Add(UserFavLocationBrno);
+        if (!context.UserLocationFavourites.Any(x =>
+            x.UserId == UserFavLocationBrno.UserId
+            && x.LocationId == UserFavLocationBrno.LocationId))
+        {
+            context.UserLocationFavourites.Add(UserFavLocationBrno);
+        }
         context.SaveChanges();
     }
 
@@ -167,7 +172,13 @@ public class LocationSeed
 
     private static void SeedUserFavConnections(AppDbContext context)
     {
-        context.UserConnectionFavourites.Add(UserFavConnectionBrnoPrerov);
+        if (!context.UserConnectionFavourites.Any(x =>
+            x.UserId == UserFavConnectionBrnoPrerov.UserId
+            && x.FromLocation == UserFavConnectionBrnoPrerov.FromLocation
+            && x.ToLocation == UserFavConnectionBrnoPrerov.ToLocation))
+        {
+            context.UserConnectionFavourites.Add(UserFavConnectionBrnoPrerov);
+        }
         context.SaveChanges();
     }
 
@@ -175,7 +186,7 @@ public class LocationSeed
     {
         foreach (var location in Locations)
         {
-            if (!context.Locations.Any(x => x.Name == location.Name))
+            if (!context.Locations.Any(l => l.Name == location.Name))
             {
                 context.Locations.Add(location);
             }

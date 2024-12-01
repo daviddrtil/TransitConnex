@@ -1,18 +1,35 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Vehicle;
+using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.Vehicle;
 
 namespace TransitConnex.API.Controllers;
 
-[Route("api/[controller]")]
+[Authorize]
 [ApiController]
+[Route("api/[controller]")]
 public class VehicleController(
     VehicleCommandHandler vehicleCommandHandler,
-    VehicleQueryHandler vehicleQueryHandler) : Controller
+    VehicleQueryHandler vehicleQueryHandler,
+    VehicleRTIQueryHandler vehicleRTIQueryHandler) : Controller
 {
+    [HttpGet("GetRTIByVehicleId/{id}")]
+    public async Task<VehicleRTIDto?> GetRTIByVehicleId(Guid id)
+    {
+        return await vehicleRTIQueryHandler.HandleGetByVehicleId(id);
+    }
+
+    [AuthorizedByAdmin]
+    [HttpPost("AddVehicleRTI")]
+    public async Task<Guid> AddVehicleRTI(VehicleRTIDto vehicleRTI)
+    {
+        return await vehicleRTIQueryHandler.HandleAddVehicleRTI(vehicleRTI);
+    }
+
     [HttpGet]
     public async Task<IEnumerable<VehicleDto>> GetVehicles()
     {

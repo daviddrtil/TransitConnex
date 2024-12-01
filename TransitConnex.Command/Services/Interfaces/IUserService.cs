@@ -15,8 +15,8 @@ public interface IUserService
     Task DeleteUser(Guid id);
     Task RestoreUser(Guid id);
     
-    Task LikeLocation(UserLikeLocationCommand likeCommand);
-    Task LikeConnection(UserLikeConnectionCommand likeCommand);
+    Task<UserLocationFavourite> LikeLocation(UserLikeLocationCommand likeCommand);
+    Task<UserConnectionFavourite> LikeConnection(UserLikeConnectionCommand likeCommand);
     Task DislikeLocation(UserLikeLocationCommand likeCommand);
     Task DislikeConnection(UserLikeConnectionCommand likeCommand);
 }

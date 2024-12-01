@@ -7,9 +7,11 @@ using TransitConnex.Domain.Enums;
 using TransitConnex.Tests.Infrastructure;
 using Xunit.Abstractions;
 using TransitConnex.TestSeeds.SqlSeeds;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace TransitConnex.Tests;
 
+[Collection("NonParallelTests")]
 public class LocationTests(
     ITestOutputHelper testOutputHelper,
     ApiWebApplicationFactory<Program> fixture)
@@ -22,7 +24,7 @@ public class LocationTests(
     ///     and get of the created location
     /// </summary>
     [Fact]
-    public async Task POST_Create_Location_And_Get_is_OK()
+    public async Task POST_Create_Location_And_GetById_is_OK()
     {
         await PerformLogin(UserSeed.AdminLogin);
         var newLocation = new LocationCreateCommand()
@@ -52,9 +54,57 @@ public class LocationTests(
         Assert.Equal(newLocation.Name, getLocation.Name);
     }
 
-    //[Fact]
-    //public async Task POST_Get_Closest_Location_OK()
-    //{
-        
-    //}
+    [Fact]
+    public async Task POST_GetByName_Location_OK()
+    {
+        // Arrange
+        await PerformLogin(UserSeed.BasicLogin);
+        var dbLocation = LocationSeed.BrnoCityLocation;
+        var queryParams = new Dictionary<string, string?>
+        {
+            { "name", dbLocation.Name },
+        };
+        string url = QueryHelpers.AddQueryString($"{Endpoint}/Location/GetByname", queryParams);
+
+        // Act
+        var response = await Client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var locations = await response.Content.ReadFromJsonAsync<IEnumerable<LocationDto>>();
+
+        // Assert
+        Assert.NotNull(locations);
+        Assert.NotEmpty(locations);
+
+        var firstLocation = locations.First();
+        Assert.Equal(dbLocation.Id, firstLocation.Id);
+        Assert.Equal(dbLocation.Name, firstLocation.Name);
+        Assert.Equal(dbLocation.Longitude, firstLocation.Longitude);
+        Assert.Equal(dbLocation.Latitude, firstLocation.Latitude);
+    }
+
+    [Fact]
+    public async Task POST_GetClosest_Location_OK()
+    {
+        // Arrange
+        await PerformLogin(UserSeed.BasicLogin);
+        var dbLocation = LocationSeed.BrnoCityLocation;
+        var queryParams = new Dictionary<string, string?>
+        {
+            { "longitude", dbLocation.Longitude.ToString() },
+            { "latitude", dbLocation.Latitude.ToString() },
+        };
+        string url = QueryHelpers.AddQueryString($"{Endpoint}/Location/GetClosest", queryParams);
+
+        // Act
+        var response = await Client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var location = await response.Content.ReadFromJsonAsync<LocationDto?>();
+
+        // Assert
+        Assert.NotNull(location);
+        Assert.Equal(dbLocation.Id, location.Id);
+        Assert.Equal(dbLocation.Name, location.Name);
+        Assert.Equal(dbLocation.Longitude, location.Longitude);
+        Assert.Equal(dbLocation.Latitude, location.Latitude);
+    }
 }

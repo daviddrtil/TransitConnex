@@ -11,7 +11,9 @@ public class VehicleDocSeeder(
     public static List<Guid> VehicleIds = [];
     public async Task Seed()
     {
-        var vehicles = await context.Vehicles.ToListAsync();
+        var vehicles = await context.Vehicles
+            .AsNoTracking()
+            .ToListAsync();
         VehicleIds = vehicles.Select(v => v.Id).ToList();
         await vehicleService.Create(vehicles);
     }

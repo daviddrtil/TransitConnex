@@ -17,7 +17,7 @@ public class VehicleRTIQueryHandler(
         return await vehicleRTIService.GetAll();
     }
 
-    public async Task<Guid> HandleCreate(VehicleRTIDto vehicleRTI)
+    public async Task<Guid> HandleAddVehicleRTI(VehicleRTIDto vehicleRTI)
     {
         return await vehicleRTIService.Create(vehicleRTI);
     }

@@ -11,6 +11,13 @@ namespace TransitConnex.Command.Services;
 
 public class StopService(IMapper mapper, IStopRepository stopRepository) : IStopService
 {
+    public async Task<Stop?> GetStopById(Guid id)
+    {
+        return await stopRepository.QueryById(id)
+            .AsNoTracking()
+            .FirstOrDefaultAsync();
+    }
+
     public async Task<List<StopDto>> GetFilteredStops(StopFilteredQuery filter)
     {
         var query = stopRepository.QueryAll();

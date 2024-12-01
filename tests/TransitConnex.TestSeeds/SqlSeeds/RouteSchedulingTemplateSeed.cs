@@ -38,9 +38,12 @@ public class RouteSchedulingTemplateSeed
 
     public static void Seed(AppDbContext context)
     {
-        foreach (var routeSchedulingTemplate in RouteSchedulingTemplates)
+        foreach (var template in RouteSchedulingTemplates)
         {
-            context.RouteSchedulingTemplates.Add(routeSchedulingTemplate);
+            if (!context.RouteSchedulingTemplates.Any(x => x.Id == template.Id))
+            {
+                context.RouteSchedulingTemplates.Add(template);
+            }
         }
         context.SaveChanges();
     }

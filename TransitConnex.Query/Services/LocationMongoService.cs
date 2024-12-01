@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TransitConnex.Domain.Collections;
+using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Domain.Models;
 using TransitConnex.Query.Repositories.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
@@ -10,13 +11,13 @@ public class LocationMongoService(
     ILocationMongoRepository locationRepo,
     IMapper mapper) : ILocationMongoService
 {
-    public async Task<IEnumerable<Location>> GetAll()
+    public async Task<IEnumerable<LocationDto>> GetAll()
     {
         var locations = await locationRepo.GetAll();
-        return mapper.Map<IEnumerable<Location>>(locations);
+        return mapper.Map<IEnumerable<LocationDto>>(locations);
     }
 
-    public async Task<Location?> GetById(Guid id)
+    public async Task<LocationDto?> GetById(Guid id)
     {
         var location = await locationRepo.GetById(id);
         if (location == null)
@@ -24,21 +25,21 @@ public class LocationMongoService(
             return null;
         }
 
-        return mapper.Map<Location>(location);
+        return mapper.Map<LocationDto>(location);
     }
 
-    public async Task<IEnumerable<Location>> GetByName(string name)
+    public async Task<IEnumerable<LocationDto>> GetByName(string name)
     {
         var locationDocs = await locationRepo.GetByName(name);
-        return mapper.Map<IEnumerable<Location>>(locationDocs);
+        return mapper.Map<IEnumerable<LocationDto>>(locationDocs);
     }
 
-    public async Task<Location?> GetClosest(double latitude, double longitude)
+    public async Task<LocationDto?> GetClosest(double latitude, double longitude)
     {
         var locationDoc = await locationRepo.GetClosest(latitude, longitude);
         if (locationDoc == null)
             return null;
-        return mapper.Map<Location>(locationDoc);
+        return mapper.Map<LocationDto>(locationDoc);
     }
 
     public async Task<Guid> Create(Location location)
@@ -81,6 +82,12 @@ public class LocationMongoService(
         var locationDocs = mapper.Map<IEnumerable<LocationDoc>>(locations);
         await locationRepo.Upsert(locationDocs);
         return locationDocs.Select(v => v.Id);
+    }
+
+    public async Task Update(IEnumerable<Location> locations)
+    {
+        var locationDocs = mapper.Map<IEnumerable<LocationDoc>>(locations);
+        await locationRepo.Upsert(locationDocs);
     }
 
     public async Task Delete(IEnumerable<Guid> ids)

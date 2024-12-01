@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Commands.Location;
 using TransitConnex.Command.Data;
 using TransitConnex.Command.Repositories.Interfaces;
@@ -14,8 +15,19 @@ public class LocationRepository : BaseRepository<Location, LocationUpdateCommand
         _db = db;
     }
 
+    private IQueryable<Location> QueryLocations()
+    {
+        return QueryAll()
+            .Include(l => l.Stops);
+    }
+
     public IQueryable<Location> QueryById(Guid id)
     {
-        return QueryAll().Where(x => x.Id == id);
+        return QueryLocations().Where(x => x.Id == id);
+    }
+
+    public IQueryable<Location> QueryAllLocations()
+    {
+        return QueryLocations();
     }
 }

@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using CsvHelper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Data.SqlClient;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +9,7 @@ using System.Net.Http.Json;
 using TransitConnex.API;
 using TransitConnex.Command.Data;
 using TransitConnex.Domain.DTOs.User;
-using TransitConnex.TestSeeds;
+using TransitConnex.Domain.Models;
 using TransitConnex.TestSeeds.NoSqlSeeds;
 using TransitConnex.TestSeeds.SqlSeeds;
 using Xunit.Abstractions;
@@ -19,6 +19,25 @@ namespace TransitConnex.Tests.Infrastructure;
 public class ApiWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : class
 {
     public const bool UseSqlServer = false;
+
+    //private async Task SeedData(IServiceProvider sp)
+    //{
+    //    using var scope = sp.CreateScope();
+    //    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    //    if (!ApiWebApplicationFactory<Program>.UseSqlServer)
+    //    {
+    //        // Can perform delete only in-memory db, not sql server
+    //        dbContext.Database.EnsureDeleted();
+    //        dbContext.Database.EnsureCreated();
+    //    }
+
+    //    await DbSeeder.SeedAll(sp); // enable to seed sql db
+
+    //    var dbMongoSeeder = scope.ServiceProvider.GetRequiredService<DbMongoSeeder>();
+    //    await dbMongoSeeder.SeedAll();
+    //}
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureServices(services =>
@@ -65,10 +84,9 @@ public class ApiWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram
                     options.UseSqlite(connection);
                 });
             }
-
-            services.AddMongoDbSeeders();
-
             var sp = services.BuildServiceProvider();
+
+            //SeedData(sp).GetAwaiter().GetResult();
         });
 
         Environment.SetEnvironmentVariable("AppEnviroment", "Test");

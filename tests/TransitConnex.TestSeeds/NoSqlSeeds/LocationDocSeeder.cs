@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TransitConnex.Command.Data;
+using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.TestSeeds.NoSqlSeeds;
 
 public class LocationDocSeeder(
-    AppDbContext context,
-    ILocationMongoService locationService)
+    ILocationRepository locationRepo,
+    ILocationMongoService locationMongoService)
 {
     //public static List<LocationDoc> Locations = [];
     //public async Task Seed()
@@ -31,9 +31,10 @@ public class LocationDocSeeder(
 
     public async Task Seed()
     {
-        var locations = await context.Locations
-            .Include(l => l.Stops)
+        var locations = await locationRepo
+            .QueryAllLocations()
+            .AsNoTracking()
             .ToListAsync();
-        var locationIds = await locationService.Create(locations);
+        var locationIds = await locationMongoService.Create(locations);
     }
 }

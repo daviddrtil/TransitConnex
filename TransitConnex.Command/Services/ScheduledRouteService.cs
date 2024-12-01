@@ -8,7 +8,11 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class ScheduledRouteService(IMapper mapper, IScheduledRouteRepository scheduledRouteRepository, IRouteRepository routeRepository, IVehicleRepository vehicleRepository) : IScheduledRouteService
+public class ScheduledRouteService(
+    IMapper mapper,
+    IScheduledRouteRepository scheduledRouteRepository,
+    IRouteRepository routeRepository, IVehicleRepository vehicleRepository)
+        : IScheduledRouteService
 {
     public Task<List<ScheduledRouteDto>> GetAllScheduledRoutes()
     {
@@ -25,15 +29,17 @@ public class ScheduledRouteService(IMapper mapper, IScheduledRouteRepository sch
         var route = await routeRepository.QueryById(createCommand.RouteId).FirstOrDefaultAsync();
         if (route == null)
         {
-            throw new KeyNotFoundException($"Route for specific new scheduled route with ID: {createCommand.RouteId} is not found.");
+            throw new KeyNotFoundException($"Route for specific new scheduled route with ID: " +
+                $"{createCommand.RouteId} is not found.");
         }
 
         if (!await vehicleRepository.Exists(createCommand.VehicleId))
         {
-            throw new KeyNotFoundException($"Vehicle for specific new scheduled route with ID: {createCommand.VehicleId} is not found.");
+            throw new KeyNotFoundException($"Vehicle for specific new scheduled route with ID: " +
+                $"{createCommand.VehicleId} is not found.");
         }
 
-        var newScheduled = new ScheduledRoute
+        var newScheduledObj = new ScheduledRoute
         {
             Price = createCommand.Price,
             StartTime = createCommand.StartTime,
@@ -41,9 +47,15 @@ public class ScheduledRouteService(IMapper mapper, IScheduledRouteRepository sch
             RouteId = createCommand.RouteId,
             VehicleId = createCommand.VehicleId,
         };
-        await scheduledRouteRepository.Add(newScheduled);
-        
-        return newScheduled;
+        await scheduledRouteRepository.Add(newScheduledObj);
+
+        // Load all properties
+        var newScheduledRoute = await scheduledRouteRepository
+            .QueryById(newScheduledObj.Id)
+            .AsNoTracking()
+            .FirstAsync();
+
+        return newScheduledRoute;
     }
 
     public async Task<ScheduledRoute> EditScheduledRoute(ScheduledRouteUpdateCommand editCommand)
@@ -53,10 +65,11 @@ public class ScheduledRouteService(IMapper mapper, IScheduledRouteRepository sch
         {
             throw new KeyNotFoundException($"Scheduled route with ID: {editCommand.Id} is not found.");
         }
-        
+
         scheduled = mapper.Map(editCommand, scheduled);
+        scheduled.EndTime = scheduled.StartTime + scheduled.Route!.DurationTime;
         await scheduledRouteRepository.Update(scheduled);
-        
+
         return scheduled;
     }
     

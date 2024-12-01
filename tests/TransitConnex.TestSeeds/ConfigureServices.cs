@@ -10,7 +10,6 @@ public static class ConfigureServices
         services.AddSingleton(new Faker("cz"));
         services.AddScoped<DbMongoSeeder>();
         services.AddScoped<LocationDocSeeder>();
-        services.AddScoped<RouteStopDocSeeder>();
         services.AddScoped<ScheduledRouteDocSeeder>();
         services.AddScoped<SearchedRouteDocSeeder>();
         services.AddScoped<UserFavDocSeeder>();

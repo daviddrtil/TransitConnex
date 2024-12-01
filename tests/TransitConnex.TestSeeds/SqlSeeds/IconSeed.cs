@@ -36,7 +36,7 @@ public class IconSeed
     {
         foreach (var icon in Icons)
         {
-            if (!context.Icons.Any(i => i.Name == icon.Name))
+            if (!context.Icons.Any(i => i.Id == icon.Id))
             {
                 context.Icons.Add(icon);
             }

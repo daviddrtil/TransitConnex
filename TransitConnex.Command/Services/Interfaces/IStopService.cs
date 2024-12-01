@@ -7,6 +7,7 @@ namespace TransitConnex.Command.Services.Interfaces;
 
 public interface IStopService
 {
+    Task<Stop?> GetStopById(Guid id);
     Task<List<StopDto>> GetFilteredStops(StopFilteredQuery filter);
 
     Task<Stop> CreateStop(StopCreateCommand createCommand);

@@ -86,7 +86,7 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
         await userRepository.Update(user);
     }
 
-    public async Task LikeLocation(UserLikeLocationCommand likeCommand)
+    public async Task<UserLocationFavourite> LikeLocation(UserLikeLocationCommand likeCommand)
     {
         if (!await userRepository.Exists(likeCommand.UserId))
         {
@@ -101,9 +101,10 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
         var like = new UserLocationFavourite() {UserId = likeCommand.UserId, LocationId = likeCommand.LocationId};
 
         await userRepository.AddUserLocationFavourite(like);
+        return like;
     }
 
-    public async Task LikeConnection(UserLikeConnectionCommand likeCommand)
+    public async Task<UserConnectionFavourite> LikeConnection(UserLikeConnectionCommand likeCommand)
     {
         if (!await userRepository.Exists(likeCommand.UserId))
         {
@@ -128,6 +129,7 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
         };
         
         await userRepository.AddUserLineFavourite(like);
+        return like;
     }
 
     public async Task DislikeLocation(UserLikeLocationCommand likeCommand)

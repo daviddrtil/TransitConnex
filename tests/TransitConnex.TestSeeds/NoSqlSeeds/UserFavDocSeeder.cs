@@ -11,16 +11,29 @@ public class UserFavDocSeeder(
 {
     public async Task Seed()
     {
-        var userFavLocations = await context.UserLocationFavourites.ToListAsync();
+        var userFavLocations = await context.UserLocationFavourites
+            .AsNoTracking()
+            .ToListAsync();
         foreach (var userFavLocation in userFavLocations)
         {
-            await userFavLocationService.Add(userFavLocation);
+            var dbUserFavLocations = await userFavLocationService.GetByUserId(userFavLocation.UserId);
+            if (!dbUserFavLocations.Any(x =>
+                x.UserId == userFavLocation.UserId
+                && x.LocationId == userFavLocation.LocationId))
+                await userFavLocationService.Add(userFavLocation);
         }
 
-        var userFavConnections = await context.UserConnectionFavourites.ToListAsync();
+        var userFavConnections = await context.UserConnectionFavourites
+            .AsNoTracking()
+            .ToListAsync();
         foreach (var userFavConnection in userFavConnections)
         {
-            await userFavConnectionService.Add(userFavConnection);
+            var dbUserFavConnections = await userFavConnectionService.GetByUserId(userFavConnection.UserId);
+            if (!dbUserFavConnections.Any(x =>
+                x.UserId == userFavConnection.UserId
+                && x.FromLocationId == userFavConnection.FromLocationId
+                && x.ToLocationId == userFavConnection.ToLocationId))
+                await userFavConnectionService.Add(userFavConnection);
         }
     }
 }

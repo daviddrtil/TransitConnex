@@ -1,6 +1,8 @@
+using NetTopologySuite.Geometries;
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.User;
 using TransitConnex.Command.Services.Interfaces;
+using TransitConnex.Domain.Models;
 using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
@@ -49,9 +51,8 @@ public class UserCommandHandler(
             throw new InvalidCastException($"Invalid command given, expected {nameof(UserLikeLocationCommand)}.");
         }
         
-        await userService.LikeLocation(likeCommand);
-        //await locationMongoService.Add();
-        // TODO -> sync with mongo
+        var location = await userService.LikeLocation(likeCommand);
+        await locationMongoService.Add(location);
     }
 
     public async Task HandleLikeConnection(IUserCommand command)
@@ -61,9 +62,8 @@ public class UserCommandHandler(
             throw new InvalidCastException($"Invalid command given, expected {nameof(UserLikeConnectionCommand)}.");
         }
         
-        await userService.LikeConnection(likeCommand);
-        //await locationMongoService.Add();
-        // TODO -> sync with mongo
+        var conn = await userService.LikeConnection(likeCommand);
+        await connectionMongoService.Add(conn);
     }
 
     public async Task HandleDislikeLocation(IUserCommand command)
@@ -74,7 +74,12 @@ public class UserCommandHandler(
         }
         
         await userService.DislikeLocation(likeCommand);
-        // TODO -> sync with mongo
+        var location = new UserLocationFavourite()
+        {
+            UserId = likeCommand.UserId,
+            LocationId = likeCommand.LocationId,
+        };
+        await locationMongoService.Remove(location);
     }
 
     public async Task HandleDislikeConnection(IUserCommand command)
@@ -83,8 +88,14 @@ public class UserCommandHandler(
         {
             throw new InvalidCastException($"Invalid command given, expected {nameof(UserLikeConnectionCommand)}.");
         }
-        
+
         await userService.DislikeConnection(likeCommand);
-        // TODO -> sync with mongo
+        var conn = new UserConnectionFavourite()
+        {
+            UserId = likeCommand.UserId,
+            FromLocationId = likeCommand.FromLocationId,
+            ToLocationId = likeCommand.ToLocationId,
+        };
+        await connectionMongoService.Remove(conn);
     }
 }

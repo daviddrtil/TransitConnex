@@ -1,9 +1,15 @@
-﻿using TransitConnex.API;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using System.Net.Http.Json;
+using TransitConnex.API;
+using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Query.Queries;
 using TransitConnex.Tests.Infrastructure;
+using TransitConnex.TestSeeds.SqlSeeds;
 using Xunit.Abstractions;
 
 namespace TransitConnex.Tests;
 
+[Collection("NonParallelTests")]
 public class ScheduledRouteTests(
     ITestOutputHelper testOutputHelper,
     ApiWebApplicationFactory<Program> fixture
@@ -11,35 +17,68 @@ public class ScheduledRouteTests(
 {
     private const string Endpoint = "/api";
 
-    //[Fact]
-    //public async Task GET_Scheduled_Routes_is_OK()
-    //{
-    //    // todo get actual values
-    //    var startLocationId = Guid.NewGuid();
-    //    var endLocationId = Guid.NewGuid();
-    //    var startTime = DateTime.Parse("2024-11-01 12:00:00");
-    //    var scheduledRouteId = Guid.Parse("00000000-0000-0000-0000-000000000000");
+    [Fact]
+    public async Task GET_Scheduled_Routes_is_OK()
+    {
+        // Arrange
+        await PerformLogin(UserSeed.BasicLogin);
+        var dbFirstSr = ScheduledRouteSeed.ScheduledRoutes.First();
+        var scheduledRouteQuery = new ScheduledRouteGetAllQuery(
+            UserSeed.BasicUser.Id,
+            LocationSeed.BrnoCityLocation.Id,
+            LocationSeed.PrerovCityLocation.Id,
+            dbFirstSr.StartTime.AddHours(-2).ToUniversalTime());
+        var queryParams = new Dictionary<string, string?>
+        {
+            { "startLocationId", scheduledRouteQuery.StartLocationId.ToString() },
+            { "endLocationId", scheduledRouteQuery.EndLocationId.ToString() },
+            { "startTime", scheduledRouteQuery.StartTime.ToString() },
+        };
+        string url = QueryHelpers.AddQueryString($"{Endpoint}/ScheduledRoute/GetScheduledRoutes", queryParams);
 
-    //    // Arrange
-    //    await PerformLogin(UserSeeds.BasicLogin);
-    //    var queryParams = new Dictionary<string, string?>
-    //    {
-    //        { "startLocationId", startLocationId.ToString() },
-    //        { "endLocationId", endLocationId.ToString() },
-    //        { "startTime", startTime.ToString() },
-    //    };
-    //    string url = QueryHelpers.AddQueryString($"{Endpoint}/ScheduledRoute/GetScheduledRoutes", queryParams);
+        // Act
+        var response = await Client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var scheduledRoutes = await response.Content.ReadFromJsonAsync<IEnumerable<ScheduledRouteDto>>();
 
-    //    // Act
-    //    var response = await Client.GetAsync(url);
-    //    response.EnsureSuccessStatusCode();
-    //    var scheduledRoutes = await response.Content.ReadFromJsonAsync<IEnumerable<ScheduledRouteDto>>();
+        // Assert
+        Assert.NotNull(scheduledRoutes);
+        Assert.NotEmpty(scheduledRoutes);
+        Assert.Equal(ScheduledRouteSeed.ScheduledRoutes.Count, scheduledRoutes.Count());
 
-    //    // Assert
-    //    Assert.NotNull(scheduledRoutes);
-    //    Assert.Empty(scheduledRoutes);
+        var firstSr = scheduledRoutes.First();
+        Assert.Equal(dbFirstSr.Id, firstSr.Id);
+        Assert.True(dbFirstSr.StartTime > firstSr.StartTime);
+    }
 
-    //    //Assert.NotEmpty(scheduledRoutes);
-    //    //Assert.Equal(scheduledRouteId, scheduledRoutes.First().Id);
-    //}
+    [Fact]
+    public async Task GET_Scheduled_Routes_Should_be_Empty_OK()
+    {
+        // Arrange
+        await PerformLogin(UserSeed.BasicLogin);
+        var dbFirstSr = ScheduledRouteSeed.ScheduledRoutes
+            .OrderBy(x => x.StartTime)
+            .Last();
+        var query = new ScheduledRouteGetAllQuery(
+            UserSeed.BasicUser.Id,
+            LocationSeed.BrnoCityLocation.Id,
+            LocationSeed.PrerovCityLocation.Id,
+            dbFirstSr.StartTime.AddHours(1).ToUniversalTime());
+        var queryParams = new Dictionary<string, string?>
+        {
+            { "startLocationId", query.StartLocationId.ToString() },
+            { "endLocationId", query.EndLocationId.ToString() },
+            { "startTime", query.StartTime.ToString() },
+        };
+        string url = QueryHelpers.AddQueryString($"{Endpoint}/ScheduledRoute/GetScheduledRoutes", queryParams);
+
+        // Act
+        var response = await Client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var scheduledRoutes = await response.Content.ReadFromJsonAsync<IEnumerable<ScheduledRouteDto>>();
+
+        // Assert
+        Assert.NotNull(scheduledRoutes);
+        Assert.Empty(scheduledRoutes);
+    }
 }
