@@ -11,6 +11,8 @@ public class ScheduledRouteRepository(AppDbContext db)
     : BaseRepository<ScheduledRoute, ScheduledRouteUpdateCommand>(db),
         IScheduledRouteRepository
 {
+    private readonly AppDbContext Db = db;
+
     private IQueryable<ScheduledRoute> QueryScheduledRoutes()
     {
         return QueryAll()
@@ -20,7 +22,7 @@ public class ScheduledRouteRepository(AppDbContext db)
             .ThenInclude(rs => rs.Stop);
     }
 
-    public IQueryable<ScheduledRoute> QueryById(Guid id) // TODO -> check because includes added
+    public IQueryable<ScheduledRoute> QueryById(Guid id) 
     {
         return QueryScheduledRoutes()
             .Where(x => x.Id == id);
@@ -33,7 +35,7 @@ public class ScheduledRouteRepository(AppDbContext db)
 
     public async Task<List<ScheduledRouteSeat>> GetReservationsForScheduledRoute(Guid scheduledRouteId)
     {
-       return await db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId).ToListAsync();
+       return await Db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId).ToListAsync();
     }
 
     public async Task UpsertBatch(List<ScheduledRoute> scheduledRoutes)
@@ -48,12 +50,12 @@ public class ScheduledRouteRepository(AppDbContext db)
         //     }
         // );
         
-        await db.BulkInsertOrUpdateAsync(scheduledRoutes);
+        await Db.BulkInsertOrUpdateAsync(scheduledRoutes);
     }
     
     public async Task DeleteReservations(List<ScheduledRouteSeat> scheduledRouteSeats)
     {
-        db.ScheduledRouteSeats.RemoveRange(scheduledRouteSeats);
-        await db.SaveChangesAsync();
+        Db.ScheduledRouteSeats.RemoveRange(scheduledRouteSeats);
+        await Db.SaveChangesAsync();
     }
 }

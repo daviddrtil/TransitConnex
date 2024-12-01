@@ -5,6 +5,8 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
+using TransitConnex.Query.Queries.Interfaces;
 
 namespace TransitConnex.Command.Services;
 
@@ -14,9 +16,22 @@ public class LocationService(
     IUserRepository userRepository
     ) : ILocationService
 {
-    public Task<List<LocationDto>> GetLocationsFiltered()
+    public async Task<List<LocationDto>> GetLocationsFiltered(LocationFilteredQuery filter)
     {
-        throw new NotImplementedException();
+        var query = locationRepository.QueryAll();
+
+        if (filter.Name != null)
+        {
+            query = query.Where(location => location.Name != null && location.Name.Contains(filter.Name));
+        }
+
+        if (filter.LocationType != null)
+        {
+            query = query.Where(x => x.LocationType == filter.LocationType);
+        }
+        
+        var locations = await query.ToListAsync();
+        return mapper.Map<List<LocationDto>>(locations);
     }
     
     public async Task<Location?> GetLocationById(Guid id)

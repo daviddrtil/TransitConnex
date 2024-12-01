@@ -2,7 +2,7 @@
 
 public class SearchedRouteDto
 {
-    public Guid Id { get; set; }// todo Id should here be UserId, and rewrite repository to add new ScheduledRouteIds
+    public Guid Id { get; set; }
     public Guid UserId { get; set; }
     public Guid FromLocationId { get; set; }
     public Guid ToLocationId { get; set; }

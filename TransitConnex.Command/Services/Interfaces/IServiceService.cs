@@ -9,11 +9,7 @@ public interface IServiceService
 {
     Task<List<ServiceDto>> GetFilteredServices(ServiceFilteredQuery filter);
 
-    Task<bool> ServiceExists(Guid id);
-
     Task<Service> CreateService(ServiceCreateCommand createCommand);
-
     Task<Service> EditService(ServiceUpdateCommand updateCommand);
-
     Task DeleteService(Guid id); 
 }

@@ -6,6 +6,7 @@ using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Seat;
 using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
@@ -40,6 +41,20 @@ public class SeatService(IMapper mapper, ISeatRepository seatRepository, ISchedu
         return seats;
     }
 
+    public async Task<List<SeatDto>> GetSeatsFiltered(SeatFilteredQuery filter)
+    {
+        var query = seatRepository.QueryAll();
+
+        if (filter.VehicleId != null)
+        {
+            query = query.Where(x => x.VehicleId == filter.VehicleId);
+        }
+
+        var seats = await query.ToListAsync();
+        
+        return mapper.Map<List<SeatDto>>(seats);
+    }
+
     public async Task<Seat> CreateSeat(SeatCreateCommand createCommand)
     {
         if (!await vehicleRepository.Exists(createCommand.VehicleId))
@@ -55,27 +70,19 @@ public class SeatService(IMapper mapper, ISeatRepository seatRepository, ISchedu
 
     public async Task<List<Seat>> CreateSeats(List<SeatCreateCommand> createCommands)
     {
-        // TODO vehicle validations
-        // if(createCommands.Any(async x => !await vehicleRepository.Exists(x.VehicleId)))
-        
         var newSeats = mapper.Map<List<Seat>>(createCommands);
         await seatRepository.AddBatch(newSeats);
         
         return newSeats;
     }
-
-    // TODO -> Init reserve will try to reserve all seats given from FE (for count of tickets to buy)
-    // Other reserves will always contain only one seat -> picking other seats
-        // user fake unlocks reserved seat, picks other, we try to reserve if success we free fake unlocked
-        // but that is FE logic so we dont care
-    public async Task ReserveSeats(SeatReservationCommand reservationCommands) // TODO -> add check if seats are valid for scheduledroute
+    
+    public async Task ReserveSeats(SeatReservationCommand reservationCommands)
     {
         if (!await scheduledRouteRepository.Exists(reservationCommands.ScheduledRouteId))
         {
             throw new KeyNotFoundException($"ScheduledRoute with ID: {reservationCommands.ScheduledRouteId} not found."); 
         }
-
-        // TODO -> sent timeLeft from FE? for reservation
+        
         var availableSeats = await seatRepository.QueryAvailableSeats(reservationCommands.ScheduledRouteId, reservationCommands.SeatIds);
 
         if (availableSeats.Count != reservationCommands.SeatIds.Count)
@@ -137,7 +144,6 @@ public class SeatService(IMapper mapper, ISeatRepository seatRepository, ISchedu
             throw new KeyNotFoundException($"Seat with ID {id} was not found.");
         }
 
-        // TODO -> improvement -> rn very simple -> deletes all reservations + tickets -> for future think of betteer logic -> rereservation
         var reservations = await seatRepository.QuerySeatReservations(seat.Id);
         var routeTicketsIds = reservations.Where(x => x.ReservedById != null).Select(r => r.RouteTicketId).ToList();
         await scheduledRouteRepository.DeleteReservations(reservations);

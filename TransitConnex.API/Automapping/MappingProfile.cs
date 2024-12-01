@@ -13,10 +13,14 @@ using TransitConnex.Command.Commands.Vehicle;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.Icon;
+using TransitConnex.Domain.DTOs.Line;
 using TransitConnex.Domain.DTOs.Location;
+using TransitConnex.Domain.DTOs.Route;
 using TransitConnex.Domain.DTOs.RouteStop;
 using TransitConnex.Domain.DTOs.RouteSchedulingTemplate;
+using TransitConnex.Domain.DTOs.RouteTicket;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
+using TransitConnex.Domain.DTOs.Seat;
 using TransitConnex.Domain.DTOs.Service;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Domain.DTOs.User;
@@ -51,8 +55,7 @@ public class MappingProfile : Profile
 
         CreateMap<int, VehicleTypeEnum>().ConvertUsing(src => (VehicleTypeEnum)src);
         CreateMap<VehicleTypeEnum, int>().ConvertUsing(src => (int)src);
-
-        // todo
+        
         CreateMap<string, LocationTypeEnum>()
             .ConvertUsing(src => Enum.Parse<LocationTypeEnum>(src, true));
         CreateMap<LocationTypeEnum, string>()
@@ -98,8 +101,12 @@ public class MappingProfile : Profile
         CreateMap<UserLocationFavourite, UserFavLocationDto>().ReverseMap();
         CreateMap<UserConnectionFavourite, UserFavConnectionDto>().ReverseMap();
         CreateMap<Icon, IconDto>();
+        CreateMap<Route, RouteDto>();
         CreateMap<Service, ServiceDto>();
         CreateMap<Stop, StopDto>();
+        CreateMap<Seat, SeatDto>();
+        CreateMap<Line, LineDto>();
+        CreateMap<RouteTicket, RouteTicketDto>();
     }
 
     private void MapModelsToCollections()

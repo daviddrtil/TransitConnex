@@ -7,7 +7,8 @@ namespace TransitConnex.Command.Repositories;
 
 public class VehicleRepository(AppDbContext db) : BaseRepository<Vehicle, VehicleUpdateCommand>(db), IVehicleRepository
 {
-    // todo QueryAll probably retrive all data and filter it in memory not on sql
+    private readonly AppDbContext Db = db;
+
     public IQueryable<Vehicle> QueryById(Guid vehicleId)
     {
         return QueryAll().Where(v => v.Id == vehicleId);
@@ -15,12 +16,12 @@ public class VehicleRepository(AppDbContext db) : BaseRepository<Vehicle, Vehicl
 
     public IQueryable<ScheduledRoute> QueryByVehicleScheduledRoutes(Guid vehicleId)
     {
-        return db.ScheduledRoutes.Where(v => v.Id == vehicleId);
+        return Db.ScheduledRoutes.Where(v => v.Id == vehicleId);
     }
 
     public async Task AddServicesToVehicle(List<VehicleOfferedService> vehicleServices)
     {
-        db.VehicleServices.AddRange(vehicleServices);
-        await db.SaveChangesAsync();
+        Db.VehicleServices.AddRange(vehicleServices);
+        await Db.SaveChangesAsync();
     }
 }

@@ -11,7 +11,7 @@ public static class VehicleMapper
         {
             Id = item.Id,
             Capacity = item.Capacity,
-            Label = item.Label, // TODO -> resolve this
+            Label = item.Label,
             Manufacturer = item.Manufacturer,
             Spz = item.Spz,
             VehicleType = item.VehicleType,

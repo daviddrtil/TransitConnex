@@ -6,7 +6,7 @@ using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Handlers.QueryHandlers;
 
-public class StopQueryHandler(IMapper mapper, IStopService stopServiceSoT) : IBaseQueryHandler<StopDto>
+public class StopQueryHandler(IStopService stopServiceSoT) : IBaseQueryHandler<StopDto>
 {
     public async Task<List<StopDto>> HandleGetFiltered(StopFilteredQuery filter)
     {

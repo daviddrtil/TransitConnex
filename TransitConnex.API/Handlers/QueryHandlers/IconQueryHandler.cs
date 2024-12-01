@@ -6,7 +6,7 @@ using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Handlers.QueryHandlers;
 
-public class IconQueryHandler(IMapper mapper, IIconService iconServiceSoT) : IBaseQueryHandler<IconDto>
+public class IconQueryHandler(IIconService iconServiceSoT) : IBaseQueryHandler<IconDto>
 {
     public async Task<List<IconDto>> HandleGetFiltered(IconFilteredQuery filter)
     {

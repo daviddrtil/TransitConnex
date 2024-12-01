@@ -7,6 +7,7 @@ using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Location;
 using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Query.Queries;
+using TransitConnex.Query.Queries.Interfaces;
 
 namespace TransitConnex.API.Controllers;
 
@@ -37,6 +38,12 @@ public class LocationController(
         return await locationQueryHandler.HandleGetClosest(query);
     }
 
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<LocationDto>>> GetLocationsFilteredSoT(LocationFilteredQuery filter)
+    {
+        return Ok(await locationQueryHandler.HandleGetFiltered(filter));
+    }
+    
     /// <summary>
     /// Endpoint for creating new Location.
     /// </summary>

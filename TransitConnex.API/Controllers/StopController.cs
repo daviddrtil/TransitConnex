@@ -20,7 +20,7 @@ public class StopController(StopCommandHandler stopCommandHandler, StopQueryHand
     /// <param name="filter">Query containing filter properties.</param>
     /// <returns>Method status with list of DTOs containing information about stops.</returns>
     [HttpPost("filter")]
-    public async Task<ActionResult<List<StopDto>>> GetFilteredStops(StopFilteredQuery filter)
+    public async Task<ActionResult<List<StopDto>>> GetFilteredStopsSoT(StopFilteredQuery filter)
     {
         return Ok(await stopQueryHandler.HandleGetFiltered(filter));
     }

@@ -1,5 +1,6 @@
 using AutoMapper;
 using TransitConnex.API.Handlers.QueryHandlers.Common;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
@@ -11,8 +12,9 @@ namespace TransitConnex.API.Handlers.QueryHandlers;
 public class ScheduledRouteQueryHandler(
     IMapper mapper,
     IScheduledRouteMongoService scheduledRouteService,
-    ISearchedRouteMongoService searchedRouteService)
-        : IBaseQueryHandler<ScheduledRouteDto>
+    ISearchedRouteMongoService searchedRouteService,
+    IScheduledRouteService scheduledRouteServiceSoT
+    ) : IBaseQueryHandler<ScheduledRouteDto>
 {
     public async Task<IEnumerable<ScheduledRouteDto>> HandleGetScheduledRoutes(
         ScheduledRouteGetAllQuery query)
@@ -29,5 +31,10 @@ public class ScheduledRouteQueryHandler(
         };
         await searchedRouteService.Create(searchedRoute);
         return scheduledRoutes;
+    }
+
+    public async Task<List<ScheduledRouteDto>> HandleGetScheduledRoutesFiltered(ScheduledRouteFilteredQuery filter)
+    {
+        return await scheduledRouteServiceSoT.GetScheduledRoutesFiltered(filter);
     }
 }

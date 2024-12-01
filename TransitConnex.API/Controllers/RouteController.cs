@@ -1,15 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Route;
+using TransitConnex.Domain.DTOs.Route;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [AuthorizedByAdmin]
-public class RouteController(RouteCommandHandler routeCommandHandler) : Controller
+public class RouteController(RouteCommandHandler routeCommandHandler, RouteQueryHandler routeQueryHandler) : Controller
 {
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<RouteDto>>> GetRoutesFilteredSoT(RouteFilteredQuery filter)
+    {
+        return Ok(await routeQueryHandler.HandleGetFiltered(filter));
+    }
+    
     /// <summary>
     /// Endpoint for creating new Route.
     /// </summary>
@@ -19,18 +28,6 @@ public class RouteController(RouteCommandHandler routeCommandHandler) : Controll
     public async Task<Guid> CreateRoute(RouteCreateCommand createCommand)
     {
         return await routeCommandHandler.HandleCreate(createCommand);
-    }
-
-    /// <summary>
-    /// Endpoint for creating multiple new Routes.
-    /// </summary>
-    /// <param name="createCommands">Command containing list of create commands.</param>
-    /// <returns>Method status together with list of ids of created routes.</returns>
-    [HttpPost("batch")]
-    public async Task<Guid> CreateRoutes(List<RouteCreateCommand> createCommands)
-    {
-        // return await RouteCommandHandler.HandleCreate(createCommand);
-        return new Guid(); // TODO
     }
 
     /// <summary>
@@ -61,14 +58,6 @@ public class RouteController(RouteCommandHandler routeCommandHandler) : Controll
 
         return Ok();
     }
-
-    // [HttpDelete("batch")] // TODO -> not supported for first release
-    // public async Task<IActionResult> DeleteRoutes(List<Guid> deleteIds)
-    // {
-    //     // await RouteCommandHandler.HandleDelete(deleteCommand); // TODO
-    //
-    //     return Ok();
-    // }
     
     /// <summary>
     /// Endpoint for adding stop to route.

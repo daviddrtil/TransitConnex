@@ -30,7 +30,7 @@ public class RouteSchedulerService(IRouteRepository routeRepository, IRouteSched
             throw new Exception($"Scheduling failed, template with ID {schedulingTemplateId} is invalid.");
         }
 
-        if (reschedule) // TODO -> rn very simple -> for future think of better handling -> versioning templates, mapping scheduled to new scheduled, remapping tickets and reservations....
+        if (reschedule)
         {
             var scheduledRoutesToDelete = await scheduledRouteRepository.QueryAll().Where(x => x.RouteId == routeId && x.StartTime >= fromDate).ToListAsync();
             await scheduledRouteRepository.DeleteBatch(scheduledRoutesToDelete);
@@ -95,8 +95,7 @@ public class RouteSchedulerService(IRouteRepository routeRepository, IRouteSched
             scheduledRoutes.Add(scheduledRoute);
         }
      
-        // await scheduledRouteRepository.UpsertBatch(scheduledRoutes);
-        await scheduledRouteRepository.AddBatch(scheduledRoutes); // TODO -> mby use upsert instead?
+        await scheduledRouteRepository.AddBatch(scheduledRoutes);
     }
 
     private class SchedulingTemplate

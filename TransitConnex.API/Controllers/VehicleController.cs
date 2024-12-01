@@ -54,18 +54,6 @@ public class VehicleController(
         return Ok(await vehicleCommandHandler.HandleCreate(createCommand));
     }
 
-    // /// <summary> // TODO -> not supported for first release
-    // /// Ednpoint for creating multiple 
-    // /// </summary>
-    // /// <param name="createCommand"></param>
-    // /// <returns></returns>
-    // [AuthorizedByAdmin]
-    // [HttpPost("batch")]
-    // public async Task<ActionResult<List<Guid>>> CreateVehicles(VehicleBatchCreateCommand createCommand)
-    // {
-    //     return Ok(await vehicleCommandHandler.HandleBatchCreate(createCommand));
-    // }
-
     /// <summary>
     /// Endpoint for updating Vehicle.
     ///
@@ -95,20 +83,6 @@ public class VehicleController(
         await vehicleCommandHandler.HandleDelete(id); 
         return Ok();
     }
-
-    // /// <summary> // TODO -> not supported for first release
-    // /// 
-    // /// </summary>
-    // /// <param name="deleteIds"></param>
-    // /// <returns></returns>
-    // [AuthorizedByAdmin]
-    // [HttpDelete("batch")]
-    // public async Task<IActionResult> DeleteVehicles(List<Guid> deleteIds)
-    // {
-    //     // await VehicleCommandHandler.HandleDelete(deleteCommand); 
-    //
-    //     return Ok();
-    // }
 
     /// <summary>
     /// Endpoint for replacing one vehicle on all scheduled routes with different vehicle.

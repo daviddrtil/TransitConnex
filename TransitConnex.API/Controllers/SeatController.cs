@@ -5,6 +5,7 @@ using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Seat;
 using TransitConnex.Domain.DTOs.Seat;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
@@ -13,6 +14,12 @@ namespace TransitConnex.API.Controllers;
 [Authorize]
 public class SeatController(SeatCommandHandler seatCommandHandler, SeatQueryHandler seatQueryHandlerSoT) : Controller
 {
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<SeatDto>>> GetSeatsFilteredSoT(SeatFilteredQuery filter)
+    {
+        return Ok(await seatQueryHandlerSoT.HandleGetSeatsFiltered(filter));
+    }
+    
     /// <summary>
     /// Endpoint for obtaining seats of scheduled route with their state - reserved/free.
     /// </summary>
@@ -34,17 +41,6 @@ public class SeatController(SeatCommandHandler seatCommandHandler, SeatQueryHand
     {
         return await seatCommandHandler.HandleCreate(createCommand);
     }
-
-    // /// <summary> // TODO -> not supported for first release
-    // /// Endpoint for creating multiple seats.
-    // /// </summary>
-    // /// <param name="createCommands">List of commands for creating seat.</param>
-    // /// <returns>Method status with list of ids of created seats.</returns>
-    // [HttpPost("batch")]
-    // [AuthorizedByAdmin]
-    // public async Task<List<Guid>> CreateSeats(List<SeatCreateCommand> createCommands)
-    // {
-    // }
 
     /// <summary>
     /// Endpoint for creating reservation on selected seats.
@@ -97,22 +93,4 @@ public class SeatController(SeatCommandHandler seatCommandHandler, SeatQueryHand
         await seatCommandHandler.HandleDelete(id);
         return Ok();
     }
-
-    // /// <summary> // TODO -> not supported for first release
-    // /// Endpoint for deleting seats of given vehicle.
-    // ///
-    // /// If vagon number is selected only seats from certain vagon are deleted.
-    // /// If seat numbers are selected only seats with given numbers are deleted.
-    // /// Seat numbers and vagon number are intersected.
-    // /// </summary>
-    // /// <param name="deleteCommand">Command obtaining info about from which vehicle and what seats to delete.</param>
-    // /// <returns>Method status.</returns>
-    // [HttpDelete("batch")]
-    // [AuthorizedByAdmin]
-    // public async Task<IActionResult> DeleteVehicleSeats(SeatDeleteCommand deleteCommand)
-    // {
-    //     // await SeatCommandHandler.HandleDelete(deleteCommand);
-    //
-    //     return Ok();
-    // }
 }

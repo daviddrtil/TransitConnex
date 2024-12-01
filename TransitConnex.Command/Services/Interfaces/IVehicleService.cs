@@ -7,18 +7,11 @@ namespace TransitConnex.Command.Services.Interfaces;
 public interface IVehicleService
 {
     Task<List<VehicleDto>> GetAllVehicles();
-
     Task<VehicleDto> GetVehicleById(Guid id);
-
     Task<Vehicle> CreateVehicle(VehicleCreateCommand createCommand);
-
-    Task<List<Vehicle>> CreateVehicles(List<VehicleCreateCommand> createCommands);
+    
 
     Task<Vehicle> EditVehicle(VehicleUpdateCommand editCommand);
-
     Task DeleteVehicle(Guid id);
-
-    Task DeleteVehicles(List<Guid> ids);
-
     Task<IEnumerable<ScheduledRoute>> ReplaceVehicleOnScheduledRoutes(VehicleReplaceOnScheduledCommand replaceCommand);
 }

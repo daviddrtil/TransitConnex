@@ -1,29 +1,37 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Commands.RouteTicket;
 using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.RouteTicket;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
+using TransitConnex.Query.Queries.Interfaces;
 
 namespace TransitConnex.Command.Services;
 
-public class RouteTicketService(IRouteTicketRepository routeTicketRepository, IScheduledRouteRepository scheduledRouteRepository, ISeatRepository seatRepository) : IRouteTicketService
+public class RouteTicketService(IMapper mapper, IRouteTicketRepository routeTicketRepository, IScheduledRouteRepository scheduledRouteRepository, ISeatRepository seatRepository) : IRouteTicketService
 {
-    public Task<List<RouteTicketDto>> GetRouteTicketsFiltered()
+    public async Task<List<RouteTicketDto>> GetRouteTicketsFiltered(RouteTicketFilteredQuery filter)
     {
-        throw new NotImplementedException();
-    }
+        var query = routeTicketRepository.QueryAll();
 
-    public Task<RouteTicketDto> GetRouteTicketById(Guid id)
-    {
-        throw new NotImplementedException();
+        if (filter.RouteId != null)
+        {
+            query = query.Where(r => r.ScheduledRouteId == filter.RouteId);
+        }
+
+        if (filter.UserId != null)
+        {
+            query = query.Where(r => r.UserId == filter.UserId);
+        }
+        
+        var routeTickets = await query.ToListAsync();
+        return mapper.Map<List<RouteTicketDto>>(routeTickets);
     }
 
     public async Task<RouteTicket> CreateRouteTicket(RouteTicketCreateCommand createCommand)
     {
-        // TODO -> should check if seats are reserved for given user -> if not -> handle
-        // TODO -> get scheduled route and check existence
-        // same for user?
         var scheduledRoute = await scheduledRouteRepository.QueryById(createCommand.ScheduledRouteId).FirstOrDefaultAsync();
         if (scheduledRoute == null)
         {
@@ -34,7 +42,7 @@ public class RouteTicketService(IRouteTicketRepository routeTicketRepository, IS
         if (seatReservations == null || seatReservations.Count == 0 ||
             seatReservations.Count() != createCommand.SeatIds.Count())
         {
-            throw new ArgumentException("Not all seats reservations were created."); // TODO -> improve message
+            throw new ArgumentException("Not all seats reservations were created.");
         }
         
         var newRouteTicket = new RouteTicket()
@@ -76,10 +84,5 @@ public class RouteTicketService(IRouteTicketRepository routeTicketRepository, IS
         
         await scheduledRouteRepository.DeleteReservations(reservations);
         await routeTicketRepository.Delete(routeTicket);
-    }
-
-    private Task ValidateCreateCommand(ScheduledRoute scheduledRoute, User user)
-    {
-        throw new NotImplementedException(); // TODO
     }
 }

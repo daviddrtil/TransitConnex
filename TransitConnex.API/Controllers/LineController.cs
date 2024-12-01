@@ -1,15 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.Line;
+using TransitConnex.Domain.DTOs.Line;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [AuthorizedByAdmin]
-public class LineController(LineCommandHandler lineCommandHandler) : Controller
+public class LineController(LineCommandHandler lineCommandHandler, LineQueryHandler lineQueryHandler) : Controller
 {
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<LineDto>>> GetLinesFilteredSoT(LineFilteredQuery filter)
+    {
+        return Ok(await lineQueryHandler.HandleGetFiltered(filter));
+    }
+    
     /// <summary>
     /// Endpoint for creating new Line.
     /// </summary>
@@ -65,9 +74,9 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     /// <param name="id">Id of deleted Line.</param>
     /// <returns>Method status.</returns>
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteLine(Guid id) // TODO -> very complicated command -> if line is deleted many factors can happen -> either with deleting line -> delete all routes + templates + scheduled + refund tickets? or some kind of soft delete which will result in routes not being scheduled for this line anymore (so basically all scheduled will stay but no new will be generated?) -> mby make choice optional? -> when line deleted assign null to vehicles.
+    public async Task<IActionResult> DeleteLine(Guid id)
     {
-        await lineCommandHandler.HandleDelete(id); // TODO -> just simply delete everything
+        await lineCommandHandler.HandleDelete(id);
         return Ok();
     }
 }

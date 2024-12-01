@@ -6,7 +6,7 @@ using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Handlers.QueryHandlers;
 
-public class ServiceQueryHandler(IMapper mapper, IServiceService serviceServiceSoT) : IBaseQueryHandler<ServiceDto>
+public class ServiceQueryHandler(IServiceService serviceServiceSoT) : IBaseQueryHandler<ServiceDto>
 {
     public async Task<List<ServiceDto>> HandleGetFiltered(ServiceFilteredQuery filter)
     {

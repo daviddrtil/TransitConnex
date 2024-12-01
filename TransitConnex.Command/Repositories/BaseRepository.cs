@@ -21,10 +21,9 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
         return asNoTracking ? _dbSet.AsNoTracking() : _dbSet;
     }
 
-    public IQueryable<T> QueryExistingIds(IEnumerable<Guid> ids) // TODO -> mby some BaseEntity with Id Guid
+    public IQueryable<T> QueryExistingIds(IEnumerable<Guid> ids)
     {
         return _dbSet.AsNoTracking().Where(entity => ids.Contains(EF.Property<Guid>(entity, "Id")));
-        //.Select(entity => EF.Property<Guid>(entity, "Id"));
     }
 
     public async Task Add(T entity)
@@ -39,7 +38,7 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task Update(T entity, U updatedEntity) // TODO check this -> what happens when null given or with FKs ?
+    public async Task Update(T entity, U updatedEntity)
     {
         foreach (var property in typeof(U).GetProperties(BindingFlags.Public | BindingFlags.Instance))
         {

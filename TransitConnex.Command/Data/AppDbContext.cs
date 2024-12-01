@@ -88,7 +88,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .HasOne(rs => rs.Stop)
             .WithMany(s => s.RouteStops)
             .HasForeignKey(rs => rs.StopId)
-            .OnDelete(DeleteBehavior.Cascade); // TODO -> mby change to cascade?
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.Entity<LocationStop>()
             .HasKey(ls => new { ls.LocationId, ls.StopId });

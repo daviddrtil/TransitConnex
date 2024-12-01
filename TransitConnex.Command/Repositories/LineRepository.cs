@@ -5,15 +5,8 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Repositories;
 
-public class LineRepository : BaseRepository<Line, LineUpdateCommand>, ILineRepository
+public class LineRepository(AppDbContext db) : BaseRepository<Line, LineUpdateCommand>(db), ILineRepository
 {
-    private readonly AppDbContext _db;
-
-    public LineRepository(AppDbContext db) : base(db)
-    {
-        _db = db;
-    }
-
     public IQueryable<Line> QueryById(Guid id)
     {
         return QueryAll().Where(x => x.Id == id);

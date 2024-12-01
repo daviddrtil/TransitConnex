@@ -8,6 +8,8 @@ namespace TransitConnex.Command.Repositories;
 
 public class StopRepository(AppDbContext db) : BaseRepository<Stop, StopUpdateCommand>(db), IStopRepository
 {
+    private readonly AppDbContext Db = db;
+
     public IQueryable<Stop> QueryById(Guid id)
     {
         return QueryAll().Where(x => x.Id == id);
@@ -15,12 +17,12 @@ public class StopRepository(AppDbContext db) : BaseRepository<Stop, StopUpdateCo
 
     public IQueryable<RouteStop> QueryRouteStopsByStopId(Guid stopId)
     {
-        return db.RouteStops.Where(x => x.StopId == stopId).AsNoTracking();
+        return Db.RouteStops.Where(x => x.StopId == stopId).AsNoTracking();
     }
 
     public async Task AddLocationStops(List<LocationStop> locationStops)
     {
-        db.LocationStops.AddRange(locationStops);
-        await db.SaveChangesAsync();
+        Db.LocationStops.AddRange(locationStops);
+        await Db.SaveChangesAsync();
     }
 }

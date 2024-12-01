@@ -1,23 +1,27 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
+using TransitConnex.API.Handlers.QueryHandlers;
 using TransitConnex.Command.Commands.RouteTicket;
 using TransitConnex.Domain.DTOs.RouteTicket;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
+using TransitConnex.Query.Queries.Interfaces;
 
 namespace TransitConnex.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandHandler) : Controller
+public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandHandler, RouteTicketQueryHandler routeTicketQueryHandler) : Controller
 {
-    //[AuthorizedByAdmin]
-    //public async Task<List<RouteTicketDto>> GetRouteTicketsFiltered()
-    //{
-    //    throw new NotImplementedException();
-    //}
+    [AuthorizedByAdmin]
+    public async Task<ActionResult<List<RouteTicketDto>>> GetRouteTicketsFiltered(RouteTicketFilteredQuery filter)
+    {
+        return Ok(await routeTicketQueryHandler.HandleGetFiltered(filter));
+    }
     
     /// <summary>
     /// Endpoint for creating RouteTicket aka "buying ticket".

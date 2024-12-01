@@ -17,7 +17,7 @@ public class VehicleService(IMapper mapper,
     ILineRepository lineRepository
     ) : IVehicleService
 {
-    public async Task<List<VehicleDto>> GetAllVehicles() // TODO -> query filtration
+    public async Task<List<VehicleDto>> GetAllVehicles()
     {
         return await vehicleRepository.QueryAll().ToDto().ToListAsync();
     }
@@ -93,60 +93,6 @@ public class VehicleService(IMapper mapper,
         return newVehicle;
     }
 
-    public async Task<List<Vehicle>> CreateVehicles(List<VehicleCreateCommand> createCommands) // TODO -> not supported for first release
-    {
-        // // TODO -> iconId validation? -> private method?
-        // var newVehicles = new List<Vehicle>();
-        // var newSeats = new List<Seat>();
-        // foreach (var createCommand in createCommands)
-        // {
-        //     var newVehicle = new Vehicle
-        //     {
-        //         Label = createCommand.Label,
-        //         Spz = createCommand.Spz,
-        //         Manufacturer = createCommand.Manufacturer,
-        //         Capacity = createCommand.Capacity,
-        //         VehicleType = createCommand.VehicleType,
-        //         IconId = createCommand.IconId,
-        //         LineId = createCommand.LineId
-        //     };
-        //     newVehicles.Add(newVehicle);
-        //
-        //     // if (createCommand.NumberOfSeats != 0)
-        //     // {
-        //     //     for (int i = 1; i <= createCommand.NumberOfSeats; i++)
-        //     //     {
-        //     //         var newSeat = new Seat
-        //     //         {
-        //     //              SeatNumber = i,
-        //     //              VehicleId = newVehicle.Id
-        //     //         }
-        //     //     }
-        //     // }
-        // }
-        //
-        // // var createdVehicles = createCommands
-        // //     .ConvertAll(createCommand => new Vehicle
-        // //     {
-        // //         Id = Guid.NewGuid(),
-        // //         Label = createCommand.Label,
-        // //         Spz = createCommand.Spz,
-        // //         Manufacturer = createCommand.Manufacturer,
-        // //         Capacity = createCommand.Capacity,
-        // //         VehicleType = createCommand.VehicleType,
-        // //         IconId = createCommand.IconId,
-        // //         LineId = createCommand.LineId
-        // //     });
-        //
-        // await vehicleRepository.AddBatch(newVehicles);
-        //
-        // // TODO -> seat creation
-        //
-        // return newVehicles;
-
-        return null;
-    }
-
     public async Task<Vehicle> EditVehicle(VehicleUpdateCommand editCommand)
     {
         var vehicle = await vehicleRepository.QueryById(editCommand.Id).FirstOrDefaultAsync();
@@ -180,20 +126,6 @@ public class VehicleService(IMapper mapper,
         await vehicleRepository.Delete(vehicle);
     }
 
-    public async Task DeleteVehicles(List<Guid> ids)
-    {
-        // TODO -> not supported for first release
-        // var existingVehicles = await vehicleRepository.QueryExistingIds(ids).ToListAsync();
-        // var errorIds = ids.Except(existingVehicles.Select(x => x.Id)).ToList();
-        //
-        // if (errorIds.Count != 0)
-        // {
-        //     throw new KeyNotFoundException($"Given vehicles to be deleted do not exist: [{string.Join(',', errorIds)}]");
-        // }
-        //
-        // await vehicleRepository.DeleteBatch(existingVehicles);
-    }
-
     public async Task<IEnumerable<ScheduledRoute>> ReplaceVehicleOnScheduledRoutes(
         VehicleReplaceOnScheduledCommand replaceCommand)
     {
@@ -209,7 +141,7 @@ public class VehicleService(IMapper mapper,
             throw new KeyNotFoundException($"Vehicle used for replacing with ID: {replaceCommand.ReplacedId} was not found.");
         }
 
-        if (replacedBy.Capacity < replaced.Capacity) // TODO -> for simplicity -> replace with better logic? -> mby just replace all you can and notify some could not be replaced, so they can be replaced with multiple?
+        if (replacedBy.Capacity < replaced.Capacity)
         {
             throw new ArgumentException($"New vehicle must have at least {replaced.Capacity} capacity.");
         }
@@ -256,7 +188,7 @@ public class VehicleService(IMapper mapper,
         }
         
         await scheduledRouteRepository.UpsertBatch(scheduledRoutes);
-        await seatRepository.UpsertReservations(updatedReservations); // TODO -> should be better done -> first map seats and validate then do batch upserts
+        await seatRepository.UpsertReservations(updatedReservations);
 
         return scheduledRoutes;
     }
