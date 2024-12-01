@@ -78,7 +78,7 @@ public class RouteSchedulingTemplateService(IMapper mapper, IRouteSchedulingTemp
             var schedulingTemplates = await routeSchedulingTemplateRepository.QueryAll().Where(s => s.RouteId == route.Id).ToListAsync();
             foreach (var schedulingTemplate in schedulingTemplates)
             {
-                await routeSchedulerService.ScheduleRoute(route.Id, schedulingTemplate.Id, DateTime.Today.AddDays(1));
+                await routeSchedulerService.ScheduleRoute(route.Id, schedulingTemplate.Id, DateTime.Today.AddDays(1), runCommand.Reschedule);
             }
         }
     }

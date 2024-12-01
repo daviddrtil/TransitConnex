@@ -79,26 +79,11 @@ public class LocationController(
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpDelete]
+    [HttpDelete("{id}")]
     [AuthorizedByAdmin]
-    public async Task<IActionResult> DeleteLocation(Guid id) // TODO -> stopky unassignout? nebo smazat? -> opet serious action
+    public async Task<IActionResult> DeleteLocation(Guid id)
     {
         await locationCommandHandler.HandleDelete(id);
-
-        return Ok();
-    }
-
-    /// <summary>
-    /// Endpoint for
-    /// </summary>
-    /// <param name="deleteIds"></param>
-    /// <returns></returns>
-    [HttpDelete("batch")]
-    [AuthorizedByAdmin]
-    public async Task<IActionResult> DeleteLocations(List<Guid> deleteIds)
-    {
-        // await LocationCommandHandler.HandleDelete(deleteCommand); // TODO
-
         return Ok();
     }
 }

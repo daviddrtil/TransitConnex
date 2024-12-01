@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Configuration;
 using TransitConnex.API.Handlers.CommandHandlers;
 using TransitConnex.API.Handlers.QueryHandlers;
+using TransitConnex.Command.Commands.Route;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Domain.DTOs.Stop;
 using TransitConnex.Query.Queries;
@@ -13,6 +14,11 @@ namespace TransitConnex.API.Controllers;
 [AuthorizedByAdmin]
 public class StopController(StopCommandHandler stopCommandHandler, StopQueryHandler stopQueryHandler) : Controller
 {
+    /// <summary>
+    /// Endpoint for retrieving Stops by given filter.
+    /// </summary>
+    /// <param name="filter">Query containing filter properties.</param>
+    /// <returns>Method status with list of DTOs containing information about stops.</returns>
     [HttpPost("filter")]
     public async Task<ActionResult<List<StopDto>>> GetFilteredStops(StopFilteredQuery filter)
     {
@@ -52,28 +58,13 @@ public class StopController(StopCommandHandler stopCommandHandler, StopQueryHand
         await stopCommandHandler.HandleUpdate(updateCommand);
         return Ok();
     }
-
-    /// <summary>
-    /// Endpoint for updating multiple stops.
-    /// </summary>
-    /// <param name="updateCommand"></param>
-    /// <returns>Method status.</returns>
-    [HttpPut("batch")]
-    public async Task<IActionResult> EditScheduledRoutes(List<StopUpdateCommand> updateCommand) // TODO
-    {
-        // TODO
-
-        return Ok();
-    }
     
-    // TODO -> mby endpoint for moving stops to different location?
-
     /// <summary>
     /// Endpoint for deleting stop.
     /// </summary>
     /// <param name="id">Id of deleted stop.</param>
     /// <returns>Method status.</returns>
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteStop(Guid id)
     {
         await stopCommandHandler.HandleDelete(id); 
@@ -81,15 +72,26 @@ public class StopController(StopCommandHandler stopCommandHandler, StopQueryHand
     }
 
     /// <summary>
-    /// Endpoint for
+    /// Endpoint for adding Stop to Location.
     /// </summary>
-    /// <param name="deleteIds"></param>
+    /// <param name="stopLocationCommand">Command containing id of stop and location.</param>
     /// <returns>Method status.</returns>
-    [HttpDelete("batch")]
-    public async Task<IActionResult> DeleteStops(List<Guid> deleteIds)
+    [HttpPost("add-to-location")]
+    public async Task<IActionResult> AddStopToLocation(StopLocationCommand stopLocationCommand)
     {
-        // await StopCommandHandler.HandleDelete(deleteCommand); // TODO
-
+        await stopCommandHandler.HandleAddStopToLocation(stopLocationCommand);
+        return Ok();
+    }
+    
+    /// <summary>
+    /// Endpoint for removing Stop from Location.
+    /// </summary>
+    /// <param name="stopLocationCommand">Command containing id of stop and location.</param>
+    /// <returns>Method status.</returns>
+    [HttpDelete("remove-from-location")]
+    public async Task<IActionResult> RemoveStopFromLocation(StopLocationCommand stopLocationCommand)
+    {
+        await stopCommandHandler.HandleRemoveStopFromLocation(stopLocationCommand);
         return Ok();
     }
 }

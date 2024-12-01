@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver.Linq;
 using TransitConnex.Command.Commands.Location;
 using TransitConnex.Command.Data;
 using TransitConnex.Command.Repositories.Interfaces;
@@ -29,5 +30,22 @@ public class LocationRepository : BaseRepository<Location, LocationUpdateCommand
     public IQueryable<Location> QueryAllLocations()
     {
         return QueryLocations();
+    }
+
+    public IQueryable<LocationStop> QueryLocationStop(Guid locationId, Guid stopId)
+    {
+        return _db.LocationStops.Where(x => x.LocationId == locationId && x.StopId == stopId);
+    }
+
+    public async Task AddStopToLocation(LocationStop locationStop)
+    {
+        _db.LocationStops.Add(locationStop);
+        await _db.SaveChangesAsync();
+    }
+
+    public async Task RemoveStopFromLocation(LocationStop locationStop)
+    {
+        _db.LocationStops.Remove(locationStop);
+        await _db.SaveChangesAsync();
     }
 }

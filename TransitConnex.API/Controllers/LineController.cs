@@ -33,10 +33,10 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     }
 
     /// <summary>
-    /// 
+    /// Endpoint for editing information about Line.
     /// </summary>
-    /// <param name="updateCommand"></param>
-    /// <returns></returns>
+    /// <param name="updateCommand">Command containing updated information about line.</param>
+    /// <returns>Method status.</returns>
     [HttpPut]
     public async Task<IActionResult> EditLine(LineUpdateCommand updateCommand)
     {
@@ -45,10 +45,10 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     }
 
     /// <summary>
-    /// 
+    /// Endpoint for editing information about multiple lines.
     /// </summary>
-    /// <param name="updateCommand"></param>
-    /// <returns></returns>
+    /// <param name="updateCommand">Command containing list of update commands.</param>
+    /// <returns>Method status.</returns>
     [HttpPut("batch")]
     public async Task<IActionResult> EditLines(LineBatchUpdateCommand updateCommand)
     {
@@ -57,27 +57,17 @@ public class LineController(LineCommandHandler lineCommandHandler) : Controller
     }
 
     /// <summary>
-    /// 
+    /// Endpoint for deleting Line from system.
+    ///
+    /// SERIOUS ACTION
+    /// Will delete all linked Routes, ScheduledRouted, RouteTickets and SeatReservations.
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">Id of deleted Line.</param>
+    /// <returns>Method status.</returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteLine(Guid id) // TODO -> very complicated command -> if line is deleted many factors can happen -> either with deleting line -> delete all routes + templates + scheduled + refund tickets? or some kind of soft delete which will result in routes not being scheduled for this line anymore (so basically all scheduled will stay but no new will be generated?) -> mby make choice optional? -> when line deleted assign null to vehicles.
     {
-        await lineCommandHandler.HandleDelete(id);
-        return Ok();
-    }
-
-    /// <summary> // TODO -> mby allow just one line deletion as it is very complicated operation which should not happen very often?
-    /// 
-    /// </summary>
-    /// <param name="deleteIds"></param>
-    /// <returns></returns>
-    [HttpDelete("batch")]
-    public async Task<IActionResult> DeleteLines(List<Guid> deleteIds)
-    {
-        // await lineCommandHandler.HandleDelete(deleteCommand); // TODO
-
+        await lineCommandHandler.HandleDelete(id); // TODO -> just simply delete everything
         return Ok();
     }
 }

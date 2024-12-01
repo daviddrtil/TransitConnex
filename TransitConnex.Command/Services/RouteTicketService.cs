@@ -30,7 +30,7 @@ public class RouteTicketService(IRouteTicketRepository routeTicketRepository, IS
             throw new KeyNotFoundException($"Scheduled route with id: {createCommand.ScheduledRouteId} does not exist.");
         }
         
-        var seatReservations = await seatRepository.QuerySeatReservations(scheduledRoute.Id, createCommand.SeatIds, createCommand.UserId, false);
+        var seatReservations = await seatRepository.QuerySeatReservationsForScheduled(scheduledRoute.Id, createCommand.SeatIds, createCommand.UserId, false);
         if (seatReservations == null || seatReservations.Count == 0 ||
             seatReservations.Count() != createCommand.SeatIds.Count())
         {
@@ -74,14 +74,8 @@ public class RouteTicketService(IRouteTicketRepository routeTicketRepository, IS
         
         var reservations = await seatRepository.QuerySeatReservationsForTicket(routeTicket.Id);
         
-        await seatRepository.DeleteReservations(reservations);
-        
+        await scheduledRouteRepository.DeleteReservations(reservations);
         await routeTicketRepository.Delete(routeTicket);
-    }
-
-    public Task DeleteRouteTickets(List<Guid> ids)
-    {
-        throw new NotImplementedException();
     }
 
     private Task ValidateCreateCommand(ScheduledRoute scheduledRoute, User user)

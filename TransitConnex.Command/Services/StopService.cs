@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TransitConnex.Command.Commands.Route;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
@@ -9,7 +10,7 @@ using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
-public class StopService(IMapper mapper, IStopRepository stopRepository) : IStopService
+public class StopService(IMapper mapper, IRouteService routeService, IStopRepository stopRepository, IRouteRepository routeRepository, ILocationRepository locationRepository) : IStopService
 {
     public async Task<Stop?> GetStopById(Guid id)
     {
@@ -96,15 +97,101 @@ public class StopService(IMapper mapper, IStopRepository stopRepository) : IStop
             throw new KeyNotFoundException($"Stop with ID: {editCommand.Id} not found.");
         }
         
-        // TODO -> include locations or place into separate endpoint?
         stop = mapper.Map(editCommand, stop);
         await stopRepository.Update(stop);
         
         return stop;
     }
 
-    public Task DeleteStop(Guid id) // TODO -> very complicated operation -> mby soft delete into hard delete?
+    public async Task AssignStopToLocation(StopLocationCommand addCommand)
     {
-        throw new NotImplementedException(); 
+        var stop = await stopRepository.QueryById(addCommand.StopId).FirstOrDefaultAsync();
+        if (stop == null)
+        {
+            throw new KeyNotFoundException($"Stop with ID: {addCommand.StopId} not found.");
+        }
+        
+        var location = await locationRepository.QueryById(addCommand.LocationId).FirstOrDefaultAsync();
+        if (location == null)
+        {
+            throw new KeyNotFoundException($"Location with ID: {addCommand.LocationId} not found.");
+        }
+
+        var newLocationStop = mapper.Map<LocationStop>(addCommand);
+        await locationRepository.AddStopToLocation(newLocationStop);
+    }
+
+    public async Task RemoveStopFromLocation(StopLocationCommand removeCommand)
+    {
+        var locationStop = await locationRepository.QueryLocationStop(removeCommand.LocationId, removeCommand.StopId).FirstOrDefaultAsync();
+        if (locationStop == null)
+        {
+            throw new KeyNotFoundException($"Given relation between stop and location was not found. Locations ID: {removeCommand.LocationId}, Stop ID: {removeCommand.StopId}.");
+        }
+        
+        await locationRepository.RemoveStopFromLocation(locationStop);
+    }
+
+    public async Task DeleteStop(Guid id) // TODO -> NEVIM -> mby resolved by changing on cascade -> is broken
+    {
+        var stop = await stopRepository.QueryById(id).Include(x => x.RouteStops).FirstOrDefaultAsync();
+        if (stop == null)
+        {
+            throw new KeyNotFoundException($"Stop with ID: {id} not found.");
+        }
+
+        var routeStops = await stopRepository.QueryRouteStopsByStopId(stop.Id).ToListAsync();
+        
+        foreach (var routeStop in routeStops)
+        {
+            await routeService.RemoveStopFromRoute(new RouteStopRemoveCommand()
+            {
+                RouteId = routeStop.RouteId, StopId = routeStop.StopId
+            });
+            
+            // TODO -> should do the logic on its own
+            // var affectedRoutesIds = stop.RouteStops.Select(x => x.RouteId).ToList();
+            // foreach (var routeId in affectedRoutesIds)
+            // {
+            //     var path = await routeRepository.QueryRoutePath(routeId).Include(x=> x.Route).AsNoTracking().ToListAsync();
+            //     var decrement = false;
+            //     var lastStopCount = path.Count;
+            //     TimeSpan delta = TimeSpan.Zero;
+            //     foreach (var routeStop in path)
+            //     {
+            //         if (routeStop.StopId == stop.Id)
+            //         {
+            //             if (routeStop.StopOrder == 0)
+            //             {
+            //                 var newFirstRouteStop = path.First(p => p.StopOrder == routeStop.StopOrder+1);
+            //                 routeStop.Route!.StartStopId = newFirstRouteStop.StopId;
+            //                 delta = newFirstRouteStop.TimeDurationFromFirstStop;
+            //                 await routeRepository.Update(routeStop.Route);
+            //             }
+            //             else if (routeStop.StopOrder == lastStopCount)
+            //             {
+            //                 var newLastStop = path.Last(p => p.StopOrder == routeStop.StopOrder - 2).StopId;
+            //                 routeStop.Route!.EndStopId = newLastStop;
+            //                 await routeRepository.Update(routeStop.Route);
+            //             }
+            //             decrement = true;
+            //         }
+            //         else
+            //         {
+            //             if (decrement)
+            //             {
+            //                 routeStop.StopOrder--;
+            //                 routeStop.TimeDurationFromFirstStop -= delta;
+            //             }
+            //         }
+            //     }
+            //
+            //     await routeRepository.UpdateBatchRouteStops(path);
+            // }
+        }
+        
+        // TODO -> find different way to fix this
+        stop = await stopRepository.QueryById(id).Include(x => x.RouteStops).FirstOrDefaultAsync();
+        await stopRepository.Delete(stop!);
     }
 }

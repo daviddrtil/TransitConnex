@@ -8,6 +8,9 @@ public interface IScheduledRouteRepository : IBaseRepository<ScheduledRoute, Sch
     IQueryable<ScheduledRoute> QueryById(Guid id);
     IQueryable<ScheduledRoute> QueryAllScheduledRoutes();
 
+    Task<List<ScheduledRouteSeat>> GetReservationsForScheduledRoute(Guid scheduledRouteId);
+
     Task UpsertBatch(List<ScheduledRoute> scheduledRoutes);
-    // Task<bool> Exists(Guid id);
+    
+    Task DeleteReservations(List<ScheduledRouteSeat> scheduledRouteSeats);
 }

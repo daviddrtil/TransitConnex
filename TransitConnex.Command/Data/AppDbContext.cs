@@ -71,6 +71,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany()
             .HasForeignKey(r => r.EndStopId)
             .OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<Route>()
+            .HasOne(r => r.Line)
+            .WithMany()
+            .HasForeignKey(r => r.LineId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.Entity<RouteStop>()
             .HasKey(rs => new { rs.RouteId, rs.StopId });
@@ -83,7 +88,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .HasOne(rs => rs.Stop)
             .WithMany(s => s.RouteStops)
             .HasForeignKey(rs => rs.StopId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade); // TODO -> mby change to cascade?
 
         builder.Entity<LocationStop>()
             .HasKey(ls => new { ls.LocationId, ls.StopId });
@@ -135,6 +140,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             .WithMany()
             .HasForeignKey(rt => rt.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Vehicle>()
+            .HasOne(v => v.Line)
+            .WithMany()
+            .HasForeignKey(v => v.LineId)
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder.Entity<VehicleOfferedService>()
             .HasKey(vs => new { vs.VehicleId, vs.ServiceId });

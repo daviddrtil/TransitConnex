@@ -79,7 +79,7 @@ public class BaseRepository<T, U> : IBaseRepository<T, U> where T : class
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task<bool> Exists(Guid id) // TODO -> does not work?
+    public async Task<bool> Exists(Guid id)
     {
         return await _dbSet.AnyAsync(e => EF.Property<Guid>(e, "Id") == id);
     }

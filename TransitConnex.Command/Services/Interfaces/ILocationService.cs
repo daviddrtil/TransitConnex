@@ -8,6 +8,7 @@ public interface ILocationService
 {
     Task<Location?> GetLocationById(Guid id);
     Task<IEnumerable<Location>> GetLocationByIds(IEnumerable<Guid> ids);
+    Task<List<LocationDto>> GetLocationsFiltered();
 
     Task<Location> CreateLocation(LocationCreateCommand createCommand);
     Task<List<Location>> CreateLocations(List<LocationCreateCommand> createCommands);

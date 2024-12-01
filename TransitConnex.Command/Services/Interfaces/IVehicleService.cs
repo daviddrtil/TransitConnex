@@ -19,4 +19,6 @@ public interface IVehicleService
     Task DeleteVehicle(Guid id);
 
     Task DeleteVehicles(List<Guid> ids);
+
+    Task ReplaceVehicleOnScheduledRoutes(VehicleReplaceOnScheduledCommand replaceCommand);
 }

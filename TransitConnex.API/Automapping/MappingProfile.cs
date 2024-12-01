@@ -2,12 +2,14 @@
 using MongoDB.Driver.GeoJsonObjectModel;
 using TransitConnex.Command.Commands.Icon;
 using TransitConnex.Command.Commands.Location;
+using TransitConnex.Command.Commands.Route;
 using TransitConnex.Command.Commands.RouteSchedulingTemplate;
 using TransitConnex.Command.Commands.ScheduledRoute;
 using TransitConnex.Command.Commands.Seat;
 using TransitConnex.Command.Commands.Service;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Command.Commands.User;
+using TransitConnex.Command.Commands.Vehicle;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs;
 using TransitConnex.Domain.DTOs.Icon;
@@ -21,6 +23,7 @@ using TransitConnex.Domain.DTOs.User;
 using TransitConnex.Domain.DTOs.Vehicle;
 using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
+using Route = TransitConnex.Domain.Models.Route;
 
 namespace TransitConnex.API.Automapping;
 
@@ -63,11 +66,15 @@ public class MappingProfile : Profile
         CreateMap<ServiceCreateCommand, Service>();
         CreateMap<StopCreateCommand, Stop>();
         CreateMap<SeatCreateCommand, Seat>();
+        CreateMap<RouteCreateCommand, Route>();
         CreateMap<RouteSchedulingTemplateCreateCommand, RouteSchedulingTemplate>();
+        CreateMap<StopLocationCommand, LocationStop>();
         CreateMap<UserCreateCommand, User>()
             .ForMember(dest => dest.IsAdmin, opt => opt.MapFrom(src => false))
             .ForMember(dest => dest.Created, opt => opt.MapFrom(src => DateTime.Now))
             .ForMember(dest => dest.Updated, opt => opt.MapFrom(src => DateTime.Now)); 
+        
+        
         
         CreateMap<LocationUpdateCommand, Location>();
         CreateMap<IconUpdateCommand, Icon>();
@@ -76,7 +83,9 @@ public class MappingProfile : Profile
         CreateMap<StopUpdateCommand, Stop>();
         CreateMap<SeatUpdateCommand, Seat>();
         CreateMap<ScheduledRouteUpdateCommand, ScheduledRoute>();
+        CreateMap<RouteUpdateCommand, Route>();
         CreateMap<RouteSchedulingTemplateUpdateCommand, RouteSchedulingTemplate>();
+        CreateMap<VehicleUpdateCommand, Vehicle>();
     }
 
     private void MapModelsToDTOs()

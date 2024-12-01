@@ -28,9 +28,4 @@ public class RouteTicketCommandHandler(IRouteTicketService routeTicketService)
     {
         await routeTicketService.DeleteRouteTicket(id);
     }
-    
-    public async Task HandleBatchDelete(List<Guid> id) // TODO
-    {
-        // await routeTicketService.DeleteRouteTicket(id);
-    }
 }

@@ -4,25 +4,40 @@ using TransitConnex.Command.Commands.Seat;
 using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Seat;
+using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class SeatService(IMapper mapper, ISeatRepository seatRepository, IScheduledRouteRepository scheduledRouteRepository, IVehicleRepository vehicleRepository) : ISeatService
+public class SeatService(IMapper mapper, ISeatRepository seatRepository, IScheduledRouteRepository scheduledRouteRepository, IVehicleRepository vehicleRepository, IRouteTicketRepository routeTicketRepository) : ISeatService
 {
-    public Task<List<SeatDto>> GetAllSeats()
+    public async Task<List<SeatDto>> GetSeatsForScheduledRoute(Guid scheduledRouteId)
     {
-        throw new NotImplementedException();
-    }
+        var scheduledRoute = await scheduledRouteRepository.QueryById(scheduledRouteId).FirstOrDefaultAsync();
+        if (scheduledRoute == null)
+        {
+            throw new KeyNotFoundException($"Scheduled route with ID: {scheduledRouteId} does not exist");
+        }
+        
+        var allSeats = await seatRepository.QueryAll().Where(x => x.VehicleId == scheduledRoute.VehicleId).ToListAsync();
+        var availableSeats = await seatRepository.QueryAvailableSeats(scheduledRouteId, []);
 
-    public Task<SeatDto> GetSeatById(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> SeatExists(Guid id)
-    {
-        throw new NotImplementedException();
+        var seats = new List<SeatDto>();
+        foreach (var seat in allSeats)
+        {
+            bool reserved = !availableSeats.Contains(seat);
+            var seatDto = new SeatDto
+            {
+                Id = seat.Id,
+                SeatNumber = seat.SeatNumber,
+                Reserved = reserved,
+                VagonNumber = seat.VagonNumber ?? 0,
+                VehicleId = seat.VehicleId,
+            };
+            seats.Add(seatDto);
+        }
+        
+        return seats;
     }
 
     public async Task<Seat> CreateSeat(SeatCreateCommand createCommand)
@@ -89,7 +104,7 @@ public class SeatService(IMapper mapper, ISeatRepository seatRepository, ISchedu
             throw new KeyNotFoundException($"ScheduledRoute with ID: {reservationCommands.ScheduledRouteId} not found.");
         }
         
-        var reservations = await seatRepository.QuerySeatReservations(reservationCommands.ScheduledRouteId, reservationCommands.SeatIds, reservationCommands.UserId);
+        var reservations = await seatRepository.QuerySeatReservationsForScheduled(reservationCommands.ScheduledRouteId, reservationCommands.SeatIds, reservationCommands.UserId);
         foreach (var reservation in reservations)
         {
             reservation.ReservedUntil = DateTime.Now;
@@ -114,15 +129,22 @@ public class SeatService(IMapper mapper, ISeatRepository seatRepository, ISchedu
         return seat;
     }
 
-    public async Task DeleteSeat(Guid id) // TODO -> should validate if seat is not reserved -> if so try to replace -> if not possible then dont delete?
+    public async Task DeleteSeat(Guid id)
     {
         var seat = await seatRepository.QueryById(id).FirstOrDefaultAsync();
-
         if (seat == null)
         {
             throw new KeyNotFoundException($"Seat with ID {id} was not found.");
         }
 
+        // TODO -> improvement -> rn very simple -> deletes all reservations + tickets -> for future think of betteer logic -> rereservation
+        var reservations = await seatRepository.QuerySeatReservations(seat.Id);
+        var routeTicketsIds = reservations.Where(x => x.ReservedById != null).Select(r => r.RouteTicketId).ToList();
+        await scheduledRouteRepository.DeleteReservations(reservations);
+        
+        var routeTickets = await routeTicketRepository.QueryAll().Where(x => routeTicketsIds.Contains(x.Id)).ToListAsync();
+        await routeTicketRepository.DeleteBatch(routeTickets);
+        
         await seatRepository.Delete(seat);
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.IdentityModel.Tokens;
 using TransitConnex.API.Handlers.CommandHandlers.Common;
+using TransitConnex.Command.Commands.Route;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.Models;
@@ -82,5 +83,27 @@ public class StopCommandHandler(
             var locationIds = stop.LocationStops!.Select(x => x.LocationId).Distinct();
             await locationMongoService.Delete(locationIds);
         }
+    }
+
+    public async Task HandleAddStopToLocation(IStopCommand command)
+    {
+        if (command is not StopLocationCommand stopLocationCommandCommand)
+        {
+            throw new InvalidCastException("Invalid command given, expected StopLocationCommand.");
+        }
+        
+        await stopService.AssignStopToLocation(stopLocationCommandCommand);
+        // TODO -> will have to sync with mongo
+    }
+    
+    public async Task HandleRemoveStopFromLocation(IStopCommand command)
+    {
+        if (command is not StopLocationCommand stopLocationCommandCommand)
+        {
+            throw new InvalidCastException("Invalid command given, expected StopLocationCommand.");
+        }
+        
+        await stopService.RemoveStopFromLocation(stopLocationCommandCommand);
+        // TODO -> will have to sync with mongo
     }
 }

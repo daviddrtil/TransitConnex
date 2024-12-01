@@ -45,4 +45,14 @@ public class VehicleCommandHandler(IVehicleService vehicleService, IVehicleMongo
         await vehicleService.DeleteVehicle(id);
         await vehicleMongoService.Delete(id);
     }
+
+    public async Task HandleReplace(IVehicleCommand command)
+    {
+        if (command is not VehicleReplaceOnScheduledCommand replaceCommand)
+        {
+            throw new InvalidCastException($"Invalid command given, expected {nameof(VehicleReplaceOnScheduledCommand)}.");
+        }
+        
+        await vehicleService.ReplaceVehicleOnScheduledRoutes(replaceCommand);
+    }
 }

@@ -7,5 +7,7 @@ public interface IVehicleRepository : IBaseRepository<Vehicle, VehicleUpdateComm
 {
     IQueryable<Vehicle> QueryById(Guid vehicleId);
     
+    IQueryable<ScheduledRoute> QueryByVehicleScheduledRoutes(Guid vehicleId);
+    
     Task AddServicesToVehicle(List<VehicleOfferedService> vehicleServices);
 }

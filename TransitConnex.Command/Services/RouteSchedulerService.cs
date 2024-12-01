@@ -10,7 +10,7 @@ public class RouteSchedulerService(IRouteRepository routeRepository, IRouteSched
 {
     private readonly List<string> Holidays = ["01/01","29/03","01/04","01/05","08/05","05/07","05/07","28/09","28/10","17/11","24/12","25/12","26/12"];
 
-    public async Task ScheduleRoute(Guid routeId, Guid schedulingTemplateId, DateTime fromDate)
+    public async Task ScheduleRoute(Guid routeId, Guid schedulingTemplateId, DateTime fromDate, bool reschedule)
     {
         var route = await routeRepository.QueryById(routeId).FirstOrDefaultAsync();
         if (route is null)
@@ -28,6 +28,12 @@ public class RouteSchedulerService(IRouteRepository routeRepository, IRouteSched
         if (jsonParsed is null)
         {
             throw new Exception($"Scheduling failed, template with ID {schedulingTemplateId} is invalid.");
+        }
+
+        if (reschedule) // TODO -> rn very simple -> for future think of better handling -> versioning templates, mapping scheduled to new scheduled, remapping tickets and reservations....
+        {
+            var scheduledRoutesToDelete = await scheduledRouteRepository.QueryAll().Where(x => x.RouteId == routeId && x.StartTime >= fromDate).ToListAsync();
+            await scheduledRouteRepository.DeleteBatch(scheduledRoutesToDelete);
         }
 
         var toDate = new DateTime(fromDate.Year, 12, 31);
