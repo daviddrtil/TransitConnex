@@ -5,14 +5,43 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Route;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
 public class RouteService(IMapper mapper, IRouteRepository routeRepository, IStopRepository stopRepository, ILineRepository lineRepository) : IRouteService
 {
-    public async Task<List<RouteDto>> GetRoutesFiltered()
+    public async Task<List<RouteDto>> GetRoutesFiltered(RouteFilteredQuery filter)
     {
-        throw new NotImplementedException();
+        var query = routeRepository.QueryAll();
+
+        if (filter.LineId != null)
+        {
+            query = query.Where(x => x.LineId == filter.LineId);
+        }
+
+        if (filter.IsActive)
+        {
+            query = query.Where(x => x.IsActive);
+        }
+
+        if (filter.IsHolidayRoute)
+        {
+            query = query.Where(x => x.IsHolydayRoute);
+        }
+
+        if (filter.IsWeekendRoute)
+        {
+            query = query.Where(x => x.IsWeekendRoute);
+        }
+
+        if (filter.Name != null)
+        {
+            query = query.Where(x => x.Name != null && x.Name.Contains(filter.Name));
+        }
+        
+        var routes = await query.ToListAsync();
+        return mapper.Map<List<RouteDto>>(routes);
     }
 
     public async Task<Route> CreateRoute(RouteCreateCommand createCommand)
@@ -112,7 +141,7 @@ public class RouteService(IMapper mapper, IRouteRepository routeRepository, ISto
         };
         var path = await routeRepository.QueryRoutePath(route.Id).ToListAsync();
         var last = false;
-        if (path.Count != 0) // TODO -> could validate TimeDurationFromFirstStop
+        if (path.Count != 0)
         {
             if (addCommand.StopOrder >= path.Count)
             {

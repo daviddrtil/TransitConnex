@@ -1,13 +1,16 @@
 using AutoMapper;
 using TransitConnex.API.Handlers.QueryHandlers.Common;
+using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Location;
 using TransitConnex.Query.Queries;
+using TransitConnex.Query.Queries.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.QueryHandlers;
 
 public class LocationQueryHandler(
-    ILocationMongoService locationService) : IBaseQueryHandler<LocationDto>
+    ILocationMongoService locationService,
+    ILocationService locationServiceSoT) : IBaseQueryHandler<LocationDto>
 {
     public async Task<LocationDto?> HandleGetById(Guid id)
     {
@@ -22,5 +25,10 @@ public class LocationQueryHandler(
     public async Task<LocationDto?> HandleGetClosest(LocationGetClosestQuery query)
     {
         return await locationService.GetClosest(query.Latitude, query.Longitude);
+    }
+
+    public async Task<List<LocationDto>> HandleGetFiltered(LocationFilteredQuery filter)
+    {
+        return await locationServiceSoT.GetLocationsFiltered(filter);
     }
 }

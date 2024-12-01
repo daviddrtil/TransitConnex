@@ -5,15 +5,8 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Repositories;
 
-public class IconRepository : BaseRepository<Icon, IconUpdateCommand>, IIconRepository
+public class IconRepository(AppDbContext db) : BaseRepository<Icon, IconUpdateCommand>(db), IIconRepository
 {
-    private readonly AppDbContext _db;
-
-    public IconRepository(AppDbContext db) : base(db)
-    {
-        _db = db;
-    }
-
     public IQueryable<Icon> QueryById(Guid id)
     {
         return QueryAll().Where(x => x.Id == id);

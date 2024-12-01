@@ -37,16 +37,4 @@
     <Folder Include="Migrations\" />
     <Folder Include="Scheduler\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Migrations\AppDbContextModelSnapshot.cs" />
-    <Compile Remove="Migrations\20241129212622_InitDb.Designer.cs" />
-    <Compile Remove="Migrations\20241129212622_InitDb.cs" />
-    <Compile Remove="Commands\Stop\StopRouteRemoveCommand.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Migrations\AppDbContextModelSnapshot.cs" />
-  </ItemGroup>
-
 </Project>

@@ -17,18 +17,6 @@ public class SeatCommandHandler(ISeatService seatService) : IBaseCommandHandler<
         return seat.Id;
     }
 
-    // public async Task<List<Guid>> HandleBatchCreate(ISeatCommand command) // TODO -> not supported for first release
-    // {
-    //     if (command is not SeatBatchCreateCommand createCommand)
-    //     {
-    //         throw new InvalidCastException();
-    //     }  
-    //     
-    //     var seats = await seatService.CreateSeats(createCommand.Seats);
-    //     
-    //     return seats.Select(s => s.Id).ToList();
-    // }
-
     public async Task HandleUpdate(ISeatCommand command)
     {
         if (command is not SeatUpdateCommand editCommand)

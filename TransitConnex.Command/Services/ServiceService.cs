@@ -29,15 +29,9 @@ public class ServiceService(IMapper mapper, IServiceRepository serviceRepository
         
         return mapper.Map<List<ServiceDto>>(services);
     }
-
-    public Task<bool> ServiceExists(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     public async Task<Service> CreateService(ServiceCreateCommand createCommand)
     {
-        // TODO -> check if service exists
         var newService = mapper.Map<Service>(createCommand);
         await serviceRepository.Add(newService);
 

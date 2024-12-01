@@ -9,7 +9,7 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class UserService(IMapper mapper, IUserRepository userRepository, ILocationRepository locationRepository, ILineRepository lineRepository, UserManager<User> userManager) : IUserService
+public class UserService(IMapper mapper, IUserRepository userRepository, ILocationRepository locationRepository, UserManager<User> userManager) : IUserService
 {
     public async Task<List<UserDto>> GetAllUsers()
     {

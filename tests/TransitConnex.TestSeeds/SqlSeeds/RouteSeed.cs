@@ -84,7 +84,6 @@ public class RouteSeed
         }
         context.SaveChanges();
 
-        // TODO -> route_stops
         var busStopIds = new List<Guid>
         {
             Guid.Parse("bbdb98bb-e842-4f53-8f4b-f01fc66302e5"),

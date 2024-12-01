@@ -7,14 +7,9 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Repositories;
 
-public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepository
+public class SeatRepository(AppDbContext db) : BaseRepository<Seat, SeatUpdateCommand>(db), ISeatRepository
 {
-    private readonly AppDbContext _db;
-
-    public SeatRepository(AppDbContext db) : base(db)
-    {
-        _db = db;
-    }
+    private readonly AppDbContext Db = db;
 
     public IQueryable<Seat> QueryById(Guid id)
     {
@@ -23,7 +18,7 @@ public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepo
 
     public async Task<List<Seat>> QueryAvailableSeats(Guid scheduledRouteId, List<Guid>? SeatIds)
     {
-        var takenSeatIds = _db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId && x.ReservedUntil >= DateTime.Now)
+        var takenSeatIds = Db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId && x.ReservedUntil >= DateTime.Now)
             .Select(x => x.SeatId)
             .ToList();
 
@@ -39,7 +34,7 @@ public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepo
 
     public async Task<List<ScheduledRouteSeat>> QuerySeatReservations(Guid seatId)
     {
-        var query = _db.ScheduledRouteSeats.Where(x => x.SeatId == seatId);
+        var query = Db.ScheduledRouteSeats.Where(x => x.SeatId == seatId);
         
         return await query.ToListAsync();
     }
@@ -48,7 +43,7 @@ public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepo
         List<Guid>? SeatIds,
         Guid? UserId, bool QueryBought = true)
     {
-        var query = _db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId);
+        var query = Db.ScheduledRouteSeats.Where(x => x.ScheduledRouteId == scheduledRouteId);
 
         if (UserId != null)
         {
@@ -70,25 +65,25 @@ public class SeatRepository : BaseRepository<Seat, SeatUpdateCommand>, ISeatRepo
 
     public async Task<List<ScheduledRouteSeat>> QuerySeatReservationsForTicket(Guid routeTicketId)
     {
-        var query = _db.ScheduledRouteSeats.Where(x => x.RouteTicketId == routeTicketId);
+        var query = Db.ScheduledRouteSeats.Where(x => x.RouteTicketId == routeTicketId);
         
         return await query.ToListAsync();
     }
 
     public async Task AddReservations(List<ScheduledRouteSeat> scheduledRouteSeats)
     {
-        _db.ScheduledRouteSeats.AddRange(scheduledRouteSeats);
-        await _db.SaveChangesAsync();
+        Db.ScheduledRouteSeats.AddRange(scheduledRouteSeats);
+        await Db.SaveChangesAsync();
     }
 
     public async Task UpsertReservations(List<ScheduledRouteSeat> scheduledRouteSeats)
     {
-        await _db.BulkInsertOrUpdateAsync(scheduledRouteSeats);
+        await Db.BulkInsertOrUpdateAsync(scheduledRouteSeats);
     }
 
     public async Task UpdateReservations(List<ScheduledRouteSeat> scheduledRouteSeats)
     {
-        _db.ScheduledRouteSeats.UpdateRange(scheduledRouteSeats);
-        await _db.SaveChangesAsync();
+        Db.ScheduledRouteSeats.UpdateRange(scheduledRouteSeats);
+        await Db.SaveChangesAsync();
     }
 }

@@ -5,6 +5,7 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
@@ -16,14 +17,32 @@ public class ScheduledRouteService(
     IRouteTicketRepository routeTicketRepository)
         : IScheduledRouteService
 {
-    public Task<IEnumerable<ScheduledRouteDto>> GetAll()
+    public async Task<List<ScheduledRouteDto>> GetScheduledRoutesFiltered(ScheduledRouteFilteredQuery filter)
     {
-        throw new NotImplementedException();
-    }
+        var query = scheduledRouteRepository.QueryAll();
 
-    public Task<ScheduledRouteDto> GetAllById(Guid id)
-    {
-        throw new NotImplementedException();
+        if (filter.VehicleId != null)
+        {
+            query = query.Where(c => c.VehicleId == filter.VehicleId);
+        }
+
+        if (filter.RouteId != null)
+        {
+            query = query.Where(c => c.RouteId == filter.RouteId);
+        }
+
+        if (filter.StartTime != null)
+        {
+            query = query.Where(c => c.StartTime >= filter.StartTime);
+        }
+
+        if (filter.EndTime != null)
+        {
+            query = query.Where(c => c.EndTime <= filter.EndTime);
+        }
+        
+        var scheduledRoutes = await query.ToListAsync();
+        return mapper.Map<List<ScheduledRouteDto>>(scheduledRoutes);
     }
 
     public async Task<IEnumerable<ScheduledRoute>> GetAllByRouteId(Guid routeId)

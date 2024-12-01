@@ -19,7 +19,7 @@ public class ServiceController(ServiceCommandHandler serviceCommandHandler, Serv
     /// <param name="filter">Filter for services</param>
     /// <returns>Method status with list of DTOs representing services.</returns>
     [HttpPost("filter")]
-    public async Task<ActionResult<List<ServiceDto>>> GetFiltered(ServiceFilteredQuery filter)
+    public async Task<ActionResult<List<ServiceDto>>> GetFilteredSoT(ServiceFilteredQuery filter)
     {
         return Ok(await serviceQueryHandler.HandleGetFiltered(filter));
     }

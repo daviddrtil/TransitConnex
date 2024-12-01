@@ -22,17 +22,6 @@ public class VehicleCommandHandler(
         await vehicleMongoService.Create(newVehicle);
         return newVehicle.Id;
     }
-    
-    public async Task<List<Guid>> HandleBatchCreate(IVehicleCommand command)
-    {
-        if (command is not VehicleBatchCreateCommand createCommand)
-        {
-            throw new InvalidCastException($"Invalid command given, expected {nameof(VehicleBatchCreateCommand)}.");
-        }
-        var newVehicles = await vehicleService.CreateVehicles(createCommand.Vehicles);
-        await vehicleMongoService.Create(newVehicles);
-        return newVehicles.Select(v => v.Id).ToList();
-    }
 
     public async Task HandleUpdate(IVehicleCommand command)
     {

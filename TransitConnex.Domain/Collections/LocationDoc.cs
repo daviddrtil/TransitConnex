@@ -8,5 +8,5 @@ public class LocationDoc : QueryModelBase<Guid>
     public string? Name { get; set; }
     public LocationTypeEnum LocationType { get; set; }
     public required GeoJsonPoint<GeoJson2DCoordinates> Coordinates { get; set; }
-    public required ICollection<Guid> Stops { get; set; }   // todo add StopDoc instead of Guid
+    public required ICollection<Guid> Stops { get; set; }
 }

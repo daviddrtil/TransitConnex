@@ -5,14 +5,28 @@ using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Domain.DTOs.Line;
 using TransitConnex.Domain.Models;
+using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
 public class LineService(IMapper mapper, ILineRepository lineRepository) : ILineService
 {
-    public Task<List<LineDto>> GetLinesFiltered()
+    public async Task<List<LineDto>> GetLinesFiltered(LineFilteredQuery filter)
     {
-        throw new NotImplementedException();
+        var query = lineRepository.QueryAll();
+
+        if (filter.LineType != null)
+        {
+            query = query.Where(l => l.LineType == filter.LineType);
+        }
+
+        if (filter.Name != null)
+        {
+            query = query.Where(l => l.Name != null && l.Name.Contains(filter.Name));
+        }
+        
+        var lines = await query.ToListAsync();
+        return mapper.Map<List<LineDto>>(lines);
     }
 
     public async Task<Line> CreateLine(LineCreateCommand createCommand)

@@ -30,7 +30,7 @@ public class LineCommandHandler(ILineService lineService) : IBaseCommandHandler<
         return created.Select(x => x.Id).ToList();
     }
 
-    public async Task HandleUpdate(ILineCommand command) // TODO
+    public async Task HandleUpdate(ILineCommand command)
     {
         if (command is not LineUpdateCommand updateCommand)
         {
@@ -50,7 +50,7 @@ public class LineCommandHandler(ILineService lineService) : IBaseCommandHandler<
         var updatedList = await lineService.EditLines(batchUpdateCommand.Lines);
     }
     
-    public async Task HandleDelete(Guid id) // TODO
+    public async Task HandleDelete(Guid id)
     {
         await lineService.DeleteLine(id);
     }

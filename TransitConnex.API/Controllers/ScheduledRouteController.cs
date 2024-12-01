@@ -33,6 +33,12 @@ public class ScheduledRouteController(
         var query = new ScheduledRouteGetAllQuery(user!.Id, startLocationId, endLocationId, startTime.Value);
         return await scheduledRouteQueryHandler.HandleGetScheduledRoutes(query);
     }
+    
+    [HttpPost("filter")]
+    public async Task<ActionResult<List<ScheduledRouteDto>>> GetScheduledRoutesFilteredSoT(ScheduledRouteFilteredQuery filter)
+    {
+        return Ok(await scheduledRouteQueryHandler.HandleGetScheduledRoutesFiltered(filter));
+    }
 
     /// <summary>
     /// Endpoint for creating ScheduledRoute.
@@ -61,20 +67,6 @@ public class ScheduledRouteController(
         return Ok();
     }
 
-    // /// <summary> // TODO -> not supported for first release
-    // /// 
-    // /// </summary>
-    // /// <param name="updateCommand"></param>
-    // /// <returns></returns>
-    // [HttpPut("batch")]
-    // [AuthorizedByAdmin]
-    // public async Task<IActionResult> EditScheduledRoutes(List<ScheduledRouteUpdateCommand> updateCommand) // TODO -> edit routes with certain time for certain route?
-    // {
-    //     // await scheduledRouteCommandHandler.HandleUpdate(updateCommand);
-    //
-    //     return Ok();
-    // }
-
     /// <summary>
     /// Endpoint for deleting ScheduledRoute.
     /// </summary>
@@ -87,18 +79,4 @@ public class ScheduledRouteController(
         await scheduledRouteCommandHandler.HandleDelete(id); 
         return Ok();
     }
-
-    // /// <summary> // TODO -> not supported for first release
-    // /// 
-    // /// </summary>
-    // /// <param name="deleteIds"></param>
-    // /// <returns></returns>
-    // [HttpDelete("batch")]
-    // [AuthorizedByAdmin]
-    // public async Task<IActionResult> DeleteScheduledRoutes(List<Guid> deleteIds)
-    // {
-    //     // await ScheduledRouteCommandHandler.HandleDelete(deleteCommand); // TODO
-    //
-    //     return Ok();
-    // }
 }

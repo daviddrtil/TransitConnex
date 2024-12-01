@@ -13,7 +13,6 @@ public class ScheduledRouteMongoService(
     ILocationMongoRepository locationRepo,
     IScheduledRouteMongoRepository scheduledRouteRepo) : IScheduledRouteMongoService
 {
-    // todo should return ScheduledRoute, not dto
     public async Task<IEnumerable<ScheduledRouteDto>> GetScheduledRoutes(
         Guid startLocationId, Guid endLocationId, DateTime startTime)
     {

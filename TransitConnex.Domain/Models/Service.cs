@@ -1,6 +1,5 @@
 ﻿namespace TransitConnex.Domain.Models;
 
-// todo Service vs VehicleOfferedService?
 public class Service
 {
     public Guid Id { get; set; }

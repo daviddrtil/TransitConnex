@@ -7,14 +7,10 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Repositories;
 
-public class LocationRepository : BaseRepository<Location, LocationUpdateCommand>, ILocationRepository
+public class LocationRepository(AppDbContext db)
+    : BaseRepository<Location, LocationUpdateCommand>(db), ILocationRepository
 {
-    private readonly AppDbContext _db;
-
-    public LocationRepository(AppDbContext db) : base(db)
-    {
-        _db = db;
-    }
+    private readonly AppDbContext Db = db;
 
     private IQueryable<Location> QueryLocations()
     {
@@ -34,18 +30,18 @@ public class LocationRepository : BaseRepository<Location, LocationUpdateCommand
 
     public IQueryable<LocationStop> QueryLocationStop(Guid locationId, Guid stopId)
     {
-        return _db.LocationStops.Where(x => x.LocationId == locationId && x.StopId == stopId);
+        return Db.LocationStops.Where(x => x.LocationId == locationId && x.StopId == stopId);
     }
 
     public async Task AddStopToLocation(LocationStop locationStop)
     {
-        _db.LocationStops.Add(locationStop);
-        await _db.SaveChangesAsync();
+        Db.LocationStops.Add(locationStop);
+        await Db.SaveChangesAsync();
     }
 
     public async Task RemoveStopFromLocation(LocationStop locationStop)
     {
-        _db.LocationStops.Remove(locationStop);
-        await _db.SaveChangesAsync();
+        Db.LocationStops.Remove(locationStop);
+        await Db.SaveChangesAsync();
     }
 }

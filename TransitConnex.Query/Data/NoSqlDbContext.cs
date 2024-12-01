@@ -120,7 +120,7 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
     private async Task CreateLocationSpatialIndexAsync()
     {
         // Define the index key for geospatial queries
-        string indexKey = "coordinates"; // todo nameof(LocationDoc.Coordinates);
+        string indexKey = "coordinates";
 
         // Create the index definition for a 2dsphere index
         var indexDefinition = Builders<LocationDoc>.IndexKeys

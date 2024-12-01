@@ -8,6 +8,8 @@ namespace TransitConnex.Command.Repositories;
 
 public class RouteRepository(AppDbContext db) : BaseRepository<Route, RouteUpdateCommand>(db), IRouteRepository
 {
+    private readonly AppDbContext Db = db;
+
     public IQueryable<Route> QueryById(Guid id)
     {
         return QueryAll().Where(x => x.Id == id);
@@ -15,12 +17,12 @@ public class RouteRepository(AppDbContext db) : BaseRepository<Route, RouteUpdat
 
     public IQueryable<RouteStop> QueryRoutePath(Guid routeId)
     {
-        return db.RouteStops.Where(x => x.RouteId == routeId).OrderBy(x => x.StopOrder);
+        return Db.RouteStops.Where(x => x.RouteId == routeId).OrderBy(x => x.StopOrder);
     }
 
     public IQueryable<RouteStop> QueryRouteStops(Guid? routeId, Guid? stopId)
     {
-        var query = db.RouteStops.AsQueryable();
+        var query = Db.RouteStops.AsQueryable();
 
         if (routeId != null)
         {
@@ -37,30 +39,30 @@ public class RouteRepository(AppDbContext db) : BaseRepository<Route, RouteUpdat
 
     public async Task AddRouteStops(List<RouteStop> routeStops)
     {
-        db.RouteStops.AddRange(routeStops);
-        await db.SaveChangesAsync();
+        Db.RouteStops.AddRange(routeStops);
+        await Db.SaveChangesAsync();
     }
 
     public async Task UpdateBatchRouteStops(List<RouteStop> routeStops)
     {
-        db.RouteStops.UpdateRange(routeStops);
-        await db.SaveChangesAsync();
+        Db.RouteStops.UpdateRange(routeStops);
+        await Db.SaveChangesAsync();
     }
 
     public async Task UpsertBatchRouteStops(List<RouteStop> routeStops)
     {
-        await db.BulkInsertOrUpdateAsync(routeStops);
+        await Db.BulkInsertOrUpdateAsync(routeStops);
     }
 
     public async Task DeleteRouteStop(RouteStop routeStop)
     {
-        db.RouteStops.Remove(routeStop);
-        await db.SaveChangesAsync();
+        Db.RouteStops.Remove(routeStop);
+        await Db.SaveChangesAsync();
     }
     
     public async Task DeleteRouteStops(List<RouteStop> routeStops)
     {
-        db.RouteStops.RemoveRange(routeStops);
-        await db.SaveChangesAsync();
+        Db.RouteStops.RemoveRange(routeStops);
+        await Db.SaveChangesAsync();
     }
 }

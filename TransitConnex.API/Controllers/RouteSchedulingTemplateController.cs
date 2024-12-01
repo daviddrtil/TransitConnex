@@ -21,7 +21,7 @@ public class RouteSchedulingTemplateController(
     /// </summary>
     /// <returns>Returns list of DTO with templates.</returns>
     [HttpPost("filter")]
-    public async Task<ActionResult<List<RouteSchedulingTemplateDto>>> GetRouteSchedulingTemplates(RouteSchedulingTemplateFilteredQuery filter)
+    public async Task<ActionResult<List<RouteSchedulingTemplateDto>>> GetRouteSchedulingTemplatesSoT(RouteSchedulingTemplateFilteredQuery filter)
     {
         return Ok(await routeSchedulingTemplateQueryHandler.HandleGetFiltered(filter));
     }
@@ -97,7 +97,7 @@ public class RouteSchedulingTemplateController(
     [HttpPost("run-scheduler")]
     public async Task<IActionResult> RunScheduler(RouteSchedulingTemplateRunSchedulerCommand runCommand)
     {
-        await routeSchedulingTemplateCommandHandler.HandleScheduler(runCommand); // TODO -> for reschedule just simply delete all scheduled + tickets and make new scheduled without tickets
+        await routeSchedulingTemplateCommandHandler.HandleScheduler(runCommand);
         return Ok();
     }
 }

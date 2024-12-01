@@ -10,7 +10,7 @@ using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
-public class StopService(IMapper mapper, IRouteService routeService, IStopRepository stopRepository, IRouteRepository routeRepository, ILocationRepository locationRepository) : IStopService
+public class StopService(IMapper mapper, IRouteService routeService, IStopRepository stopRepository, ILocationRepository locationRepository) : IStopService
 {
     public async Task<Stop?> GetStopById(Guid id)
     {
@@ -132,7 +132,7 @@ public class StopService(IMapper mapper, IRouteService routeService, IStopReposi
         await locationRepository.RemoveStopFromLocation(locationStop);
     }
 
-    public async Task DeleteStop(Guid id) // TODO -> NEVIM -> mby resolved by changing on cascade -> is broken
+    public async Task DeleteStop(Guid id)
     {
         var stop = await stopRepository.QueryById(id).Include(x => x.RouteStops).FirstOrDefaultAsync();
         if (stop == null)
@@ -148,49 +148,8 @@ public class StopService(IMapper mapper, IRouteService routeService, IStopReposi
             {
                 RouteId = routeStop.RouteId, StopId = routeStop.StopId
             });
-            
-            // TODO -> should do the logic on its own
-            // var affectedRoutesIds = stop.RouteStops.Select(x => x.RouteId).ToList();
-            // foreach (var routeId in affectedRoutesIds)
-            // {
-            //     var path = await routeRepository.QueryRoutePath(routeId).Include(x=> x.Route).AsNoTracking().ToListAsync();
-            //     var decrement = false;
-            //     var lastStopCount = path.Count;
-            //     TimeSpan delta = TimeSpan.Zero;
-            //     foreach (var routeStop in path)
-            //     {
-            //         if (routeStop.StopId == stop.Id)
-            //         {
-            //             if (routeStop.StopOrder == 0)
-            //             {
-            //                 var newFirstRouteStop = path.First(p => p.StopOrder == routeStop.StopOrder+1);
-            //                 routeStop.Route!.StartStopId = newFirstRouteStop.StopId;
-            //                 delta = newFirstRouteStop.TimeDurationFromFirstStop;
-            //                 await routeRepository.Update(routeStop.Route);
-            //             }
-            //             else if (routeStop.StopOrder == lastStopCount)
-            //             {
-            //                 var newLastStop = path.Last(p => p.StopOrder == routeStop.StopOrder - 2).StopId;
-            //                 routeStop.Route!.EndStopId = newLastStop;
-            //                 await routeRepository.Update(routeStop.Route);
-            //             }
-            //             decrement = true;
-            //         }
-            //         else
-            //         {
-            //             if (decrement)
-            //             {
-            //                 routeStop.StopOrder--;
-            //                 routeStop.TimeDurationFromFirstStop -= delta;
-            //             }
-            //         }
-            //     }
-            //
-            //     await routeRepository.UpdateBatchRouteStops(path);
-            // }
         }
         
-        // TODO -> find different way to fix this
         stop = await stopRepository.QueryById(id).Include(x => x.RouteStops).FirstOrDefaultAsync();
         await stopRepository.Delete(stop!);
     }

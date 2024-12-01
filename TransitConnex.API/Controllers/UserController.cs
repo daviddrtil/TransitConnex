@@ -44,7 +44,7 @@ public class UserController(
     /// <summary>
     /// Endpoint for logging user in.
     /// </summary>
-    /// <param name="model">TODO</param>
+    /// <param name="model"></param>
     /// <returns></returns>
     [HttpPost("login")]
     public async Task<IActionResult> LoginUser([FromBody] LoginDto model)
@@ -153,11 +153,11 @@ public class UserController(
     /// <param name="command">Command containing ids of from/to location.</param>
     /// <returns>Method status.</returns>
     [Authorize]
-    [HttpPost("like-line")]
+    [HttpPost("like-connection")]
     public async Task<IActionResult> LikeConnection(UserLikeConnectionCommand command)
     {
         var user = await userManager.GetUserAsync(User);
-        command.UserId = user!.Id;   // todo remove property UserId from command
+        command.UserId = user!.Id;
         await userCommandHandler.HandleLikeConnection(command);
         return Ok();
     }
@@ -181,7 +181,7 @@ public class UserController(
     /// <param name="command">Command containing ids of from/to location.</param>
     /// <returns>Method status.</returns>
     [Authorize]
-    [HttpDelete("dislike-line")]
+    [HttpDelete("dislike-connection")]
     public async Task<IActionResult> DislikeConnection(UserLikeConnectionCommand command)
     {
         await userCommandHandler.HandleDislikeConnection(command);

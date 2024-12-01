@@ -20,7 +20,7 @@ public class IconController(IconCommandHandler iconCommandHandler, IconQueryHand
     /// <param name="filter">Filter for icons</param>
     /// <returns>Method status with list of DTOs representing icons.</returns>
     [HttpPost("filter")]
-    public async Task<ActionResult<List<IconDto>>> GetFiltered(IconFilteredQuery filter)
+    public async Task<ActionResult<List<IconDto>>> GetFilteredSoT(IconFilteredQuery filter)
     {
         return Ok(await iconQueryHandler.HandleGetFiltered(filter));
     }
