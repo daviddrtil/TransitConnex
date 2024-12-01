@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using TransitConnex.API.Configuration;
@@ -9,9 +10,9 @@ using TransitConnex.Query.Queries;
 
 namespace TransitConnex.API.Controllers;
 
-[Route("api/[controller]")]
+[Authorize]
 [ApiController]
-[AuthorizedByAdmin]
+[Route("api/[controller]")]
 public class LocationController(
     LocationCommandHandler locationCommandHandler,
     LocationQueryHandler locationQueryHandler) : Controller
@@ -42,6 +43,7 @@ public class LocationController(
     /// <param name="createCommand">Command containing all needed information for creating new location.</param>
     /// <returns>Method status with Id of created location.</returns>
     [HttpPost]
+    [AuthorizedByAdmin]
     public async Task<ActionResult<Guid>> CreateLocation(LocationCreateCommand createCommand)
     {
         return Ok(await locationCommandHandler.HandleCreate(createCommand));
@@ -53,6 +55,7 @@ public class LocationController(
     /// <param name="createCommands">Command containing list of commands for creating location.</param>
     /// <returns>Method status with Ids of created locations.</returns>
     [HttpPost("batch")]
+    [AuthorizedByAdmin]
     public async Task<ActionResult<List<Guid>>> CreateLocations(LocationBatchCreateCommand createCommands)
     {
         return Ok(await locationCommandHandler.HandleBatchCreate(createCommands));
@@ -64,6 +67,7 @@ public class LocationController(
     /// <param name="updateCommand">Command containing all updated information about location.</param>
     /// <returns>Method status.</returns>
     [HttpPut]
+    [AuthorizedByAdmin]
     public async Task<IActionResult> EditLocation(LocationUpdateCommand updateCommand)
     {
         await locationCommandHandler.HandleUpdate(updateCommand);
@@ -76,6 +80,7 @@ public class LocationController(
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpDelete]
+    [AuthorizedByAdmin]
     public async Task<IActionResult> DeleteLocation(Guid id) // TODO -> stopky unassignout? nebo smazat? -> opet serious action
     {
         await locationCommandHandler.HandleDelete(id);
@@ -89,6 +94,7 @@ public class LocationController(
     /// <param name="deleteIds"></param>
     /// <returns></returns>
     [HttpDelete("batch")]
+    [AuthorizedByAdmin]
     public async Task<IActionResult> DeleteLocations(List<Guid> deleteIds)
     {
         // await LocationCommandHandler.HandleDelete(deleteCommand); // TODO

@@ -39,7 +39,10 @@ public class ServiceSeed
 
         foreach (var service in servicesToBeSeeded)
         {
-            context.Services.Add(service);
+            if (!context.Services.Any(x => x.Id == service.Id))
+            {
+                context.Services.Add(service);
+            }
         }
 
         context.SaveChanges();

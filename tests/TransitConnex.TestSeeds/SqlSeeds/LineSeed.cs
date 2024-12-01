@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TransitConnex.Command.Data;
 using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
@@ -27,7 +28,10 @@ public class LineSeed
     {
         foreach (var line in Lines)
         {
-            context.Lines.Add(line);
+            if (!context.Lines.Any(l => l.Id == line.Id))
+            {
+                context.Lines.Add(line);
+            }
         }
         context.SaveChanges();
     }

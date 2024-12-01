@@ -8,8 +8,6 @@ using TransitConnex.Command;
 using TransitConnex.Domain.Models;
 using TransitConnex.Query;
 using TransitConnex.TestSeeds.SqlSeeds;
-using TransitConnex.TestSeeds.NoSqlSeeds;
-using Microsoft.Extensions.DependencyInjection;
 using TransitConnex.TestSeeds;
 
 namespace TransitConnex.API;
@@ -89,21 +87,17 @@ public class Program
 
                 await app.MigrateMongoDbAsync();    // performs also delete
                 await app.SeedMongoDb();
-                
+
                 app.Logger.LogInformation("Database seeding completed.");
             }
             return;
         }
 
         // For testing purposes
-        //if (app.Environment.EnvironmentName.Equals("Test"))
-        //{
-        //    await app.MigrateMongoDbAsync();
-        //    await app.SeedMongoDb();
-        //}
-
-        //await app.MigrateMongoDbAsync();
-        //await app.SeedMongoDb();
+        if (app.Environment.EnvironmentName.Equals("Test"))
+        {
+            await app.MigrateMongoDbAsync();
+        }
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

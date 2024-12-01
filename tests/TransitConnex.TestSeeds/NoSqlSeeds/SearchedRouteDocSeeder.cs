@@ -11,14 +11,16 @@ public class SearchedRouteDocSeeder(
     IScheduledRouteMongoService scheduledRouteMongoService,
     ISearchedRouteMongoRepository searchedRouteRepo)
 {
+    public static List<SearchedRouteDoc> SearchedRoutes = [];
     public async Task Seed()
     {
-        var srDocs = new List<SearchedRouteDoc>();
+        SearchedRoutes = [];
+        var searchTime = DateTime.Parse("2024-08-14");
         for (int i = 0; i < 5; i++)
         {
             var fromLocation = faker.Random.CollectionItem(LocationSeed.Locations).Id;
             var toLocation = faker.Random.CollectionItem(LocationSeed.Locations).Id;
-            var searchTime = DateTime.Parse("2024-10-14");
+            searchTime = searchTime.AddDays(7);
             var scheduledRoutes = await scheduledRouteMongoService.GetScheduledRoutes(
                 fromLocation, toLocation, searchTime);
             var scheduledRouteIds = scheduledRoutes.Select(sr => sr.Id).ToList();
@@ -26,13 +28,13 @@ public class SearchedRouteDocSeeder(
             {
                 Id = Guid.NewGuid(),
                 UserId = UserSeed.BasicUser.Id,
-                FromLocation = fromLocation,
-                ToLocation = toLocation,
-                Time = searchTime,
+                FromLocationId = fromLocation,
+                ToLocationId = toLocation,
+                SearchTime = searchTime,
                 ScheduledRouteIds = scheduledRouteIds,
             };
-            srDocs.Add(srDoc);
+            SearchedRoutes.Add(srDoc);
         }
-        await searchedRouteRepo.Upsert(srDocs);
+        await searchedRouteRepo.Upsert(SearchedRoutes);
     }
 }

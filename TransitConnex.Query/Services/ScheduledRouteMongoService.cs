@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MongoDB.Driver;
 using TransitConnex.Domain.Collections;
 using TransitConnex.Domain.DTOs.ScheduledRoute;
 using TransitConnex.Domain.Models;
@@ -16,12 +17,21 @@ public class ScheduledRouteMongoService(
     public async Task<IEnumerable<ScheduledRouteDto>> GetScheduledRoutes(
         Guid startLocationId, Guid endLocationId, DateTime startTime)
     {
-        var startLocation = await locationRepo.GetById(startLocationId) ??
-            throw new ApplicationException($"Missing startLocationId: {startLocationId}");
-        var endLocation = await locationRepo.GetById(endLocationId) ??
-            throw new ApplicationException($"Missing endLocationId: {endLocationId}");
+        var startLocation = await locationRepo.GetById(startLocationId);
+        var endLocation = await locationRepo.GetById(endLocationId);
+        if (startLocation is null || endLocation is null)
+            return [];
         var srDocs = await scheduledRouteRepo.GetAll(
             startLocation.Stops, endLocation.Stops, startTime);
+        foreach (var sr in srDocs)
+        {
+            sr.StartTime = sr.StartTime.ToLocalTime();
+            sr.EndTime = sr.EndTime.ToLocalTime();
+            foreach (var stop in sr.Stops)
+            {
+                stop.DepartureTime = stop.DepartureTime.ToLocalTime();
+            }
+        }
         return mapper.Map<IEnumerable<ScheduledRouteDto>>(srDocs);
     }
 

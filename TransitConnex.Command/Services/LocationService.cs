@@ -14,33 +14,46 @@ public class LocationService(
     IUserRepository userRepository
     ) : ILocationService
 {
-    public Task<List<LocationDto>> GetAllLocations()
+    public async Task<Location?> GetLocationById(Guid id)
     {
-        throw new NotImplementedException();
+        return await locationRepository
+            .QueryById(id)
+            .FirstOrDefaultAsync();
     }
 
-    public Task<List<LocationDto>> GetLocationsFiltered()
+    public async Task<IEnumerable<Location>> GetLocationByIds(IEnumerable<Guid> ids)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<LocationDto> GetLocationById(Guid id)
-    {
-        throw new NotImplementedException();
+        return await locationRepository
+            .QueryAllLocations()
+            .Where(l => ids.Contains(l.Id))
+            .ToListAsync();
     }
 
     public async Task<Location> CreateLocation(LocationCreateCommand createCommand)
     {
-        var newLocation = mapper.Map<Location>(createCommand);
-        await locationRepository.Add(newLocation);
-        
+        var newLocationObj = mapper.Map<Location>(createCommand);
+        await locationRepository.Add(newLocationObj);
+
+        // Load all properties
+        var newLocation = await locationRepository
+            .QueryById(newLocationObj.Id)
+            .AsNoTracking()
+            .FirstAsync();
+
         return newLocation;
     }
 
     public async Task<List<Location>> CreateLocations(List<LocationCreateCommand> createCommands)
     {
-        var newLocations = mapper.Map<List<Location>>(createCommands);
-        await locationRepository.AddBatch(newLocations);
+        var newLocationObjs = mapper.Map<List<Location>>(createCommands);
+        await locationRepository.AddBatch(newLocationObjs);
+
+        var locationIds = newLocationObjs.Select(l => l.Id).ToList();
+        var newLocations = await locationRepository
+            .QueryAllLocations()
+            .Where(l => locationIds.Contains(l.Id))
+            .AsNoTracking()
+            .ToListAsync();
 
         return newLocations;
     }

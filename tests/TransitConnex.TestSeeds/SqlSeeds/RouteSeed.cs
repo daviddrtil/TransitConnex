@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver.Linq;
 using TransitConnex.Command.Data;
 using TransitConnex.Domain.Enums;
@@ -74,11 +75,17 @@ public class RouteSeed
 
     public static void Seed(AppDbContext context)
     {
-        context.Routes.AddRange(Routes);
+        foreach (var route in Routes)
+        {
+            if (!context.Routes.Any(x => x.Id == route.Id))
+            {
+                context.Routes.Add(route);
+            }
+        }
         context.SaveChanges();
 
         // TODO -> route_stops
-        var busStopsIds = new List<Guid>
+        var busStopIds = new List<Guid>
         {
             Guid.Parse("bbdb98bb-e842-4f53-8f4b-f01fc66302e5"),
             Guid.Parse("8d72af3c-b043-48cd-840a-339706f23d37"),
@@ -91,19 +98,18 @@ public class RouteSeed
             Guid.Parse("31598f96-4b3f-4166-9b94-3e8f5a7d1e9a"),
             Guid.Parse("afff64d8-870a-4261-a471-bbda33d054f1")
         };
-        var busStops = context.Stops.Where(s => busStopsIds.Contains(s.Id)).ToList();
         int busStopDuration = 93;
         var routeStops = new List<RouteStop>();
-        routeStops.AddRange(busStops.Select((stop, index) => new RouteStop
+        routeStops.AddRange(busStopIds.Select((stopId, index) => new RouteStop
         {
-            StopId = stop.Id,
+            StopId = stopId,
             RouteId = Guid.Parse("f83d0060-c5ad-4e68-ac4d-8e9f1e7364e2"),
             StopOrder = index,
             TimeDurationFromFirstStop = new TimeSpan(0, 0, index * busStopDuration),
         }));
 
-        busStopsIds = new List<Guid>
-        {
+        busStopIds =
+        [
             Guid.Parse("de15e587-eddb-4607-97e2-0ce91494a8fa"),
             Guid.Parse("c2624b0e-3af6-4a22-a7cd-9f36bc9bac49"),
             Guid.Parse("00bd8fb5-2de4-4d34-9ef8-4766c75fc57d"),
@@ -114,48 +120,54 @@ public class RouteSeed
             Guid.Parse("a700b35f-a985-451d-b695-d83b7321ec68"),
             Guid.Parse("4f5e328a-4077-45f1-89ff-7200cf1c2cb3"),
             Guid.Parse("e3064840-6ff0-46a2-b9a4-c31ef7f3a640")
-        };
-        busStops = context.Stops.Where(s => busStopsIds.Contains(s.Id)).ToList();
-        routeStops.AddRange(busStops.Select((stop, index) => new RouteStop
+        ];
+        routeStops.AddRange(busStopIds.Select((stopId, index) => new RouteStop
         {
-            StopId = stop.Id,
+            StopId = stopId,
             RouteId = Guid.Parse("829c534e-ae42-48f9-b66f-3f5521c522c3"),
             StopOrder = index,
             TimeDurationFromFirstStop = new TimeSpan(0, 0, index * busStopDuration),
         }));
 
-        var trainStopsIds = new List<Guid>
+        var trainStopsIds = new List<Guid>  // prerov -> vyskov -> brno
         {
             Guid.Parse("b743d2f6-13aa-493c-b1eb-d07e6d091e1d"),
             Guid.Parse("946e8d9b-8922-4b71-a5f0-850551e86d89"),
             Guid.Parse("02095ed5-8d2e-4d8d-9a4c-e1afef525305")
         };
-        var trainStops = context.Stops.Where(s => trainStopsIds.Contains(s.Id)).ToList();
         int trainStopDuration = 2100;
-        routeStops.AddRange(trainStops.Select((stop, index) => new RouteStop
+        routeStops.AddRange(trainStopsIds.Select((stopId, index) => new RouteStop
         {
-            StopId = stop.Id,
+            StopId = stopId,
             RouteId = Guid.Parse("dff25738-54e3-4190-b19d-282a300c8219"),
             StopOrder = index,
             TimeDurationFromFirstStop = new TimeSpan(0, 0, index * trainStopDuration),
         }));
 
-        trainStopsIds = new List<Guid>
-        {
+        // brno -> vyskov -> prerov
+        trainStopsIds =
+        [
             Guid.Parse("02095ed5-8d2e-4d8d-9a4c-e1afef525305"),
             Guid.Parse("946e8d9b-8922-4b71-a5f0-850551e86d89"),
             Guid.Parse("b743d2f6-13aa-493c-b1eb-d07e6d091e1d"),
-        };
-        trainStops = context.Stops.Where(s => trainStopsIds.Contains(s.Id)).ToList();
-        routeStops.AddRange(trainStops.Select((stop, index) => new RouteStop
+        ];
+        routeStops.AddRange(trainStopsIds.Select((stopId, index) => new RouteStop
         {
-            StopId = stop.Id,
+            StopId = stopId,
             RouteId = Guid.Parse("9d8c5c9f-ca03-4399-96ff-8f081b67d298"),
             StopOrder = index,
             TimeDurationFromFirstStop = new TimeSpan(0, 0, index * trainStopDuration),
         }));
 
-        context.RouteStops.AddRange(routeStops);
+        foreach (var routeStop in routeStops)
+        {
+            if (!context.RouteStops.Any(x =>
+                x.RouteId == routeStop.RouteId
+                && x.StopId == routeStop.StopId))
+            {
+                context.RouteStops.Add(routeStop);
+            }
+        }
         context.SaveChanges();
     }
 }

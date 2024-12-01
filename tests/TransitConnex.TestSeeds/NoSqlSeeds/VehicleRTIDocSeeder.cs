@@ -93,6 +93,9 @@ public class VehicleRTIDocSeeder(
         var vehicleRTIs = LoadVehicleRTIs();
         ModifyVehicleRTIs(vehicleRTIs);
         vehicleRTIs = vehicleRTIs.Take(100).ToList();
+        var dbVehiclerRTIs = await vehicleRTIRepo.GetAll();
+        if (dbVehiclerRTIs.Any())
+            return;
         await vehicleRTIRepo.Upsert(vehicleRTIs);
 
         foreach (var v in vehicleRTIs)

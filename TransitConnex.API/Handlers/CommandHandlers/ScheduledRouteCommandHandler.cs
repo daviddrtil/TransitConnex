@@ -1,10 +1,13 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.ScheduledRoute;
 using TransitConnex.Command.Services.Interfaces;
+using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
-public class ScheduledRouteCommandHandler(IScheduledRouteService scheduledRouteService)
+public class ScheduledRouteCommandHandler(
+    IScheduledRouteService scheduledRouteService,
+    IScheduledRouteMongoService srMongoService)
     : IBaseCommandHandler<IScheduledRouteCommand>
 {
     public async Task<Guid> HandleCreate(IScheduledRouteCommand command)
@@ -13,11 +16,8 @@ public class ScheduledRouteCommandHandler(IScheduledRouteService scheduledRouteS
         {
             throw new InvalidCastException();
         }
-        
         var scheduled = await scheduledRouteService.CreateScheduledRoute(createCommand);
-
-        // TODO -> sync
-        
+        await srMongoService.Create(scheduled);
         return scheduled.Id;
     }
 
@@ -27,15 +27,13 @@ public class ScheduledRouteCommandHandler(IScheduledRouteService scheduledRouteS
         {
             throw new InvalidCastException();
         }
-        
         var scheduled = await scheduledRouteService.EditScheduledRoute(editCommand);
-        // TODO -> sync
+        await srMongoService.Update(scheduled);
     }
 
     public async Task HandleDelete(Guid id)
     {
         await scheduledRouteService.DeleteScheduledRoute(id);
-        
-        // TODO -> sync
+        await srMongoService.Delete(id);
     }
 }

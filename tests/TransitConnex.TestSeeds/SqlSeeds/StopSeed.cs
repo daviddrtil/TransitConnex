@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver.Linq;
+using System.Runtime.CompilerServices;
 using TransitConnex.Command.Data;
 using TransitConnex.Domain.Enums;
 using TransitConnex.Domain.Models;
@@ -245,10 +246,18 @@ public class StopSeed
 
     public static void Seed(AppDbContext context)
     {
-        context.Stops.AddRange(Stops);
+        foreach (var stop in Stops)
+        {
+            if (!context.Stops.Any(s => s.Id == stop.Id))
+            {
+                context.Stops.Add(stop);
+            }
+        }
         context.SaveChanges();
 
-        var locations = context.Locations.Where(x => x.LocationType == LocationTypeEnum.CITY_PART).ToList();
+        var locations = context.Locations.Where(x => x.LocationType == LocationTypeEnum.CITY_PART)
+            .AsNoTracking()
+            .ToList();
         var locationStopsToBeSeeded = new List<LocationStop>();
         foreach (var location in locations) // seeding relations for city parts named as stops
         {
@@ -256,7 +265,9 @@ public class StopSeed
             locationStopsToBeSeeded.AddRange(locationStops.Select(locationStop => new LocationStop() { LocationId = location.Id, StopId = locationStop.Id, }));
         }
 
-        locations = context.Locations.Where(x => x.LocationType == LocationTypeEnum.CITY).ToList();
+        locations = context.Locations.Where(x => x.LocationType == LocationTypeEnum.CITY)
+            .AsNoTracking()
+            .ToList();
         foreach (var location in locations) // seeding relations for cities
         {
             if (location.Name == "Brno")
@@ -291,7 +302,15 @@ public class StopSeed
             }
         });
 
-        context.LocationStops.AddRange(locationStopsToBeSeeded);
+        foreach (var locationStop in locationStopsToBeSeeded)
+        {
+            if (!context.LocationStops.Any(x =>
+                x.LocationId == locationStop.LocationId
+                && x.StopId == locationStop.StopId))
+            {
+                context.LocationStops.Add(locationStop);
+            }
+        }
         context.SaveChanges();
     }
 }

@@ -50,6 +50,11 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
         var collectionNamesFromAssembly = GetCollectionNamesFromAssembly();
         foreach (string collectionName in collectionNamesFromAssembly)
         {
+            if (collectionName == nameof(RouteStopDoc))
+            {
+                // Skip nested object
+                continue;
+            }
             // Check if the collection does not exist in the database
             if (!collections.Exists(db => db.Equals(collectionName, StringComparison.InvariantCultureIgnoreCase)))
             {

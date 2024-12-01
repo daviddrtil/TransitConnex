@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TransitConnex.Command.Data;
+using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.TestSeeds.NoSqlSeeds;
 
 public class ScheduledRouteDocSeeder(
-    AppDbContext context,
-    IScheduledRouteMongoService scheduledRouteService)
+    IScheduledRouteRepository srRepo,
+    IScheduledRouteMongoService srMongoService)
 {
     //public static readonly List<ScheduledRouteDoc> ScheduledRoutes = [];
     //public async Task Seed()
@@ -33,11 +33,9 @@ public class ScheduledRouteDocSeeder(
 
     public async Task Seed()
     {
-        var scheduledRoutes = await context.ScheduledRoutes
-                .Include(sr => sr.Route)
-                    .ThenInclude(r => r!.Stops)
-                        .ThenInclude(rs => rs.Stop)
-                .ToListAsync();
-        var scheduledRouteIds = await scheduledRouteService.Create(scheduledRoutes);
+        var scheduledRoutes = await srRepo.QueryAllScheduledRoutes()
+            .AsNoTracking()
+            .ToListAsync();
+        var scheduledRouteIds = await srMongoService.Create(scheduledRoutes);
     }
 }

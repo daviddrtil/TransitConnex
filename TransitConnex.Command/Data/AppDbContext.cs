@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Reflection.Emit;
 using TransitConnex.Domain.Models;
 
@@ -28,13 +29,35 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     public required DbSet<UserLocationFavourite> UserLocationFavourites { get; set; }
     public required DbSet<UserConnectionFavourite> UserConnectionFavourites { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    private static void RenameTables(ModelBuilder builder)
     {
         foreach (var entityType in builder.Model.GetEntityTypes())
         {
             // Set the table name to be the same as the entity name without pluralization
             entityType.SetTableName(entityType.ClrType.Name);
         }
+    }
+
+    private static void ApplyUtcDateTimeConversion(ModelBuilder builder)
+    {
+        foreach (var entityType in builder.Model.GetEntityTypes())
+        {
+            foreach (var property in entityType.GetProperties())
+            {
+                if (property.ClrType == typeof(DateTime))
+                {
+                    property.SetValueConverter(new ValueConverter<DateTime, DateTime>(
+                        v => v.ToUniversalTime(),
+                        v => DateTime.SpecifyKind(v, DateTimeKind.Utc)));
+                }
+            }
+        }
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        RenameTables(builder);
+        ApplyUtcDateTimeConversion(builder);
         base.OnModelCreating(builder);
 
         // Relationships

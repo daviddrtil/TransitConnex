@@ -7,29 +7,20 @@ using TransitConnex.Query.Services.Interfaces;
 namespace TransitConnex.API.Handlers.QueryHandlers;
 
 public class LocationQueryHandler(
-    IMapper mapper,
     ILocationMongoService locationService) : IBaseQueryHandler<LocationDto>
 {
     public async Task<LocationDto?> HandleGetById(Guid id)
     {
-        var location = await locationService.GetById(id);
-        if (location == null)
-            return null;
-        return mapper.Map<LocationDto>(location);
+        return await locationService.GetById(id);
     }
 
     public async Task<IEnumerable<LocationDto>> HandleGetByName(LocationGetByNameQuery query)
     {
-        var locations = await locationService.GetByName(query.Name);
-        return mapper.Map<IEnumerable<LocationDto>>(locations);
+        return await locationService.GetByName(query.Name);
     }
 
     public async Task<LocationDto?> HandleGetClosest(LocationGetClosestQuery query)
     {
-        var location = await locationService.GetClosest(
-            query.Latitude, query.Longitude);
-        if (location == null)
-            return null;
-        return mapper.Map<LocationDto>(location);
+        return await locationService.GetClosest(query.Latitude, query.Longitude);
     }
 }

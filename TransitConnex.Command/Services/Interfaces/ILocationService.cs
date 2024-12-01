@@ -6,10 +6,8 @@ namespace TransitConnex.Command.Services.Interfaces;
 
 public interface ILocationService
 {
-    Task<List<LocationDto>> GetAllLocations();
-    Task<List<LocationDto>> GetLocationsFiltered();
-    Task<LocationDto> GetLocationById(Guid id);
-    
+    Task<Location?> GetLocationById(Guid id);
+    Task<IEnumerable<Location>> GetLocationByIds(IEnumerable<Guid> ids);
 
     Task<Location> CreateLocation(LocationCreateCommand createCommand);
     Task<List<Location>> CreateLocations(List<LocationCreateCommand> createCommands);

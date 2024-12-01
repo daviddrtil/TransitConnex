@@ -1,20 +1,43 @@
+using Microsoft.IdentityModel.Tokens;
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.Stop;
 using TransitConnex.Command.Services.Interfaces;
+using TransitConnex.Domain.Models;
+using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
-public class StopCommandHandler(IStopService stopService) : IBaseCommandHandler<IStopCommand>
+public class StopCommandHandler(
+    IStopService stopService,
+    ILocationService locationService,
+    ILocationMongoService locationMongoService)
+        : IBaseCommandHandler<IStopCommand>
 {
+    /// <summary>
+    /// // Sync MongoDb location collection
+    /// </summary>
+    /// <param name="stop"></param>
+    /// <returns></returns>
+    private async Task SyncLocationCollection(Stop stop)
+    {
+        if (!stop.LocationStops.IsNullOrEmpty())
+        {
+            var locationIds = stop.LocationStops!.Select(x => x.LocationId).Distinct();
+            var locations = await locationService.GetLocationByIds(locationIds);
+            if (!locations.IsNullOrEmpty())
+                await locationMongoService.Update(locations);
+        }
+    }
+
     public async Task<Guid> HandleCreate(IStopCommand command)
     {
         if (command is not StopCreateCommand createCommand)
         {
-            throw new InvalidCastException($"Invalid command given, expected {nameof(StopCreateCommand)}.");        }
-
-        var created = await stopService.CreateStop(createCommand);
-
-        return created.Id;
+            throw new InvalidCastException($"Invalid command given, expected {nameof(StopCreateCommand)}.");
+        }
+        var stop = await stopService.CreateStop(createCommand);
+        await SyncLocationCollection(stop);
+        return stop.Id;
     }
 
     public async Task<List<Guid>> HandleBatchCreate(IStopCommand command)
@@ -23,10 +46,19 @@ public class StopCommandHandler(IStopService stopService) : IBaseCommandHandler<
         {
             throw new InvalidCastException($"Invalid command given, expected {nameof(StopBatchCreateCommand)}.");
         }
-        
-        var created = await stopService.CreateStops(createCommand.Stops);
+        var stops = await stopService.CreateStops(createCommand.Stops);
 
-        return created.Select(x => x.Id).ToList();
+        // Sync MongoDb location collection
+        var locationIds = stops
+            .Where(stop => !stop.LocationStops.IsNullOrEmpty())
+            .SelectMany(stop => stop.LocationStops!)
+            .Select(locationStop => locationStop.LocationId)
+            .ToHashSet();
+        var locations = await locationService.GetLocationByIds(locationIds);
+        if (!locations.IsNullOrEmpty())
+            await locationMongoService.Update(locations);
+
+        return stops.Select(x => x.Id).ToList();
     }
 
     public async Task HandleUpdate(IStopCommand command)
@@ -35,12 +67,20 @@ public class StopCommandHandler(IStopService stopService) : IBaseCommandHandler<
         {
             throw new InvalidCastException("Invalid command given, expected StopUpdateCommand.");
         }
-
-        await stopService.EditStop(updateCommand);
+        var stop = await stopService.EditStop(updateCommand);
+        await SyncLocationCollection(stop);
     }
 
     public async Task HandleDelete(Guid id)
     {
+        var stop = await stopService.GetStopById(id)
+            ?? throw new KeyNotFoundException($"Stop with ID: {id} not found.");
         await stopService.DeleteStop(id);
+
+        if (!stop.LocationStops.IsNullOrEmpty())
+        {
+            var locationIds = stop.LocationStops!.Select(x => x.LocationId).Distinct();
+            await locationMongoService.Delete(locationIds);
+        }
     }
 }

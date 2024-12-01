@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TransitConnex.API.Handlers.CommandHandlers;
@@ -13,6 +14,7 @@ namespace TransitConnex.API.Controllers;
 [ApiController]
 public class UserController(
     SignInManager<User> signInManager,
+    UserManager<User> userManager,
     UserCommandHandler userCommandHandler,
     UserQueryHandler userQueryHandler) : Controller
 {
@@ -35,10 +37,10 @@ public class UserController(
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Guid>> CreateUser(UserCreateCommand createCommand)
-    { 
+    {
         return Ok(await userCommandHandler.HandleCreate(createCommand));
     }
-    
+
     /// <summary>
     /// Endpoint for logging user in.
     /// </summary>
@@ -75,7 +77,7 @@ public class UserController(
         await signInManager.SignOutAsync();
         return Ok();
     }
-    
+
     /// <summary>
     /// Endpoint for editing user - only password edit allowed.
     /// </summary>
@@ -103,7 +105,7 @@ public class UserController(
         await userCommandHandler.HandleDelete(id);
         return Ok();
     }
-    
+
     /// <summary>
     /// Endpoint for restoring user account after it was soft deleted.
     /// </summary>
@@ -118,22 +120,31 @@ public class UserController(
         return Ok();
     }
 
+    [Authorize]
     [HttpGet("GetFavouriteLocations")]
-    public async Task<IEnumerable<UserFavLocationDto>> GetFavouriteLocations(Guid userId)
+    public async Task<IEnumerable<UserFavLocationDto>> GetFavouriteLocations()
     {
-        return await userQueryHandler.GetFavouriteLocations(userId);
+        var user = await userManager.GetUserAsync(User);
+        if (user is null) return [];
+        return await userQueryHandler.HandleGetFavouriteLocations(user.Id);
     }
 
+    [Authorize]
     [HttpGet("GetFavouriteConnections")]
-    public async Task<IEnumerable<UserFavConnectionDto>> GetFavouriteConnections(Guid userId)
+    public async Task<IEnumerable<UserFavConnectionDto>> GetFavouriteConnections()
     {
-        return await userQueryHandler.GetFavouriteConnections(userId);
+        var user = await userManager.GetUserAsync(User);
+        if (user is null) return [];
+        return await userQueryHandler.HandleGetFavouriteConnections(user.Id);
     }
 
+    [Authorize]
     [HttpGet("GetSearchedRoutes")]
-    public async Task<IEnumerable<SearchedRouteDto>> GetSearchedRoutes(Guid userId)
+    public async Task<IEnumerable<SearchedRouteDto>> GetSearchedRoutes()
     {
-        return await userQueryHandler.GetSearchedRoutes(userId);
+        var user = await userManager.GetUserAsync(User);
+        if (user is null) return [];
+        return await userQueryHandler.HandleGetSearchedRoutes(user.Id);
     }
 
     /// <summary>
@@ -141,9 +152,12 @@ public class UserController(
     /// </summary>
     /// <param name="command">Command containing ids of from/to location.</param>
     /// <returns>Method status.</returns>
+    [Authorize]
     [HttpPost("like-line")]
     public async Task<IActionResult> LikeConnection(UserLikeConnectionCommand command)
     {
+        var user = await userManager.GetUserAsync(User);
+        command.UserId = user!.Id;   // todo remove property UserId from command
         await userCommandHandler.HandleLikeConnection(command);
         return Ok();
     }
@@ -153,30 +167,33 @@ public class UserController(
     /// </summary>
     /// <param name="command">Command containing location id.</param>
     /// <returns>Method status.</returns>
+    [Authorize]
     [HttpPost("like-location")]
     public async Task<IActionResult> LikeLocation(UserLikeLocationCommand command)
     {
         await userCommandHandler.HandleLikeLocation(command);
         return Ok();
     }
-    
+
     /// <summary>
     /// Endpoint for removing connection from users favourites.
     /// </summary>
     /// <param name="command">Command containing ids of from/to location.</param>
     /// <returns>Method status.</returns>
+    [Authorize]
     [HttpDelete("dislike-line")]
     public async Task<IActionResult> DislikeConnection(UserLikeConnectionCommand command)
     {
         await userCommandHandler.HandleDislikeConnection(command);
         return Ok();
     }
-    
+
     /// <summary>
     /// Endpoint for removing location from users favourites.
     /// </summary>
     /// <param name="command">Command containing location id.</param>
     /// <returns>Method status.</returns>
+    [Authorize]
     [HttpDelete("dislike-location")]
     public async Task<IActionResult> DislikeLocation(UserLikeLocationCommand command)
     {
