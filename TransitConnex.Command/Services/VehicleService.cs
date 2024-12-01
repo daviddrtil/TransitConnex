@@ -194,7 +194,8 @@ public class VehicleService(IMapper mapper,
         // await vehicleRepository.DeleteBatch(existingVehicles);
     }
 
-    public async Task ReplaceVehicleOnScheduledRoutes(VehicleReplaceOnScheduledCommand replaceCommand)
+    public async Task<IEnumerable<ScheduledRoute>> ReplaceVehicleOnScheduledRoutes(
+        VehicleReplaceOnScheduledCommand replaceCommand)
     {
         var replaced = await vehicleRepository.QueryById(replaceCommand.ReplacedId).FirstOrDefaultAsync();
         if (replaced == null)
@@ -223,7 +224,6 @@ public class VehicleService(IMapper mapper,
         var replacedBySeats = await seatRepository.QueryAll().Where(seat => seat.VehicleId == replacedBy.Id).ToListAsync();
         var taken = new List<Seat>();
         var updatedReservations = new List<ScheduledRouteSeat>();
-        
         foreach (var replacedSeat in replacedSeats)
         {
             var replacedBySeat = replacedBySeats.FirstOrDefault(seat => seat.SeatNumber == replacedSeat.SeatNumber);
@@ -257,5 +257,7 @@ public class VehicleService(IMapper mapper,
         
         await scheduledRouteRepository.UpsertBatch(scheduledRoutes);
         await seatRepository.UpsertReservations(updatedReservations); // TODO -> should be better done -> first map seats and validate then do batch upserts
+
+        return scheduledRoutes;
     }
 }

@@ -24,7 +24,7 @@ public class LocationTests(
     ///     and get of the created location
     /// </summary>
     [Fact]
-    public async Task POST_Create_Location_And_GetById_is_OK()
+    public async Task POST_Create_Location_And_GetById_OK()
     {
         await PerformLogin(UserSeed.AdminLogin);
         var newLocation = new LocationCreateCommand()
@@ -55,7 +55,7 @@ public class LocationTests(
     }
 
     [Fact]
-    public async Task POST_GetByName_Location_OK()
+    public async Task GET_ByName_Location_OK()
     {
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);
@@ -83,7 +83,7 @@ public class LocationTests(
     }
 
     [Fact]
-    public async Task POST_GetClosest_Location_OK()
+    public async Task GET_Closest_Location_OK()
     {
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);

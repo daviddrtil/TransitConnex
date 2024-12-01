@@ -20,5 +20,5 @@ public interface IVehicleService
 
     Task DeleteVehicles(List<Guid> ids);
 
-    Task ReplaceVehicleOnScheduledRoutes(VehicleReplaceOnScheduledCommand replaceCommand);
+    Task<IEnumerable<ScheduledRoute>> ReplaceVehicleOnScheduledRoutes(VehicleReplaceOnScheduledCommand replaceCommand);
 }

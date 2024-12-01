@@ -8,16 +8,50 @@ using TransitConnex.Domain.Models;
 
 namespace TransitConnex.Command.Services;
 
-public class ScheduledRouteService(IMapper mapper, IScheduledRouteRepository scheduledRouteRepository, IRouteRepository routeRepository, IVehicleRepository vehicleRepository, IRouteTicketRepository routeTicketRepository) : IScheduledRouteService
+public class ScheduledRouteService(
+    IMapper mapper,
+    IScheduledRouteRepository scheduledRouteRepository,
+    IRouteRepository routeRepository,
+    IVehicleRepository vehicleRepository,
+    IRouteTicketRepository routeTicketRepository)
+        : IScheduledRouteService
 {
-    public Task<List<ScheduledRouteDto>> GetAllScheduledRoutes()
+    public Task<IEnumerable<ScheduledRouteDto>> GetAll()
     {
         throw new NotImplementedException();
     }
 
-    public Task<ScheduledRouteDto> GetScheduledRouteById(Guid id)
+    public Task<ScheduledRouteDto> GetAllById(Guid id)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<IEnumerable<ScheduledRoute>> GetAllByRouteId(Guid routeId)
+    {
+        return await scheduledRouteRepository
+            .QueryAllScheduledRoutes()
+            .Where(x => x.RouteId == routeId)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<ScheduledRoute>> GetAllByStopId(Guid stopId)
+    {
+        return await scheduledRouteRepository
+            .QueryAllScheduledRoutes()
+            .Where(x => x.Route != null
+                && x.Route.Stops.Any(y => y.StopId == stopId))
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<ScheduledRoute>> GetAllByIds(IEnumerable<Guid> ids)
+    {
+        return await scheduledRouteRepository
+            .QueryAllScheduledRoutes()
+            .Where(x => ids.Contains(x.Id))
+            .AsNoTracking()
+            .ToListAsync();
     }
 
     public async Task<ScheduledRoute> CreateScheduledRoute(ScheduledRouteCreateCommand createCommand)

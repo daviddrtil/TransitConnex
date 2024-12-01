@@ -14,7 +14,7 @@ public class RouteService(IMapper mapper, IRouteRepository routeRepository, ISto
     {
         throw new NotImplementedException();
     }
-    
+
     public async Task<Route> CreateRoute(RouteCreateCommand createCommand)
     {
         if (!await stopRepository.Exists(createCommand.EndStopId))

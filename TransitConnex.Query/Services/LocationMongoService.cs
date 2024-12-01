@@ -87,11 +87,15 @@ public class LocationMongoService(
     public async Task Update(IEnumerable<Location> locations)
     {
         var locationDocs = mapper.Map<IEnumerable<LocationDoc>>(locations);
+        if (!locationDocs.Any())
+            return;
         await locationRepo.Upsert(locationDocs);
     }
 
     public async Task Delete(IEnumerable<Guid> ids)
     {
+        if (!ids.Any())
+            return;
         await locationRepo.Delete(ids);
     }
 }

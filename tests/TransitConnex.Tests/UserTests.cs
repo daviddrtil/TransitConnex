@@ -20,7 +20,7 @@ public class UserTests(
     private const string Endpoint = "/api";
 
     [Fact]
-    public async Task GET_User_Favourite_Locations_is_OK()
+    public async Task GET_User_Favourite_Locations_OK()
     {
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);
@@ -41,7 +41,7 @@ public class UserTests(
     }
 
     [Fact]
-    public async Task GET_User_Favourite_Connections_is_OK()
+    public async Task GET_User_Favourite_Connections_OK()
     {
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);
@@ -63,7 +63,7 @@ public class UserTests(
     }
 
     [Fact]
-    public async Task GET_User_SearchedRoutes_is_OK()
+    public async Task GET_User_SearchedRoutes_OK()
     {
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);

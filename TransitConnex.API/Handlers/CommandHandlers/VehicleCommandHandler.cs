@@ -5,8 +5,12 @@ using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
-public class VehicleCommandHandler(IVehicleService vehicleService, IVehicleMongoService vehicleMongoService)
-    : IBaseCommandHandler<IVehicleCommand>
+public class VehicleCommandHandler(
+    IVehicleService vehicleService,
+    IVehicleMongoService vehicleMongoService,
+    IScheduledRouteService srService,
+    IScheduledRouteMongoService srMongoService)
+        : IBaseCommandHandler<IVehicleCommand>
 {
     public async Task<Guid> HandleCreate(IVehicleCommand command)
     {
@@ -52,7 +56,10 @@ public class VehicleCommandHandler(IVehicleService vehicleService, IVehicleMongo
         {
             throw new InvalidCastException($"Invalid command given, expected {nameof(VehicleReplaceOnScheduledCommand)}.");
         }
+        var scheduled = await vehicleService.ReplaceVehicleOnScheduledRoutes(replaceCommand);
         
-        await vehicleService.ReplaceVehicleOnScheduledRoutes(replaceCommand);
+        var srIds = scheduled.Select(sr => sr.Id).Distinct().ToList();
+        var srs = await srService.GetAllByIds(srIds);
+        await srMongoService.Update(scheduled);
     }
 }

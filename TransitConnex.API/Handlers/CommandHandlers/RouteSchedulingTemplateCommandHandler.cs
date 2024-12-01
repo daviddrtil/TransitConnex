@@ -1,11 +1,15 @@
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.RouteSchedulingTemplate;
 using TransitConnex.Command.Services.Interfaces;
+using TransitConnex.Query.Services.Interfaces;
 
 namespace TransitConnex.API.Handlers.CommandHandlers;
 
-public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateService routeSchedulingTemplateService)
-    : IBaseCommandHandler<IRouteSchedulingTemplateCommand>
+public class RouteSchedulingTemplateCommandHandler(
+    IRouteSchedulingTemplateService routeSchedulingTemplateService,
+    IScheduledRouteService srService,
+    IScheduledRouteMongoService srMongoService)
+        : IBaseCommandHandler<IRouteSchedulingTemplateCommand>
 {
     public async Task<Guid> HandleCreate(IRouteSchedulingTemplateCommand command)
     {
@@ -13,9 +17,8 @@ public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateServi
         {
             throw new InvalidCastException($"Invalid command given, expected {nameof(RouteSchedulingTemplateCreateCommand)}.");
         }
-        
         var created = await routeSchedulingTemplateService.CreateRouteSchedulingTemplate(createCommand);
-        return created.Id; 
+        return created.Id;
     }
 
     public async Task HandleUpdate(IRouteSchedulingTemplateCommand command)
@@ -24,7 +27,6 @@ public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateServi
         {
             throw new InvalidCastException($"Invalid command given, expected {nameof(RouteSchedulingTemplateUpdateCommand)}.");
         }
-        
         await routeSchedulingTemplateService.EditRouteSchedulingTemplate(updateCommand);
     }
 
@@ -44,7 +46,14 @@ public class RouteSchedulingTemplateCommandHandler(IRouteSchedulingTemplateServi
         {
             throw new InvalidCastException($"Invalid command given, expected {nameof(RouteSchedulingTemplateRunSchedulerCommand)}.");
         }
-        
-        await routeSchedulingTemplateService.RunScheduler(runCommand); 
+        await routeSchedulingTemplateService.RunScheduler(runCommand);
+
+        if (runCommand.RouteIds is null)
+            return;
+        foreach (var routeId in runCommand.RouteIds)
+        {
+            var srs = await srService.GetAllByRouteId(routeId);
+            await srMongoService.Update(srs);
+        }
     }
 }
