@@ -18,7 +18,7 @@ public class ScheduledRouteMongoRepository(IReadDbContext readDbContext)
                 "stops",
                 Builders<Stop>.Filter.And(
                     Builders<Stop>.Filter.In("_id", startStopIds),
-                    Builders<Stop>.Filter.Gt("departureTime", startTime.ToUniversalTime())
+                    Builders<Stop>.Filter.Gt("departureTime", startTime)
                 )
             ),
             // Ensure at least one of the end stop IDs matches

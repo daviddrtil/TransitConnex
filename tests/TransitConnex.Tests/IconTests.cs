@@ -22,8 +22,8 @@ public class IconTests(
     {
         await PerformLogin(UserSeed.AdminLogin);
 
-        var response =
-            await Client.PostAsJsonAsync($"{Endpoint}", new IconCreateCommand {Name = "test icon", Svg = "some svg"});
+        var response = await Client.PostAsJsonAsync($"{Endpoint}",
+            new IconCreateCommand {Name = "test icon", Svg = "some svg"});
         response.EnsureSuccessStatusCode();
         Guid id = await response.Content.ReadFromJsonAsync<Guid>();
 
@@ -35,7 +35,10 @@ public class IconTests(
         var iconList = await filterResponse.Content.ReadFromJsonAsync<List<IconDto>>();
         
         Assert.NotNull(iconList);
-        Assert.Equal(id, iconList[0].Id);
-        Assert.Equal(iconList[0].Name, iconList[0].Name);
+        Assert.NotEmpty(iconList);
+
+        var firstIcon = iconList.First();
+        Assert.Equal(id, firstIcon.Id);
+        Assert.Equal(firstIcon.Name, firstIcon.Name);
     }
 }

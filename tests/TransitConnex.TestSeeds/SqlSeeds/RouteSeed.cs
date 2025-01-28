@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver.Linq;
 using TransitConnex.Command.Data;
 using TransitConnex.Domain.Enums;
@@ -73,7 +72,7 @@ public class RouteSeed
         }
     ];
 
-    public static void Seed(AppDbContext context)
+    private static void SeedRoutes(AppDbContext context)
     {
         foreach (var route in Routes)
         {
@@ -83,7 +82,10 @@ public class RouteSeed
             }
         }
         context.SaveChanges();
+    }
 
+    private static void SeedRouteStops(AppDbContext context)
+    {
         var busStopIds = new List<Guid>
         {
             Guid.Parse("bbdb98bb-e842-4f53-8f4b-f01fc66302e5"),
@@ -107,8 +109,8 @@ public class RouteSeed
             TimeDurationFromFirstStop = new TimeSpan(0, 0, index * busStopDuration),
         }));
 
-        busStopIds =
-        [
+        var reverseBusStopIds = new List<Guid>
+        {
             Guid.Parse("de15e587-eddb-4607-97e2-0ce91494a8fa"),
             Guid.Parse("c2624b0e-3af6-4a22-a7cd-9f36bc9bac49"),
             Guid.Parse("00bd8fb5-2de4-4d34-9ef8-4766c75fc57d"),
@@ -119,8 +121,8 @@ public class RouteSeed
             Guid.Parse("a700b35f-a985-451d-b695-d83b7321ec68"),
             Guid.Parse("4f5e328a-4077-45f1-89ff-7200cf1c2cb3"),
             Guid.Parse("e3064840-6ff0-46a2-b9a4-c31ef7f3a640")
-        ];
-        routeStops.AddRange(busStopIds.Select((stopId, index) => new RouteStop
+        };
+        routeStops.AddRange(reverseBusStopIds.Select((stopId, index) => new RouteStop
         {
             StopId = stopId,
             RouteId = Guid.Parse("829c534e-ae42-48f9-b66f-3f5521c522c3"),
@@ -128,46 +130,37 @@ public class RouteSeed
             TimeDurationFromFirstStop = new TimeSpan(0, 0, index * busStopDuration),
         }));
 
-        var trainStopsIds = new List<Guid>  // prerov -> vyskov -> brno
+
+        // prerov -> vyskov -> brno
+        var prerovToBrnoStopIds = new List<Guid>
         {
             Guid.Parse("b743d2f6-13aa-493c-b1eb-d07e6d091e1d"),
             Guid.Parse("946e8d9b-8922-4b71-a5f0-850551e86d89"),
             Guid.Parse("02095ed5-8d2e-4d8d-9a4c-e1afef525305")
         };
-        int i = 0;
         int trainStopDuration = 2100;
-        foreach (var trainStopId in trainStopsIds)
+        routeStops.AddRange(prerovToBrnoStopIds.Select((stopId, index) => new RouteStop
         {
-            var trainStop = context.Stops.First(s => s.Id == trainStopId);
-            routeStops.Add(new RouteStop
-            {
-                StopId = trainStop.Id,
-                RouteId = Guid.Parse("dff25738-54e3-4190-b19d-282a300c8219"),
-                StopOrder = i,
-                TimeDurationFromFirstStop = new TimeSpan(0, 0, i * trainStopDuration),
-            });
-            i++;
-        }
+            StopId = stopId,
+            RouteId = Guid.Parse("dff25738-54e3-4190-b19d-282a300c8219"),
+            StopOrder = index,
+            TimeDurationFromFirstStop = new TimeSpan(0, 0, index * trainStopDuration),
+        }));
 
         // brno -> vyskov -> prerov
-        trainStopsIds =
-        [
+        var brnoToPrerovStopIds = new List<Guid>
+        {
             Guid.Parse("02095ed5-8d2e-4d8d-9a4c-e1afef525305"),
             Guid.Parse("946e8d9b-8922-4b71-a5f0-850551e86d89"),
             Guid.Parse("b743d2f6-13aa-493c-b1eb-d07e6d091e1d"),
-        ];
-        foreach (var trainStopId in trainStopsIds)
+        };
+        routeStops.AddRange(brnoToPrerovStopIds.Select((stopId, index) => new RouteStop
         {
-            var trainStop = context.Stops.First(s => s.Id == trainStopId);
-            routeStops.Add(new RouteStop
-            {
-                StopId = trainStop.Id,
-                RouteId = Guid.Parse("9d8c5c9f-ca03-4399-96ff-8f081b67d298"),
-                StopOrder = i,
-                TimeDurationFromFirstStop = new TimeSpan(0, 0, i * trainStopDuration),
-            });
-            i++;
-        }
+            StopId = stopId,
+            RouteId = Guid.Parse("9d8c5c9f-ca03-4399-96ff-8f081b67d298"),
+            StopOrder = index,
+            TimeDurationFromFirstStop = new TimeSpan(0, 0, index * trainStopDuration),
+        }));
 
         foreach (var routeStop in routeStops)
         {
@@ -179,5 +172,11 @@ public class RouteSeed
             }
         }
         context.SaveChanges();
+    }
+
+    public static void Seed(AppDbContext context)
+    {
+        SeedRoutes(context);
+        SeedRouteStops(context);
     }
 }

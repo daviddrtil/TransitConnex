@@ -23,7 +23,7 @@ public class ScheduledRouteTests(
         // Arrange
         await PerformLogin(UserSeed.BasicLogin);
         var dbFirstSr = ScheduledRouteSeed.ScheduledRoutes.First();
-        var searchTime = dbFirstSr.StartTime.AddHours(-2);
+        var searchTime = dbFirstSr.StartTime.AddMinutes(-5);
         var scheduledRouteQuery = new ScheduledRouteGetAllQuery(
             UserSeed.BasicUser.Id,
             LocationSeed.BrnoCityLocation.Id,
@@ -53,6 +53,41 @@ public class ScheduledRouteTests(
     }
 
     [Fact]
+    public async Task GET_Second_Scheduled_Route_OK()
+    {
+        // Arrange
+        await PerformLogin(UserSeed.BasicLogin);
+        var dbSecondSr = ScheduledRouteSeed.ScheduledRoutes.ElementAt(1);
+        var searchTime = dbSecondSr.StartTime.AddMinutes(-5);
+        var scheduledRouteQuery = new ScheduledRouteGetAllQuery(
+            UserSeed.BasicUser.Id,
+            LocationSeed.BrnoCityLocation.Id,
+            LocationSeed.PrerovCityLocation.Id,
+            searchTime);
+        var queryParams = new Dictionary<string, string?>
+        {
+            { "startLocationId", scheduledRouteQuery.StartLocationId.ToString() },
+            { "endLocationId", scheduledRouteQuery.EndLocationId.ToString() },
+            { "startTime", scheduledRouteQuery.StartTime.ToString() },
+        };
+        string url = QueryHelpers.AddQueryString($"{Endpoint}/ScheduledRoute/GetScheduledRoutes", queryParams);
+
+        // Act
+        var response = await Client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        var scheduledRoutes = await response.Content.ReadFromJsonAsync<IEnumerable<ScheduledRouteDto>>();
+
+        // Assert
+        Assert.NotNull(scheduledRoutes);
+        Assert.NotEmpty(scheduledRoutes);
+        Assert.Single(scheduledRoutes);
+
+        var firstSr = scheduledRoutes.First();
+        Assert.Equal(dbSecondSr.Id, firstSr.Id);
+        Assert.True(searchTime < firstSr.StartTime);
+    }
+
+    [Fact]
     public async Task GET_Scheduled_Routes_Should_be_Empty_OK()
     {
         // Arrange
@@ -60,7 +95,7 @@ public class ScheduledRouteTests(
         var dbLastSr = ScheduledRouteSeed.ScheduledRoutes
             .OrderBy(x => x.StartTime)
             .Last();
-        var searchTime = dbLastSr.StartTime.AddHours(2);
+        var searchTime = dbLastSr.StartTime.AddMinutes(5);
         var query = new ScheduledRouteGetAllQuery(
             UserSeed.BasicUser.Id,
             LocationSeed.BrnoCityLocation.Id,

@@ -4,12 +4,12 @@ namespace TransitConnex.Query.Queries;
 
 public class LocationGetClosestQuery : ILocationQuery
 {
-    public double Longitude { get; set; }
     public double Latitude { get; set; }
+    public double Longitude { get; set; }
 
-    public LocationGetClosestQuery(double longitude, double latitude)
+    public LocationGetClosestQuery(double latitude, double longitude)
     {
-        Longitude = longitude;
         Latitude = latitude;
+        Longitude = longitude;
     }
 }

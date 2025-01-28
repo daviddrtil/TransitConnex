@@ -88,9 +88,10 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
 
     public async Task<UserLocationFavourite> LikeLocation(UserLikeLocationCommand likeCommand)
     {
-        if (!await userRepository.Exists(likeCommand.UserId))
+        var user = await userRepository.QueryById(likeCommand.UserId).FirstOrDefaultAsync();
+        if (user == null)
         {
-            throw new KeyNotFoundException($"Icon with ID {likeCommand.UserId} was not found.");
+            throw new KeyNotFoundException($"User with ID: {likeCommand.UserId} does not exist.");
         }
         
         if (!await locationRepository.Exists(likeCommand.LocationId))
@@ -98,7 +99,18 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
             throw new KeyNotFoundException($"Location with ID {likeCommand.LocationId} was not found.");
         }
         
-        var like = new UserLocationFavourite() {UserId = likeCommand.UserId, LocationId = likeCommand.LocationId};
+        if (userRepository
+            .QueryLocationFavouritesByIds(user.Id, likeCommand.LocationId).Any())
+        {
+            throw new ArgumentException("This connection has already been favourite.");
+        }
+        
+        var like = new UserLocationFavourite()
+        {
+            UserId = user.Id,
+            LocationId = likeCommand.LocationId,
+            AddTime = DateTime.Now
+        };
 
         await userRepository.AddUserLocationFavourite(like);
         return like;
@@ -106,9 +118,10 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
 
     public async Task<UserConnectionFavourite> LikeConnection(UserLikeConnectionCommand likeCommand)
     {
-        if (!await userRepository.Exists(likeCommand.UserId))
+        var user = await userRepository.QueryById(likeCommand.UserId).FirstOrDefaultAsync();
+        if (user == null)
         {
-            throw new KeyNotFoundException($"Icon with ID {likeCommand.UserId} was not found.");
+            throw new KeyNotFoundException($"User with ID: {likeCommand.UserId} does not exist.");
         }
         
         if (!await locationRepository.Exists(likeCommand.FromLocationId))
@@ -120,12 +133,19 @@ public class UserService(IMapper mapper, IUserRepository userRepository, ILocati
         {
             throw new KeyNotFoundException($"Location with ID {likeCommand.ToLocationId} was not found.");
         }
+
+        if (userRepository
+                .QueryConnectionFavouritesByIds(user.Id, likeCommand.FromLocationId, likeCommand.ToLocationId).Any())
+        {
+            throw new ArgumentException("This connection has already been favourite.");
+        }
         
         var like = new UserConnectionFavourite()
         {
-            UserId = likeCommand.UserId,
+            UserId = user.Id,
             FromLocationId = likeCommand.FromLocationId,
             ToLocationId = likeCommand.ToLocationId,
+            AddTime = DateTime.Now
         };
         
         await userRepository.AddUserLineFavourite(like);

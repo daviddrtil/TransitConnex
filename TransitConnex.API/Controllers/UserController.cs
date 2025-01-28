@@ -153,7 +153,7 @@ public class UserController(
     /// <param name="command">Command containing ids of from/to location.</param>
     /// <returns>Method status.</returns>
     [Authorize]
-    [HttpPost("like-connection")]
+    [HttpPost("LikeConnection")]
     public async Task<IActionResult> LikeConnection(UserLikeConnectionCommand command)
     {
         var user = await userManager.GetUserAsync(User);
@@ -168,9 +168,11 @@ public class UserController(
     /// <param name="command">Command containing location id.</param>
     /// <returns>Method status.</returns>
     [Authorize]
-    [HttpPost("like-location")]
+    [HttpPost("LikeLocation")]
     public async Task<IActionResult> LikeLocation(UserLikeLocationCommand command)
     {
+        var user = await userManager.GetUserAsync(User);
+        command.UserId = user!.Id;
         await userCommandHandler.HandleLikeLocation(command);
         return Ok();
     }
@@ -181,9 +183,11 @@ public class UserController(
     /// <param name="command">Command containing ids of from/to location.</param>
     /// <returns>Method status.</returns>
     [Authorize]
-    [HttpDelete("dislike-connection")]
+    [HttpDelete("DislikeConnection")]
     public async Task<IActionResult> DislikeConnection(UserLikeConnectionCommand command)
     {
+        var user = await userManager.GetUserAsync(User);
+        command.UserId = user!.Id;
         await userCommandHandler.HandleDislikeConnection(command);
         return Ok();
     }
@@ -194,9 +198,11 @@ public class UserController(
     /// <param name="command">Command containing location id.</param>
     /// <returns>Method status.</returns>
     [Authorize]
-    [HttpDelete("dislike-location")]
+    [HttpDelete("DislikeLocation")]
     public async Task<IActionResult> DislikeLocation(UserLikeLocationCommand command)
     {
+        var user = await userManager.GetUserAsync(User);
+        command.UserId = user!.Id;
         await userCommandHandler.HandleDislikeLocation(command);
         return Ok();
     }

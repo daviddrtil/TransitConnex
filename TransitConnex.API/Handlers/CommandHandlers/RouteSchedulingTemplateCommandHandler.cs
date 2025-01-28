@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using TransitConnex.API.Handlers.CommandHandlers.Common;
 using TransitConnex.Command.Commands.RouteSchedulingTemplate;
+using TransitConnex.Command.Repositories.Interfaces;
 using TransitConnex.Command.Services.Interfaces;
 using TransitConnex.Query.Services.Interfaces;
 
@@ -8,7 +10,8 @@ namespace TransitConnex.API.Handlers.CommandHandlers;
 public class RouteSchedulingTemplateCommandHandler(
     IRouteSchedulingTemplateService routeSchedulingTemplateService,
     IScheduledRouteService srService,
-    IScheduledRouteMongoService srMongoService)
+    IScheduledRouteMongoService srMongoService,
+    IRouteRepository routeRepository)
         : IBaseCommandHandler<IRouteSchedulingTemplateCommand>
 {
     public async Task<Guid> HandleCreate(IRouteSchedulingTemplateCommand command)
@@ -48,9 +51,13 @@ public class RouteSchedulingTemplateCommandHandler(
         }
         await routeSchedulingTemplateService.RunScheduler(runCommand);
 
-        if (runCommand.RouteIds is null)
-            return;
-        foreach (var routeId in runCommand.RouteIds)
+        var routeIds = runCommand.RouteIds;
+        if (routeIds is null || !routeIds.Any())
+        {
+            routeIds = await routeRepository.QueryAll().Select(x => x.Id).ToListAsync();
+        }
+
+        foreach (var routeId in routeIds)
         {
             var srs = await srService.GetAllByRouteId(routeId);
             await srMongoService.Update(srs);

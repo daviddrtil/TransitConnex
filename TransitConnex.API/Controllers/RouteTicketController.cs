@@ -17,6 +17,7 @@ namespace TransitConnex.API.Controllers;
 [Authorize]
 public class RouteTicketController(RouteTicketCommandHandler routeTicketCommandHandler, RouteTicketQueryHandler routeTicketQueryHandler) : Controller
 {
+    [HttpPost("GetRouteTicketsFiltered")]
     [AuthorizedByAdmin]
     public async Task<ActionResult<List<RouteTicketDto>>> GetRouteTicketsFiltered(RouteTicketFilteredQuery filter)
     {

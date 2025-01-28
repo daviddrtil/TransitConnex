@@ -1,0 +1,11 @@
+Future development:
+- Implement Minimal API
+- Refactor migration creation process
+- Improve tests: add snapshots, make them more modular
+- Set up CI/CD pipeline
+- Update tests from SQL in-memory database to SQL Server database
+- Add Docker for deployment
+- Develop a UI
+
+Functionality:
+- Implement getClosestFavouriteLocation()

@@ -34,5 +34,7 @@ internal static class ConfigureHandlers
         services.AddScoped<UserQueryHandler>();
         services.AddScoped<VehicleQueryHandler>();
         services.AddScoped<VehicleRTIQueryHandler>();
+        services.AddScoped<RouteTicketQueryHandler>();
+        services.AddScoped<RouteQueryHandler>();
     }
 }
