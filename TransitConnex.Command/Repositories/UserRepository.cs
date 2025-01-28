@@ -35,22 +35,38 @@ public class UserRepository(AppDbContext db) : BaseRepository<User, UserUpdateCo
         return QueryAll().AnyAsync(x => x.Email == email);
     }
 
-    public async Task AddUserLocationFavourite(UserLocationFavourite userLocationFavourite)
+    public async Task AddUserLocationFavourite(UserLocationFavourite userLocation)
     {
-        Db.UserLocationFavourites.Add(userLocationFavourite);
-        await Db.SaveChangesAsync();
+        if (!Db.UserLocationFavourites.Any(x =>
+                x.UserId == userLocation.UserId
+                && x.LocationId == userLocation.LocationId))
+        {
+            Db.UserLocationFavourites.Add(userLocation);
+            await Db.SaveChangesAsync();
+        }
     }
 
     public async Task AddUserLineFavourite(UserConnectionFavourite userConnection)
     {
-        Db.UserConnectionFavourites.Add(userConnection);
-        await Db.SaveChangesAsync();
+        if (!Db.UserConnectionFavourites.Any(x =>
+                x.UserId == userConnection.UserId
+                && x.FromLocationId == userConnection.FromLocationId
+                && x.ToLocationId == userConnection.ToLocationId))
+        {
+            Db.UserConnectionFavourites.Add(userConnection);
+            await Db.SaveChangesAsync();
+        }
     }
 
-    public async Task DeleteUserLocationFavourite(UserLocationFavourite userLocationFavourite)
+    public async Task DeleteUserLocationFavourite(UserLocationFavourite userLocation)
     {
-        Db.Remove(userLocationFavourite);
-        await Db.SaveChangesAsync();
+        if (Db.UserLocationFavourites.Any(x =>
+            x.UserId == userLocation.UserId
+            && x.LocationId == userLocation.LocationId))
+        {
+            Db.Remove(userLocation);
+            await Db.SaveChangesAsync();
+        }
     }
 
     public async Task DeleteUserLocationFavourites(List<UserLocationFavourite> userLocationFavourites)
@@ -59,10 +75,16 @@ public class UserRepository(AppDbContext db) : BaseRepository<User, UserUpdateCo
         await Db.SaveChangesAsync();
     }
 
-    public async Task DeleteUserConnectionFavourite(UserConnectionFavourite userConnectionFavourite)
+    public async Task DeleteUserConnectionFavourite(UserConnectionFavourite userConnection)
     {
-        Db.Remove(userConnectionFavourite);
-        await Db.SaveChangesAsync();
+        if (Db.UserConnectionFavourites.Any(x =>
+            x.UserId == userConnection.UserId
+            && x.FromLocationId == userConnection.FromLocationId
+            && x.ToLocationId == userConnection.ToLocationId))
+        {
+            Db.Remove(userConnection);
+            await Db.SaveChangesAsync();
+        }
     }
 
     public async Task DeleteUserConnectionFavourites(List<UserConnectionFavourite> userConnectionFavourites)

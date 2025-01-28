@@ -1,0 +1,19 @@
+1) login jako admin
+2) ukázat z db scheduling template pres vs code, popsat jak to funguje s plánováním víkendů, prázdnin, etc.. jak funguje reschedule a specifikovani route
+3) run scheduleru - ukazat ze jsou vytvoreny scheduled a ze jsou pro danou routu jen ja PO-PA protoze neni vikendovka
+
+1) login jako user
+2) ukazat nalezeni scheduled route pro Prerov-Brno
+3) vybrat routu
+4) ukazat get sedadel pro routu se stavy
+5) udelat rezervaci na sedadla
+6) ukazat rezervace v db a ukazat get ze je tam reserved
+7) muzu ukazat free
+8) ukazat koupeni listku
+9) ukazat koupeni listku pro nerezervovane seaty
+
+
+1) jako user
+2) like location/connection
+3) pokus o duplicity
+4) mazani

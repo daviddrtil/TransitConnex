@@ -96,7 +96,7 @@ public class ScheduledRouteMongoService(
     public async Task Update(IEnumerable<ScheduledRoute> scheduledRoutes)
     {
         var srDocs = mapper.Map<IEnumerable<ScheduledRouteDoc>>(scheduledRoutes);
-        if (!srDocs.Any())
+        if (srDocs.Any())
             await scheduledRouteRepo.Upsert(srDocs);
     }
 

@@ -10,7 +10,7 @@ using TransitConnex.Query.Queries;
 
 namespace TransitConnex.Command.Services;
 
-public class SeatService(IMapper mapper, ISeatRepository seatRepository, IScheduledRouteRepository scheduledRouteRepository, IVehicleRepository vehicleRepository, IRouteTicketRepository routeTicketRepository) : ISeatService
+public class SeatService(IMapper mapper, ISeatRepository seatRepository, IScheduledRouteRepository scheduledRouteRepository, IVehicleRepository vehicleRepository, IRouteTicketRepository routeTicketRepository, IUserRepository userRepository) : ISeatService
 {
     public async Task<List<SeatDto>> GetSeatsForScheduledRoute(Guid scheduledRouteId)
     {
@@ -26,7 +26,7 @@ public class SeatService(IMapper mapper, ISeatRepository seatRepository, ISchedu
         var seats = new List<SeatDto>();
         foreach (var seat in allSeats)
         {
-            bool reserved = !availableSeats.Contains(seat);
+            bool reserved = !availableSeats.Any(x => x.Id == seat.Id);
             var seatDto = new SeatDto
             {
                 Id = seat.Id,
@@ -91,11 +91,17 @@ public class SeatService(IMapper mapper, ISeatRepository seatRepository, ISchedu
             throw new Exception($"Seats with given IDs: {string.Join(", ", notAvailableSeats)} are not available.");
         }
         
+        var user = await userRepository.QueryById(reservationCommands.UserId).FirstOrDefaultAsync();
+        if (user == null)
+        {
+            throw new KeyNotFoundException($"User with ID: {reservationCommands.UserId} does not exist.");
+        }
+        
         var reservations = availableSeats.Select(seat => new ScheduledRouteSeat
         {
             SeatId = seat.Id,
             ScheduledRouteId = reservationCommands.ScheduledRouteId,
-            ReservedById = reservationCommands.UserId,
+            ReservedById = user.Id,
             ReservedUntil = DateTime.Now.AddMinutes(15),
             RouteTicket = null
         })

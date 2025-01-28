@@ -32,9 +32,9 @@ public class LocationController(
     }
 
     [HttpGet("GetClosest")]
-    public async Task<LocationDto?> GetClosestLocation([Required] double longitude, [Required] double latitude)
+    public async Task<LocationDto?> GetClosestLocation([Required] double latitude, [Required] double longitude)
     {
-        var query = new LocationGetClosestQuery(longitude, latitude);
+        var query = new LocationGetClosestQuery(latitude, longitude);
         return await locationQueryHandler.HandleGetClosest(query);
     }
 
