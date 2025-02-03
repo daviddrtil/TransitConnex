@@ -45,8 +45,8 @@ The system integrates the following components:
     - **Cached Schedules:** Preprocessed trip data for quick lookups.
 
 ### 3. **CQRS Principle**
-- **Commands:** SQL Server is used for data creation, updates, and deletion. All updates are synchronized to NoSQL database. 
-- **Queries:** MongoDB is used for efficient, read-intensive operations like real-time vehicle status, search history retrieval and finding scheduled routes.
+- **Commands:** SQL Server is used for data creation, updates, and deletion. Data consistency is maintained by synchronizing updates across MongoDB collections that cache structured data.
+- **Queries:** MongoDB is used for efficient, read-intensive operations like real-time vehicle tracking, user search history retrieval, and finding scheduled routes. Some collections in MongoDB act as a **precomputed cache**, merging data from multiple SQL tables (e.g., **Stop**, **Route**, **ScheduledRoute**). These collections are recalculated and synchronized when changes occur in the SQL database.
 
 This architecture combines scalability with robust transactional reliability, ensuring efficient data handling even under heavy loads.
 
@@ -54,21 +54,23 @@ This architecture combines scalability with robust transactional reliability, en
 
 ## REST API
 
-The system exposes single RESTful API for interaction with both relational and non-relational databases.
+The system provides a unified RESTful API for interaction with both relational and non-relational databases.
 
 ### Key Endpoints
 
 #### **Command Operations** (Relational Data - SQL):
-- **Routes:** Create, update, and delete routes (`/api/Route`).
-- **Stops:** Add stops to routes (`/api/Stop/add-to-location`).
-- **Users:** Manage profiles, favorites, and reservations (`/api/User`).
+- **Routes:** Create, update and delete routes (`/api/Route`)
+- **Stops:** Add and manage stops within routes (`/api/Stop/AddToLocation`)
+- **Tickets:** Manage ticket creation and seat reservations (`/api/RouteTicket`)
 
-#### **Query Operations** (Real-Time Data - MongoDB):
-- **Real-Time Vehicle Information:** Fetch real-time updates (`/api/Vehicle/GetRTIByVehicleId/{id}`).
-- **User Search History:** Retrieve recent user queries (`/api/User/getSearchHistory`).
-- **Nearby Locations:** Get the closest stop to a user’s location (`/api/Location/GetClosest`).
+#### **Query Operations** (Read-Optimized Data - MongoDB):
+- **Scheduled Routes:** Retrieve cached scheduled routes (`/api/ScheduledRoute/GetScheduledRoutes`)
+- **Locations:** Get the closest stop to a user’s location (`/api/Location/GetClosest`)
+- **Real-Time Vehicle Information:** Retrieve real-time updates from vehicle sensors (`/api/Vehicle/GetRTIByVehicleId/{id}`)
+- **User Search History:** Retrieve recent user queries (`/api/User/GetSearchHistory`)
+- **User Favourites:** Manage user favourite locations and connections (`/api/User`)
 
-For a detailed API specification, refer to the generated **Doxygen** documentation in the repository.
+For a detailed API specification, refer to the documentation in the repository.
 
 ---
 
@@ -76,7 +78,7 @@ For a detailed API specification, refer to the generated **Doxygen** documentati
 
 ### Prerequisites
 1. **Microsoft SQL Server** with the configuration detailed in `/src/doc/SqlServerSetup.pdf`.
-2. **MongoDB** connection named `pdb-project`.
+2. **MongoDB** connection set up.
 3. **Visual Studio 2022** for building and deploying the application.
 
 ### Steps to Run Locally
@@ -131,8 +133,13 @@ For a detailed API specification, refer to the generated **Doxygen** documentati
 
 ## Authors
 
-- **Dominik Pop** - `xpopdo00`
 - **David Drtil** - `xdrtil03`
+- **Dominik Pop** - `xpopdo00`
+
+---
+
+## Project Evaluation
+✅ **Final Score: 25 / 25b**
 
 ---
 
