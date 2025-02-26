@@ -12,4 +12,10 @@
     <ProjectReference Include="..\..\TransitConnex.Query\TransitConnex.Query.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="NoSqlSeeds\Datasets\vehicleDataset.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -16,10 +16,7 @@ public class VehicleRTIDocSeeder(
     public static readonly HashSet<Guid> RouteIds = [];
     public static readonly HashSet<Guid> StopIds = [];
 
-    public static string SolutionPath = ProjectPathHelper.GetSolutionDirectory();
-    public static string ProjectPath { get; set; } = Path.Combine(
-        SolutionPath, "tests", "TransitConnex.TestSeeds");
-    public static string DatasetPath = Path.Combine(ProjectPath,
+    public static string DatasetPath = Path.Combine(".",
         "NoSqlSeeds", "Datasets", "vehicleDataset.csv");
 
     private VehicleRTIDoc Parse(CsvReader csv)
