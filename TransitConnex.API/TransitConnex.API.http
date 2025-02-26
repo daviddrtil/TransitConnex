@@ -1,6 +1,6 @@
-@TransitConnex.API_HostAddress = http://localhost:5265
+@TransitConnex.API_HostAddress = http://localhost:5265/api
 
-GET {{TransitConnex.API_HostAddress}}/weatherforecast/
+GET {{TransitConnex.API_HostAddress}}/User/GetAllSoT
 Accept: application/json
 
 ###
