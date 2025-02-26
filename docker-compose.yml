@@ -1,0 +1,45 @@
+services:
+  transitconnex.api:
+    build:
+      context: .
+      dockerfile: TransitConnex.API/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - sqlserver
+      - mongodb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SOLUTION_DIR=/app
+    networks:
+      - transitconnexnetwork
+    restart: on-failure
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "VUTFITez!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    networks:
+      - transitconnexnetwork
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - nosqlvolume:/data/db
+    networks:
+      - transitconnexnetwork
+
+networks:
+  transitconnexnetwork:
+
+volumes:
+  sqlvolume:
+  nosqlvolume:

@@ -38,7 +38,7 @@ public class Program
         });
 
         builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), options =>
             {
                 options.EnableRetryOnFailure();
             }));
@@ -102,6 +102,14 @@ public class Program
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
+            // sql up
+            await app.MigrateSqlDbAsync();
+            await DbSeeder.SeedAll(app.Services);
+
+            // nosql up
+            await app.MigrateMongoDbAsync();
+            await app.SeedMongoDb();
+
             app.UseSwagger();
             app.UseSwaggerUI();
         }
